@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">cplus</string>
+    <string name="account">账号</string>
+    <string name="account_hint">手机号/邮箱/用户名</string>
+    <string name="password_hint">请输入密码</string>
+    <string name="password">密码</string>
+    <string name="login">登录</string>
+    <string name="forget_password">忘记密码</string>
+    <string name="register_account">账号注册</string>
+    <string name="thirdparty">第三方登录</string>
+    <string name="account_cannot_null">账号不能为空</string>
+    <string name="password_cannot_null">密码不能为空</string>
+    <string name="year">年</string>
+    <string name="day">日</string>
+    <string name="month">月</string>
+</resources>

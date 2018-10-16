@@ -1,0 +1,23 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorTranlate</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+
+    <style name="LoginBtnStyle">
+        <item name="android:textColor">@color/whiteColor</item>
+        <item name="android:background">@drawable/selector_login_btn</item>
+    </style>
+
+    <style name="InputKeyStyle">
+        <item name="android:textColor">#ff333333</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+</resources>
