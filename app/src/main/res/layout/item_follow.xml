@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/rootRelayout"
+    android:layout_height="90dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/avatarIv"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+        <RelativeLayout
+            android:layout_toRightOf="@id/avatarIv"
+            android:layout_marginLeft="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/titleTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="120dp"
+                android:alpha="0.7"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:layout_marginRight="120dp"/>
+
+
+            <TextView
+                android:id="@+id/summaryTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/titleTv"
+                android:alpha="0.5"
+                android:layout_marginRight="120dp"
+                android:maxLines="2"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"/>
+
+
+
+        </RelativeLayout>
+
+
+
+        <Button
+            android:id="@+id/operationBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:alpha="0.7"
+            android:maxLines="2"
+            android:text="Apr 7"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"/>
+
+        <include layout="@layout/layout_divider"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

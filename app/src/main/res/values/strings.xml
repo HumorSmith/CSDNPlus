@@ -13,4 +13,37 @@
     <string name="year">年</string>
     <string name="day">日</string>
     <string name="month">月</string>
+    <string name="home_page">首页</string>
+    <string name="message">信息</string>
+    <string name="mine">我的</string>
+    <string name="no_more">没有更多数据啦~</string>
+    <string name="loading">正在加载...</string>
+    <string name="no_content">没有内容~</string>
+
+
+
+    <string name="history_view">历史浏览</string>
+    <string name="follow">关注</string>
+    <string name="my_fans">我的粉丝</string>
+    <string name="followed">已关注</string>
+    <string name="zan_comment_wrap">%s 查看\t\t %s 评论</string>
+    <string name="professional_client">最专业的第三方CSDN客户端</string>
+
+
+    <string-array name="tab_name">
+        <item>移动开发</item>
+        <item>前端</item>
+        <item>游戏</item>
+        <item>推荐</item>
+        <item>物联网</item>
+        <item>架构</item>
+    </string-array>
+    <string-array name="tab_key">
+        <item>mobile</item>
+        <item>web</item>
+        <item>game</item>
+        <item>newarticles</item>
+        <item>iot</item>
+        <item>arch</item>
+    </string-array>
 </resources>

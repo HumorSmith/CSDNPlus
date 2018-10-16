@@ -14,8 +14,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.ifreedomer.cplus.ForgetPasswordActivity;
 import com.ifreedomer.cplus.MainActivity;
 import com.ifreedomer.cplus.R;
+import com.ifreedomer.cplus.RegisterActivity;
 import com.ifreedomer.cplus.entity.UserInfo;
 import com.ifreedomer.cplus.http.center.HttpManager;
 import com.ifreedomer.cplus.http.protocol.PayLoad;
@@ -78,6 +80,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
     private void initList() {
         loginBtn.setOnClickListener(this);
+        registerTv.setOnClickListener(this);
+        forgetPasswordTv.setOnClickListener(this);
         passwordEt.addTextChangedListener(mTextWatcher);
         accountEt.addTextChangedListener(mTextWatcher);
 
@@ -96,7 +100,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         @Override
         public void afterTextChanged(Editable s) {
-            loginBtn.setEnabled(TextUtils.isEmpty(accountEt.getText().toString()) || TextUtils.isEmpty(passwordEt.getText().toString()));
+            loginBtn.setEnabled(!TextUtils.isEmpty(accountEt.getText().toString()) && !TextUtils.isEmpty(passwordEt.getText().toString()));
         }
     };
 
@@ -135,6 +139,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                         WidgetUtil.showSnackBar(getActivity(), userInfoRespPayLoad.getMessage());
                     }
                 }, throwable -> WidgetUtil.showSnackBar(getActivity(), throwable.getMessage()));
+                break;
+            case R.id.registerTv:
+                startActivity(new Intent(getActivity(), RegisterActivity.class));
+                break;
+            case R.id.forgetPasswordTv:
+                startActivity(new Intent(getActivity(), ForgetPasswordActivity.class));
                 break;
         }
     }

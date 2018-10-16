@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="loginRadius">3dp</dimen>
+    <dimen name="searchRadius">33dp</dimen>
+    <dimen name="dp280">280dp</dimen>
+    <dimen name="rootCardHeight">110dp</dimen>
+    <dimen name="rootCornerRadius">5dp</dimen>
 </resources>

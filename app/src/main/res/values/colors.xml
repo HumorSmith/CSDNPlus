@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimary">#FF468EFF</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorTranlate">#00000000</color>
@@ -8,4 +8,8 @@
     <color name="blueColor">#B5D2FF</color>
     <color name="whiteColor">#FFFFFF</color>
     <color name="loginPressColor">#ff468eff</color>
+    <color name="searhbarColor">#FFF5F5F5</color>
+    <color name="tabTextColor">#FF8EB9F6</color>
+
+
 </resources>

@@ -107,6 +107,7 @@
         android:layout_marginTop="20dp">
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/registerTv"
             android:layout_width="45dp"
             android:layout_height="16dp"
@@ -117,6 +118,7 @@
 
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/forgetPasswordTv"
             android:layout_width="45dp"
             android:layout_height="16dp"
