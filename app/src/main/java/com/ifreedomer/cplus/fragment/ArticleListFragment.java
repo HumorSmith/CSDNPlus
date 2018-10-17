@@ -31,6 +31,7 @@ public class ArticleListFragment extends ArticlePullrefreshFragment {
     protected void initAdapter() {
         recycleview.setAdapter(new ArticleListAdapter(R.layout.item_article_list, mDataList));
         recycleview.setLayoutManager(new LinearLayoutManager(getActivity()));
+        setBackground(getResources().getColor(R.color.searhbarColor));
     }
 
     @Override

@@ -66,6 +66,9 @@ public abstract class BasePullRefreshPageFragment<T> extends BasePageFragment {
         });
     }
 
+    public void setBackground(int color) {
+        recycleview.setBackgroundColor(color);
+    }
 
 
 

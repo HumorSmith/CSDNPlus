@@ -49,5 +49,7 @@ public abstract class ArticlePullrefreshFragment extends BasePullRefreshPageFrag
         fetchData(type, offset);
     }
 
+
+
     public abstract void fetchData(String type, long offset);
 }

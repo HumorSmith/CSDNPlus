@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal">
+
+
+    <ImageView
+        android:id="@+id/itemIv"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:layout_gravity="center_vertical"
+        android:src="@mipmap/ic_sina"
+        />
+
+    <TextView
+        android:id="@+id/itemTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="7dp"
+        android:layout_toRightOf="@+id/itemIv"
+        android:text="Name"/>
+</LinearLayout>
