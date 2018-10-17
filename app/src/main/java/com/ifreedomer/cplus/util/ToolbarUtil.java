@@ -1,16 +1,23 @@
 package com.ifreedomer.cplus.util;
 
 
+import android.widget.TextView;
+
+import com.ifreedomer.cplus.R;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class ToolbarUtil {
 
-    public static void setTitleBarWhiteBack(AppCompatActivity context, Toolbar toolbar, String title) {
+    public static void setTitleBar(AppCompatActivity context, Toolbar toolbar, String title) {
         context.setSupportActionBar(toolbar);
         if (context.getSupportActionBar() != null) {
-            context.getSupportActionBar().setTitle(title);
+            TextView titleTv = toolbar.findViewById(R.id.titleTv);
+            if (titleTv != null) {
+                titleTv.setText(title);
+            }
+            toolbar.setTitle("");
         }
-        toolbar.setNavigationOnClickListener(v -> context.finish());
     }
 }

@@ -1,14 +1,12 @@
 package com.ifreedomer.cplus;
 
 import android.os.Bundle;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.tabs.TabLayout;
 import com.ifreedomer.cplus.adapter.ViewPagerFragmentAdapter;
-import com.ifreedomer.cplus.entity.NewsTabInfo;
-import com.ifreedomer.cplus.fragment.ArticleListFragment;
+import com.ifreedomer.cplus.ui.main.MainFragment;
+import com.ifreedomer.cplus.ui.message.MessageFragment;
+import com.ifreedomer.cplus.ui.mine.MineFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,21 +17,12 @@ import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
 
-    @BindView(R.id.deployTv)
-    TextView deployTv;
-    @BindView(R.id.searchEt)
-    EditText searchEt;
-    @BindView(R.id.tab)
-    TabLayout tab;
     @BindView(R.id.viewpager)
     ViewPager viewpager;
     @BindView(R.id.bottomNavigationView)
     BottomNavigationView bottomNavigationView;
-
-
-    private List<NewsTabInfo> mTabInfoList = new ArrayList<>();
     private List<Fragment> mFragmentList = new ArrayList<>();
 
     @Override
@@ -41,55 +30,52 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
         ButterKnife.bind(this);
-        setupViewPagerAndTab();
-        initBottomBar();
-
+        setupViewPager();
+        setBottomView();
 
     }
 
+    private void setBottomView() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
+            int itemId = menuItem.getItemId();
+            menuItem.setChecked(true);
+            switch (itemId) {
+                case R.id.homeTab:
+                    viewpager.setCurrentItem(0);
+                    break;
+                case R.id.messageTab:
+                    viewpager.setCurrentItem(1);
+                    break;
+                case R.id.mineTab:
+                    viewpager.setCurrentItem(2);
+                    break;
+            }
+            return false;
+        });
+    }
 
-    private void setupViewPagerAndTab() {
-        // init view pager
-
-        String[] tabKeys = getResources().getStringArray(R.array.tab_key);
-        String[] tabNames = getResources().getStringArray(R.array.tab_name);
-
-        for (int i = 0; i < getResources().getStringArray(R.array.tab_key).length; i++) {
-            NewsTabInfo newsTabInfo = new NewsTabInfo(tabNames[i], tabKeys[i]);
-            mTabInfoList.add(newsTabInfo);
-            ArticleListFragment fragment = new ArticleListFragment();
-            fragment.setTabKey(tabKeys[i]);
-            mFragmentList.add(fragment);
-        }
-
-
-
+    private void setupViewPager() {
+        mFragmentList.add(MainFragment.newInstance());
+        mFragmentList.add(MessageFragment.newInstance());
+        mFragmentList.add(MineFragment.newInstance());
         ViewPagerFragmentAdapter pagerAdapter = new ViewPagerFragmentAdapter(getSupportFragmentManager(), mFragmentList);
         viewpager.setAdapter(pagerAdapter);
-        viewpager.setOffscreenPageLimit(2);
-        viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-        tab.setupWithViewPager(viewpager);
-        for (int i = 0; i < tab.getTabCount(); i++) {
-            tab.getTabAt(i).setText(mTabInfoList.get(i).getTabName());
-        }
+        viewpager.setOffscreenPageLimit(3);
+        viewpager.addOnPageChangeListener(null);
     }
 
-    private void initBottomBar() {
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        bottomNavigationView.getMenu().findItem(position).setChecked(true);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
 
     }
 }

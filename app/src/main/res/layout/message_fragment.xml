@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/searhbarColor"
+    tools:context=".ui.message.MessageFragment">
+
+
+    <LinearLayout
+        android:id="@+id/topLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/layout_toolbar"
+            />
+
+        <include layout="@layout/layout_divider"/>
+
+        <com.ifreedomer.cplus.widget.MessageTopItem
+            android:id="@+id/leaveMessageItem"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/settingItemHeight"/>
+
+        <include layout="@layout/layout_divider"/>
+
+        <com.ifreedomer.cplus.widget.MessageTopItem
+            android:id="@+id/collectItem"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/settingItemHeight"/>
+
+        <include layout="@layout/layout_divider"/>
+
+        <com.ifreedomer.cplus.widget.MessageTopItem
+            android:id="@+id/notifiItem"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/settingItemHeight"/>
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/titleRelayout"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:layout_below="@+id/topLayout"
+        android:layout_marginTop="8dp"
+        android:background="@color/whiteColor">
+
+        <TextView
+            android:layout_width="73dp"
+            android:layout_height="17dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:text="全部私信"
+            android:textColor="#ff333333"
+            android:textSize="12sp"
+            />
+
+    </RelativeLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/titleRelayout"/>
+</RelativeLayout>

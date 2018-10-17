@@ -5,4 +5,5 @@
     <dimen name="dp280">280dp</dimen>
     <dimen name="rootCardHeight">110dp</dimen>
     <dimen name="rootCornerRadius">5dp</dimen>
+    <dimen name="settingItemHeight">50dp</dimen>
 </resources>

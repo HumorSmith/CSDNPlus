@@ -28,9 +28,16 @@
     <string name="followed">已关注</string>
     <string name="zan_comment_wrap">%s 查看\t\t %s 评论</string>
     <string name="professional_client">最专业的第三方CSDN客户端</string>
+    <string name="history">历史</string>
+    <string name="setting">设置</string>
+    <string name="feedback">意见反馈</string>
+    <string name="commentLeaveMessage">评论留言</string>
+    <string name="collection">收藏</string>
+    <string name="systemNotify">系统通知</string>
 
 
     <string-array name="tab_name">
+        <item>关注</item>
         <item>移动开发</item>
         <item>前端</item>
         <item>游戏</item>
@@ -39,6 +46,7 @@
         <item>架构</item>
     </string-array>
     <string-array name="tab_key">
+        <item>watchers</item>
         <item>mobile</item>
         <item>web</item>
         <item>game</item>

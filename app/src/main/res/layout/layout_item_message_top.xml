@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="50dp"
+              android:background="@color/whiteColor"
+              android:orientation="horizontal"
+              android:paddingLeft="16dp"
+              android:paddingRight="16dp">
+
+
+    <ImageView
+        android:id="@+id/iconIv"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical"
+        android:src="@mipmap/ic_leave_message"/>
+
+
+    <TextView
+        android:id="@+id/titleTv"
+        android:layout_width="53dp"
+        android:layout_height="19dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="16dp"
+        android:text="评论留言"
+        android:textColor="#ff333333"
+        android:textSize="13sp"
+        />
+</LinearLayout>

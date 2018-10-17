@@ -2,11 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:icon="@drawable/selector_home_tab"
+        android:id="@+id/homeTab"
         android:title="@string/home_page"/>
     <item
         android:icon="@drawable/selector_message_tab"
+        android:id="@+id/messageTab"
         android:title="@string/message"/>
     <item
         android:icon="@drawable/selector_mine_tab"
+        android:id="@+id/mineTab"
         android:title="@string/mine"/>
 </menu>

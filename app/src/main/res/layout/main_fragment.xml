@@ -10,15 +10,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:src="@mipmap/ic_logo"/>
 
     <RelativeLayout
+
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="30dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="16dp">
@@ -48,9 +49,11 @@
             android:textSize="13sp"/>
     </RelativeLayout>
 
-    <TableLayout
+    <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab"
         android:layout_width="match_parent"
+        app:tabIndicatorColor="@color/colorPrimary"
+        app:tabSelectedTextColor="#1E73ED"
         android:layout_height="40dp"
         android:layout_marginTop="6dp"
         app:tabMode="fixed"
@@ -66,16 +69,7 @@
             android:layout_height="match_parent"
             />
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigationView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="bottom"
-            android:background="@color/whiteColor"
-            app:itemIconTint="@drawable/selector_main_tab_color"
-            app:itemTextColor="@drawable/selector_main_tab_color"
-            app:menu="@menu/main_bottom_menu"/>
+
     </RelativeLayout>
 
 </LinearLayout>

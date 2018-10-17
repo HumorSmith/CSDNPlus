@@ -3,61 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-
     android:background="@color/whiteColor"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="20dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:src="@mipmap/ic_logo"/>
-
-    <RelativeLayout
-
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="16dp">
-
-        <TextView
-            android:id="@+id/deployTv"
-            android:layout_width="27dp"
-            android:layout_height="19dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:text="发布"
-            android:textColor="#ff176be5"
-            android:textSize="13sp"
-            />
-
-
-        <EditText
-            android:id="@+id/searchEt"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="16dp"
-            android:layout_toLeftOf="@+id/deployTv"
-            android:background="@drawable/ic_searchbar_shape"
-            android:hint="工蜂Git系统构架"
-            android:paddingLeft="20dp"
-            android:textSize="13sp"/>
-    </RelativeLayout>
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab"
-        android:layout_width="match_parent"
-        app:tabIndicatorColor="@color/colorPrimary"
-        app:tabSelectedTextColor="#1E73ED"
-        android:layout_height="40dp"
-        android:layout_marginTop="6dp"
-        app:tabMode="fixed"
-        />
 
     <RelativeLayout
         android:layout_width="match_parent"
