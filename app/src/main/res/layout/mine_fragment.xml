@@ -68,7 +68,7 @@
         android:layout_marginRight="50dp">
 
         <TextView
-            android:id="@+id/collect_num_tv"
+            android:id="@+id/collectNumTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"

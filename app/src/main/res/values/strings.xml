@@ -34,15 +34,16 @@
     <string name="commentLeaveMessage">评论留言</string>
     <string name="collection">收藏</string>
     <string name="systemNotify">系统通知</string>
+    <string name="share">分享</string>
 
 
     <string-array name="tab_name">
         <item>关注</item>
-        <item>移动开发</item>
+        <item>移动</item>
         <item>前端</item>
         <item>游戏</item>
         <item>推荐</item>
-        <item>物联网</item>
+        <item>物联</item>
         <item>架构</item>
     </string-array>
     <string-array name="tab_key">

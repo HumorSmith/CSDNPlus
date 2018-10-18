@@ -17,7 +17,8 @@
         android:src="@mipmap/ic_logo"/>
 
     <RelativeLayout
-
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginLeft="16dp"
@@ -41,6 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_centerVertical="true"
+
             android:layout_marginRight="16dp"
             android:layout_toLeftOf="@+id/deployTv"
             android:background="@drawable/ic_searchbar_shape"

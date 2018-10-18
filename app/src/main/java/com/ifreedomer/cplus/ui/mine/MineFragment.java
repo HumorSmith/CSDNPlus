@@ -24,7 +24,7 @@ public class MineFragment extends Fragment {
     TextView mineTv;
     @BindView(R.id.userLinLayout)
     LinearLayout userLinLayout;
-    @BindView(R.id.collect_num_tv)
+    @BindView(R.id.collectNumTv)
     TextView collectNumTv;
     @BindView(R.id.blog_num_tv)
     TextView blogNumTv;

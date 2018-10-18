@@ -24,6 +24,7 @@
         </activity>
         <activity android:name=".ForgetPasswordActivity">
         </activity>
+        <activity android:name=".BlogContentActivity"/>
     </application>
 
 </manifest>

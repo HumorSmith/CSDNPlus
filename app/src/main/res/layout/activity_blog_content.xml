@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <include layout="@layout/layout_toolbar"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="48dp"
+        >
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/whiteColor"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="11dp"
+                    android:layout_marginTop="11dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/blogTitleTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="22dp"
+                        android:text="JavaScript作用域闭包(你不知道的JavaScript)"
+                        android:textColor="#ff000000"
+                        android:textSize="15sp"
+                        />
+
+
+                    <ImageView
+                        android:id="@+id/avatarIv"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:layout_below="@+id/blogTitleTv"
+                        android:layout_marginTop="10dp"
+                        android:src="@mipmap/ic_sina"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/nameTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/blogTitleTv"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="10dp"
+                        android:text="奋飞"
+                        android:textColor="#ff000000"
+                        android:textSize="12sp"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/dateTv"
+                        android:layout_width="59dp"
+                        android:layout_height="11dp"
+                        android:layout_below="@id/nameTv"
+                        android:layout_marginLeft="35dp"
+                        android:text="2018年07月12日"
+                        android:textColor="#ff000000"
+                        android:textSize="8sp"
+                        />
+                </RelativeLayout>
+
+                <WebView
+                    android:id="@+id/webview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"/>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.cardview.widget.CardView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:background="#fff6f6f6"
+        android:elevation="5dp"
+        android:orientation="horizontal">
+
+
+        <EditText
+            android:id="@+id/commentEt"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="150dp"
+            android:background="@color/whiteColor"
+            android:hint="写评论.."
+            android:paddingLeft="5dp"
+            android:textSize="12sp"
+            />
+
+
+        <TextView
+            android:id="@+id/collectNumTv"
+            android:layout_width="30dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="16dp"
+
+            android:text="258"
+            android:textColor="#ff000000"
+            android:textSize="15sp"
+
+            />
+
+
+        <ImageView
+            android:id="@+id/collectIv"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:layout_toLeftOf="@+id/collectNumTv"
+            android:src="@mipmap/ic_star"/>
+
+
+        <TextView
+            android:id="@+id/commentTv"
+            android:layout_width="30dp"
+            android:layout_height="22dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="7dp"
+            android:layout_toLeftOf="@+id/collectIv"
+            android:text="258"
+            android:textSize="15sp"
+            />
+
+        <ImageView
+            android:id="@+id/commentIv"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/commentTv"
+            android:src="@mipmap/ic_leave_message"/>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

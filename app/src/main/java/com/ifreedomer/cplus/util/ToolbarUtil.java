@@ -17,7 +17,7 @@ public class ToolbarUtil {
             if (titleTv != null) {
                 titleTv.setText(title);
             }
-            toolbar.setTitle("");
+            context.getSupportActionBar().setTitle("");
         }
     }
 }
