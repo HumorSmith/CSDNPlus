@@ -24,10 +24,10 @@
                 android:id="@+id/titleTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="40dp"
-                android:layout_marginRight="60dp"
+                android:layout_marginRight="70dp"
+                android:ellipsize="end"
+                android:maxLines="1"
                 style="@style/TitleTextStyle"
-                android:text="Jay.me 2"
                 />
 
 

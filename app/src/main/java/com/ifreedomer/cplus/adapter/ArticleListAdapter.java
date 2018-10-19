@@ -6,6 +6,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.ifreedomer.cplus.BlogContentActivity;
 import com.ifreedomer.cplus.R;
+import com.ifreedomer.cplus.entity.BlogContentInfo;
 import com.ifreedomer.cplus.http.protocol.resp.ArticleResp;
 import com.ifreedomer.cplus.widget.PicTextItem;
 
@@ -38,13 +39,7 @@ public class ArticleListAdapter extends BaseQuickAdapter<ArticleResp, BaseViewHo
         userItem.setImageUrl(item.getAvatar());
         helper.setOnClickListener(R.id.rootRelayout, v -> {
             Intent intent = new Intent(mContext, BlogContentActivity.class);
-            intent.putExtra(BlogContentActivity.USER_NAME_KEY, item.getUser_name());
-            intent.putExtra(BlogContentActivity.NICK_NAME_KEY, item.getNickname());
-            intent.putExtra(BlogContentActivity.ARTICLE_ID_KEY, item.getId() + "");
-            intent.putExtra(BlogContentActivity.TITLE_KEY, item.getTitle() + "");
-            intent.putExtra(BlogContentActivity.AVATAR_KEY, item.getAvatar() + "");
-            intent.putExtra(BlogContentActivity.DATE_KEY, item.getShown_time() + "");
-
+            intent.putExtra(BlogContentActivity.DATA,BlogContentInfo.covert(item));
             mContext.startActivity(intent);
         });
     }

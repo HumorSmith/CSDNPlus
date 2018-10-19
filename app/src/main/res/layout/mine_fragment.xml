@@ -28,6 +28,7 @@
 
 
         <ImageView
+            android:id="@+id/avatarIv"
             android:layout_width="67dp"
             android:layout_height="67dp"
             android:layout_below="@id/mineTv"
@@ -39,8 +40,9 @@
 
 
         <TextView
-            android:layout_width="62dp"
-            android:layout_height="22dp"
+            android:id="@+id/nameTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="3dp"
             android:text="AuRRent"
@@ -49,9 +51,12 @@
             />
 
         <TextView
-            android:layout_width="168dp"
-            android:layout_height="17dp"
+            android:id="@+id/signTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:maxLines="2"
             android:text="这个人很懒，什么都没有留下！"
             android:textColor="#ff666666"
             android:textSize="12sp"

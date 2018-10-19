@@ -48,6 +48,7 @@ public class LoginViewModel extends ViewModel {
         UserInfo userInfo = new UserInfo();
         GlobalDataManager.getInstance().setSessionId(v2ProfileRespPayLoad.getSessionId());
         userInfo.setNickName(v2ProfileRespPayLoad.getData().getNickname());
+        userInfo.setSign(v2ProfileRespPayLoad.getData().getSelfdesc());
         userInfo.setAvatar(v2ProfileRespPayLoad.getData().getAvatar());
         GlobalDataManager.getInstance().setUserInfo(userInfo);
         SPUtil.put(context, USER_KEY, HttpManager.getInstance().getGson().toJson(userInfo));

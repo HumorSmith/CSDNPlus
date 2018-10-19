@@ -21,7 +21,6 @@
     <string name="no_content">没有内容~</string>
 
 
-
     <string name="history_view">历史浏览</string>
     <string name="follow">关注</string>
     <string name="my_fans">我的粉丝</string>
@@ -30,11 +29,17 @@
     <string name="professional_client">最专业的第三方CSDN客户端</string>
     <string name="history">历史</string>
     <string name="setting">设置</string>
-    <string name="feedback">意见反馈</string>
     <string name="commentLeaveMessage">评论留言</string>
     <string name="collection">收藏</string>
     <string name="systemNotify">系统通知</string>
     <string name="share">分享</string>
+    <string name="share_to">分享到：</string>
+    <string name="write_suggest">请写下您的意见或建议…</string>
+    <string name="file_your_mobile">填写您的手机或邮箱</string>
+    <string name="commit">提交</string>
+    <string name="feedback_failed">反馈失败</string>
+    <string name="feedback">意见反馈</string>
+    <string name="feedback_success">反馈成功</string>
 
 
     <string-array name="tab_name">

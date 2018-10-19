@@ -1,6 +1,7 @@
 package com.ifreedomer.cplus.http.protocol;
 
 
+import com.ifreedomer.cplus.http.protocol.resp.ApproveResp;
 import com.ifreedomer.cplus.http.protocol.resp.BlogCategoryResp;
 import com.ifreedomer.cplus.http.protocol.resp.BlogResp;
 
@@ -21,5 +22,13 @@ public interface BlogApi {
             @Query("id") int id,
             @Query("page") int page,
             @Query("size") int size);
+
+    @GET("api/v5/ArticleDiggApp/digg")
+    Observable<PayLoad<ApproveResp>> approve(
+            @Query("username") String username,
+            @Query("article_id") String articleId);
+
+
+
 
 }

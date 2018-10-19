@@ -8,11 +8,13 @@ import com.ifreedomer.cplus.http.protocol.BlogApi;
 import com.ifreedomer.cplus.http.protocol.FollowApi;
 import com.ifreedomer.cplus.http.protocol.LoginApi;
 import com.ifreedomer.cplus.http.protocol.PayLoad;
+import com.ifreedomer.cplus.http.protocol.resp.ApproveResp;
 import com.ifreedomer.cplus.http.protocol.resp.ArticleListResp;
 import com.ifreedomer.cplus.http.protocol.resp.ArticleResp;
 import com.ifreedomer.cplus.http.protocol.resp.BlogCategoryResp;
 import com.ifreedomer.cplus.http.protocol.resp.BlogResp;
 import com.ifreedomer.cplus.http.protocol.resp.BlogUserProfileResp;
+import com.ifreedomer.cplus.http.protocol.resp.CountResp;
 import com.ifreedomer.cplus.http.protocol.resp.FollowOperationResp;
 import com.ifreedomer.cplus.http.protocol.resp.FollowResp;
 import com.ifreedomer.cplus.http.protocol.resp.HistoryResp;
@@ -172,5 +174,19 @@ public class HttpManager {
         Observable<PayLoad<FollowOperationResp>> unFollowObservable = retrofit.create(FollowApi.class).doFollow(GlobalDataManager.getInstance().getSessionId(), username, GlobalDataManager.getInstance().getUserInfo().getUserName());
         unFollowObservable = unFollowObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
         return unFollowObservable;
+    }
+
+
+    public Observable<PayLoad<ApproveResp>> approve(String username, String articleId) {
+        Observable<PayLoad<ApproveResp>> approveObserver = retrofit.create(BlogApi.class).approve(username, articleId);
+        approveObserver = approveObserver.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+        return approveObserver;
+    }
+
+
+    public Observable<PayLoad<CountResp>> getCountProfile(String username) {
+        Observable<PayLoad<CountResp>> getCountProfile = retrofit.create(LoginApi.class).getCountProfile(username);
+        getCountProfile = getCountProfile.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+        return getCountProfile;
     }
 }

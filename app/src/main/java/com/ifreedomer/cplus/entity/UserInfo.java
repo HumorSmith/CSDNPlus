@@ -7,6 +7,7 @@ public class UserInfo {
     private String password;
     private String email;
     private String userName;
+    private String sign;
 
     public String getNickName() {
         return nickName;
@@ -54,5 +55,26 @@ public class UserInfo {
 
     public String getUserName() {
         return userName;
+    }
+
+    public void setSign(String sign) {
+        this.sign = sign;
+    }
+
+    public String getSign() {
+        return sign;
+    }
+
+    @Override
+    public String toString() {
+        return "UserInfo{" +
+                "nickName='" + nickName + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", account='" + account + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", userName='" + userName + '\'' +
+                ", sign='" + sign + '\'' +
+                '}';
     }
 }

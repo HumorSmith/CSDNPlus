@@ -1,5 +1,6 @@
 package com.ifreedomer.cplus.http.protocol;
 
+import com.ifreedomer.cplus.http.protocol.resp.CountResp;
 import com.ifreedomer.cplus.http.protocol.resp.UserInfoResp;
 import com.ifreedomer.cplus.http.protocol.resp.V2ProfileResp;
 
@@ -15,4 +16,6 @@ public interface LoginApi {
     Observable<PayLoad<UserInfoResp>> login(@Query("username") String username, @Query("password") String password, @Query("SessionId") String sessionId);
     @GET("api/v2/user/profile")
     Observable<PayLoad<V2ProfileResp>> getUserProfile(@Query("username") String username, @Query("SessionId") String sessionId);
+    @GET("uc/userinfo/count")
+    Observable<PayLoad<CountResp>> getCountProfile(@Query("username")String username);
 }

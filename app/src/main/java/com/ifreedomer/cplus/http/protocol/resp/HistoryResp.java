@@ -17,6 +17,15 @@ public class HistoryResp {
      * commentCount : 0
      * nickName : 怪叔叔萝莉控
      */
+    private String avatar;
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 
     private String username;
     private String type;

@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
@@ -20,8 +21,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
 import com.ifreedomer.cplus.constant.Constants;
-import com.ifreedomer.cplus.util.DateUtil;
+import com.ifreedomer.cplus.entity.BlogContentInfo;
 import com.ifreedomer.cplus.util.LogUtil;
+import com.ifreedomer.cplus.util.ShareUtil;
 import com.ifreedomer.cplus.util.ToolbarUtil;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,13 +32,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class BlogContentActivity extends AppCompatActivity {
+    public static final String DATA = "data";
     private static final String TAG = BlogContentActivity.class.getSimpleName();
-    public static final String USER_NAME_KEY = "username";
-    public static final String ARTICLE_ID_KEY = "id";
-    public static final String TITLE_KEY = "title";
-    public static final String AVATAR_KEY = "avatar";
-    public static final String DATE_KEY = "date";
-    public static final String NICK_NAME_KEY = "nickname";
+
 
 
     @BindView(R.id.toolbar)
@@ -64,6 +62,8 @@ public class BlogContentActivity extends AppCompatActivity {
     TextView commentTv;
     @BindView(R.id.commentIv)
     ImageView commentIv;
+    private BlogContentInfo mBlogContentInfo;
+    private String mUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,13 +72,15 @@ public class BlogContentActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         StringBuffer sb = new StringBuffer();
-        String userName = getIntent().getStringExtra(USER_NAME_KEY);
-        String id = getIntent().getStringExtra(ARTICLE_ID_KEY);
-        String title = getIntent().getStringExtra(TITLE_KEY);
-        String avatar = getIntent().getStringExtra(AVATAR_KEY);
-        String date = getIntent().getStringExtra(DATE_KEY);
+        mBlogContentInfo = (BlogContentInfo) getIntent().getSerializableExtra(DATA);
+        String userName = mBlogContentInfo.getUserName();
+        String title = mBlogContentInfo.getTitle();
+        String avatar = mBlogContentInfo.getAvatar();
+        String date = mBlogContentInfo.getDate();
+        String nickName = mBlogContentInfo.getNickName();
+        String id = mBlogContentInfo.getId();
         try {
-            dateTv.setText(DateUtil.timeStamp2DateStringWithMonth(BlogContentActivity.this, Long.parseLong(date) * 1000));
+            dateTv.setText(date);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -89,12 +91,12 @@ public class BlogContentActivity extends AppCompatActivity {
         Glide.with((View) avatarIv).load(avatar).apply(RequestOptions.bitmapTransform(new CircleCrop())).into(avatarIv);
 
         blogTitleTv.setText(title);
-        nameTv.setText(getIntent().getStringExtra(NICK_NAME_KEY));
+        nameTv.setText(getIntent().getStringExtra(nickName));
 
         sb.append(Constants.api_blog_detail_domain).append(userName).append(Constants.api_blog_detail).append(id);
         LogUtil.d(TAG, "url = " + sb.toString() + "   username = " + userName + "   id =" + id);
         setSettings(this.webview.getSettings());
-
+        mUrl = sb.toString();
         this.webview.loadUrl(sb.toString());
 
         go2WebActivity(this, webview);
@@ -157,6 +159,13 @@ public class BlogContentActivity extends AppCompatActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         toolbar.inflateMenu(R.menu.blog_content_menu);
+        toolbar.getMenu().findItem(R.id.shareItem).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                ShareUtil.shareString(BlogContentActivity.this, mUrl);
+                return false;
+            }
+        });
         return super.onPrepareOptionsMenu(menu);
     }
 }
