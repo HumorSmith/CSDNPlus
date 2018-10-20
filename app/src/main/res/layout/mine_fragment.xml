@@ -86,7 +86,7 @@
 
         <TextView
 
-            android:id="@+id/blog_num_tv"
+            android:id="@+id/blogNumTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -99,7 +99,7 @@
 
 
         <TextView
-            android:id="@+id/_num_tv"
+            android:id="@+id/followTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -122,6 +122,14 @@
 
         <com.ifreedomer.cplus.widget.SettingItem
             android:id="@+id/historyItem"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/settingItemHeight"
+            android:layout_marginTop="7dp"/>
+
+
+
+        <com.ifreedomer.cplus.widget.SettingItem
+            android:id="@+id/collectItem"
             android:layout_width="match_parent"
             android:layout_height="@dimen/settingItemHeight"
             android:layout_marginTop="7dp"/>

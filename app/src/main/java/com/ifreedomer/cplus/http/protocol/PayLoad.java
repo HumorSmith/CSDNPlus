@@ -2,6 +2,7 @@ package com.ifreedomer.cplus.http.protocol;
 
 public class PayLoad<T> {
     public static final int SUCCESS = 2000;
+    public static final int APP_SUCCESS = 0;
     private T data;
     private int code;
     private String message;

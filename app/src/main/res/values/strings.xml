@@ -28,6 +28,7 @@
     <string name="zan_comment_wrap">%s 查看\t\t %s 评论</string>
     <string name="professional_client">最专业的第三方CSDN客户端</string>
     <string name="history">历史</string>
+
     <string name="setting">设置</string>
     <string name="commentLeaveMessage">评论留言</string>
     <string name="collection">收藏</string>
@@ -40,6 +41,8 @@
     <string name="feedback_failed">反馈失败</string>
     <string name="feedback">意见反馈</string>
     <string name="feedback_success">反馈成功</string>
+    <string name="blogNumWrap">%d\n博客</string>
+    <string name="collect">收藏</string>
 
 
     <string-array name="tab_name">

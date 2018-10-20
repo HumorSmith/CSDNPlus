@@ -7,9 +7,12 @@ import android.text.TextUtils;
 import com.ifreedomer.cplus.entity.UserInfo;
 import com.ifreedomer.cplus.http.center.HttpManager;
 import com.ifreedomer.cplus.http.protocol.PayLoad;
+import com.ifreedomer.cplus.http.protocol.resp.GetUserTokenResp;
+import com.ifreedomer.cplus.http.protocol.resp.LoginAppV1TokenResp;
 import com.ifreedomer.cplus.http.protocol.resp.UserInfoResp;
 import com.ifreedomer.cplus.http.protocol.resp.V2ProfileResp;
 import com.ifreedomer.cplus.manager.GlobalDataManager;
+import com.ifreedomer.cplus.util.LoginPrefs;
 import com.ifreedomer.cplus.util.SPUtil;
 
 import androidx.lifecycle.ViewModel;
@@ -20,6 +23,7 @@ public class LoginViewModel extends ViewModel {
     public static final String USER_KEY = "user_key";
     public static final String SESSION_KEY = "session_key";
     public static final String SESSION_EXPIRE_KEY = "session_expire_key";
+    public static final String TOKEN = "token";
 
     public boolean canFastLogin(Context context) {
         String expireTime = (String) SPUtil.get(context, SESSION_EXPIRE_KEY, "");
@@ -37,9 +41,20 @@ public class LoginViewModel extends ViewModel {
         return userInfo;
     }
 
-    public Observable<PayLoad<UserInfoResp>> login(String account, String password) {
-        return HttpManager.getInstance().login(account, password);
+    public Observable<PayLoad<UserInfoResp>> loginV3(String account, String password) {
+        return HttpManager.getInstance().loginV3(account, password);
     }
+
+
+    public Observable<PayLoad<LoginAppV1TokenResp>> loginAppV1(String account, String password) {
+        return HttpManager.getInstance().loginAppV1(account, password);
+    }
+
+
+    public Observable<PayLoad<GetUserTokenResp>> getUserToken() {
+        return HttpManager.getInstance().getUserToken();
+    }
+
 
 
 
@@ -56,4 +71,7 @@ public class LoginViewModel extends ViewModel {
         SPUtil.put(context, SESSION_EXPIRE_KEY, v2ProfileRespPayLoad.getSessionExpired());
     }
 
+    public void saveAappV1Token(String token) {
+        LoginPrefs.setJwtToken(token);
+    }
 }

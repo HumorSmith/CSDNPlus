@@ -13,13 +13,13 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
+import com.ifreedomer.cplus.CollectActivity;
 import com.ifreedomer.cplus.FeedbackActivity;
 import com.ifreedomer.cplus.HistoryActivity;
 import com.ifreedomer.cplus.R;
 import com.ifreedomer.cplus.entity.UserInfo;
 import com.ifreedomer.cplus.http.center.HttpManager;
-import com.ifreedomer.cplus.http.protocol.PayLoad;
-import com.ifreedomer.cplus.http.protocol.resp.CountResp;
+import com.ifreedomer.cplus.http.protocol.resp.UserBlogInfoResp;
 import com.ifreedomer.cplus.manager.GlobalDataManager;
 import com.ifreedomer.cplus.util.LogUtil;
 import com.ifreedomer.cplus.util.WidgetUtil;
@@ -32,6 +32,7 @@ import androidx.lifecycle.ViewModelProviders;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.Observable;
+import io.reactivex.disposables.Disposable;
 
 public class MineFragment extends Fragment implements View.OnClickListener {
     public static final String TAG = MineFragment.class.getSimpleName();
@@ -41,9 +42,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     LinearLayout userLinLayout;
     @BindView(R.id.collectNumTv)
     TextView collectNumTv;
-    @BindView(R.id.blog_num_tv)
+    @BindView(R.id.blogNumTv)
     TextView blogNumTv;
-    @BindView(R.id._num_tv)
+    @BindView(R.id.followTv)
     TextView NumTv;
     @BindView(R.id.contentRelayout)
     RelativeLayout contentRelayout;
@@ -59,6 +60,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     TextView nameTv;
     @BindView(R.id.signTv)
     TextView signTv;
+    @BindView(R.id.collectItem)
+    SettingItem collectItem;
     private MineViewModel mViewModel;
 
     public static MineFragment newInstance() {
@@ -94,6 +97,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         settingItem.setText(getString(R.string.setting));
         feedbackItem.setText(getString(R.string.feedback));
         feedbackItem.setOnClickListener(this);
+        collectItem.setText(getString(R.string.collect));
+        collectItem.setOnClickListener(this);
 
     }
 
@@ -101,14 +106,11 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(MineViewModel.class);
-
-        Observable<PayLoad<CountResp>> countProfileObserver = HttpManager.getInstance().getCountProfile(GlobalDataManager.getInstance().getUserInfo().getUserName());
-        countProfileObserver.subscribe(countRespPayLoad -> {
-            if (countRespPayLoad.getCode() == PayLoad.SUCCESS) {
-
-            } else {
-                WidgetUtil.showSnackBar(getActivity(), countRespPayLoad.getMessage());
-            }
+        Observable<UserBlogInfoResp> userBlogInfoObserver = HttpManager.getInstance().getUserBlogInfo(GlobalDataManager.getInstance().getUserInfo().getUserName());
+        Disposable subscribe = userBlogInfoObserver.subscribe(userBlogInfoRespPayLoad -> {
+            LogUtil.d(TAG, "user blog info = " + userBlogInfoRespPayLoad.toString());
+            String blogNumWrapStr = String.format(getString(R.string.blogNumWrap), userBlogInfoRespPayLoad.getArticle_count().getAll());
+            blogNumTv.setText(blogNumWrapStr);
         }, throwable -> WidgetUtil.showSnackBar(getActivity(), throwable.getMessage()));
 
 
@@ -123,6 +125,10 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.feedbackItem:
                 startActivity(new Intent(getActivity(), FeedbackActivity.class));
+                break;
+            case R.id.collectItem:
+                startActivity(new Intent(getActivity(), CollectActivity.class));
+
                 break;
         }
     }

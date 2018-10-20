@@ -21,9 +21,8 @@ import com.ifreedomer.cplus.RegisterActivity;
 import com.ifreedomer.cplus.entity.UserInfo;
 import com.ifreedomer.cplus.http.center.HttpManager;
 import com.ifreedomer.cplus.http.protocol.PayLoad;
-import com.ifreedomer.cplus.http.protocol.resp.UserInfoResp;
+import com.ifreedomer.cplus.http.protocol.resp.LoginAppV1TokenResp;
 import com.ifreedomer.cplus.http.protocol.resp.V2ProfileResp;
-import com.ifreedomer.cplus.manager.GlobalDataManager;
 import com.ifreedomer.cplus.util.WidgetUtil;
 
 import androidx.annotation.NonNull;
@@ -130,13 +129,14 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                     WidgetUtil.showSnackBar(getActivity(), getString(R.string.password_cannot_null));
                     return;
                 }
-                Observable<PayLoad<UserInfoResp>> loginObserver = mViewModel.login(accountEt.getText().toString(), passwordEt.getText().toString());
-                loginObserver.subscribe(userInfoRespPayLoad -> {
-                    if (userInfoRespPayLoad.getCode() == 2000) {
-                        GlobalDataManager.getInstance().setSessionId(userInfoRespPayLoad.getSessionId());
-                        getUserProfile(userInfoRespPayLoad.getData().getUserName());
+                Observable<PayLoad<LoginAppV1TokenResp>> loginAppV1Observer = mViewModel.loginAppV1(accountEt.getText().toString(), passwordEt.getText().toString());
+                loginAppV1Observer.subscribe(loginAppV1TokenRespPayLoad -> {
+                    if (loginAppV1TokenRespPayLoad.getCode() == PayLoad.APP_SUCCESS) {
+                        String token = loginAppV1TokenRespPayLoad.getData().getToken();
+                        mViewModel.saveAappV1Token(token);
+                        getUserToken();
                     } else {
-                        WidgetUtil.showSnackBar(getActivity(), userInfoRespPayLoad.getMessage());
+                        WidgetUtil.showSnackBar(getActivity(), loginAppV1TokenRespPayLoad.getMessage());
                     }
                 }, throwable -> WidgetUtil.showSnackBar(getActivity(), throwable.getMessage()));
                 break;
@@ -148,6 +148,17 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 break;
         }
     }
+
+    private void getUserToken() {
+        Disposable subscribe = mViewModel.getUserToken().subscribe(getUserTokenRespPayLoad -> {
+            if (getUserTokenRespPayLoad.getCode() == PayLoad.APP_SUCCESS) {
+                getUserProfile(getUserTokenRespPayLoad.getData().getUserName());
+            } else {
+                WidgetUtil.showSnackBar(getActivity(), getUserTokenRespPayLoad.getMessage());
+            }
+        }, throwable -> WidgetUtil.showSnackBar(getActivity(), throwable.getMessage()));
+    }
+
 
 
     public void getUserProfile(String userName) {

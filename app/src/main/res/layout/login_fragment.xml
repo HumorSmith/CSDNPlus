@@ -45,6 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:background="@null"
+                android:text="wuyihua86@gmail.com"
                 android:hint="@string/account_hint"
                 android:textSize="13sp"/>
 
@@ -89,6 +90,7 @@
                 android:layout_toRightOf="@+id/tv_account"
                 android:background="@null"
                 android:hint="@string/password_hint"
+                android:text="a7681810810"
                 android:textSize="13sp"/>
 
         </LinearLayout>
