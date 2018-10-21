@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.ifreedomer.cplus.http.intercepter.HeaderInterceptor;
 import com.ifreedomer.cplus.http.protocol.ArticleApi;
 import com.ifreedomer.cplus.http.protocol.BlogApi;
+import com.ifreedomer.cplus.http.protocol.CollectApi;
 import com.ifreedomer.cplus.http.protocol.FollowApi;
 import com.ifreedomer.cplus.http.protocol.LoginAppV1Api;
 import com.ifreedomer.cplus.http.protocol.LoginV3Api;
@@ -17,6 +18,8 @@ import com.ifreedomer.cplus.http.protocol.resp.ArticleResp;
 import com.ifreedomer.cplus.http.protocol.resp.BlogCategoryResp;
 import com.ifreedomer.cplus.http.protocol.resp.BlogResp;
 import com.ifreedomer.cplus.http.protocol.resp.BlogUserProfileResp;
+import com.ifreedomer.cplus.http.protocol.resp.CollectListResp;
+import com.ifreedomer.cplus.http.protocol.resp.CollectNumResp;
 import com.ifreedomer.cplus.http.protocol.resp.CountResp;
 import com.ifreedomer.cplus.http.protocol.resp.FollowOperationResp;
 import com.ifreedomer.cplus.http.protocol.resp.FollowResp;
@@ -184,7 +187,7 @@ public class HttpManager {
     }
 
     public Observable<PayLoad<List<FollowResp>>> getFans(int page, int size) {
-        Observable<PayLoad<List<FollowResp>>> idolObservable = retrofit.create(FollowApi.class).getFans(GlobalDataManager.getInstance().getSessionId(), GlobalDataManager.getInstance().getUserInfo().getUserName(), page
+        Observable<PayLoad<List<FollowResp>>> idolObservable = retrofit.create(FollowApi.class).getFans(GlobalDataManager.getInstance().getUserInfo().getUserName(), page
                 , size);
         idolObservable = idolObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
         return idolObservable;
@@ -234,5 +237,16 @@ public class HttpManager {
         return userBlogInfoRespObservable;
     }
 
+
+    public Observable<PayLoad<CollectNumResp>> getCollectNum() {
+        Observable<PayLoad<CollectNumResp>> collectNumObserver = retrofit.create(CollectApi.class).getFavoriteNum().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+        return collectNumObserver;
+    }
+
+
+    public Observable<PayLoad<CollectListResp>> getCollectList(int pageNum, int pageSize) {
+        Observable<PayLoad<CollectListResp>> collectListObserver = retrofit.create(CollectApi.class).getCollectList("blog", pageNum, pageSize).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+        return collectListObserver;
+    }
 
 }

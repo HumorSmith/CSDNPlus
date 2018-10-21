@@ -29,14 +29,14 @@ public class ArticleListFragment extends ArticlePullrefreshFragment {
 
     @Override
     protected void initAdapter() {
-        recycleview.setAdapter(new ArticleListAdapter(R.layout.item_article_list, mDataList));
-        recycleview.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecycleview.setAdapter(new ArticleListAdapter(R.layout.item_article_list, mDataList));
+        mRecycleview.setLayoutManager(new LinearLayoutManager(getActivity()));
         setBackground(getResources().getColor(R.color.searhbarColor));
     }
 
     @Override
     public void fetchData(String type, long offset) {
-        Log.d(TAG, "type = " + type + "   offset = " + offset + "   page = " + mCurPage);
+        Log.d(TAG, "type = " + type + "   offset = " + offset + "   page = " + getCurPage());
 //        type = "new";
 //        offset = 0;
         Observable<PayLoad<ArticleListResp<ArticleResp>>> newsObservable = HttpManager.getInstance().getArticleListByCategory(tabKey, type, offset, PAGE_SIZE);
@@ -45,7 +45,7 @@ public class ArticleListFragment extends ArticlePullrefreshFragment {
 //            LogUtil.d(TAG, "listpayload = " + listPayLoad.toString());
             if (listPayLoad.getCode() == PayLoad.SUCCESS) {
 
-                if (mCurPage == 0) {
+                if (getCurPage() == 0) {
                     mDataList.clear();
                 }
                 if (listPayLoad.getData().getArticles().size() == 0) {
@@ -53,7 +53,7 @@ public class ArticleListFragment extends ArticlePullrefreshFragment {
                     return;
                 }
                 mDataList.addAll(listPayLoad.getData().getArticles());
-                recycleview.getAdapter().notifyDataSetChanged();
+                mRecycleview.getAdapter().notifyDataSetChanged();
             } else {
                 WidgetUtil.showSnackBar(getActivity(), listPayLoad.getMessage());
             }
@@ -65,38 +65,4 @@ public class ArticleListFragment extends ArticlePullrefreshFragment {
     }
 
 
-//    @Override
-//    public void fetchData() {
-//        long offset = 0;
-//        String type = "more";
-//        if (mDataList.size() > 0) {
-//            offset = mDataList.get(mDataList.size() - 1).getShown_offset();
-//        }
-//        if (mCurPage == 0) {
-//            offset = 0;
-//            type = "new";
-//        }
-//        Observable<PayLoad<ArticleListResp<ArticleResp>>> newsObservable = HttpManager.getInstance().getArticleListByCategory(tabKey, "new", 0, PAGE_SIZE);
-//        newsObservable.subscribe(listPayLoad -> {
-//            LogUtil.d(TAG, "listpayload = " + listPayLoad.toString());
-//            if (listPayLoad.getCode() == PayLoad.SUCCESS) {
-//
-//                if (mCurPage == 0) {
-//                    mDataList.clear();
-//                }
-//                if (listPayLoad.getData().getArticles().size() == 0) {
-//                    WidgetUtil.showSnackBar(getActivity(), getString(R.string.no_more));
-//                    return;
-//                }
-//                mDataList.addAll(listPayLoad.getData().getArticles());
-//                recycleview.getAdapter().notifyDataSetChanged();
-//
-//
-//
-//            } else {
-//                WidgetUtil.showSnackBar(getActivity(), listPayLoad.getMessage());
-//            }
-//        }, throwable -> WidgetUtil.showSnackBar(getActivity(), throwable.getMessage()));
-//
-//    }
 }

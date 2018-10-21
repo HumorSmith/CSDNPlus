@@ -1,7 +1,8 @@
-package com.ifreedomer.cplus;
+package com.ifreedomer.cplus.activity;
 
 import android.os.Bundle;
 
+import com.ifreedomer.cplus.R;
 import com.ifreedomer.cplus.ui.forgetpassword.ForgetPasswordFragment;
 
 import androidx.appcompat.app.AppCompatActivity;

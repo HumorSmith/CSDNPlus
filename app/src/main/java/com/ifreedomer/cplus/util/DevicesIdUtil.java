@@ -4,7 +4,7 @@ import android.content.Context;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
-import com.ifreedomer.cplus.CPApplication;
+import com.ifreedomer.cplus.activity.CPApplication;
 import com.ifreedomer.cplus.constant.SocializeConstants;
 import com.ifreedomer.cplus.constant.SocializeProtocolConstants;
 

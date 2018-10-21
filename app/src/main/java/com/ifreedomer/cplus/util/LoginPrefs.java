@@ -1,6 +1,6 @@
 package com.ifreedomer.cplus.util;
 
-import com.ifreedomer.cplus.CPApplication;
+import com.ifreedomer.cplus.activity.CPApplication;
 
 public class LoginPrefs {
     private static final String JWT_TOKEN = "jwt_token";

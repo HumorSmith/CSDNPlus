@@ -2,8 +2,9 @@ package com.ifreedomer.cplus.entity;
 
 import android.util.Log;
 
-import com.ifreedomer.cplus.CPApplication;
+import com.ifreedomer.cplus.activity.CPApplication;
 import com.ifreedomer.cplus.http.protocol.resp.ArticleResp;
+import com.ifreedomer.cplus.http.protocol.resp.CollectListResp;
 import com.ifreedomer.cplus.http.protocol.resp.HistoryResp;
 import com.ifreedomer.cplus.util.DateUtil;
 
@@ -93,6 +94,20 @@ public class BlogContentInfo implements Serializable {
         blogContentInfo.setId(id);
         blogContentInfo.setTitle(historyResp.getTitle());
         blogContentInfo.setAvatar(historyResp.getAvatar());
+        return blogContentInfo;
+    }
+
+    public static BlogContentInfo convert(CollectListResp.CollectItem collectItem) {
+        Log.d(TAG, "HISTORY Resp = " + collectItem.toString());
+        BlogContentInfo blogContentInfo = new BlogContentInfo();
+        blogContentInfo.setCommentNum(Integer.parseInt(collectItem.getCommentCount()));
+        blogContentInfo.setUserName(collectItem.getUsername());
+        blogContentInfo.setNickName(collectItem.getNickname());
+        blogContentInfo.setDate(DateUtil.convertToMonth(CPApplication.INSTANCE, collectItem.getPostTime()));
+
+        blogContentInfo.setId(collectItem.getId());
+        blogContentInfo.setTitle(collectItem.getTitle());
+        blogContentInfo.setAvatar(collectItem.getAvatar());
         return blogContentInfo;
     }
 

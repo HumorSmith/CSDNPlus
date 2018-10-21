@@ -1,7 +1,8 @@
-package com.ifreedomer.cplus;
+package com.ifreedomer.cplus.activity;
 
 import android.os.Bundle;
 
+import com.ifreedomer.cplus.R;
 import com.ifreedomer.cplus.adapter.HistoryAdapter;
 import com.ifreedomer.cplus.http.center.HttpManager;
 import com.ifreedomer.cplus.http.protocol.PayLoad;

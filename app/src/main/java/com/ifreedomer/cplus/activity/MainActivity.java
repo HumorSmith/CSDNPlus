@@ -1,8 +1,9 @@
-package com.ifreedomer.cplus;
+package com.ifreedomer.cplus.activity;
 
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.ifreedomer.cplus.R;
 import com.ifreedomer.cplus.adapter.ViewPagerFragmentAdapter;
 import com.ifreedomer.cplus.ui.main.MainFragment;
 import com.ifreedomer.cplus.ui.message.MessageFragment;

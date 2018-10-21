@@ -13,12 +13,15 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
-import com.ifreedomer.cplus.CollectActivity;
-import com.ifreedomer.cplus.FeedbackActivity;
-import com.ifreedomer.cplus.HistoryActivity;
+import com.ifreedomer.cplus.activity.BlogCategoryActivity;
+import com.ifreedomer.cplus.activity.CollectActivity;
+import com.ifreedomer.cplus.activity.FeedbackActivity;
+import com.ifreedomer.cplus.activity.FollowActivity;
+import com.ifreedomer.cplus.activity.HistoryActivity;
 import com.ifreedomer.cplus.R;
 import com.ifreedomer.cplus.entity.UserInfo;
 import com.ifreedomer.cplus.http.center.HttpManager;
+import com.ifreedomer.cplus.http.protocol.PayLoad;
 import com.ifreedomer.cplus.http.protocol.resp.UserBlogInfoResp;
 import com.ifreedomer.cplus.manager.GlobalDataManager;
 import com.ifreedomer.cplus.util.LogUtil;
@@ -44,8 +47,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     TextView collectNumTv;
     @BindView(R.id.blogNumTv)
     TextView blogNumTv;
-    @BindView(R.id.followTv)
-    TextView NumTv;
+
     @BindView(R.id.contentRelayout)
     RelativeLayout contentRelayout;
     @BindView(R.id.historyItem)
@@ -60,8 +62,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     TextView nameTv;
     @BindView(R.id.signTv)
     TextView signTv;
-    @BindView(R.id.collectItem)
-    SettingItem collectItem;
+
+    @BindView(R.id.idolTv)
+    TextView idolTv;
     private MineViewModel mViewModel;
 
     public static MineFragment newInstance() {
@@ -87,6 +90,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         Glide.with((View) avatarIv).load(userInfo.getAvatar()).apply(RequestOptions.bitmapTransform(new CircleCrop())).into((ImageView) avatarIv);
         signTv.setText(userInfo.getSign());
         LogUtil.d(TAG, "userInfo = " + userInfo.toString());
+        collectNumTv.setOnClickListener(this);
+        blogNumTv.setOnClickListener(this);
+        idolTv.setOnClickListener(this);
 
 
     }
@@ -97,9 +103,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         settingItem.setText(getString(R.string.setting));
         feedbackItem.setText(getString(R.string.feedback));
         feedbackItem.setOnClickListener(this);
-        collectItem.setText(getString(R.string.collect));
-        collectItem.setOnClickListener(this);
-
     }
 
     @Override
@@ -111,8 +114,22 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             LogUtil.d(TAG, "user blog info = " + userBlogInfoRespPayLoad.toString());
             String blogNumWrapStr = String.format(getString(R.string.blogNumWrap), userBlogInfoRespPayLoad.getArticle_count().getAll());
             blogNumTv.setText(blogNumWrapStr);
+            String idolWrapStr = String.format(getString(R.string.idolWrap), userBlogInfoRespPayLoad.getStatistic().getDiggCount());
+            idolTv.setText(idolWrapStr);
         }, throwable -> WidgetUtil.showSnackBar(getActivity(), throwable.getMessage()));
 
+
+        Disposable collectNumDisposable = HttpManager.getInstance().getCollectNum().subscribe(collectNumRespPayLoad -> {
+            if (collectNumRespPayLoad.getCode() == PayLoad.SUCCESS) {
+                String collectBlogNumStr = String.format(getString(R.string.collectWrap), collectNumRespPayLoad.getData().getData().get(0).getNum());
+                collectNumTv.setText(collectBlogNumStr);
+            } else {
+                WidgetUtil.showSnackBar(getActivity(), collectNumRespPayLoad.getMessage());
+            }
+        }, throwable -> WidgetUtil.showSnackBar(getActivity(), throwable.getMessage()));
+
+
+        HttpManager.getInstance().getIdol(0, 10);
 
         // TODO: Use the ViewModel
     }
@@ -126,10 +143,16 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             case R.id.feedbackItem:
                 startActivity(new Intent(getActivity(), FeedbackActivity.class));
                 break;
-            case R.id.collectItem:
+            case R.id.collectNumTv:
                 startActivity(new Intent(getActivity(), CollectActivity.class));
-
                 break;
+            case R.id.blogNumTv:
+                startActivity(new Intent(getActivity(), BlogCategoryActivity.class));
+                break;
+            case R.id.idolTv:
+                startActivity(new Intent(getActivity(), FollowActivity.class));
+                break;
+
         }
     }
 }

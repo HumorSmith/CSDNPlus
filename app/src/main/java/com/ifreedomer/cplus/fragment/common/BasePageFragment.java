@@ -29,7 +29,7 @@ public abstract class BasePageFragment extends Fragment {
         prepareFetchData();
     }
 
-    public abstract void fetchData();
+    public abstract void fetchData(int page);
 
     public boolean prepareFetchData() {
         return prepareFetchData(false);
@@ -37,7 +37,7 @@ public abstract class BasePageFragment extends Fragment {
 
     public boolean prepareFetchData(boolean forceUpdate) {
         if (isVisibleToUser && isViewInitiated && (!isDataInitiated || forceUpdate)) {
-            fetchData();
+            fetchData(0);
             isDataInitiated = true;
             return true;
         }

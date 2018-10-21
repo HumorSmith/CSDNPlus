@@ -4,7 +4,7 @@ import android.content.Intent;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.ifreedomer.cplus.BlogContentActivity;
+import com.ifreedomer.cplus.activity.BlogContentActivity;
 import com.ifreedomer.cplus.R;
 import com.ifreedomer.cplus.entity.BlogContentInfo;
 import com.ifreedomer.cplus.http.protocol.resp.ArticleResp;

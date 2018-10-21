@@ -1,4 +1,4 @@
-package com.ifreedomer.cplus;
+package com.ifreedomer.cplus.activity;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
+import com.ifreedomer.cplus.R;
 import com.ifreedomer.cplus.constant.Constants;
 import com.ifreedomer.cplus.entity.BlogContentInfo;
 import com.ifreedomer.cplus.util.LogUtil;

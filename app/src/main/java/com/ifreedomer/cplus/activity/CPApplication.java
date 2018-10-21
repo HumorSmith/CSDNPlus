@@ -1,4 +1,4 @@
-package com.ifreedomer.cplus;
+package com.ifreedomer.cplus.activity;
 
 import android.app.Application;
 

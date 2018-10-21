@@ -1,4 +1,4 @@
-package com.ifreedomer.cplus;
+package com.ifreedomer.cplus.activity;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.ifreedomer.cplus.R;
 import com.ifreedomer.cplus.mail.MailStateListener;
 import com.ifreedomer.cplus.mail.MailThread;
 import com.ifreedomer.cplus.util.ToolbarUtil;

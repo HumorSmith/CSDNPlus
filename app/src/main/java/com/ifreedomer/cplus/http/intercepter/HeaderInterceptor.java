@@ -3,7 +3,7 @@ package com.ifreedomer.cplus.http.intercepter;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.ifreedomer.cplus.CPApplication;
+import com.ifreedomer.cplus.activity.CPApplication;
 import com.ifreedomer.cplus.util.AppUtil;
 import com.ifreedomer.cplus.util.DevicesIdUtil;
 import com.ifreedomer.cplus.util.LoginPrefs;

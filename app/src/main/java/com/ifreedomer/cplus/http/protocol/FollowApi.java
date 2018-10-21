@@ -16,7 +16,7 @@ public interface FollowApi {
     Observable<PayLoad<List<FollowResp>>>  getIdol(@Query("SessionId") String sessionId, @Query("username") String username, @Query("page") int page, @Query("pagesize") int size);
 
     @GET("api/user/myRelation")
-    Observable<PayLoad<List<FollowResp>>> getFans(@Query("SessionId") String sessionId, @Query("username") String username, @Query("page") int page, @Query("pagesize") int size);
+    Observable<PayLoad<List<FollowResp>>> getFans( @Query("username") String username, @Query("page") int page, @Query("pagesize") int size);
 
     @POST("api/user/unFollow")
     Observable<PayLoad<FollowOperationResp>> unFollow(@Query("SessionId") String sessionId, @Query("username") String username, @Query("fans") String fans);

@@ -27,7 +27,7 @@ public abstract class ArticlePullrefreshFragment extends BasePullRefreshPageFrag
 
 
     @Override
-    public void fetchData() {
+    public void fetchData(int page) {
         long offset = 0;
         String type = "more";
         if (mDataList.size() > 0) {
@@ -41,11 +41,11 @@ public abstract class ArticlePullrefreshFragment extends BasePullRefreshPageFrag
 
         }
 
-        if (mCurPage == 0) {
+        if (page == 0) {
             offset = 0;
             type = "new";
         }
-        Log.d(TAG, "type =" + type + " offset = " + offset + "  page = " + mCurPage + "  size = " + mDataList.size() + "  data = " + mDataList.toString());
+        Log.d(TAG, "type =" + type + " offset = " + offset + "  page = " + getCurPage() + "  size = " + mDataList.size() + "  data = " + mDataList.toString());
         fetchData(type, offset);
     }
 

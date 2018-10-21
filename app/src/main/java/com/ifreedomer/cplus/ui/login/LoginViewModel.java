@@ -59,10 +59,11 @@ public class LoginViewModel extends ViewModel {
 
 
 
-    public void saveLoginInfo(Context context, PayLoad<V2ProfileResp> v2ProfileRespPayLoad) {
+    public void saveLoginInfo(Context context, PayLoad<V2ProfileResp> v2ProfileRespPayLoad,String userName) {
         UserInfo userInfo = new UserInfo();
         GlobalDataManager.getInstance().setSessionId(v2ProfileRespPayLoad.getSessionId());
         userInfo.setNickName(v2ProfileRespPayLoad.getData().getNickname());
+        userInfo.setUserName(userName);
         userInfo.setSign(v2ProfileRespPayLoad.getData().getSelfdesc());
         userInfo.setAvatar(v2ProfileRespPayLoad.getData().getAvatar());
         GlobalDataManager.getInstance().setUserInfo(userInfo);

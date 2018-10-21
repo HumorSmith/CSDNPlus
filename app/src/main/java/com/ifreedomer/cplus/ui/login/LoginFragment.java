@@ -14,10 +14,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.ifreedomer.cplus.ForgetPasswordActivity;
-import com.ifreedomer.cplus.MainActivity;
+import com.ifreedomer.cplus.activity.ForgetPasswordActivity;
+import com.ifreedomer.cplus.activity.MainActivity;
 import com.ifreedomer.cplus.R;
-import com.ifreedomer.cplus.RegisterActivity;
+import com.ifreedomer.cplus.activity.RegisterActivity;
 import com.ifreedomer.cplus.entity.UserInfo;
 import com.ifreedomer.cplus.http.center.HttpManager;
 import com.ifreedomer.cplus.http.protocol.PayLoad;
@@ -83,6 +83,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         forgetPasswordTv.setOnClickListener(this);
         passwordEt.addTextChangedListener(mTextWatcher);
         accountEt.addTextChangedListener(mTextWatcher);
+        loginBtn.setEnabled(!TextUtils.isEmpty(accountEt.getText().toString()) && !TextUtils.isEmpty(passwordEt.getText().toString()));
 
     }
 
@@ -165,7 +166,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         Observable<PayLoad<V2ProfileResp>> v2ProfileObservable = HttpManager.getInstance().getV2Profile(userName);
         Disposable subscribe = v2ProfileObservable.subscribe(v2ProfileRespPayLoad -> {
             if (v2ProfileRespPayLoad.getCode() == PayLoad.SUCCESS) {
-                mViewModel.saveLoginInfo(getContext(), v2ProfileRespPayLoad);
+                mViewModel.saveLoginInfo(getContext(), v2ProfileRespPayLoad,userName);
                 startActivity(new Intent(getActivity(),MainActivity.class
                 ));
             } else {

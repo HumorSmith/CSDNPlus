@@ -43,6 +43,9 @@
     <string name="feedback_success">反馈成功</string>
     <string name="blogNumWrap">%d\n博客</string>
     <string name="collect">收藏</string>
+    <string name="collectWrap">%s\n收藏</string>
+    <string name="idolWrap">%s\n关注</string>
+    <string name="my_idol">我的关心</string>
 
 
     <string-array name="tab_name">

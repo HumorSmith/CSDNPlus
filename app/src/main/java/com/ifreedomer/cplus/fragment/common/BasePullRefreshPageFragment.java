@@ -21,10 +21,10 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public abstract class BasePullRefreshPageFragment<T> extends BasePageFragment {
-    protected int mCurPage;
+    private int mCurPage;
     protected List<T> mDataList = new ArrayList<>();
     @BindView(R.id.recycleview)
-    protected RecyclerView recycleview;
+    protected RecyclerView mRecycleview;
     @BindView(R.id.refreshLayout)
     protected SwipeRefreshLayout refreshLayout;
     Unbinder unbinder;
@@ -34,12 +34,16 @@ public abstract class BasePullRefreshPageFragment<T> extends BasePageFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pullrefresh, null);
         unbinder = ButterKnife.bind(this, view);
-        initView();
+        initListener();
+        initAdapter();
         return view;
     }
 
-    private void initView() {
-        recycleview.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+    protected abstract void initAdapter();
+
+    private void initListener() {
+        mRecycleview.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 if (!ViewCompat.canScrollVertically(recyclerView, 1)) {
@@ -52,7 +56,7 @@ public abstract class BasePullRefreshPageFragment<T> extends BasePageFragment {
                     // 和上面同理
                     mCurPage++;
                     Log.d(TAG,"page = "+mCurPage);
-                    fetchData();
+                    fetchData(mCurPage);
                 }
             }
         });
@@ -61,15 +65,23 @@ public abstract class BasePullRefreshPageFragment<T> extends BasePageFragment {
             @Override
             public void onRefresh() {
                 mCurPage = 0;
-                fetchData();
+                fetchData(mCurPage);
             }
         });
     }
 
     public void setBackground(int color) {
-        recycleview.setBackgroundColor(color);
+        mRecycleview.setBackgroundColor(color);
     }
 
+
+    public RecyclerView getRecycleview() {
+        return mRecycleview;
+    }
+
+    public int getCurPage() {
+        return mCurPage;
+    }
 
 
 

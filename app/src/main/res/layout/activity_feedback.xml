@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/searhbarColor"
     android:orientation="vertical"
-    tools:context=".FeedbackActivity">
+    tools:context=".activity.FeedbackActivity">
 
 
     <include layout="@layout/layout_toolbar"/>
