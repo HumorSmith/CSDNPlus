@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/rootRelayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/whiteColor"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+
+    <TextView
+        android:id="@+id/titleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="历史浏览"
+        android:textColor="#ff666666"
+        android:textSize="13sp"
+        />
+
+
+    <ImageView
+        android:id="@+id/goIv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/ic_go"/>
+
+
+    <TextView
+        android:id="@+id/countTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/goIv"
+        android:textSize="12sp"/>
+</RelativeLayout>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.SearchActivity">
+
+    <RelativeLayout
+        android:id="@+id/searchRelayout"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="16dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <TextView
+            android:id="@+id/cancelTv"
+            android:layout_width="27dp"
+            android:layout_height="19dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="@string/cancel"
+            android:textColor="#E6666666"
+            android:textSize="13sp"
+            />
+
+
+        <EditText
+            android:id="@+id/searchEt"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="35dp"
+            android:layout_toLeftOf="@+id/deployTv"
+            android:background="@drawable/ic_searchbar_shape"
+            android:hint="工蜂Git系统构架"
+            android:paddingLeft="20dp"
+            android:textSize="13sp"/>
+
+        <include
+            layout="@layout/layout_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_below="@id/searchEt"
+            android:layout_marginTop="10dp"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/historyLinlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/searchRelayout"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="54dp"
+            android:layout_height="19dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/search_recommand"
+            android:textColor="#ff333333"
+            android:textSize="13sp"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp">
+
+            <me.gujun.android.taggroup.TagGroup
+                android:id="@+id/recommandTagGroup"
+                style="@style/TagGroup"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginRight="16dp"
+                app:atg_borderColor="#FF999999"
+                app:atg_textColor="#FF666666"
+                app:atg_verticalSpacing="10dp"/>
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/clearTv"
+                android:layout_width="20dp"
+                android:layout_height="14dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="16dp"
+                android:text="@string/clear"
+                android:textColor="#ff666666"
+                android:textSize="10sp"
+                />
+
+
+            <TextView
+                android:layout_width="54dp"
+                android:layout_height="19dp"
+                android:layout_marginLeft="13dp"
+                android:text="@string/history_search"
+                android:textColor="#ff333333"
+                android:textSize="13sp"
+                />
+
+
+        </RelativeLayout>
+
+        <me.gujun.android.taggroup.TagGroup
+            android:id="@+id/historyTagGroup"
+            style="@style/TagGroup"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginRight="16dp"
+            app:atg_borderColor="#FF999999"
+            app:atg_textColor="#FF666666"
+            app:atg_verticalSpacing="10dp"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/searchRelayout"
+        android:visibility="gone"/>
+
+</RelativeLayout>

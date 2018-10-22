@@ -1,5 +1,6 @@
 package com.ifreedomer.cplus.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.ifreedomer.cplus.R;
+import com.ifreedomer.cplus.activity.SearchActivity;
 import com.ifreedomer.cplus.adapter.ViewPagerFragmentAdapter;
 import com.ifreedomer.cplus.entity.NewsTabInfo;
 import com.ifreedomer.cplus.fragment.ArticleListFragment;
@@ -48,8 +50,18 @@ public class MainFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_fragment, container, false);
         ButterKnife.bind(this, view);
+        initView();
         setupViewPagerAndTab();
         return view;
+    }
+
+    private void initView() {
+        searchEt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), SearchActivity.class));
+            }
+        });
     }
 
     private void setupViewPagerAndTab() {

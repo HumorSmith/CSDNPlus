@@ -48,6 +48,14 @@
     <string name="my_idol">我的关心</string>
     <string name="blog">博客</string>
     <string name="category">分类</string>
+    <string name="history_search">历史搜索</string>
+    <string name="cancel">取消</string>
+    <string name="search_recommand">搜索推荐</string>
+    <string name="ai">人工智能</string>
+    <string name="link_quote">区块链</string>
+    <string name="alorthim">算法</string>
+    <string name="face_recognize">人脸识别</string>
+    <string name="clear">清空</string>
 
 
     <string-array name="tab_name">

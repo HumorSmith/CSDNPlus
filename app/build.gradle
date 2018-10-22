@@ -71,4 +71,8 @@ dependencies {
 
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.42'
 
+
+
+    implementation 'me.gujun.android.taggroup:library:1.4@aar'
+
 }

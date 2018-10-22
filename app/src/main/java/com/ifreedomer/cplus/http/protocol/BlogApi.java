@@ -5,6 +5,8 @@ import com.ifreedomer.cplus.http.protocol.resp.ApproveResp;
 import com.ifreedomer.cplus.http.protocol.resp.BlogCategoryResp;
 import com.ifreedomer.cplus.http.protocol.resp.BlogResp;
 import com.ifreedomer.cplus.http.protocol.resp.MyBlogItemResp;
+import com.ifreedomer.cplus.http.protocol.resp.SearchDetailResp;
+import com.ifreedomer.cplus.http.protocol.resp.SearchResp;
 
 import java.util.List;
 
@@ -28,6 +30,21 @@ public interface BlogApi {
     Observable<PayLoad<ApproveResp>> approve(
             @Query("username") String username,
             @Query("article_id") String articleId);
+
+
+    @GET("api/ask/search_tags")
+    Observable<PayLoad<SearchResp>> search(
+            @Query("size") int size,
+            @Query("page") int page,
+            @Query("word") String word);
+
+
+    @GET("api/v3/search/elastic")
+    Observable<PayLoad<SearchDetailResp>> getDetailListByTag(
+            @Query("size") int size,
+            @Query("page") int page,
+            @Query("block") String block,
+            @Query("keywords") String words);
 
 
     @GET("api/blog/user_blog_list")

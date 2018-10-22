@@ -39,6 +39,9 @@
         <activity android:name=".activity.FollowActivity"/>
         <activity android:name=".activity.CategoryDetailActivity">
         </activity>
+        <activity android:name=".activity.SearchActivity">
+        </activity>
+        <activity android:name=".activity.SearchDetailActivity"/>
     </application>
 
 </manifest>

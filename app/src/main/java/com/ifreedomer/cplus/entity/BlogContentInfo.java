@@ -8,6 +8,7 @@ import com.ifreedomer.cplus.http.protocol.resp.BlogResp;
 import com.ifreedomer.cplus.http.protocol.resp.CollectListResp;
 import com.ifreedomer.cplus.http.protocol.resp.HistoryResp;
 import com.ifreedomer.cplus.http.protocol.resp.MyBlogItemResp;
+import com.ifreedomer.cplus.http.protocol.resp.SearchDetailResp;
 import com.ifreedomer.cplus.manager.GlobalDataManager;
 import com.ifreedomer.cplus.util.DateUtil;
 
@@ -25,7 +26,6 @@ public class BlogContentInfo implements Serializable {
     private int commentNum;
     private String id;
     private static Pattern pattern;
-
 
 
 
@@ -159,6 +159,19 @@ public class BlogContentInfo implements Serializable {
         return contentInfo;
 
     }
+
+
+    public static BlogContentInfo covert(SearchDetailResp.HitsBean item) {
+        BlogContentInfo contentInfo = new BlogContentInfo();
+        SearchDetailResp.HitsBean.SourceBean source = item.get_source();
+        contentInfo.setTitle(source.getTitle());
+        contentInfo.setUserName(source.getUser_name());
+        contentInfo.setNickName(source.getNickname());
+        contentInfo.setId(source.getId() + "");
+        contentInfo.setDate(source.getEdit_time());
+        return contentInfo;
+    }
+
 
     public String getId() {
         return id;
