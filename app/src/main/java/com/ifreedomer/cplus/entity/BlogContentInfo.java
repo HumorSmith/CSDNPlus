@@ -4,11 +4,16 @@ import android.util.Log;
 
 import com.ifreedomer.cplus.activity.CPApplication;
 import com.ifreedomer.cplus.http.protocol.resp.ArticleResp;
+import com.ifreedomer.cplus.http.protocol.resp.BlogResp;
 import com.ifreedomer.cplus.http.protocol.resp.CollectListResp;
 import com.ifreedomer.cplus.http.protocol.resp.HistoryResp;
+import com.ifreedomer.cplus.http.protocol.resp.MyBlogItemResp;
+import com.ifreedomer.cplus.manager.GlobalDataManager;
 import com.ifreedomer.cplus.util.DateUtil;
 
 import java.io.Serializable;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class BlogContentInfo implements Serializable {
     private static final String TAG = BlogContentInfo.class.getSimpleName();
@@ -19,6 +24,10 @@ public class BlogContentInfo implements Serializable {
     private String title;
     private int commentNum;
     private String id;
+    private static Pattern pattern;
+
+
+
 
     public String getNickName() {
         return nickName;
@@ -109,6 +118,46 @@ public class BlogContentInfo implements Serializable {
         blogContentInfo.setTitle(collectItem.getTitle());
         blogContentInfo.setAvatar(collectItem.getAvatar());
         return blogContentInfo;
+    }
+
+
+    public static BlogContentInfo convert(MyBlogItemResp blogItemResp) {
+        BlogContentInfo contentInfo = new BlogContentInfo();
+        contentInfo.setAvatar(blogItemResp.getAvatar());
+        contentInfo.setTitle(blogItemResp.getTitle());
+        contentInfo.setId(blogItemResp.getArticleId() + "");
+        contentInfo.setUserName(blogItemResp.getUserName());
+        contentInfo.setNickName(blogItemResp.getNickname());
+        pattern = Pattern.compile("\\d+");
+        Matcher matcher = pattern.matcher(blogItemResp.getPostTime());
+        while (matcher.find()) {
+            String group = matcher.group();
+            Log.d(TAG, "GROUP = " + group);
+            contentInfo.setDate(DateUtil.timeStamp2DateString(Long.parseLong(group) / 1000));
+        }
+
+        contentInfo.setCommentNum(blogItemResp.getCommentCount());
+        return contentInfo;
+    }
+
+
+    public static BlogContentInfo convert(BlogResp blogItemResp) {
+        BlogContentInfo contentInfo = new BlogContentInfo();
+        contentInfo.setAvatar(GlobalDataManager.getInstance().getUserInfo().getAvatar());
+        contentInfo.setTitle(blogItemResp.getTitle());
+        contentInfo.setId(blogItemResp.getArticleId() + "");
+        contentInfo.setNickName(blogItemResp.getUserName());
+        contentInfo.setUserName(blogItemResp.getUserName());
+
+        pattern = Pattern.compile("\\d+");
+        Matcher matcher = pattern.matcher(blogItemResp.getPostTime());
+        while (matcher.find()) {
+            String group = matcher.group();
+            Log.d(TAG, "GROUP = " + group);
+            contentInfo.setDate(DateUtil.timeStamp2DateString(Long.parseLong(group) / 1000));
+        }
+        return contentInfo;
+
     }
 
     public String getId() {

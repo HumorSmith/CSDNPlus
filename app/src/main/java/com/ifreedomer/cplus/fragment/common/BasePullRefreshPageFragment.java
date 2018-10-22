@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ifreedomer.cplus.R;
+import com.ifreedomer.cplus.http.protocol.PayLoad;
+import com.ifreedomer.cplus.util.WidgetUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,6 +86,24 @@ public abstract class BasePullRefreshPageFragment<T> extends BasePageFragment {
     }
 
 
+    public void refreshList(int code, String message, List<T> list) {
+        refreshLayout.setRefreshing(false);
+//            LogUtil.d(TAG, "listpayload = " + listPayLoad.toString());
+        if (code == PayLoad.SUCCESS) {
+
+            if (getCurPage() == 0) {
+                mDataList.clear();
+            }
+            if (list.size() == 0) {
+                WidgetUtil.showSnackBar(getActivity(), getString(R.string.no_more));
+                return;
+            }
+            mDataList.addAll(list);
+            mRecycleview.getAdapter().notifyDataSetChanged();
+        } else {
+            WidgetUtil.showSnackBar(getActivity(), message);
+        }
+    }
 
 
 }

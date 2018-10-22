@@ -3,12 +3,10 @@ package com.ifreedomer.cplus.activity;
 import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
-import com.ifreedomer.cplus.fragment.FansFragment;
-import com.ifreedomer.cplus.fragment.IdolFragment;
 import com.ifreedomer.cplus.R;
 import com.ifreedomer.cplus.adapter.ViewPagerFragmentAdapter;
-import com.ifreedomer.cplus.fragment.common.BasePullRefreshPageFragment;
-import com.ifreedomer.cplus.http.protocol.resp.FollowResp;
+import com.ifreedomer.cplus.fragment.FansFragment;
+import com.ifreedomer.cplus.fragment.IdolFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +24,6 @@ public class FollowActivity extends AppCompatActivity {
     ViewPager viewpager;
     private List<Fragment> mFollowFragmentList = new ArrayList<>();
     private List<String> titleList = new ArrayList<>();
-    private List<FollowResp> mFansDataList = new ArrayList<>();
-    private List<FollowResp> mIdolList = new ArrayList<>();
-
-    static BasePullRefreshPageFragment<FollowResp> myFans = null;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

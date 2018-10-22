@@ -26,6 +26,7 @@ import com.ifreedomer.cplus.http.protocol.resp.FollowResp;
 import com.ifreedomer.cplus.http.protocol.resp.GetUserTokenResp;
 import com.ifreedomer.cplus.http.protocol.resp.HistoryResp;
 import com.ifreedomer.cplus.http.protocol.resp.LoginAppV1TokenResp;
+import com.ifreedomer.cplus.http.protocol.resp.MyBlogItemResp;
 import com.ifreedomer.cplus.http.protocol.resp.UserBlogInfoResp;
 import com.ifreedomer.cplus.http.protocol.resp.UserInfoResp;
 import com.ifreedomer.cplus.http.protocol.resp.V2ProfileResp;
@@ -249,4 +250,8 @@ public class HttpManager {
         return collectListObserver;
     }
 
+    public Observable<PayLoad<List<MyBlogItemResp>>> getMyBlogList(String userName, int curPage, int pageSize) {
+        Observable<PayLoad<List<MyBlogItemResp>>> myBlogListObserver = retrofit.create(BlogApi.class).getMyBlogList(userName, curPage, pageSize).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+        return myBlogListObserver;
+    }
 }

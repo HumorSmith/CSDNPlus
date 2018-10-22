@@ -4,6 +4,7 @@ package com.ifreedomer.cplus.http.protocol;
 import com.ifreedomer.cplus.http.protocol.resp.ApproveResp;
 import com.ifreedomer.cplus.http.protocol.resp.BlogCategoryResp;
 import com.ifreedomer.cplus.http.protocol.resp.BlogResp;
+import com.ifreedomer.cplus.http.protocol.resp.MyBlogItemResp;
 
 import java.util.List;
 
@@ -27,6 +28,11 @@ public interface BlogApi {
     Observable<PayLoad<ApproveResp>> approve(
             @Query("username") String username,
             @Query("article_id") String articleId);
+
+
+    @GET("api/blog/user_blog_list")
+    Observable<PayLoad<List<MyBlogItemResp>>> getMyBlogList(@Query("username") String username, @Query("page") int page, @Query("pagesize") int pagesize);
+
 
 
 

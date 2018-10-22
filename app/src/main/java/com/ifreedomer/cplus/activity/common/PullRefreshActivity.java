@@ -6,6 +6,9 @@ import android.widget.TextView;
 
 import com.ifreedomer.cplus.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
@@ -14,7 +17,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public abstract class PullRefreshActivity extends AppCompatActivity {
+public abstract class PullRefreshActivity<T> extends AppCompatActivity {
     public static final String TAG = PullRefreshActivity.class.getSimpleName();
     @BindView(R.id.recycleview)
     public RecyclerView recycleview;
@@ -25,6 +28,7 @@ public abstract class PullRefreshActivity extends AppCompatActivity {
     public TextView titleTv;
     @BindView(R.id.toolbar)
     public Toolbar toolbar;
+    public List<T> mDataList = new ArrayList<>();
 
     public abstract void fetchData(int page);
 
@@ -67,6 +71,10 @@ public abstract class PullRefreshActivity extends AppCompatActivity {
 
     public int getCurPage() {
         return mCurPage;
+    }
+
+    public RecyclerView getRecycleview() {
+        return recycleview;
     }
 
     public void setBackground(int color) {

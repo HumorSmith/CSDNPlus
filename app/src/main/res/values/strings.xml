@@ -46,6 +46,8 @@
     <string name="collectWrap">%s\n收藏</string>
     <string name="idolWrap">%s\n关注</string>
     <string name="my_idol">我的关心</string>
+    <string name="blog">博客</string>
+    <string name="category">分类</string>
 
 
     <string-array name="tab_name">

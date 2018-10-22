@@ -37,6 +37,8 @@
         <activity android:name=".activity.common.PullRefreshActivity">
         </activity>
         <activity android:name=".activity.FollowActivity"/>
+        <activity android:name=".activity.CategoryDetailActivity">
+        </activity>
     </application>
 
 </manifest>
