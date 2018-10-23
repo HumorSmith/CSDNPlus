@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/deployBtn"
+            style="@style/LoginBtnStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="@string/deploy_title"/>
+
+
+        <me.gujun.android.taggroup.TagGroup
+            android:id="@+id/labelGroup"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_above="@+id/deployBtn"/>
+
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

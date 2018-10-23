@@ -63,6 +63,7 @@
     <string name="action_preview">预览</string>
     <string name="deploy_title">发布</string>
     <string name="append_desc">[添加链接描述](http://www.baidu.com)</string>
+    <string name="send">发送</string>
 
 
     <string-array name="tab_name">

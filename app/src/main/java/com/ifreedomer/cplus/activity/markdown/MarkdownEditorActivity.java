@@ -2,6 +2,7 @@ package com.ifreedomer.cplus.activity.markdown;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -59,7 +60,18 @@ public class MarkdownEditorActivity extends AppCompatActivity implements View.On
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         toolbar.inflateMenu(R.menu.menu_editor_frag);
+        toolbar.getMenu().findItem(R.id.sendItem).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                ShowDeployDialog();
+                return false;
+            }
+        });
         return super.onPrepareOptionsMenu(menu);
+    }
+
+    private void ShowDeployDialog() {
+
     }
 
     private void initTab() {

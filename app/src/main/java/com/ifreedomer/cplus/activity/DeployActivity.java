@@ -25,6 +25,7 @@ public class DeployActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_deploy);
         findViewById(R.id.loginBtn).setOnClickListener(this);
         findViewById(R.id.deployBtn).setOnClickListener(this);
+        findViewById(R.id.msgBtn).setOnClickListener(this);
         mWebView = findViewById(R.id.webview);
 
 
@@ -90,6 +91,9 @@ public class DeployActivity extends AppCompatActivity implements View.OnClickLis
 //                        Log.d(TAG,throwable.toString());
 //                    }
 //                });
+                break;
+            case R.id.msgBtn:
+                mWebView.loadUrl("https://msg.csdn.net/");
                 break;
         }
     }

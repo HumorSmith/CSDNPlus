@@ -20,6 +20,13 @@
         android:layout_height="wrap_content"
         android:text="发布"/>
 
+
+    <Button
+        android:id="@+id/msgBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="消息"/>
+
     <WebView
         android:id="@+id/webview"
         android:layout_width="match_parent"

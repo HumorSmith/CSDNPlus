@@ -20,10 +20,10 @@
       tools:context=".view.EditorActivity">
 
     <item
-        android:id="@+id/action_undo"
+        android:id="@+id/sendItem"
         android:icon="@mipmap/ic_send"
         android:orderInCategory="80"
-        android:title="@string/action_undo"
+        android:title="@string/send"
         app:showAsAction="always"/>
     <!--<item-->
     <!--android:id="@+id/action_redo"-->
