@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.google.android.material.tabs.TabLayout;
 import com.ifreedomer.cplus.R;
 import com.ifreedomer.cplus.activity.SearchActivity;
+import com.ifreedomer.cplus.activity.markdown.MarkdownEditorActivity;
 import com.ifreedomer.cplus.adapter.ViewPagerFragmentAdapter;
 import com.ifreedomer.cplus.entity.NewsTabInfo;
 import com.ifreedomer.cplus.fragment.ArticleListFragment;
@@ -62,6 +63,14 @@ public class MainFragment extends Fragment {
                 startActivity(new Intent(getActivity(), SearchActivity.class));
             }
         });
+
+        deployTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), MarkdownEditorActivity.class));
+            }
+        });
+
     }
 
     private void setupViewPagerAndTab() {

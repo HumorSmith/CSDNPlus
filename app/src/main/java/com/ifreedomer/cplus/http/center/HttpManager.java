@@ -3,6 +3,7 @@ package com.ifreedomer.cplus.http.center;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.ifreedomer.cplus.http.intercepter.CookieInterceptor;
 import com.ifreedomer.cplus.http.intercepter.HeaderInterceptor;
 import com.ifreedomer.cplus.http.protocol.ArticleApi;
 import com.ifreedomer.cplus.http.protocol.BlogApi;
@@ -38,15 +39,21 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.RequestBody;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -74,9 +81,18 @@ public class HttpManager {
     private Retrofit mStringRetrofit;
 
 
+    private Retrofit mCookieRetrofit;
+
+
     private OkHttpClient mClient = new OkHttpClient.Builder()
             .addInterceptor(mLogging)
             .addInterceptor(new HeaderInterceptor())
+            .build();
+
+
+    private OkHttpClient mCookieClient = new OkHttpClient.Builder()
+            .addInterceptor(mLogging)
+            .addInterceptor(new CookieInterceptor())
             .build();
 
 
@@ -96,6 +112,15 @@ public class HttpManager {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) // 支持RxJava
                 .client(mClient)
                 .build();
+
+
+        mCookieRetrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(ScalarsConverterFactory.create()) //设置使用Gson解析(记得加入依赖)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) // 支持RxJava
+                .client(mCookieClient)
+                .build();
+
     }
 
     ;
@@ -266,4 +291,53 @@ public class HttpManager {
         BlogApi blogApi = retrofit.create(BlogApi.class);
         return blogApi.getDetailListByTag(20, 1, "so_blog", tagResult).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
+
+    public void saveArticle() {
+
+        RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("title", "title")
+                .addFormDataPart("markdowncontent", "markdowncontent")
+                .addFormDataPart("content", "content")
+                .addFormDataPart("id", "")
+                .addFormDataPart("private", true + "")
+                .addFormDataPart("tags", "opencv")
+                .addFormDataPart("status", "65")
+                .addFormDataPart("categories", "opencv")
+                .addFormDataPart("channel", "28")
+                .addFormDataPart("type", "original")
+                .addFormDataPart("articleedittype", "1")
+                .addFormDataPart("Description", "")
+                .build();
+
+        Request request = new Request.Builder()
+                .url("https://mp.csdn.net/mdeditor/saveArticle")
+                .post(requestBody)
+                .build();
+
+        mCookieClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+                Log.d(TAG, "FAILED = " + e.getMessage());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String string = response.body().string();
+                Log.d(TAG, string);
+            }
+        });
+
+
+//        mCookieClient.newCall()
+//        Observable<String> saveArticleRespObservable = mCookieRetrofit.create(H5ArticleApi.class).saveArticle(requestBody);
+//        return saveArticleRespObservable;
+
+
+    }
+
+
+
+
 }

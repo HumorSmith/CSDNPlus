@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         ViewPagerFragmentAdapter pagerAdapter = new ViewPagerFragmentAdapter(getSupportFragmentManager(), mFragmentList);
         viewpager.setAdapter(pagerAdapter);
         viewpager.setOffscreenPageLimit(3);
-        viewpager.addOnPageChangeListener(null);
+        viewpager.addOnPageChangeListener(this);
     }
 
     @Override
@@ -72,7 +72,15 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     @Override
     public void onPageSelected(int position) {
-        bottomNavigationView.getMenu().findItem(position).setChecked(true);
+        if (position == 0){
+            bottomNavigationView.getMenu().findItem(R.id.homeTab).setChecked(true);
+        }
+        if (position == 1){
+            bottomNavigationView.getMenu().findItem(R.id.messageTab).setChecked(true);
+        }
+        if (position == 2){
+            bottomNavigationView.getMenu().findItem(R.id.mineTab).setChecked(true);
+        }
     }
 
     @Override

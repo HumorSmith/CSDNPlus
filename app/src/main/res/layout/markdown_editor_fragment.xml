@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/markdowneditor"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/searhbarColor"
+    android:orientation="vertical"
+    >
+
+    <include layout="@layout/layout_toolbar"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginRight="5dp"
+        android:background="@color/whiteColor"
+        android:elevation="4px">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="@string/input_title"
+            android:paddingLeft="10dp"
+            android:textSize="12sp"/>
+    </RelativeLayout>
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginRight="5dp"
+        android:background="@color/whiteColor"
+        android:gravity="top"
+        android:hint="分享你的原创…"
+        android:paddingLeft="10dp"
+        android:paddingTop="13dp"
+        android:textSize="12sp"/>
+
+</LinearLayout>

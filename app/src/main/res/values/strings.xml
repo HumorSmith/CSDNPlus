@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">cplus</string>
+    <string name="app_name">C+</string>
     <string name="account">账号</string>
     <string name="account_hint">手机号/邮箱/用户名</string>
     <string name="password_hint">请输入密码</string>
@@ -56,6 +56,13 @@
     <string name="alorthim">算法</string>
     <string name="face_recognize">人脸识别</string>
     <string name="clear">清空</string>
+    <string name="input_title">输入标题</string>
+    <string name="share_your_origin">分享你的原创…</string>
+    <string name="action_undo">撤销</string>
+    <string name="action_redo">重做</string>
+    <string name="action_preview">预览</string>
+    <string name="deploy_title">发布</string>
+    <string name="append_desc">[添加链接描述](http://www.baidu.com)</string>
 
 
     <string-array name="tab_name">
