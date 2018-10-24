@@ -9,9 +9,11 @@ import com.ifreedomer.cplus.http.protocol.ArticleApi;
 import com.ifreedomer.cplus.http.protocol.BlogApi;
 import com.ifreedomer.cplus.http.protocol.CollectApi;
 import com.ifreedomer.cplus.http.protocol.FollowApi;
+import com.ifreedomer.cplus.http.protocol.ForgetPwdApi;
 import com.ifreedomer.cplus.http.protocol.LoginAppV1Api;
 import com.ifreedomer.cplus.http.protocol.LoginV3Api;
 import com.ifreedomer.cplus.http.protocol.PayLoad;
+import com.ifreedomer.cplus.http.protocol.req.GetVerifyCodeReq;
 import com.ifreedomer.cplus.http.protocol.req.LoginReq;
 import com.ifreedomer.cplus.http.protocol.resp.ApproveResp;
 import com.ifreedomer.cplus.http.protocol.resp.ArticleListResp;
@@ -24,7 +26,9 @@ import com.ifreedomer.cplus.http.protocol.resp.CollectNumResp;
 import com.ifreedomer.cplus.http.protocol.resp.CountResp;
 import com.ifreedomer.cplus.http.protocol.resp.FollowOperationResp;
 import com.ifreedomer.cplus.http.protocol.resp.FollowResp;
+import com.ifreedomer.cplus.http.protocol.resp.ForgetPwdUserNameResp;
 import com.ifreedomer.cplus.http.protocol.resp.GetUserTokenResp;
+import com.ifreedomer.cplus.http.protocol.resp.GetVerifyCodeResp;
 import com.ifreedomer.cplus.http.protocol.resp.HistoryResp;
 import com.ifreedomer.cplus.http.protocol.resp.LoginAppV1TokenResp;
 import com.ifreedomer.cplus.http.protocol.resp.MyBlogItemResp;
@@ -338,6 +342,21 @@ public class HttpManager {
     }
 
 
+    public Observable<ForgetPwdUserNameResp> getUserNameByPhone(String countryCode, String phone) {
+        Observable<ForgetPwdUserNameResp> forgetPwdRespObservable = retrofit.create(ForgetPwdApi.class).requestUserName(phone, 0, countryCode);
+        return forgetPwdRespObservable;
+
+    }
+
+    public Observable<GetVerifyCodeResp> getVerifyCode(GetVerifyCodeReq getVerifyCodeReq) {
+        RequestBody body = RequestBody.create(MediaType.parse("application/json"), mGson.toJson(getVerifyCodeReq));
+        Observable<GetVerifyCodeResp> forgetPwdRespObservable = retrofit.create(ForgetPwdApi.class).getVerifyCode(body);
+        return forgetPwdRespObservable;
+
+    }
 
 
+    public void verifyCode(String verifyCode) {
+//        retrofit.create(ForgetPwdApi.class).verifyCode(verifyCode);
+    }
 }

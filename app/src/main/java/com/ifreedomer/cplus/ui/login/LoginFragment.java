@@ -1,10 +1,12 @@
 package com.ifreedomer.cplus.ui.login;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,16 +16,17 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.ifreedomer.cplus.activity.ForgetPasswordActivity;
-import com.ifreedomer.cplus.activity.MainActivity;
 import com.ifreedomer.cplus.R;
-import com.ifreedomer.cplus.activity.RegisterActivity;
+import com.ifreedomer.cplus.activity.MainActivity;
+import com.ifreedomer.cplus.activity.common.WebViewActivity;
 import com.ifreedomer.cplus.entity.UserInfo;
 import com.ifreedomer.cplus.http.center.HttpManager;
 import com.ifreedomer.cplus.http.protocol.PayLoad;
 import com.ifreedomer.cplus.http.protocol.resp.LoginAppV1TokenResp;
 import com.ifreedomer.cplus.http.protocol.resp.V2ProfileResp;
 import com.ifreedomer.cplus.util.WidgetUtil;
+import com.ifreedomer.tencent.TencentLoginResult;
+import com.ifreedomer.tencent.TencentQQ;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -36,8 +39,7 @@ import io.reactivex.disposables.Disposable;
 
 
 public class LoginFragment extends Fragment implements View.OnClickListener {
-
-
+    private static final String TAG = LoginFragment.class.getSimpleName();
     @BindView(R.id.accountEt)
     EditText accountEt;
     @BindView(R.id.relayout_account)
@@ -81,6 +83,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         loginBtn.setOnClickListener(this);
         registerTv.setOnClickListener(this);
         forgetPasswordTv.setOnClickListener(this);
+        wechatIv.setOnClickListener(this);
+        qqIv.setOnClickListener(this);
         passwordEt.addTextChangedListener(mTextWatcher);
         accountEt.addTextChangedListener(mTextWatcher);
         loginBtn.setEnabled(!TextUtils.isEmpty(accountEt.getText().toString()) && !TextUtils.isEmpty(passwordEt.getText().toString()));
@@ -115,9 +119,42 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     }
 
 
+    private TencentQQ.LoginCallback mQQLoginCallback = new TencentQQ.LoginCallback() {
+        @Override
+        public void onComplete(TencentLoginResult tecentLoginResult) {
+            Log.d(TAG, "onComplete tecentLoginResult = " + tecentLoginResult.toString());
+        }
+
+        @Override
+        public void onError(int errorCode, String errorMsg) {
+            Log.d(TAG, "onError  errorCode = " + errorCode + "   errorMsg = " + errorMsg);
+        }
+
+        @Override
+        public void onCancel() {
+            Log.d(TAG, "onCancel");
+        }
+    };
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+
+            case R.id.wechatIv:
+//
+////                String url = "https://graph.qq.com/oauth2.0/show?which=Login&display=pc&response_type=code&client_id=100270989&redirect_uri=https%3A%2F%2Fpassport.csdn.net%2Faccount%2Flogin%3Foauth_provider%3DQQProvider&state=test"
+                Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                intent.putExtra(WebViewActivity.URL, "https://passport.csdn.net/account/login");
+                intent.putExtra(WebViewActivity.SHOW_TITLE, false);
+                intent.putExtra(WebViewActivity.TITLE_KEY, getString(R.string.thirdlogin));
+                startActivity(intent);
+//
+////                https://passport.csdn.net/account/login
+//
+////                intent.put
+////                TencentManager.getInstance().login(getActivity(), "1106956819", mQQLoginCallback);
+//                Intent intent = new Intent(getActivity(), WechatLoginActivity.class);
+                break;
             case R.id.loginBtn:
                 if (getActivity() == null) {
                     return;
@@ -142,10 +179,19 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 }, throwable -> WidgetUtil.showSnackBar(getActivity(), throwable.getMessage()));
                 break;
             case R.id.registerTv:
-                startActivity(new Intent(getActivity(), RegisterActivity.class));
+                Uri uri = Uri.parse("https://passport.csdn.net/account/register");
+                startActivity(new Intent(Intent.ACTION_VIEW, uri));
+//                intent.putExtra(WebViewActivity.SHOW_TITLE, false);
+//                intent.putExtra(WebViewActivity.TITLE_KEY, getString(R.string.thirdlogin));
+//                intent.putExtra(WebViewActivity.OPEN_BROWER, false);
+//                startActivity(intent);
                 break;
             case R.id.forgetPasswordTv:
-                startActivity(new Intent(getActivity(), ForgetPasswordActivity.class));
+                intent = new Intent(getActivity(), WebViewActivity.class);
+                intent.putExtra(WebViewActivity.TITLE_KEY, getString(R.string.forget_password));
+                intent.putExtra(WebViewActivity.SHOW_TITLE, false);
+                intent.putExtra(WebViewActivity.URL, "https://passport.csdn.net/passport_fe/forget.html");
+                startActivity(intent);
                 break;
         }
     }

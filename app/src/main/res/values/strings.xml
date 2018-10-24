@@ -64,6 +64,21 @@
     <string name="deploy_title">发布</string>
     <string name="append_desc">[添加链接描述](http://www.baidu.com)</string>
     <string name="send">发送</string>
+    <string name="input_phonenum">输入手机号</string>
+    <string name="next_step">下一步</string>
+    <string name="reset_pwd_first">重置密码(1/3)</string>
+    <string name="phonenum_cannot_null">手机号不能为空</string>
+    <string name="invalid_phonenum">手机号不对哦~</string>
+    <string name="verifyPhoneNum">验证手机号</string>
+    <string name="messageCode">短信验证码</string>
+    <string name="reset_pwd_2">重置密码(2/3)</string>
+    <string name="verifyCodeSended">短信验证码已发送至</string>
+    <string name="resend">重新发送</string>
+    <string name="reset_pwd_3">重置密码(3/3)</string>
+    <string name="newLoginPwd">新登录密码</string>
+    <string name="pwd_valid_format">密码需为8～20位数字、英文和符号的组合，不含空格。</string>
+    <string name="scan_code_register">扫描二维码注册</string>
+    <string name="thirdlogin">第三方登录</string>
 
 
     <string-array name="tab_name">
