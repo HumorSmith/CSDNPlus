@@ -17,19 +17,20 @@ public class IdolFragment extends BasePullRefreshPageFragment<FollowResp> {
 
     @Override
     protected void initAdapter() {
+        mFirstPage = 1;
         this.getRecycleview().setAdapter(new FollowAdapter(FollowAdapter.IDOL_TYPE, R.layout.item_follow, mDataList));
         this.getRecycleview().setLayoutManager(new LinearLayoutManager(getActivity()));
-        fetchData(0);
+        fetchData(mFirstPage);
     }
 
     @Override
     public void fetchData(int page) {
-        Disposable subscribe = HttpManager.getInstance().getIdol(getCurPage(), 20).subscribe(listPayLoad -> {
+        Disposable subscribe = HttpManager.getInstance().getIdol(page, 20).subscribe(listPayLoad -> {
             refreshLayout.setRefreshing(false);
 //            LogUtil.d(TAG, "listpayload = " + listPayLoad.toString());
             if (listPayLoad.getCode() == PayLoad.SUCCESS) {
 
-                if (getCurPage() == 0) {
+                if (getCurPage() == mFirstPage) {
                     mDataList.clear();
                 }
                 if (listPayLoad.getData().size() == 0) {

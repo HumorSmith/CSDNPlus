@@ -13,8 +13,6 @@ import com.ifreedomer.cplus.http.protocol.resp.CommentListResp;
 import com.ifreedomer.cplus.util.ToolbarUtil;
 import com.ifreedomer.cplus.util.WidgetUtil;
 
-import java.util.List;
-
 import androidx.recyclerview.widget.LinearLayoutManager;
 import butterknife.BindView;
 import io.reactivex.Observable;
@@ -63,14 +61,14 @@ public class CommentActivity extends PullRefreshActivity<CommentListResp.ListBea
                 if (addCommentRespPayLoad.getCode() == PayLoad.SUCCESS) {
                     contentEt.setText("");
                     WidgetUtil.showSnackBar(CommentActivity.this, getString(R.string.comment_success));
-                    fetchData(0);
+                    fetchData(mFirstPage);
                 } else {
                     WidgetUtil.showSnackBar(CommentActivity.this, addCommentRespPayLoad.getMessage());
                 }
             }, throwable -> WidgetUtil.showSnackBar(CommentActivity.this, throwable.getMessage()));
         });
 
-        fetchData(0);
+        fetchData(mFirstPage);
     }
 
 

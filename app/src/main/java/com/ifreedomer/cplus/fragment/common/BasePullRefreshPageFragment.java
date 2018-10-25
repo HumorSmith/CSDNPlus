@@ -30,6 +30,7 @@ public abstract class BasePullRefreshPageFragment<T> extends BasePageFragment {
     @BindView(R.id.refreshLayout)
     protected SwipeRefreshLayout refreshLayout;
     Unbinder unbinder;
+    protected int mFirstPage = 1;
     private static final String TAG = BasePullRefreshPageFragment.class.getSimpleName();
     @Nullable
     @Override
@@ -66,7 +67,7 @@ public abstract class BasePullRefreshPageFragment<T> extends BasePageFragment {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mCurPage = 0;
+                mCurPage = mFirstPage;
                 fetchData(mCurPage);
             }
         });
@@ -91,7 +92,7 @@ public abstract class BasePullRefreshPageFragment<T> extends BasePageFragment {
 //            LogUtil.d(TAG, "listpayload = " + listPayLoad.toString());
         if (code == PayLoad.SUCCESS) {
 
-            if (getCurPage() == 0) {
+            if (mCurPage == mFirstPage) {
                 mDataList.clear();
             }
             if (list.size() == 0) {

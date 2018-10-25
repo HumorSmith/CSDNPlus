@@ -4,7 +4,6 @@ import com.ifreedomer.cplus.R;
 import com.ifreedomer.cplus.adapter.FollowAdapter;
 import com.ifreedomer.cplus.fragment.common.BasePullRefreshPageFragment;
 import com.ifreedomer.cplus.http.center.HttpManager;
-import com.ifreedomer.cplus.http.protocol.PayLoad;
 import com.ifreedomer.cplus.http.protocol.resp.FollowResp;
 import com.ifreedomer.cplus.util.WidgetUtil;
 
@@ -15,9 +14,10 @@ public class FansFragment extends BasePullRefreshPageFragment<FollowResp> {
 
     @Override
     protected void initAdapter() {
+        mFirstPage = 1;
         this.getRecycleview().setAdapter(new FollowAdapter(FollowAdapter.FANS_TYPE, R.layout.item_follow, mDataList));
         this.getRecycleview().setLayoutManager(new LinearLayoutManager(getActivity()));
-        fetchData(0);
+        fetchData(mFirstPage);
     }
 
     @Override
@@ -25,20 +25,7 @@ public class FansFragment extends BasePullRefreshPageFragment<FollowResp> {
         Disposable subscribe = HttpManager.getInstance().getFans(getCurPage(), 20).subscribe(listPayLoad -> {
             refreshLayout.setRefreshing(false);
 //            LogUtil.d(TAG, "listpayload = " + listPayLoad.toString());
-            if (listPayLoad.getCode() == PayLoad.SUCCESS) {
-
-                if (getCurPage() == 0) {
-                    mDataList.clear();
-                }
-                if (listPayLoad.getData().size() == 0) {
-                    WidgetUtil.showSnackBar(getActivity(), getString(R.string.no_more));
-                    return;
-                }
-                mDataList.addAll(listPayLoad.getData());
-                mRecycleview.getAdapter().notifyDataSetChanged();
-            } else {
-                WidgetUtil.showSnackBar(getActivity(), listPayLoad.getMessage());
-            }
+            refreshList(listPayLoad.getCode(), listPayLoad.getMessage(), listPayLoad.getData());
         }, throwable -> {
             throwable.printStackTrace();
             WidgetUtil.showSnackBar(getActivity(), throwable.getMessage());

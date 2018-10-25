@@ -53,7 +53,7 @@ public class CategoryDetailActivity extends PullRefreshActivity<BlogResp> {
         ToolbarUtil.setTitleBarWithBack(this, toolbar, name);
         getRecycleview().setLayoutManager(new LinearLayoutManager(this));
         getRecycleview().setAdapter(new BlogListAdapter(R.layout.item_blog_list, mDataList));
-        fetchData(0);
+        fetchData(mFirstPage);
 
     }
 

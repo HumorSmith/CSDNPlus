@@ -43,7 +43,7 @@ public class SearchDetailActivity extends PullRefreshActivity<SearchDetailResp.H
         ToolbarUtil.setTitleBarWithBack(this, toolbar, name);
         getRecycleview().setLayoutManager(new LinearLayoutManager(this));
         getRecycleview().setAdapter(new SearchDetailListAdapter(R.layout.item_article_list, mDataList));
-        fetchData(0);
+        fetchData(mFirstPage);
 
     }
 

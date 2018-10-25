@@ -44,6 +44,6 @@ public class CollectActivity extends PullRefreshActivity {
         ToolbarUtil.setTitleBarWithBack(this, toolbar, getString(R.string.collect));
         recycleview.setLayoutManager(new LinearLayoutManager(this));
         recycleview.setAdapter(new CollectListAdapter(R.layout.item_blog_list, mCollectItemList));
-        fetchData(0);
+        fetchData(mFirstPage);
     }
 }

@@ -31,6 +31,7 @@ public abstract class PullRefreshActivity<T> extends AppCompatActivity {
     @BindView(R.id.toolbar)
     public Toolbar toolbar;
     public List<T> mDataList = new ArrayList<>();
+    protected int mFirstPage = 1;
 
     public abstract void fetchData(int page);
 
@@ -70,7 +71,8 @@ public abstract class PullRefreshActivity<T> extends AppCompatActivity {
         });
 
         refreshLayout.setOnRefreshListener(() -> {
-            mCurPage = 0;
+            mCurPage = mFirstPage
+            ;
             fetchData(mCurPage);
         });
     }
