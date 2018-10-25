@@ -12,15 +12,16 @@
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refreshLayout"
-        android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginBottom="50dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="50dp"/>
+            />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <RelativeLayout
@@ -47,11 +48,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="16dp"
-            android:background="@color/whiteColor"
             android:layout_marginTop="9dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="9dp"
             android:layout_toLeftOf="@id/sendTv"
+            android:background="@color/whiteColor"
             android:hint="@string/write_comment"
             android:paddingLeft="5dp"
             android:textColor="#ff999999"

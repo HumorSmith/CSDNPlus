@@ -13,6 +13,8 @@ import com.ifreedomer.cplus.http.protocol.resp.CommentListResp;
 import com.ifreedomer.cplus.util.ToolbarUtil;
 import com.ifreedomer.cplus.util.WidgetUtil;
 
+import java.util.List;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import butterknife.BindView;
 import io.reactivex.Observable;
@@ -35,12 +37,15 @@ public class CommentActivity extends PullRefreshActivity<CommentListResp.ListBea
     @Override
     public void fetchData(int page) {
         setLoading(true);
+        page = page + 1;
         Observable<PayLoad<CommentListResp>> commentListObserver = HttpManager.getInstance().getCommentList(mArticleId, page, 20);
         commentListObserver.subscribe(commentListRespPayLoad -> {
             setLoading(false);
             refreshList(commentListRespPayLoad.getCode(), commentListRespPayLoad.getMessage(), commentListRespPayLoad.getData().getList());
         }, throwable -> WidgetUtil.showSnackBar(CommentActivity.this, throwable.getMessage()));
     }
+
+
 
     @Override
     public void initTitleAndAdapter() {

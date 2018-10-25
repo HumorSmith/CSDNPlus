@@ -24,7 +24,9 @@ public class CommentListAdapter extends BaseQuickAdapter<CommentListResp.ListBea
 
     @Override
     protected void convert(BaseViewHolder helper, CommentListResp.ListBean item) {
-        helper.setText(R.id.nameTv, item.getInfo().getNickName());
+        String nameStr = item.getInfo().getNickName();
+
+        helper.setText(R.id.nameTv, nameStr);
         Glide.with((View) helper.getView(R.id.avatarIv)).load(item.getInfo().getAvatar()).apply(RequestOptions.bitmapTransform(new CircleCrop())).into((ImageView) helper.getView(R.id.avatarIv));
         helper.setText(R.id.commentTv, item.getInfo().getContent());
         helper.setText(R.id.timeTv, item.getInfo().getPostTime());

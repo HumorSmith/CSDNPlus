@@ -25,7 +25,7 @@ public abstract class PullRefreshActivity<T> extends AppCompatActivity {
     public RecyclerView recycleview;
     @BindView(R.id.refreshLayout)
     public SwipeRefreshLayout refreshLayout;
-    protected int mCurPage;
+    protected int mCurPage ;
     @BindView(R.id.titleTv)
     public TextView titleTv;
     @BindView(R.id.toolbar)
