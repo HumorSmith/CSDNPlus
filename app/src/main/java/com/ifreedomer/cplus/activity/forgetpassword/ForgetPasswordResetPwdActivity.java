@@ -7,7 +7,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.ifreedomer.cplus.R;
-import com.ifreedomer.cplus.http.center.HttpManager;
 import com.ifreedomer.cplus.util.ToolbarUtil;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,7 +43,7 @@ public class ForgetPasswordResetPwdActivity extends AppCompatActivity implements
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.nextStepBtn:
-                HttpManager.getInstance().verifyCode(verifyCodeEt.getText().toString());
+//                HttpManager.getInstance().verifyCode(verifyCodeEt.getText().toString());
                 break;
         }
     }

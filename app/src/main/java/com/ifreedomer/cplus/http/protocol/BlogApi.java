@@ -2,8 +2,10 @@ package com.ifreedomer.cplus.http.protocol;
 
 
 import com.ifreedomer.cplus.http.protocol.resp.ApproveResp;
+import com.ifreedomer.cplus.http.protocol.resp.ArticleDetailInfoResp;
 import com.ifreedomer.cplus.http.protocol.resp.BlogCategoryResp;
 import com.ifreedomer.cplus.http.protocol.resp.BlogResp;
+import com.ifreedomer.cplus.http.protocol.resp.DiggResp;
 import com.ifreedomer.cplus.http.protocol.resp.MyBlogItemResp;
 import com.ifreedomer.cplus.http.protocol.resp.SearchDetailResp;
 import com.ifreedomer.cplus.http.protocol.resp.SearchResp;
@@ -12,6 +14,7 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface BlogApi {
@@ -48,8 +51,14 @@ public interface BlogApi {
 
 
     @GET("api/blog/user_blog_list")
+    Observable<PayLoad<ArticleDetailInfoResp>> getArticleInfo(@Query("username") String username, @Query("page") int page, @Query("pagesize") int pagesize);
+
+
+    @GET("api/blog/user_blog_list")
     Observable<PayLoad<List<MyBlogItemResp>>> getMyBlogList(@Query("username") String username, @Query("page") int page, @Query("pagesize") int pagesize);
 
+    @POST("api/v5/ArticleDiggApp/digg")
+    Observable<PayLoad<DiggResp>> digg(@Query("username") String username, @Query("article_id") String articleId);
 
 
 

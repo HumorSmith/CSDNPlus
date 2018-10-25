@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/collectItem"
+        android:icon="@drawable/selector_collect"
+        android:title="@string/collect"
+        app:showAsAction="always"/>
+
     <item
         android:id="@+id/shareItem"
         android:icon="@mipmap/ic_share"
         android:title="@string/share"
         app:showAsAction="always"/>
+
+
 </menu>

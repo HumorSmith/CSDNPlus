@@ -1,5 +1,6 @@
 package com.ifreedomer.cplus.http.protocol;
 
+import com.ifreedomer.cplus.http.protocol.resp.ArticleDetailInfoResp;
 import com.ifreedomer.cplus.http.protocol.resp.ArticleListResp;
 import com.ifreedomer.cplus.http.protocol.resp.ArticleResp;
 import com.ifreedomer.cplus.http.protocol.resp.HistoryResp;
@@ -25,6 +26,9 @@ public interface ArticleApi {
             , @Query("username") String username);
 
 
+    @GET("api/v5/ArticleInfo/getArticleInfo")
+    Observable<PayLoad<ArticleDetailInfoResp>> getArticleInfo(@Query("username") String username
+            , @Query("article_id") String articleId);
 
 
 }

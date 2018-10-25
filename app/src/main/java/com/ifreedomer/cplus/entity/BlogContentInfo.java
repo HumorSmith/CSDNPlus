@@ -85,6 +85,7 @@ public class BlogContentInfo implements Serializable {
         blogContentInfo.setUserName(articleResp.getUser_name());
         blogContentInfo.setCommentNum(Integer.parseInt(articleResp.getComments()));
         blogContentInfo.setId(articleResp.getId());
+        blogContentInfo.setTitle(articleResp.getTitle());
         return blogContentInfo;
     }
 

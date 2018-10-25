@@ -120,7 +120,7 @@
 
 
         <TextView
-            android:id="@+id/collectNumTv"
+            android:id="@+id/diggNumTv"
             android:layout_width="30dp"
             android:layout_height="22dp"
             android:layout_alignParentRight="true"
@@ -136,13 +136,13 @@
 
 
         <ImageView
-            android:id="@+id/collectIv"
+            android:id="@+id/diggIv"
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="16dp"
-            android:layout_toLeftOf="@+id/collectNumTv"
-            android:src="@mipmap/ic_star"/>
+            android:layout_toLeftOf="@+id/diggNumTv"
+            android:src="@drawable/selector_digg"/>
 
 
         <TextView
@@ -151,7 +151,7 @@
             android:layout_height="22dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="7dp"
-            android:layout_toLeftOf="@+id/collectIv"
+            android:layout_toLeftOf="@+id/diggIv"
             android:text="258"
             android:textSize="15sp"
             />
@@ -162,7 +162,7 @@
             android:layout_height="15dp"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/commentTv"
-            android:src="@mipmap/ic_leave_message"/>
+            android:src="@drawable/selector_comment"/>
 
 
     </RelativeLayout>

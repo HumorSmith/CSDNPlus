@@ -15,15 +15,20 @@ import com.ifreedomer.cplus.http.protocol.LoginV3Api;
 import com.ifreedomer.cplus.http.protocol.PayLoad;
 import com.ifreedomer.cplus.http.protocol.req.GetVerifyCodeReq;
 import com.ifreedomer.cplus.http.protocol.req.LoginReq;
+import com.ifreedomer.cplus.http.protocol.resp.AddCollectResp;
 import com.ifreedomer.cplus.http.protocol.resp.ApproveResp;
+import com.ifreedomer.cplus.http.protocol.resp.ArticleDetailInfoResp;
 import com.ifreedomer.cplus.http.protocol.resp.ArticleListResp;
 import com.ifreedomer.cplus.http.protocol.resp.ArticleResp;
 import com.ifreedomer.cplus.http.protocol.resp.BlogCategoryResp;
 import com.ifreedomer.cplus.http.protocol.resp.BlogResp;
 import com.ifreedomer.cplus.http.protocol.resp.BlogUserProfileResp;
+import com.ifreedomer.cplus.http.protocol.resp.CheckCollectResp;
 import com.ifreedomer.cplus.http.protocol.resp.CollectListResp;
 import com.ifreedomer.cplus.http.protocol.resp.CollectNumResp;
 import com.ifreedomer.cplus.http.protocol.resp.CountResp;
+import com.ifreedomer.cplus.http.protocol.resp.DeleteCollectResp;
+import com.ifreedomer.cplus.http.protocol.resp.DiggResp;
 import com.ifreedomer.cplus.http.protocol.resp.FollowOperationResp;
 import com.ifreedomer.cplus.http.protocol.resp.FollowResp;
 import com.ifreedomer.cplus.http.protocol.resp.ForgetPwdUserNameResp;
@@ -48,6 +53,7 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.Call;
@@ -352,11 +358,53 @@ public class HttpManager {
         RequestBody body = RequestBody.create(MediaType.parse("application/json"), mGson.toJson(getVerifyCodeReq));
         Observable<GetVerifyCodeResp> forgetPwdRespObservable = retrofit.create(ForgetPwdApi.class).getVerifyCode(body);
         return forgetPwdRespObservable;
+    }
 
+    public Observable<PayLoad<ArticleDetailInfoResp>> getArticleInfo(String articleId) {
+        Observable<PayLoad<ArticleDetailInfoResp>> articleInfoObserver = retrofit.create(ArticleApi.class).getArticleInfo(GlobalDataManager.getInstance().getUserInfo().getUserName(), articleId);
+        articleInfoObserver = articleInfoObserver.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+        return articleInfoObserver;
     }
 
 
+    public Observable<PayLoad<AddCollectResp>> addCollect(String title, String url, String userName) {
+        Log.d(TAG, "title = " + title + "   url = " + url + "   userName" + userName);
+        Observable<PayLoad<AddCollectResp>> collectObserver = retrofit.create(CollectApi.class).addCollect(title, url, userName);
+        collectObserver = collectObserver.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+        return collectObserver;
+    }
+
+
+    public Observable<PayLoad<DeleteCollectResp>> deleteCollect(String id) {
+        Observable<PayLoad<DeleteCollectResp>> deleteCollectObserver = retrofit.create(CollectApi.class).deleteCollect(id);
+        return deleteCollectObserver.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+    }
+
+
+    public Observable<PayLoad<CheckCollectResp>> checkFavorite(String username, String url) {
+        Observable<PayLoad<CheckCollectResp>> deleteCollectObserver = retrofit.create(CollectApi.class).checkCollect(username, url);
+        return deleteCollectObserver.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+    }
+
+
+
+    public Observable<PayLoad<DiggResp>> digg(String username, String articleId) {
+        Observable<PayLoad<DiggResp>> diggObserver = retrofit.create(BlogApi.class).digg(username, articleId);
+        return diggObserver.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+    }
+
+
+
+
     public void verifyCode(String verifyCode) {
+
+        Observable<PayLoad<AddCollectResp>> collectObserver = retrofit.create(CollectApi.class).addCollect("", "", "");
+        collectObserver.subscribe(new Consumer<PayLoad<AddCollectResp>>() {
+            @Override
+            public void accept(PayLoad<AddCollectResp> addCollectRespPayLoad) throws Exception {
+
+            }
+        });
 //        retrofit.create(ForgetPwdApi.class).verifyCode(verifyCode);
     }
 }

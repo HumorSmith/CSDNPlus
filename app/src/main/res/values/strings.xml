@@ -79,6 +79,11 @@
     <string name="pwd_valid_format">密码需为8～20位数字、英文和符号的组合，不含空格。</string>
     <string name="scan_code_register">扫描二维码注册</string>
     <string name="thirdlogin">第三方登录</string>
+    <string name="collect_success">收藏成功</string>
+    <string name="cancel_success">取消成功</string>
+    <string name="digg_success">点赞成功</string>
+    <string name="digg_failed">点赞失败</string>
+    <string name="cancel_digg">取消点赞</string>
 
 
     <string-array name="tab_name">
