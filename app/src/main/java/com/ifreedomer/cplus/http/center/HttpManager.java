@@ -8,6 +8,7 @@ import com.ifreedomer.cplus.http.intercepter.HeaderInterceptor;
 import com.ifreedomer.cplus.http.protocol.ArticleApi;
 import com.ifreedomer.cplus.http.protocol.BlogApi;
 import com.ifreedomer.cplus.http.protocol.CollectApi;
+import com.ifreedomer.cplus.http.protocol.CommentApi;
 import com.ifreedomer.cplus.http.protocol.FollowApi;
 import com.ifreedomer.cplus.http.protocol.ForgetPwdApi;
 import com.ifreedomer.cplus.http.protocol.LoginAppV1Api;
@@ -16,6 +17,7 @@ import com.ifreedomer.cplus.http.protocol.PayLoad;
 import com.ifreedomer.cplus.http.protocol.req.GetVerifyCodeReq;
 import com.ifreedomer.cplus.http.protocol.req.LoginReq;
 import com.ifreedomer.cplus.http.protocol.resp.AddCollectResp;
+import com.ifreedomer.cplus.http.protocol.resp.AddCommentResp;
 import com.ifreedomer.cplus.http.protocol.resp.ApproveResp;
 import com.ifreedomer.cplus.http.protocol.resp.ArticleDetailInfoResp;
 import com.ifreedomer.cplus.http.protocol.resp.ArticleListResp;
@@ -26,6 +28,7 @@ import com.ifreedomer.cplus.http.protocol.resp.BlogUserProfileResp;
 import com.ifreedomer.cplus.http.protocol.resp.CheckCollectResp;
 import com.ifreedomer.cplus.http.protocol.resp.CollectListResp;
 import com.ifreedomer.cplus.http.protocol.resp.CollectNumResp;
+import com.ifreedomer.cplus.http.protocol.resp.CommentListResp;
 import com.ifreedomer.cplus.http.protocol.resp.CountResp;
 import com.ifreedomer.cplus.http.protocol.resp.DeleteCollectResp;
 import com.ifreedomer.cplus.http.protocol.resp.DiggResp;
@@ -394,6 +397,16 @@ public class HttpManager {
     }
 
 
+    public Observable<PayLoad<CommentListResp>> getCommentList(String articleId, int page, int pageSize) {
+        Observable<PayLoad<CommentListResp>> deleteCollectObserver = retrofit.create(CommentApi.class).getCommentList(articleId, page, pageSize);
+        return deleteCollectObserver.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+    }
+
+
+    public Observable<PayLoad<AddCommentResp>> addComment(String articleId, String content) {
+        Observable<PayLoad<AddCommentResp>> addCommentObserver = retrofit.create(CommentApi.class).addComment(articleId, content, "", "application/x-www-form-urlencoded", GlobalDataManager.getInstance().getUserInfo().getUserName());
+        return addCommentObserver.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+    }
 
 
     public void verifyCode(String verifyCode) {

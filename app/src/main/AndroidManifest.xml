@@ -49,6 +49,8 @@
         </activity>
         <activity android:name=".activity.WechatLoginActivity">
         </activity>
+        <activity android:name=".activity.CommentActivity">
+        </activity>
     </application>
 
 </manifest>

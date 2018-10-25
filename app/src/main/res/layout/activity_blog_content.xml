@@ -114,6 +114,8 @@
             android:layout_marginRight="150dp"
             android:background="@color/whiteColor"
             android:hint="写评论.."
+            android:focusable="false"
+            android:editable="false"
             android:paddingLeft="5dp"
             android:textSize="12sp"
             />

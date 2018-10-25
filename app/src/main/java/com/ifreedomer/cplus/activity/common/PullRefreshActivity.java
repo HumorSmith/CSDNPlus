@@ -5,6 +5,8 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.ifreedomer.cplus.R;
+import com.ifreedomer.cplus.http.protocol.PayLoad;
+import com.ifreedomer.cplus.util.WidgetUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,12 +39,16 @@ public abstract class PullRefreshActivity<T> extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pull_refresh);
+        setContentView(getLayoutId());
         ButterKnife.bind(this);
         initTitleAndAdapter();
         initListener();
     }
 
+
+    public int getLayoutId() {
+        return R.layout.activity_pull_refresh;
+    }
 
     private void initListener() {
         recycleview.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -68,6 +74,28 @@ public abstract class PullRefreshActivity<T> extends AppCompatActivity {
             fetchData(mCurPage);
         });
     }
+
+
+    public void refreshList(int code, String message, List<T> list) {
+        refreshLayout.setRefreshing(false);
+//            LogUtil.d(TAG, "listpayload = " + listPayLoad.toString());
+        if (code == PayLoad.SUCCESS) {
+
+            if (getCurPage() == 0) {
+                mDataList.clear();
+            }
+            if (list.size() == 0) {
+                WidgetUtil.showSnackBar(this, getString(R.string.no_more));
+                return;
+            }
+            mDataList.addAll(list);
+            recycleview.getAdapter().notifyDataSetChanged();
+        } else {
+            WidgetUtil.showSnackBar(this, message);
+        }
+    }
+
+
 
     public int getCurPage() {
         return mCurPage;

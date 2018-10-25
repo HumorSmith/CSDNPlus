@@ -2,6 +2,7 @@ package com.ifreedomer.cplus.activity;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -114,6 +115,20 @@ public class BlogContentActivity extends AppCompatActivity implements View.OnCli
         getArticleDetail(id);
 
         diggIv.setOnClickListener(this);
+
+        commentIv.setOnClickListener(v -> {
+            Intent intent = new Intent(BlogContentActivity.this, CommentActivity.class);
+            intent.putExtra(CommentActivity.ARTICLE_ID, id);
+            intent.putExtra(CommentActivity.COUNT, mBlogContentInfo.getCommentNum());
+            startActivity(intent);
+        });
+
+        commentEt.setOnClickListener(v -> {
+            Intent intent = new Intent(BlogContentActivity.this, CommentActivity.class);
+            intent.putExtra(CommentActivity.ARTICLE_ID, id);
+            intent.putExtra(CommentActivity.COUNT, mBlogContentInfo.getCommentNum());
+            startActivity(intent);
+        });
 
     }
 

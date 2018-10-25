@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="100dp"
+                                   android:layout_marginLeft="5dp"
+                                   android:layout_marginTop="5dp"
+                                   android:layout_marginRight="5dp"
+                                   android:minHeight="50dp"
+                                   android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/avatarIv"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="13dp"
+            android:src="@mipmap/ic_launcher"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/avatarIv"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/nameTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:text="gaogao1871"
+                android:textColor="#ff333333"
+                android:textSize="12sp"
+                />
+
+            <TextView
+                android:id="@+id/timeTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="1小时前"
+                android:textColor="#ff999999"
+                android:textSize="7sp"
+                />
+
+
+            <TextView
+                android:id="@+id/commentTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:text="数据表的前缀，当你的网站文件是从其他地方转移过来的时候，看一下数据表的前缀，是否一致呢？如果数据表前缀不一致，还是会报数据库连接错误的。"
+                android:textColor="#ff666666"
+                android:textSize="12sp"
+                />
+
+
+            <TextView
+                android:id="@+id/replyTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="13dp"
+                android:text="@string/reply"
+                android:textColor="#ff333333"
+                android:textSize="9sp"
+                />
+
+        </LinearLayout>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
