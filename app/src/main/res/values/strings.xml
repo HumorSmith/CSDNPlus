@@ -88,6 +88,7 @@
     <string name="reply">回复</string>
     <string name="comment_success">评论成功</string>
     <string name="write_comment">写评论..</string>
+    <string name="loging">正在登录...</string>
 
 
     <string-array name="tab_name">

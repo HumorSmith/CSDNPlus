@@ -2,7 +2,6 @@ package com.ifreedomer.cplus.ui.login;
 
 
 import android.content.Context;
-import android.text.TextUtils;
 
 import com.ifreedomer.cplus.entity.UserInfo;
 import com.ifreedomer.cplus.http.center.HttpManager;
@@ -24,13 +23,10 @@ public class LoginViewModel extends ViewModel {
     public static final String SESSION_KEY = "session_key";
     public static final String SESSION_EXPIRE_KEY = "session_expire_key";
     public static final String TOKEN = "token";
+    public static final String LOGINED = "logined";
 
     public boolean canFastLogin(Context context) {
-        String expireTime = (String) SPUtil.get(context, SESSION_EXPIRE_KEY, "");
-        if (TextUtils.isEmpty(expireTime) || Long.parseLong(expireTime) < System.currentTimeMillis()) {
-            return false;
-        }
-        return true;
+        return (boolean) SPUtil.get(context, LOGINED, false);
     }
 
     public UserInfo fastLogin(Context context) {

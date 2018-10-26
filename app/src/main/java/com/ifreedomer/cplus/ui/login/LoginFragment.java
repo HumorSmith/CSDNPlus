@@ -19,11 +19,11 @@ import android.widget.TextView;
 import com.ifreedomer.cplus.R;
 import com.ifreedomer.cplus.activity.MainActivity;
 import com.ifreedomer.cplus.activity.common.WebViewActivity;
-import com.ifreedomer.cplus.entity.UserInfo;
 import com.ifreedomer.cplus.http.center.HttpManager;
 import com.ifreedomer.cplus.http.protocol.PayLoad;
 import com.ifreedomer.cplus.http.protocol.resp.LoginAppV1TokenResp;
 import com.ifreedomer.cplus.http.protocol.resp.V2ProfileResp;
+import com.ifreedomer.cplus.util.SPUtil;
 import com.ifreedomer.cplus.util.WidgetUtil;
 import com.ifreedomer.tencent.TencentLoginResult;
 import com.ifreedomer.tencent.TencentQQ;
@@ -36,6 +36,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
+
+import static com.ifreedomer.cplus.ui.login.LoginViewModel.LOGINED;
 
 
 public class LoginFragment extends Fragment implements View.OnClickListener {
@@ -113,8 +115,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
         if (mViewModel.canFastLogin(getContext())) {
-            UserInfo userInfo = mViewModel.fastLogin(getContext());
-            startActivity(new Intent(getActivity(), MainActivity.class));
+            login();
         }
     }
 
@@ -167,16 +168,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                     WidgetUtil.showSnackBar(getActivity(), getString(R.string.password_cannot_null));
                     return;
                 }
-                Observable<PayLoad<LoginAppV1TokenResp>> loginAppV1Observer = mViewModel.loginAppV1(accountEt.getText().toString(), passwordEt.getText().toString());
-                loginAppV1Observer.subscribe(loginAppV1TokenRespPayLoad -> {
-                    if (loginAppV1TokenRespPayLoad.getCode() == PayLoad.APP_SUCCESS) {
-                        String token = loginAppV1TokenRespPayLoad.getData().getToken();
-                        mViewModel.saveAappV1Token(token);
-                        getUserToken();
-                    } else {
-                        WidgetUtil.showSnackBar(getActivity(), loginAppV1TokenRespPayLoad.getMessage());
-                    }
-                }, throwable -> WidgetUtil.showSnackBar(getActivity(), throwable.getMessage()));
+                login();
                 break;
             case R.id.registerTv:
                 Uri uri = Uri.parse("https://passport.csdn.net/account/register");
@@ -196,6 +188,21 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    private void login() {
+        WidgetUtil.showSnackBar(getActivity(), getString(R.string.loging));
+        Observable<PayLoad<LoginAppV1TokenResp>> loginAppV1Observer = mViewModel.loginAppV1(accountEt.getText().toString(), passwordEt.getText().toString());
+        loginAppV1Observer.subscribe(loginAppV1TokenRespPayLoad -> {
+            if (loginAppV1TokenRespPayLoad.getCode() == PayLoad.APP_SUCCESS) {
+                String token = loginAppV1TokenRespPayLoad.getData().getToken();
+                mViewModel.saveAappV1Token(token);
+                getUserToken();
+
+            } else {
+                WidgetUtil.showSnackBar(getActivity(), loginAppV1TokenRespPayLoad.getMessage());
+            }
+        }, throwable -> WidgetUtil.showSnackBar(getActivity(), throwable.getMessage()));
+    }
+
     private void getUserToken() {
         Disposable subscribe = mViewModel.getUserToken().subscribe(getUserTokenRespPayLoad -> {
             if (getUserTokenRespPayLoad.getCode() == PayLoad.APP_SUCCESS) {
@@ -212,6 +219,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         Observable<PayLoad<V2ProfileResp>> v2ProfileObservable = HttpManager.getInstance().getV2Profile(userName);
         Disposable subscribe = v2ProfileObservable.subscribe(v2ProfileRespPayLoad -> {
             if (v2ProfileRespPayLoad.getCode() == PayLoad.SUCCESS) {
+                SPUtil.put(getActivity(), LOGINED, true);
                 mViewModel.saveLoginInfo(getContext(), v2ProfileRespPayLoad,userName);
                 startActivity(new Intent(getActivity(),MainActivity.class
                 ));
