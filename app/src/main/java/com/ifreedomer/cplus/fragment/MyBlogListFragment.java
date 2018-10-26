@@ -6,7 +6,6 @@ import com.ifreedomer.cplus.fragment.common.BasePullRefreshPageFragment;
 import com.ifreedomer.cplus.http.center.HttpManager;
 import com.ifreedomer.cplus.http.protocol.PayLoad;
 import com.ifreedomer.cplus.http.protocol.resp.MyBlogItemResp;
-import com.ifreedomer.cplus.manager.GlobalDataManager;
 import com.ifreedomer.cplus.util.WidgetUtil;
 
 import java.util.List;
@@ -14,6 +13,8 @@ import java.util.List;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import io.reactivex.Observable;
 import io.reactivex.functions.Consumer;
+
+import static com.ifreedomer.cplus.fragment.OtherUserActivity.USERNAME_KEY;
 
 public class MyBlogListFragment extends BasePullRefreshPageFragment<MyBlogItemResp> {
 
@@ -25,7 +26,7 @@ public class MyBlogListFragment extends BasePullRefreshPageFragment<MyBlogItemRe
 
     @Override
     public void fetchData(int page) {
-        Observable<PayLoad<List<MyBlogItemResp>>> payLoadObservable = HttpManager.getInstance().getMyBlogList(GlobalDataManager.getInstance().getUserInfo().getUserName(), getCurPage(), 20);
+        Observable<PayLoad<List<MyBlogItemResp>>> payLoadObservable = HttpManager.getInstance().getMyBlogList(getArguments().getString(USERNAME_KEY), getCurPage(), 20);
         payLoadObservable.subscribe(listPayLoad -> {
             refreshList(listPayLoad.getCode(), listPayLoad.getMessage(), listPayLoad.getData());
         }, new Consumer<Throwable>() {

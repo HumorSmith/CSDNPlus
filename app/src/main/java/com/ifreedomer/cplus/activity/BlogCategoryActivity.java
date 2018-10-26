@@ -17,6 +17,8 @@ import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.ifreedomer.cplus.fragment.OtherUserActivity.USERNAME_KEY;
+
 public class BlogCategoryActivity extends AppCompatActivity {
     @BindView(R.id.tablayout)
     TabLayout tablayout;
@@ -36,8 +38,13 @@ public class BlogCategoryActivity extends AppCompatActivity {
 
 
     private void setupViewPagerAndTab() {
+        String userName = getIntent().getStringExtra(USERNAME_KEY);
         Fragment myBlogListFragment = new MyBlogListFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(USERNAME_KEY, userName);
+        myBlogListFragment.setArguments(bundle);
         Fragment blogCategoryFragment = new BlogCategoryFragment();
+        blogCategoryFragment.setArguments(bundle);
         mFragmentList.add(myBlogListFragment);
         mFragmentList.add(blogCategoryFragment);
         ViewPagerFragmentAdapter pagerAdapter = new ViewPagerFragmentAdapter(getSupportFragmentManager(), mFragmentList);

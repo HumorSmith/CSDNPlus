@@ -13,11 +13,14 @@ import java.util.List;
 
 import androidx.annotation.Nullable;
 
+import static com.ifreedomer.cplus.fragment.OtherUserActivity.USERNAME_KEY;
+
 public class CategoryListAdapter extends BaseQuickAdapter<BlogCategoryResp, BaseViewHolder> {
+    private String mUserName;
 
-
-    public CategoryListAdapter(int layoutResId, @Nullable List<BlogCategoryResp> data) {
+    public CategoryListAdapter(String userName, int layoutResId, @Nullable List<BlogCategoryResp> data) {
         super(layoutResId, data);
+        this.mUserName = userName;
     }
 
     @Override
@@ -30,6 +33,7 @@ public class CategoryListAdapter extends BaseQuickAdapter<BlogCategoryResp, Base
                 Intent intent = new Intent(mContext, CategoryDetailActivity.class);
                 intent.putExtra(CategoryDetailActivity.CATEGORY_ID_KEY, item.getId());
                 intent.putExtra(CategoryDetailActivity.CATEGORY_NAME_KEY, item.getName());
+                intent.putExtra(USERNAME_KEY, mUserName);
                 mContext.startActivity(intent);
 //                Intent intent = new Intent(mContext, BlogContentActivity.class);
 //                intent.putExtra(BlogContentActivity.USER_NAME_KEY, item.getUserName());

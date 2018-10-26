@@ -13,7 +13,7 @@ import retrofit2.http.Query;
 
 public interface FollowApi {
     @GET("api/user/myFocus")
-    Observable<PayLoad<List<FollowResp>>>  getIdol(@Query("SessionId") String sessionId, @Query("username") String username, @Query("page") int page, @Query("pagesize") int size);
+    Observable<PayLoad<List<FollowResp>>>  getIdol( @Query("username") String username, @Query("page") int page, @Query("pagesize") int size);
 
     @GET("api/user/myRelation")
     Observable<PayLoad<List<FollowResp>>> getFans( @Query("username") String username, @Query("page") int page, @Query("pagesize") int size);

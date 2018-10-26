@@ -17,6 +17,8 @@ import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.ifreedomer.cplus.fragment.OtherUserActivity.USERNAME_KEY;
+
 public class FollowActivity extends AppCompatActivity {
     @BindView(R.id.tablayout)
     TabLayout tablayout;
@@ -37,7 +39,11 @@ public class FollowActivity extends AppCompatActivity {
 
     private void setupViewPagerAndTab() {
         Fragment idolFragment = new IdolFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(USERNAME_KEY, getIntent().getStringExtra(USERNAME_KEY));
+        idolFragment.setArguments(bundle);
         Fragment fansFragment = new FansFragment();
+        fansFragment.setArguments(bundle);
         mFollowFragmentList.add(idolFragment);
         mFollowFragmentList.add(fansFragment);
         ViewPagerFragmentAdapter pagerAdapter = new ViewPagerFragmentAdapter(getSupportFragmentManager(), mFollowFragmentList);

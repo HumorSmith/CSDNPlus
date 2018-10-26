@@ -200,8 +200,7 @@ public class HttpManager {
     }
 
     public Observable<PayLoad<List<BlogResp>>> getBlogListByCategory(int categoryId, String username, int page, int size) {
-        Observable<PayLoad<List<BlogResp>>> blogListByCategory = retrofit.create(BlogApi.class).getBlogListByCategory(
-                GlobalDataManager.getInstance().getSessionId(), username, categoryId, page, size);
+        Observable<PayLoad<List<BlogResp>>> blogListByCategory = retrofit.create(BlogApi.class).getBlogListByCategory(username, categoryId, page, size);
         return blogListByCategory.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 
@@ -221,14 +220,14 @@ public class HttpManager {
         return historyListByCategoryObservable;
     }
 
-    public Observable<PayLoad<List<FollowResp>>> getIdol(int page, int size) {
-        Observable<PayLoad<List<FollowResp>>> idolObservable = retrofit.create(FollowApi.class).getIdol(GlobalDataManager.getInstance().getSessionId(), GlobalDataManager.getInstance().getUserInfo().getUserName(), page, size);
+    public Observable<PayLoad<List<FollowResp>>> getIdol(String userName, int page, int size) {
+        Observable<PayLoad<List<FollowResp>>> idolObservable = retrofit.create(FollowApi.class).getIdol(userName, page, size);
         idolObservable = idolObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
         return idolObservable;
     }
 
-    public Observable<PayLoad<List<FollowResp>>> getFans(int page, int size) {
-        Observable<PayLoad<List<FollowResp>>> idolObservable = retrofit.create(FollowApi.class).getFans(GlobalDataManager.getInstance().getUserInfo().getUserName(), page
+    public Observable<PayLoad<List<FollowResp>>> getFans(String userName, int page, int size) {
+        Observable<PayLoad<List<FollowResp>>> idolObservable = retrofit.create(FollowApi.class).getFans(userName, page
                 , size);
         idolObservable = idolObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
         return idolObservable;
@@ -262,10 +261,10 @@ public class HttpManager {
     }
 
     public Observable<UserBlogInfoResp> getUserBlogInfo(String userName) {
-        Observable<String> userInfoObserver = mStringRetrofit.create(LoginV3Api.class).getBlogUserinfo("aa375809600");
+        Observable<String> userInfoObserver = mStringRetrofit.create(LoginV3Api.class).getBlogUserinfo(userName);
         Observable<UserBlogInfoResp> userBlogInfoRespObservable = userInfoObserver.map(s -> {
             JSONObject jsonObject = new JSONObject(s);
-            String string = jsonObject.getJSONObject("data").getJSONObject("data").getString("aa375809600");
+            String string = jsonObject.getJSONObject("data").getJSONObject("data").getString(userName);
             UserBlogInfoResp userBlogInfoResp = mGson.fromJson(string, UserBlogInfoResp.class);
             return userBlogInfoResp;
         }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());

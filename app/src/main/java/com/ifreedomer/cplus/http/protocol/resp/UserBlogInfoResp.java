@@ -149,6 +149,22 @@ public class UserBlogInfoResp {
             return CommentCount;
         }
 
+        @Override
+        public String toString() {
+            return "StatisticBean{" +
+                    "Flag='" + Flag + '\'' +
+                    ", Rank='" + Rank + '\'' +
+                    ", DiggCount='" + DiggCount + '\'' +
+                    ", OriginalCount='" + OriginalCount + '\'' +
+                    ", BlogId='" + BlogId + '\'' +
+                    ", TranslatedCount='" + TranslatedCount + '\'' +
+                    ", ViewCount='" + ViewCount + '\'' +
+                    ", RepostCount='" + RepostCount + '\'' +
+                    ", Point='" + Point + '\'' +
+                    ", CommentCount='" + CommentCount + '\'' +
+                    '}';
+        }
+
         public void setCommentCount(String CommentCount) {
             this.CommentCount = CommentCount;
         }
@@ -204,6 +220,17 @@ public class UserBlogInfoResp {
 
         public int getPrivateX() {
             return privateX;
+        }
+
+        @Override
+        public String toString() {
+            return "ArticleCountBean{" +
+                    "draft=" + draft +
+                    ", enable=" + enable +
+                    ", deleted=" + deleted +
+                    ", all=" + all +
+                    ", privateX=" + privateX +
+                    '}';
         }
 
         public void setPrivateX(int privateX) {
@@ -280,6 +307,19 @@ public class UserBlogInfoResp {
 
         public boolean isWeiruanmvp() {
             return weiruanmvp;
+        }
+
+        @Override
+        public String toString() {
+            return "LevelBean{" +
+                    "chizhiyiheng=" + chizhiyiheng +
+                    ", point=" + point +
+                    ", level=" + level +
+                    ", ico_expert=" + ico_expert +
+                    ", bokezhixing=" + bokezhixing +
+                    ", zhuanlandaren=" + zhuanlandaren +
+                    ", weiruanmvp=" + weiruanmvp +
+                    '}';
         }
 
         public void setWeiruanmvp(boolean weiruanmvp) {

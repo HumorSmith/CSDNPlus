@@ -37,6 +37,8 @@ import butterknife.ButterKnife;
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 
+import static com.ifreedomer.cplus.fragment.OtherUserActivity.USERNAME_KEY;
+
 public class MineFragment extends Fragment implements View.OnClickListener {
     public static final String TAG = MineFragment.class.getSimpleName();
     @BindView(R.id.mineTv)
@@ -129,7 +131,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         }, throwable -> WidgetUtil.showSnackBar(getActivity(), throwable.getMessage()));
 
 
-        HttpManager.getInstance().getIdol(0, 10);
 
         // TODO: Use the ViewModel
     }
@@ -147,10 +148,14 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 startActivity(new Intent(getActivity(), CollectActivity.class));
                 break;
             case R.id.blogNumTv:
-                startActivity(new Intent(getActivity(), BlogCategoryActivity.class));
+                Intent intent = new Intent(getActivity(), BlogCategoryActivity.class);
+                intent.putExtra(USERNAME_KEY, GlobalDataManager.getInstance().getUserInfo().getUserName());
+                startActivity(intent);
                 break;
             case R.id.idolTv:
-                startActivity(new Intent(getActivity(), FollowActivity.class));
+                intent = new Intent(getActivity(), FollowActivity.class);
+                intent.putExtra(USERNAME_KEY, GlobalDataManager.getInstance().getUserInfo().getUserName());
+                startActivity(intent);
                 break;
 
         }

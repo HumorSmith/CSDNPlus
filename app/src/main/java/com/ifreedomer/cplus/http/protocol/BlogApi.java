@@ -23,7 +23,6 @@ public interface BlogApi {
 
     @GET("api/blog/articlelist")
     Observable<PayLoad<List<BlogResp>>> getBlogListByCategory(
-            @Query("SessionId") String sessionId,
             @Query("username") String username,
             @Query("id") int id,
             @Query("page") int page,

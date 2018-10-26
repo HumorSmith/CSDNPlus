@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/whiteColor"
+    tools:context=".ui.mine.MineFragment">
+
+    <LinearLayout
+        android:id="@+id/userLinLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/avatarIv"
+            android:layout_width="67dp"
+            android:layout_height="67dp"
+            android:layout_below="@id/mineTv"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="13dp"
+            android:src="@mipmap/ic_logo"
+            />
+
+
+        <TextView
+            android:id="@+id/nameTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="3dp"
+            android:text="AuRRent"
+            android:textColor="#ff333333"
+            android:textSize="15sp"
+            />
+
+        <TextView
+            android:id="@+id/signTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="这个人很懒，什么都没有留下！"
+            android:textColor="#ff666666"
+            android:textSize="12sp"
+            />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/contentRelayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/userLinLayout"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="50dp">
+
+        <TextView
+            android:id="@+id/followTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:lineSpacingMultiplier="1.2"
+            android:text="55\n关注"
+            android:textColor="#ff333333"
+            android:textSize="15sp"
+            />
+
+
+        <TextView
+
+            android:id="@+id/blogNumTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:lineSpacingMultiplier="1.2"
+            android:text="55\n博客"
+            android:textColor="#ff333333"
+            android:textSize="15sp"
+            />
+
+
+        <TextView
+            android:id="@+id/rankNumTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:lineSpacingMultiplier="1.2"
+            android:text="55\n关注"
+            android:textColor="#ff333333"
+            android:textSize="15sp"
+            />
+
+
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/contentRelayout"
+        android:background="@color/searhbarColor"
+        android:orientation="vertical">
+
+        <com.ifreedomer.cplus.widget.SettingItem
+            android:id="@+id/historyItem"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/settingItemHeight"
+            android:layout_marginTop="7dp"/>
+
+
+        <com.ifreedomer.cplus.widget.SettingItem
+            android:id="@+id/feedbackItem"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/settingItemHeight"
+            android:layout_marginTop="7dp"/>
+
+        <include layout="@layout/layout_divider"/>
+
+        <com.ifreedomer.cplus.widget.SettingItem
+            android:id="@+id/settingItem"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/settingItemHeight"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

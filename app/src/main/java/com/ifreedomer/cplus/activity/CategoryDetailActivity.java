@@ -6,7 +6,6 @@ import com.ifreedomer.cplus.adapter.BlogListAdapter;
 import com.ifreedomer.cplus.http.center.HttpManager;
 import com.ifreedomer.cplus.http.protocol.PayLoad;
 import com.ifreedomer.cplus.http.protocol.resp.BlogResp;
-import com.ifreedomer.cplus.manager.GlobalDataManager;
 import com.ifreedomer.cplus.util.ToolbarUtil;
 import com.ifreedomer.cplus.util.WidgetUtil;
 
@@ -15,6 +14,8 @@ import java.util.List;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import io.reactivex.Observable;
 import io.reactivex.functions.Consumer;
+
+import static com.ifreedomer.cplus.fragment.OtherUserActivity.USERNAME_KEY;
 
 public class CategoryDetailActivity extends PullRefreshActivity<BlogResp> {
     public static final String CATEGORY_ID_KEY = "category_id";
@@ -25,7 +26,7 @@ public class CategoryDetailActivity extends PullRefreshActivity<BlogResp> {
         setLoading(true);
 
         Observable<PayLoad<List<BlogResp>>> blogListByCategoryObservable = HttpManager.getInstance().getBlogListByCategory(getIntent().getIntExtra(CATEGORY_ID_KEY, 0),
-                GlobalDataManager.getInstance().getUserInfo().getUserName(), page, 20);
+                getIntent().getStringExtra(USERNAME_KEY), page, 20);
         blogListByCategoryObservable.subscribe(listPayLoad -> {
             setLoading(false);
             if (listPayLoad.getCode() == PayLoad.SUCCESS) {

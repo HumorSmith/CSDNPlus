@@ -4,9 +4,10 @@ import android.content.Intent;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.ifreedomer.cplus.activity.BlogContentActivity;
 import com.ifreedomer.cplus.R;
+import com.ifreedomer.cplus.activity.BlogContentActivity;
 import com.ifreedomer.cplus.entity.BlogContentInfo;
+import com.ifreedomer.cplus.fragment.OtherUserActivity;
 import com.ifreedomer.cplus.http.protocol.resp.ArticleResp;
 import com.ifreedomer.cplus.widget.PicTextItem;
 
@@ -35,6 +36,15 @@ public class ArticleListAdapter extends BaseQuickAdapter<ArticleResp, BaseViewHo
 
 
         PicTextItem userItem = helper.getView(R.id.userPicItem);
+        userItem.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext, OtherUserActivity.class);
+            intent.putExtra(OtherUserActivity.USERNAME_KEY, item.getUser_name());
+            intent.putExtra(OtherUserActivity.NICKNAME_KEY, item.getNickname());
+            intent.putExtra(OtherUserActivity.AVATAR_KEY, item.getAvatar());
+            mContext.startActivity(intent);
+        });
+
+
         userItem.setText(item.getNickname());
         userItem.setImageUrl(item.getAvatar());
         helper.setOnClickListener(R.id.rootRelayout, v -> {

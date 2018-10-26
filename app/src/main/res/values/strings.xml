@@ -23,7 +23,7 @@
 
     <string name="history_view">历史浏览</string>
     <string name="follow">关注</string>
-    <string name="my_fans">我的粉丝</string>
+    <string name="my_fans">粉丝</string>
     <string name="followed">已关注</string>
     <string name="zan_comment_wrap">%s 查看\t\t %s 评论</string>
     <string name="professional_client">最专业的第三方CSDN客户端</string>
@@ -45,7 +45,7 @@
     <string name="collect">收藏</string>
     <string name="collectWrap">%s\n收藏</string>
     <string name="idolWrap">%s\n关注</string>
-    <string name="my_idol">我的关心</string>
+    <string name="my_idol">关心</string>
     <string name="blog">博客</string>
     <string name="category">分类</string>
     <string name="history_search">历史搜索</string>
@@ -89,6 +89,7 @@
     <string name="comment_success">评论成功</string>
     <string name="write_comment">写评论..</string>
     <string name="loging">正在登录...</string>
+    <string name="rankWrap">排名\n%s</string>
 
 
     <string-array name="tab_name">

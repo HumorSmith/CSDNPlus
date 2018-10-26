@@ -6,7 +6,6 @@ import com.ifreedomer.cplus.fragment.common.BasePullRefreshPageFragment;
 import com.ifreedomer.cplus.http.center.HttpManager;
 import com.ifreedomer.cplus.http.protocol.PayLoad;
 import com.ifreedomer.cplus.http.protocol.resp.BlogCategoryResp;
-import com.ifreedomer.cplus.manager.GlobalDataManager;
 import com.ifreedomer.cplus.util.WidgetUtil;
 
 import java.util.List;
@@ -14,16 +13,22 @@ import java.util.List;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import io.reactivex.Observable;
 
+import static com.ifreedomer.cplus.fragment.OtherUserActivity.USERNAME_KEY;
+
 public class BlogCategoryFragment extends BasePullRefreshPageFragment<BlogCategoryResp> {
+
+    private String mUserName;
+
     @Override
     protected void initAdapter() {
+        mUserName = getArguments().getString(USERNAME_KEY);
         getRecycleview().setLayoutManager(new LinearLayoutManager(getActivity()));
-        getRecycleview().setAdapter(new CategoryListAdapter(R.layout.item_blog_category, mDataList));
+        getRecycleview().setAdapter(new CategoryListAdapter(mUserName,R.layout.item_blog_category, mDataList));
     }
 
     @Override
     public void fetchData(int page) {
-        Observable<PayLoad<List<BlogCategoryResp>>> blogCatergoryObserver = HttpManager.getInstance().getBlogCatergory(GlobalDataManager.getInstance().getUserInfo().getUserName());
+        Observable<PayLoad<List<BlogCategoryResp>>> blogCatergoryObserver = HttpManager.getInstance().getBlogCatergory(getArguments().getString(USERNAME_KEY));
         blogCatergoryObserver.subscribe(listPayLoad -> {
             mDataList.clear();
             refreshList(listPayLoad.getCode(), listPayLoad.getMessage(), listPayLoad.getData());

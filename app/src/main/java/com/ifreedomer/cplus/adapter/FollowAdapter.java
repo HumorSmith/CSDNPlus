@@ -14,6 +14,7 @@ import com.ifreedomer.cplus.http.center.HttpManager;
 import com.ifreedomer.cplus.http.protocol.PayLoad;
 import com.ifreedomer.cplus.http.protocol.resp.FollowOperationResp;
 import com.ifreedomer.cplus.http.protocol.resp.FollowResp;
+import com.ifreedomer.cplus.manager.GlobalDataManager;
 import com.ifreedomer.cplus.util.WidgetUtil;
 
 import java.util.List;
@@ -45,8 +46,7 @@ public class FollowAdapter extends BaseQuickAdapter<FollowResp, BaseViewHolder> 
         } else {
             helper.setText(R.id.operationBtn, mContext.getString(R.string.follow));
         }
-
-
+        helper.setVisible(R.id.operationBtn, item.getUsername().equals(GlobalDataManager.getInstance().getUserInfo().getUserName()));
         helper.setOnClickListener(R.id.operationBtn, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
