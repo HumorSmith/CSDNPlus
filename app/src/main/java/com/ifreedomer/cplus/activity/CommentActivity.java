@@ -47,6 +47,7 @@ public class CommentActivity extends PullRefreshActivity<CommentListResp.ListBea
 
     @Override
     public void initTitleAndAdapter() {
+        mFirstPage = 0;
         mArticleId = getIntent().getStringExtra(ARTICLE_ID);
         int count = getIntent().getIntExtra(COUNT, 0);
         String titleStr = String.format(getString(R.string.all_comment_wrap), count);
