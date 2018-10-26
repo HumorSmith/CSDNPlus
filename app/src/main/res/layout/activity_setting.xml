@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/searhbarColor"
+    android:orientation="vertical"
+    tools:context=".activity.SettingActivity">
+
+    <include layout="@layout/layout_toolbar"/>
+
+    <com.ifreedomer.cplus.widget.SettingItem
+        android:id="@+id/clearItem"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/settingItemHeight"
+        android:layout_marginTop="10dp"/>
+
+    <include layout="@layout/layout_divider"/>
+
+    <com.ifreedomer.cplus.widget.SettingItem
+        android:id="@+id/loginOutItem"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/settingItemHeight"
+        android:layout_marginTop="10dp"/>
+
+
+</LinearLayout>

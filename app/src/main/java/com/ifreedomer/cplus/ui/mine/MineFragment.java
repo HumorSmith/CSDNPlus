@@ -19,6 +19,7 @@ import com.ifreedomer.cplus.activity.FeedbackActivity;
 import com.ifreedomer.cplus.activity.FollowActivity;
 import com.ifreedomer.cplus.activity.HistoryActivity;
 import com.ifreedomer.cplus.R;
+import com.ifreedomer.cplus.activity.SettingActivity;
 import com.ifreedomer.cplus.entity.UserInfo;
 import com.ifreedomer.cplus.http.center.HttpManager;
 import com.ifreedomer.cplus.http.protocol.PayLoad;
@@ -103,6 +104,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         historyItem.setText(getString(R.string.history));
         historyItem.setOnClickListener(this);
         settingItem.setText(getString(R.string.setting));
+        settingItem.setOnClickListener(this);
         feedbackItem.setText(getString(R.string.feedback));
         feedbackItem.setOnClickListener(this);
     }
@@ -155,6 +157,10 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             case R.id.idolTv:
                 intent = new Intent(getActivity(), FollowActivity.class);
                 intent.putExtra(USERNAME_KEY, GlobalDataManager.getInstance().getUserInfo().getUserName());
+                startActivity(intent);
+                break;
+            case R.id.settingItem:
+                intent = new Intent(getActivity(), SettingActivity.class);
                 startActivity(intent);
                 break;
 

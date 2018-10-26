@@ -52,6 +52,8 @@
         <activity android:name=".activity.CommentActivity">
         </activity>
         <activity android:name=".fragment.OtherUserActivity"/>
+        <activity android:name=".activity.SettingActivity">
+        </activity>
     </application>
 
 </manifest>

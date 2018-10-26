@@ -90,6 +90,11 @@
     <string name="write_comment">写评论..</string>
     <string name="loging">正在登录...</string>
     <string name="rankWrap">排名\n%s</string>
+    <string name="clear_cache">清理缓存</string>
+    <string name="loginOut">退出登录</string>
+    <string name="clear_success">清理成功</string>
+    <string name="clear_failed">清理失败</string>
+    <string name="no_cache">当前没有缓存可以清理</string>
 
 
     <string-array name="tab_name">
