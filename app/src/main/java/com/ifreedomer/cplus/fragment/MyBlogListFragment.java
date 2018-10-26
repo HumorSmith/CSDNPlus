@@ -22,6 +22,7 @@ public class MyBlogListFragment extends BasePullRefreshPageFragment<MyBlogItemRe
     protected void initAdapter() {
         getRecycleview().setAdapter(new MyBlogListAdapter(R.layout.item_blog_list, mDataList));
         getRecycleview().setLayoutManager(new LinearLayoutManager(getActivity()));
+        fetchData(mFirstPage);
     }
 
     @Override

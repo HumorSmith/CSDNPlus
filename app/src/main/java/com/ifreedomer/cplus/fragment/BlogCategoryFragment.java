@@ -19,6 +19,7 @@ public class BlogCategoryFragment extends BasePullRefreshPageFragment<BlogCatego
 
     private String mUserName;
 
+
     @Override
     protected void initAdapter() {
         mUserName = getArguments().getString(USERNAME_KEY);
@@ -28,7 +29,7 @@ public class BlogCategoryFragment extends BasePullRefreshPageFragment<BlogCatego
 
     @Override
     public void fetchData(int page) {
-        Observable<PayLoad<List<BlogCategoryResp>>> blogCatergoryObserver = HttpManager.getInstance().getBlogCatergory(getArguments().getString(USERNAME_KEY));
+        Observable<PayLoad<List<BlogCategoryResp>>> blogCatergoryObserver = HttpManager.getInstance().getBlogCatergory(mUserName);
         blogCatergoryObserver.subscribe(listPayLoad -> {
             mDataList.clear();
             refreshList(listPayLoad.getCode(), listPayLoad.getMessage(), listPayLoad.getData());

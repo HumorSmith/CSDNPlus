@@ -104,34 +104,17 @@
     </RelativeLayout>
 
 
-    <LinearLayout
+    <FrameLayout
+        android:id="@+id/fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/contentRelayout"
         android:background="@color/searhbarColor"
         android:orientation="vertical">
 
-        <com.ifreedomer.cplus.widget.SettingItem
-            android:id="@+id/historyItem"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/settingItemHeight"
-            android:layout_marginTop="7dp"/>
 
 
-        <com.ifreedomer.cplus.widget.SettingItem
-            android:id="@+id/feedbackItem"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/settingItemHeight"
-            android:layout_marginTop="7dp"/>
-
-        <include layout="@layout/layout_divider"/>
-
-        <com.ifreedomer.cplus.widget.SettingItem
-            android:id="@+id/settingItem"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/settingItemHeight"/>
-
-    </LinearLayout>
+    </FrameLayout>
 
 
 </RelativeLayout>

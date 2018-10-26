@@ -1,6 +1,5 @@
 package com.ifreedomer.cplus.fragment;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,24 +13,22 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
 import com.ifreedomer.cplus.R;
 import com.ifreedomer.cplus.activity.BlogCategoryActivity;
-import com.ifreedomer.cplus.activity.CollectActivity;
-import com.ifreedomer.cplus.activity.FeedbackActivity;
 import com.ifreedomer.cplus.activity.FollowActivity;
-import com.ifreedomer.cplus.activity.HistoryActivity;
 import com.ifreedomer.cplus.http.center.HttpManager;
+import com.ifreedomer.cplus.http.protocol.PayLoad;
 import com.ifreedomer.cplus.http.protocol.resp.UserBlogInfoResp;
 import com.ifreedomer.cplus.ui.mine.MineViewModel;
 import com.ifreedomer.cplus.util.LogUtil;
 import com.ifreedomer.cplus.util.WidgetUtil;
-import com.ifreedomer.cplus.widget.SettingItem;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 
-public class OtherUserActivity extends Activity implements View.OnClickListener {
+public class OtherUserActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String TAG = OtherUserActivity.class.getSimpleName();
     @BindView(R.id.avatarIv)
     ImageView avatarIv;
@@ -49,12 +46,7 @@ public class OtherUserActivity extends Activity implements View.OnClickListener 
     TextView rankNumTv;
     @BindView(R.id.contentRelayout)
     RelativeLayout contentRelayout;
-    @BindView(R.id.historyItem)
-    SettingItem historyItem;
-    @BindView(R.id.feedbackItem)
-    SettingItem feedbackItem;
-    @BindView(R.id.settingItem)
-    SettingItem settingItem;
+
 
     private MineViewModel mViewModel;
     public static final String USERNAME_KEY = "username";
@@ -91,11 +83,7 @@ public class OtherUserActivity extends Activity implements View.OnClickListener 
     }
 
     private void initItems() {
-        historyItem.setText(getString(R.string.history));
-        historyItem.setOnClickListener(this);
-        settingItem.setText(getString(R.string.setting));
-        feedbackItem.setText(getString(R.string.feedback));
-        feedbackItem.setOnClickListener(this);
+
     }
 
     public void initData() {
@@ -113,7 +101,23 @@ public class OtherUserActivity extends Activity implements View.OnClickListener 
         }, throwable -> WidgetUtil.showSnackBar(this, throwable.getMessage()));
 
 
-//        HttpManager.getInstance().getIdol(mUserName, 0, 10);
+        HttpManager.getInstance().getV2Profile(mUserName).subscribe(v2ProfileRespPayLoad -> {
+            if (v2ProfileRespPayLoad.getCode() == PayLoad.SUCCESS) {
+                signTv.setText(v2ProfileRespPayLoad.getData().getSelfdesc());
+            } else {
+                WidgetUtil.showSnackBar(OtherUserActivity.this, v2ProfileRespPayLoad.getMessage());
+            }
+        }, throwable -> WidgetUtil.showSnackBar(OtherUserActivity.this, throwable.getMessage()));
+
+
+        MyBlogListFragment categoryFragment = new MyBlogListFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(USERNAME_KEY, mUserName);
+        categoryFragment.setArguments(bundle);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment, categoryFragment)
+                .commitNow();
+
 
         // TODO: Use the ViewModel
     }
@@ -121,19 +125,9 @@ public class OtherUserActivity extends Activity implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.historyItem:
-                Intent intent = new Intent(this, HistoryActivity.class);
-                intent.putExtra(USERNAME_KEY, mUserName);
-                startActivity(intent);
-                break;
-            case R.id.feedbackItem:
-                startActivity(new Intent(this, FeedbackActivity.class));
-                break;
-            case R.id.collectNumTv:
-                startActivity(new Intent(this, CollectActivity.class));
-                break;
+
             case R.id.blogNumTv:
-                intent = new Intent(this, BlogCategoryActivity.class);
+                Intent intent = new Intent(this, BlogCategoryActivity.class);
                 intent.putExtra(USERNAME_KEY,mUserName);
                 startActivity(intent);
                 break;
