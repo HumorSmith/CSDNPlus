@@ -10,12 +10,13 @@ import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import com.ifreedomer.cplus.R;
+import com.ifreedomer.cplus.entity.DeployBlogContentInfo;
 import com.ifreedomer.cplus.http.center.HttpManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class DeployActivity extends AppCompatActivity implements View.OnClickListener {
-    public static final String TAG = DeployActivity.class.getSimpleName();
+public class WebLoginActivity extends AppCompatActivity implements View.OnClickListener {
+    public static final String TAG = WebLoginActivity.class.getSimpleName();
     private WebView mWebView;
     public static String cookie;
 
@@ -64,7 +65,7 @@ public class DeployActivity extends AppCompatActivity implements View.OnClickLis
                 super.onPageStarted(view, url, favicon);
                 CookieManager cookieManager = CookieManager.getInstance();
                 cookie = cookieManager.getCookie(url);
-                Toast.makeText(DeployActivity.this, cookie, Toast.LENGTH_SHORT).show();
+                Toast.makeText(WebLoginActivity.this, cookie, Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -79,7 +80,8 @@ public class DeployActivity extends AppCompatActivity implements View.OnClickLis
                 mWebView.loadUrl("https://passport.csdn.net/account/login");
                 break;
             case R.id.deployBtn:
-                HttpManager.getInstance().saveArticle();
+                DeployBlogContentInfo deployBlogContentInfo = new DeployBlogContentInfo();
+                HttpManager.getInstance().saveArticle(deployBlogContentInfo);
 //                saveArticleRespObservable.subscribe(new Consumer<String>() {
 //                    @Override
 //                    public void accept(String saveArticleResp) throws Exception {

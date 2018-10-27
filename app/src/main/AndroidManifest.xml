@@ -54,6 +54,11 @@
         <activity android:name=".fragment.OtherUserActivity"/>
         <activity android:name=".activity.SettingActivity">
         </activity>
+        <activity android:name=".activity.DeployArticleActivity">
+        </activity>
+        <activity android:name=".activity.ArticleCategorySelectActivity">
+        </activity>
+        <activity android:name=".activity.BlogCategorySelectActivity"/>
     </application>
 
 </manifest>

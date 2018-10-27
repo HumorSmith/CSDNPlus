@@ -1,6 +1,6 @@
 package com.ifreedomer.cplus.http.intercepter;
 
-import com.ifreedomer.cplus.activity.DeployActivity;
+import com.ifreedomer.cplus.activity.WebLoginActivity;
 
 import java.io.IOException;
 
@@ -16,7 +16,7 @@ public class CookieInterceptor implements Interceptor {
         Request original = chain.request();
         Request.Builder requestBuilder = original.newBuilder().method(original.method(), original.body());
 
-        requestBuilder.addHeader("Cookie", DeployActivity.cookie);
+        requestBuilder.addHeader("Cookie", WebLoginActivity.cookie);
         return chain.proceed(requestBuilder.build());
 
     }

@@ -1,6 +1,7 @@
 package com.ifreedomer.cplus.manager;
 
 
+import com.ifreedomer.cplus.entity.DeployBlogContentInfo;
 import com.ifreedomer.cplus.entity.UserInfo;
 
 public class GlobalDataManager {
@@ -28,6 +29,15 @@ public class GlobalDataManager {
 
 
     private UserInfo mUserInfo;
+    private DeployBlogContentInfo mDeployBlogContentInfo;
+
+    public DeployBlogContentInfo getDeployBlogContentInfo() {
+        return mDeployBlogContentInfo;
+    }
+
+    public void setDeployBlogContentInfo(DeployBlogContentInfo mDeployBlogContentInfo) {
+        this.mDeployBlogContentInfo = mDeployBlogContentInfo;
+    }
 
     public UserInfo getUserInfo() {
         return mUserInfo;

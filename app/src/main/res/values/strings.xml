@@ -95,6 +95,18 @@
     <string name="clear_success">清理成功</string>
     <string name="clear_failed">清理失败</string>
     <string name="no_cache">当前没有缓存可以清理</string>
+    <string name="article_label">文章标签</string>
+    <string name="person_category">个人分类</string>
+    <string name="edit">编辑</string>
+    <string name="please_select">请选择</string>
+    <string name="private_article">私密文章</string>
+    <string name="confirm_wrap">确定添加(%d/5)</string>
+    <string name="origin">原创</string>
+    <string name="reprint">转载</string>
+    <string name="translate">翻译</string>
+    <string name="article_category">文章类型</string>
+    <string name="blog_category">博客类型</string>
+    <string name="preview">预览</string>
 
 
     <string-array name="tab_name">
@@ -114,5 +126,23 @@
         <item>newarticles</item>
         <item>iot</item>
         <item>arch</item>
+    </string-array>
+
+
+    <string-array name="blog_category">
+        <item>关注</item>
+        <item>移动</item>
+        <item>前端</item>
+        <item>游戏</item>
+        <item>物联</item>
+        <item>架构</item>
+        <item>音视频开发</item>
+        <item>后端</item>
+        <item>数据库开发</item>
+        <item>研发管理</item>
+        <item>运维</item>
+        <item>云计算/大数据</item>
+
+
     </string-array>
 </resources>

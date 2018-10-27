@@ -3,6 +3,7 @@ package com.ifreedomer.cplus.http.center;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.ifreedomer.cplus.entity.DeployBlogContentInfo;
 import com.ifreedomer.cplus.http.intercepter.CookieInterceptor;
 import com.ifreedomer.cplus.http.intercepter.HeaderInterceptor;
 import com.ifreedomer.cplus.http.protocol.ArticleApi;
@@ -304,22 +305,22 @@ public class HttpManager {
         return blogApi.getDetailListByTag(20, 1, "so_blog", tagResult).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 
-    public void saveArticle() {
+    public void saveArticle(DeployBlogContentInfo deployBlogContentInfo) {
 
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart("title", "title")
-                .addFormDataPart("markdowncontent", "markdowncontent")
-                .addFormDataPart("content", "content")
-                .addFormDataPart("id", "")
-                .addFormDataPart("private", true + "")
-                .addFormDataPart("tags", "opencv")
-                .addFormDataPart("status", "65")
-                .addFormDataPart("categories", "opencv")
-                .addFormDataPart("channel", "28")
-                .addFormDataPart("type", "original")
-                .addFormDataPart("articleedittype", "1")
-                .addFormDataPart("Description", "")
+                .addFormDataPart("title", deployBlogContentInfo.getTitle())
+                .addFormDataPart("markdowncontent", deployBlogContentInfo.getMarkdownContent())
+                .addFormDataPart("content", deployBlogContentInfo.getContent())
+                .addFormDataPart("id", deployBlogContentInfo.getId())
+                .addFormDataPart("private", deployBlogContentInfo.isPrivate() + "")
+                .addFormDataPart("tags", deployBlogContentInfo.getTags())
+                .addFormDataPart("status", deployBlogContentInfo.getStatus())
+                .addFormDataPart("categories", deployBlogContentInfo.getCategories())
+                .addFormDataPart("channel", deployBlogContentInfo.getChannel())
+                .addFormDataPart("type", deployBlogContentInfo.getType())
+                .addFormDataPart("articleedittype", deployBlogContentInfo.getArticleedittype())
+                .addFormDataPart("Description", deployBlogContentInfo.getDescription())
                 .build();
 
         Request request = new Request.Builder()

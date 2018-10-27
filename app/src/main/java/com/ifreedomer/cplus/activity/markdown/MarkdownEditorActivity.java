@@ -1,5 +1,6 @@
 package com.ifreedomer.cplus.activity.markdown;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ifreedomer.cplus.R;
+import com.ifreedomer.cplus.activity.DeployArticleActivity;
 import com.ifreedomer.cplus.util.ToolbarUtil;
 import com.ifreedomer.cplus.widget.MarkdownPreviewView;
 import com.ifreedomer.cplus.widget.TabIconView;
@@ -49,21 +51,34 @@ public class MarkdownEditorActivity extends AppCompatActivity implements View.On
         setContentView(R.layout.markdown_editor_activity);
         ButterKnife.bind(this);
         initTab();
-
-        ToolbarUtil.setTitleBarWithBack(this, toolbar, getString(R.string.deploy_title));
-
-
-//        toolbar.setTitle(R.string.deploy_title);
+        ToolbarUtil.setTitleBarWithBack(this, toolbar, "");
     }
 
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         toolbar.inflateMenu(R.menu.menu_editor_frag);
-        toolbar.getMenu().findItem(R.id.sendItem).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+        toolbar.getMenu().findItem(R.id.nextStepItem).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 ShowDeployDialog();
+                return false;
+            }
+        });
+        toolbar.getMenu().findItem(R.id.previewItem).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if (item.getTitle().equals(getString(R.string.preview))) {
+                    editRelayout.setVisibility(View.GONE);
+                    markdownPreview.setVisibility(View.VISIBLE);
+                    markdownPreview.parseMarkdown(markdownEt.getText().toString(), true);
+                    item.setTitle(getString(R.string.edit));
+                } else {
+                    editRelayout.setVisibility(View.VISIBLE);
+                    markdownPreview.setVisibility(View.GONE);
+                    markdownPreview.parseMarkdown(markdownEt.getText().toString(), true);
+                    item.setTitle(getString(R.string.preview));
+                }
                 return false;
             }
         });
@@ -71,7 +86,7 @@ public class MarkdownEditorActivity extends AppCompatActivity implements View.On
     }
 
     private void ShowDeployDialog() {
-
+        startActivity(new Intent(this, DeployArticleActivity.class));
     }
 
     private void initTab() {
@@ -100,10 +115,10 @@ public class MarkdownEditorActivity extends AppCompatActivity implements View.On
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.id_shortcut_list_bulleted:
-                markdownEt.setText(markdownEt.getText().toString() + "\n" + "- ");
-                editRelayout.setVisibility(View.GONE);
-                markdownPreview.setVisibility(View.VISIBLE);
-                markdownPreview.parseMarkdown(markdownEt.getText().toString(), true);
+//                markdownEt.setText(markdownEt.getText().toString() + "\n" + "- ");
+//                editRelayout.setVisibility(View.GONE);
+//                markdownPreview.setVisibility(View.VISIBLE);
+//                markdownPreview.parseMarkdown(markdownEt.getText().toString(), true);
                 break;
             case R.id.id_shortcut_format_numbers:
                 markdownEt.setText(markdownEt.getText().toString() + "\n" + "1. ");

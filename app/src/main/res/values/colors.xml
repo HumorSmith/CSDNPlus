@@ -8,8 +8,11 @@
     <color name="blueColor">#B5D2FF</color>
     <color name="whiteColor">#FFFFFF</color>
     <color name="loginPressColor">#ff468eff</color>
+    <color name="tagSelectColor">#FF5899FF</color>
     <color name="searhbarColor">#FFF5F5F5</color>
     <color name="tabTextColor">#FF8EB9F6</color>
+    <color name="blackColor">#FF000000</color>
+    <color name="tagUnselectColor">#ff666666</color>
 
 
 </resources>
