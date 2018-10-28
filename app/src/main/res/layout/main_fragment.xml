@@ -31,7 +31,7 @@
             android:layout_height="19dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:text="发布"
+            android:text="@string/write_article"
             android:textColor="#ff176be5"
             android:textSize="13sp"
             />

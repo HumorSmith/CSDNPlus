@@ -39,6 +39,10 @@ public class CommentActivity extends PullRefreshActivity<CommentListResp.ListBea
         Observable<PayLoad<CommentListResp>> commentListObserver = HttpManager.getInstance().getCommentList(mArticleId, page, 20);
         commentListObserver.subscribe(commentListRespPayLoad -> {
             setLoading(false);
+            if (commentListRespPayLoad.getData() == null||commentListRespPayLoad.getData().getList().size()==0){
+                WidgetUtil.showSnackBar(CommentActivity.this,getString(R.string.no_comment_yet));
+                return;
+            }
             refreshList(commentListRespPayLoad.getCode(), commentListRespPayLoad.getMessage(), commentListRespPayLoad.getData().getList());
         }, throwable -> WidgetUtil.showSnackBar(CommentActivity.this, throwable.getMessage()));
     }
