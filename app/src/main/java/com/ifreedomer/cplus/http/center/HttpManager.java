@@ -12,6 +12,7 @@ import com.ifreedomer.cplus.http.protocol.CollectApi;
 import com.ifreedomer.cplus.http.protocol.CommentApi;
 import com.ifreedomer.cplus.http.protocol.FollowApi;
 import com.ifreedomer.cplus.http.protocol.ForgetPwdApi;
+import com.ifreedomer.cplus.http.protocol.H5ArticleApi;
 import com.ifreedomer.cplus.http.protocol.LoginAppV1Api;
 import com.ifreedomer.cplus.http.protocol.LoginV3Api;
 import com.ifreedomer.cplus.http.protocol.PayLoad;
@@ -32,10 +33,12 @@ import com.ifreedomer.cplus.http.protocol.resp.CollectNumResp;
 import com.ifreedomer.cplus.http.protocol.resp.CommentListResp;
 import com.ifreedomer.cplus.http.protocol.resp.CountResp;
 import com.ifreedomer.cplus.http.protocol.resp.DeleteCollectResp;
+import com.ifreedomer.cplus.http.protocol.resp.DeployBlogResp;
 import com.ifreedomer.cplus.http.protocol.resp.DiggResp;
 import com.ifreedomer.cplus.http.protocol.resp.FollowOperationResp;
 import com.ifreedomer.cplus.http.protocol.resp.FollowResp;
 import com.ifreedomer.cplus.http.protocol.resp.ForgetPwdUserNameResp;
+import com.ifreedomer.cplus.http.protocol.resp.GetRelationResp;
 import com.ifreedomer.cplus.http.protocol.resp.GetUserTokenResp;
 import com.ifreedomer.cplus.http.protocol.resp.GetVerifyCodeResp;
 import com.ifreedomer.cplus.http.protocol.resp.HistoryResp;
@@ -130,7 +133,7 @@ public class HttpManager {
 
         mCookieRetrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .addConverterFactory(ScalarsConverterFactory.create()) //设置使用Gson解析(记得加入依赖)
+                .addConverterFactory(GsonConverterFactory.create()) //设置使用Gson解析(记得加入依赖)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) // 支持RxJava
                 .client(mCookieClient)
                 .build();
@@ -306,16 +309,16 @@ public class HttpManager {
     }
 
     public void saveArticle(DeployBlogContentInfo deployBlogContentInfo) {
-
+        boolean aPrivate = deployBlogContentInfo.isPrivate();
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("title", deployBlogContentInfo.getTitle())
                 .addFormDataPart("markdowncontent", deployBlogContentInfo.getMarkdownContent())
                 .addFormDataPart("content", deployBlogContentInfo.getContent())
                 .addFormDataPart("id", deployBlogContentInfo.getId())
-                .addFormDataPart("private", deployBlogContentInfo.isPrivate() + "")
+                .addFormDataPart("private", aPrivate ? (aPrivate + "") : "")
                 .addFormDataPart("tags", deployBlogContentInfo.getTags())
-                .addFormDataPart("status", deployBlogContentInfo.getStatus())
+                .addFormDataPart("status", aPrivate ? "65" : "")
                 .addFormDataPart("categories", deployBlogContentInfo.getCategories())
                 .addFormDataPart("channel", deployBlogContentInfo.getChannel())
                 .addFormDataPart("type", deployBlogContentInfo.getType())
@@ -337,6 +340,7 @@ public class HttpManager {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+
                 String string = response.body().string();
                 Log.d(TAG, string);
             }
@@ -348,6 +352,22 @@ public class HttpManager {
 //        return saveArticleRespObservable;
 
 
+    }
+
+
+    public Observable<DeployBlogResp> saveArticleNew(DeployBlogContentInfo deployBlogContentInfo) {
+        boolean aPrivate = deployBlogContentInfo.isPrivate();
+        String privateStr = aPrivate ? (aPrivate + "") : "";
+        String statusStr = aPrivate ? "65" : "";
+        Observable<DeployBlogResp> deployBlogRespObservable = mCookieRetrofit.create(H5ArticleApi.class).saveArticle(deployBlogContentInfo.getId(), privateStr, deployBlogContentInfo.getTags(), statusStr, deployBlogContentInfo.getCategories(),
+                deployBlogContentInfo.getChannel(),
+                deployBlogContentInfo.getType(),
+                deployBlogContentInfo.getArticleedittype(),
+                deployBlogContentInfo.getDescription(),
+                deployBlogContentInfo.getTitle(),
+                deployBlogContentInfo.getMarkdownContent(),
+                deployBlogContentInfo.getContent());
+        return deployBlogRespObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 
 
@@ -408,6 +428,11 @@ public class HttpManager {
         return addCommentObserver.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 
+
+    public Observable<PayLoad<GetRelationResp>> getRelation(String userName) {
+        Observable<PayLoad<GetRelationResp>> getRelationObserver = retrofit.create(FollowApi.class).getRelation(userName);
+        return getRelationObserver.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+    }
 
     public void verifyCode(String verifyCode) {
 

@@ -2,6 +2,7 @@ package com.ifreedomer.cplus.activity.markdown;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,7 +13,10 @@ import android.widget.TextView;
 
 import com.ifreedomer.cplus.R;
 import com.ifreedomer.cplus.activity.DeployArticleActivity;
+import com.ifreedomer.cplus.entity.DeployBlogContentInfo;
+import com.ifreedomer.cplus.manager.GlobalDataManager;
 import com.ifreedomer.cplus.util.ToolbarUtil;
+import com.ifreedomer.cplus.util.WidgetUtil;
 import com.ifreedomer.cplus.widget.MarkdownPreviewView;
 import com.ifreedomer.cplus.widget.TabIconView;
 
@@ -43,6 +47,8 @@ public class MarkdownEditorActivity extends AppCompatActivity implements View.On
     EditText markdownEt;
     @BindView(R.id.tabIconView)
     TabIconView tabIconView;
+    @BindView(R.id.titleEt)
+    EditText titleEt;
     private TabIconView mTabIconView;
 
     @Override
@@ -61,6 +67,14 @@ public class MarkdownEditorActivity extends AppCompatActivity implements View.On
         toolbar.getMenu().findItem(R.id.nextStepItem).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
+                if (TextUtils.isEmpty(titleEt.getText().toString())) {
+                    WidgetUtil.showSnackBar(MarkdownEditorActivity.this, getString(R.string.title_cannot_null));
+                    return false;
+                }
+                if (TextUtils.isEmpty(markdownEt.getText().toString())) {
+                    WidgetUtil.showSnackBar(MarkdownEditorActivity.this, getString(R.string.write_something));
+                    return false;
+                }
                 ShowDeployDialog();
                 return false;
             }
@@ -76,7 +90,6 @@ public class MarkdownEditorActivity extends AppCompatActivity implements View.On
                 } else {
                     editRelayout.setVisibility(View.VISIBLE);
                     markdownPreview.setVisibility(View.GONE);
-                    markdownPreview.parseMarkdown(markdownEt.getText().toString(), true);
                     item.setTitle(getString(R.string.preview));
                 }
                 return false;
@@ -86,6 +99,11 @@ public class MarkdownEditorActivity extends AppCompatActivity implements View.On
     }
 
     private void ShowDeployDialog() {
+        DeployBlogContentInfo deployBlogContentInfo = new DeployBlogContentInfo();
+        deployBlogContentInfo.setMarkdownContent(markdownEt.getText().toString());
+        deployBlogContentInfo.setContent(markdownEt.getText().toString());
+        deployBlogContentInfo.setTitle(titleEt.getText().toString());
+        GlobalDataManager.getInstance().setDeployBlogContentInfo(deployBlogContentInfo);
         startActivity(new Intent(this, DeployArticleActivity.class));
     }
 

@@ -35,8 +35,8 @@ public class GlobalDataManager {
         return mDeployBlogContentInfo;
     }
 
-    public void setDeployBlogContentInfo(DeployBlogContentInfo mDeployBlogContentInfo) {
-        this.mDeployBlogContentInfo = mDeployBlogContentInfo;
+    public void setDeployBlogContentInfo(DeployBlogContentInfo deployBlogContentInfo) {
+        this.mDeployBlogContentInfo = deployBlogContentInfo;
     }
 
     public UserInfo getUserInfo() {

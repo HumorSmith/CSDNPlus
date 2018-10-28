@@ -40,7 +40,10 @@
         <activity android:name=".activity.SearchActivity">
         </activity>
         <activity android:name=".activity.SearchDetailActivity"/>
-        <activity android:name=".activity.markdown.MarkdownEditorActivity">
+        <activity
+            android:name=".activity.markdown.MarkdownEditorActivity"
+            android:windowSoftInputMode="adjustResize"
+            >
         </activity>
         <activity android:name=".activity.forgetpassword.ForgetPasswordVerifyCodeActivity">
         </activity>
@@ -59,6 +62,7 @@
         <activity android:name=".activity.ArticleCategorySelectActivity">
         </activity>
         <activity android:name=".activity.BlogCategorySelectActivity"/>
+        <activity android:name=".activity.WebLoginActivity"/>
     </application>
 
 </manifest>

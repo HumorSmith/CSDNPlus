@@ -107,6 +107,19 @@
     <string name="article_category">文章类型</string>
     <string name="blog_category">博客类型</string>
     <string name="preview">预览</string>
+    <string name="not_select_article_tag">你还没有选择文章的标签哦</string>
+    <string name="not_select_personal_tag">你还没有选择个人分类</string>
+    <string name="not_select_blog_category">你还没有选择博客分类</string>
+    <string name="not_select_article_category">你还没有选择文章类型</string>
+    <string name="write_something">先写点内容，再进入下一步吧</string>
+    <string name="title_cannot_null">标题不能为空</string>
+    <string name="publicStr">公开</string>
+    <string name="privateStr">私密</string>
+    <string name="login_first">发布博客使用的网页端接口，需要先在网页登录</string>
+    <string name="get_cookie_success">获取cookie成功</string>
+    <string name="not_login_yet">你还没有登录</string>
+    <string name="delpoy_success">发布成功</string>
+    <string name="deploy_failed">发布失败</string>
 
 
     <string-array name="tab_name">

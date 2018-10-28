@@ -3,6 +3,7 @@ package com.ifreedomer.cplus.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -46,6 +47,10 @@ public class OtherUserActivity extends AppCompatActivity implements View.OnClick
     TextView rankNumTv;
     @BindView(R.id.contentRelayout)
     RelativeLayout contentRelayout;
+    @BindView(R.id.doFollowTv)
+    TextView doFollowTv;
+    @BindView(R.id.fragment)
+    FrameLayout fragment;
 
 
     private MineViewModel mViewModel;
@@ -78,6 +83,9 @@ public class OtherUserActivity extends AppCompatActivity implements View.OnClick
         rankNumTv.setOnClickListener(this);
         blogNumTv.setOnClickListener(this);
         followTv.setOnClickListener(this);
+        doFollowTv.setOnClickListener(this);
+
+
 
 
     }
@@ -94,6 +102,7 @@ public class OtherUserActivity extends AppCompatActivity implements View.OnClick
             blogNumTv.setText(blogNumWrapStr);
             String idolWrapStr = String.format(getString(R.string.idolWrap), userBlogInfoRespPayLoad.getStatistic().getDiggCount());
             followTv.setText(idolWrapStr);
+
 
             String rank = userBlogInfoRespPayLoad.getStatistic().getRank();
             String rankWrapStr = String.format(getString(R.string.rankWrap), rank);
@@ -120,6 +129,20 @@ public class OtherUserActivity extends AppCompatActivity implements View.OnClick
 
 
         // TODO: Use the ViewModel
+        Disposable subscribe1 = HttpManager.getInstance().getRelation(mUserName).subscribe(getRelationRespPayLoad -> {
+            if (getRelationRespPayLoad.getCode() == PayLoad.SUCCESS) {
+                if (getRelationRespPayLoad.getData().getStatus() == 1) {
+                    doFollowTv.setText(getString(R.string.followed));
+                } else {
+                    doFollowTv.setText(getString(R.string.follow));
+                }
+            } else {
+                WidgetUtil.showSnackBar(OtherUserActivity.this, getRelationRespPayLoad.getMessage());
+            }
+        }, throwable -> {
+
+        });
+
     }
 
     @Override
@@ -128,14 +151,34 @@ public class OtherUserActivity extends AppCompatActivity implements View.OnClick
 
             case R.id.blogNumTv:
                 Intent intent = new Intent(this, BlogCategoryActivity.class);
-                intent.putExtra(USERNAME_KEY,mUserName);
+                intent.putExtra(USERNAME_KEY, mUserName);
                 startActivity(intent);
                 break;
             case R.id.followTv:
                 intent = new Intent(this, FollowActivity.class);
-                intent.putExtra(USERNAME_KEY,mUserName);
+                intent.putExtra(USERNAME_KEY, mUserName);
                 startActivity(intent);
                 break;
+            case R.id.doFollowTv:
+                if (doFollowTv.getText().equals(getString(R.string.follow))) {
+                    HttpManager.getInstance().follow(mUserName).subscribe(followOperationRespPayLoad -> {
+                        if (followOperationRespPayLoad.getCode() == PayLoad.SUCCESS) {
+                            doFollowTv.setText(getString(R.string.followed));
+                        } else {
+                            WidgetUtil.showSnackBar(OtherUserActivity.this, followOperationRespPayLoad.getMessage());
+                        }
+                    }, throwable -> WidgetUtil.showSnackBar(OtherUserActivity.this, throwable.getMessage()));
+                } else {
+                    HttpManager.getInstance().unfollow(mUserName).subscribe(followOperationRespPayLoad -> {
+                        if (followOperationRespPayLoad.getCode() == PayLoad.SUCCESS) {
+                            doFollowTv.setText(getString(R.string.follow));
+                        } else {
+                            WidgetUtil.showSnackBar(OtherUserActivity.this, followOperationRespPayLoad.getMessage());
+                        }
+                    }, throwable -> WidgetUtil.showSnackBar(OtherUserActivity.this, throwable.getMessage()));
+                }
+
+
 
         }
     }

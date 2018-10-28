@@ -39,6 +39,7 @@
                 android:src="@mipmap/ic_title_prefix"/>
 
             <EditText
+                android:id="@+id/titleEt"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_toRightOf="@+id/titleIv"

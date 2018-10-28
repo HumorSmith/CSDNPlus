@@ -67,8 +67,8 @@ public class BlogCategorySelectActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         getBackIntent();
+        super.onBackPressed();
     }
 
     private void getBackIntent() {

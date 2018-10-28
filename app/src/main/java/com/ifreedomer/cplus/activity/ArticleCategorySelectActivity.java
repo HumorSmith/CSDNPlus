@@ -3,10 +3,8 @@ package com.ifreedomer.cplus.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.ifreedomer.cplus.R;
 import com.ifreedomer.cplus.adapter.TextListAdapter;
 import com.ifreedomer.cplus.util.ToolbarUtil;
@@ -40,12 +38,9 @@ public class ArticleCategorySelectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_article_category_select);
         ButterKnife.bind(this);
         ToolbarUtil.setTitleBarWithBack(this, toolbar, getString(R.string.article_category));
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getBackIntent();
-                ArticleCategorySelectActivity.this.finish();
-            }
+        toolbar.setNavigationOnClickListener(v -> {
+            getBackIntent();
+            ArticleCategorySelectActivity.this.finish();
         });
         mDataList.add(getString(R.string.origin));
         mDataList.add(getString(R.string.reprint));
@@ -54,21 +49,16 @@ public class ArticleCategorySelectActivity extends AppCompatActivity {
         recycleview.setLayoutManager(new LinearLayoutManager(this));
         TextListAdapter textListAdapter = new TextListAdapter(R.layout.item_text_select, mDataList);
         recycleview.setAdapter(textListAdapter);
-        textListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                mSelectText = mDataList.get(position);
-                WidgetUtil.showSnackBar(ArticleCategorySelectActivity.this,mSelectText);
-            }
-
+        textListAdapter.setOnItemClickListener((adapter, view, position) -> {
+            mSelectText = mDataList.get(position);
+            WidgetUtil.showSnackBar(ArticleCategorySelectActivity.this,mSelectText);
         });
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         getBackIntent();
-        ArticleCategorySelectActivity.this.finish();
+        super.onBackPressed();
     }
 
     private void getBackIntent() {

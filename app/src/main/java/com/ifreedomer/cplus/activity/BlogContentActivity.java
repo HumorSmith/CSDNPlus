@@ -25,6 +25,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.ifreedomer.cplus.R;
 import com.ifreedomer.cplus.constant.Constants;
 import com.ifreedomer.cplus.entity.BlogContentInfo;
+import com.ifreedomer.cplus.fragment.OtherUserActivity;
 import com.ifreedomer.cplus.http.center.HttpManager;
 import com.ifreedomer.cplus.http.protocol.PayLoad;
 import com.ifreedomer.cplus.http.protocol.resp.AddCollectResp;
@@ -43,6 +44,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
+
+import static com.ifreedomer.cplus.fragment.OtherUserActivity.AVATAR_KEY;
+import static com.ifreedomer.cplus.fragment.OtherUserActivity.NICKNAME_KEY;
+import static com.ifreedomer.cplus.fragment.OtherUserActivity.USERNAME_KEY;
 
 public class BlogContentActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String DATA = "data";
@@ -101,6 +106,7 @@ public class BlogContentActivity extends AppCompatActivity implements View.OnCli
 
 
         Glide.with((View) avatarIv).load(avatar).apply(RequestOptions.bitmapTransform(new CircleCrop())).into(avatarIv);
+        avatarIv.setOnClickListener(this);
 
         blogTitleTv.setText(title);
         nameTv.setText(nickName);
@@ -264,6 +270,13 @@ public class BlogContentActivity extends AppCompatActivity implements View.OnCli
                         WidgetUtil.showSnackBar(BlogContentActivity.this, diggRespPayLoad.getMessage());
                     }
                 }, throwable -> WidgetUtil.showSnackBar(BlogContentActivity.this, throwable.getMessage()));
+                break;
+            case R.id.avatarIv:
+                Intent intent = new Intent(this, OtherUserActivity.class);
+                intent.putExtra(USERNAME_KEY, mBlogContentInfo.getUserName());
+                intent.putExtra(NICKNAME_KEY, mBlogContentInfo.getNickName());
+                intent.putExtra(AVATAR_KEY, mBlogContentInfo.getAvatar());
+                startActivity(intent);
                 break;
         }
     }

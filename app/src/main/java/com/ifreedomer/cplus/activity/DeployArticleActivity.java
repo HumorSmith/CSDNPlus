@@ -2,6 +2,7 @@ package com.ifreedomer.cplus.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,10 +13,13 @@ import com.ifreedomer.cplus.http.center.HttpManager;
 import com.ifreedomer.cplus.http.protocol.PayLoad;
 import com.ifreedomer.cplus.http.protocol.resp.BlogCategoryResp;
 import com.ifreedomer.cplus.manager.GlobalDataManager;
+import com.ifreedomer.cplus.util.ToolbarUtil;
 import com.ifreedomer.cplus.util.WidgetUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -61,12 +65,14 @@ public class DeployArticleActivity extends AppCompatActivity implements View.OnC
     @BindView(R.id.articleCategoryTv)
     TextView articleCategoryTv;
     private List<String> mSelectTagList = new ArrayList<>();
+    private Map<String, String> articleMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delopy_article);
         ButterKnife.bind(this);
+        ToolbarUtil.setTitleBarWithBack(this, toolbar, "");
         initData();
         initListener();
     }
@@ -115,6 +121,11 @@ public class DeployArticleActivity extends AppCompatActivity implements View.OnC
                 WidgetUtil.showSnackBar(DeployArticleActivity.this, listPayLoad.getMessage());
             }
         }, throwable -> WidgetUtil.showSnackBar(DeployArticleActivity.this, throwable.getMessage()));
+
+
+        articleMap.put(getString(R.string.origin), "original");
+        articleMap.put(getString(R.string.reprint), "repost");
+        articleMap.put(getString(R.string.translate), "translated");
     }
 
     private void addPersonalTag(List<BlogCategoryResp> categoryList) {
@@ -132,7 +143,7 @@ public class DeployArticleActivity extends AppCompatActivity implements View.OnC
         toolbar.getMenu().findItem(R.id.sendItem).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-
+                deploy();
                 return false;
             }
         });
@@ -141,9 +152,46 @@ public class DeployArticleActivity extends AppCompatActivity implements View.OnC
 
 
     private void deploy() {
+        String[] articleLabelTagGroupTags = articleLabelTagGroup.getTags();
+        if (articleLabelTagGroupTags == null || articleLabelTagGroupTags.length == 0) {
+            WidgetUtil.showSnackBar(DeployArticleActivity.this, getString(R.string.not_select_article_tag));
+            return;
+        }
+        if (mSelectTagList.isEmpty()) {
+            WidgetUtil.showSnackBar(DeployArticleActivity.this, getString(R.string.not_select_personal_tag));
+            return;
+        }
+        if (TextUtils.isEmpty(blogCategoryTv.getText().toString())) {
+            WidgetUtil.showSnackBar(DeployArticleActivity.this, getString(R.string.not_select_blog_category));
+            return;
+        }
 
+        if (TextUtils.isEmpty(articleCategoryTv.getText().toString())) {
+            WidgetUtil.showSnackBar(DeployArticleActivity.this, getString(R.string.not_select_article_category));
+            return;
+        }
+
+        GlobalDataManager.getInstance().getDeployBlogContentInfo().setTags(getStringByTags(articleLabelTagGroupTags));
+        GlobalDataManager.getInstance().getDeployBlogContentInfo().setCategories(getStringByTags(mSelectTagList.toArray(new String[mSelectTagList.size()])));
+        GlobalDataManager.getInstance().getDeployBlogContentInfo().setPrivate(privateSwith.isChecked());
+        GlobalDataManager.getInstance().getDeployBlogContentInfo().setDescription(privateSwith.isChecked()?getString(R.string.privateStr):getString(R.string.publicStr));
+        GlobalDataManager.getInstance().getDeployBlogContentInfo().setType(articleMap.get(articleCategoryTv.getText().toString()));
+//        HttpManager.getInstance().saveArticle(GlobalDataManager.getInstance().getDeployBlogContentInfo());
+        startActivity(new Intent(this, WebLoginActivity.class));
 
 //        DeployBlogContentInfo blogContentInfo = new DeployBlogContentInfo();
+    }
+
+
+    public String getStringByTags(String[] arr) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < arr.length; i++) {
+            builder.append(arr[i]);
+            if (i < arr.length - 1) {
+                builder.append(",");
+            }
+        }
+        return builder.toString();
     }
 
     @Override

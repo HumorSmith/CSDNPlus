@@ -7,6 +7,16 @@
     android:background="@color/whiteColor"
     tools:context=".ui.mine.MineFragment">
 
+
+    <TextView
+        android:id="@+id/doFollowTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:text="@string/follow"/>
+
     <LinearLayout
         android:id="@+id/userLinLayout"
         android:layout_width="wrap_content"

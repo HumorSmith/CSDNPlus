@@ -1,27 +1,46 @@
 package com.ifreedomer.cplus.entity;
 
-public class DeployBlogContentInfo {
-    private String markdownContent;
-    private String content;
-    private String id;
-    private String tags;
-    private String status;
-    private String categories;
-    private String channel;
-    private String type;
-    private String Description;
-    private String title;
-    private boolean aPrivate;
-    private String articleedittype;
+import com.google.gson.annotations.SerializedName;
 
-    public DeployBlogContentInfo(String markdownContent, String content, String id, String tags, String status, String categories, String channel, String type, String description, String title, boolean aPrivate, String articleedittype) {
+public class DeployBlogContentInfo {
+
+//      .addFormDataPart("title", "title")
+//                .addFormDataPart("markdowncontent", "markdowncontent")
+//                .addFormDataPart("content", "content")
+//                .addFormDataPart("id", "")
+//                .addFormDataPart("private", true + "")
+//                .addFormDataPart("tags", "opencv")
+//                .addFormDataPart("status", "65")
+//                .addFormDataPart("categories", "opencv,android")
+//                .addFormDataPart("channel", "28")
+//                .addFormDataPart("type", "original")
+//                .addFormDataPart("articleedittype", "1")
+//                .addFormDataPart("Description", "")
+
+
+    public DeployBlogContentInfo() {
+    }
+
+    private String markdownContent = "";
+    private String content = "";
+    private String id = "";
+    private String tags = "";
+    private String status = "";
+    private String categories;
+    private String channel = "28";
+    private String type = "";
+    private String Description = "";
+    private String title = "";
+    @SerializedName("private")
+    private boolean aPrivate;
+    private String articleedittype = "1";
+
+    public DeployBlogContentInfo(String markdownContent, String content, String id, String tags, String categories, String type, String description, String title, boolean aPrivate, String articleedittype) {
         this.markdownContent = markdownContent;
         this.content = content;
         this.id = id;
         this.tags = tags;
-        this.status = status;
         this.categories = categories;
-        this.channel = channel;
         this.type = type;
         Description = description;
         this.title = title;
@@ -123,5 +142,23 @@ public class DeployBlogContentInfo {
 
     public void setArticleedittype(String articleedittype) {
         this.articleedittype = articleedittype;
+    }
+
+    @Override
+    public String toString() {
+        return "DeployBlogContentInfo{" +
+                "markdownContent='" + markdownContent + '\'' +
+                ", content='" + content + '\'' +
+                ", id='" + id + '\'' +
+                ", tags='" + tags + '\'' +
+                ", status='" + status + '\'' +
+                ", categories='" + categories + '\'' +
+                ", channel='" + channel + '\'' +
+                ", type='" + type + '\'' +
+                ", Description='" + Description + '\'' +
+                ", title='" + title + '\'' +
+                ", aPrivate=" + aPrivate +
+                ", articleedittype='" + articleedittype + '\'' +
+                '}';
     }
 }

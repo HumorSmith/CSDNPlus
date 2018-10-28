@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,30 +8,32 @@
     android:orientation="vertical"
    >
 
-    <Button
-        android:id="@+id/loginBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="登录"/>
-
-    <Button
-        android:id="@+id/deployBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="发布"/>
-
-
-    <Button
-        android:id="@+id/msgBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="消息"/>
 
     <WebView
+        android:layout_marginBottom="100dp"
         android:id="@+id/webview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_first"/>
 
-</LinearLayout>
+        <Button
+            android:layout_alignParentBottom="true"
+            android:id="@+id/deployBtn"
+            style="@style/LoginBtnStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/deploy_title"/>
+
+    </RelativeLayout>
+</RelativeLayout>

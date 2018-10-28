@@ -3,6 +3,7 @@ package com.ifreedomer.cplus.http.protocol;
 
 import com.ifreedomer.cplus.http.protocol.resp.FollowOperationResp;
 import com.ifreedomer.cplus.http.protocol.resp.FollowResp;
+import com.ifreedomer.cplus.http.protocol.resp.GetRelationResp;
 
 import java.util.List;
 
@@ -23,5 +24,9 @@ public interface FollowApi {
 
     @POST("api/user/doFollow")
     Observable<PayLoad<FollowOperationResp>> doFollow(@Query("SessionId") String sessionId, @Query("username") String username, @Query("fans") String fans);
+
+
+    @GET("api/user/relation")
+    Observable<PayLoad<GetRelationResp>> getRelation(@Query("username") String username);
 
 }

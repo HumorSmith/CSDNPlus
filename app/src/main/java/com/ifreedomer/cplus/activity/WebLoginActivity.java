@@ -1,19 +1,26 @@
 package com.ifreedomer.cplus.activity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Toast;
 
 import com.ifreedomer.cplus.R;
-import com.ifreedomer.cplus.entity.DeployBlogContentInfo;
+import com.ifreedomer.cplus.entity.BlogContentInfo;
 import com.ifreedomer.cplus.http.center.HttpManager;
+import com.ifreedomer.cplus.http.protocol.resp.DeployBlogResp;
+import com.ifreedomer.cplus.manager.GlobalDataManager;
+import com.ifreedomer.cplus.util.DateUtil;
+import com.ifreedomer.cplus.util.WidgetUtil;
 
 import androidx.appcompat.app.AppCompatActivity;
+import io.reactivex.Observable;
 
 public class WebLoginActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String TAG = WebLoginActivity.class.getSimpleName();
@@ -24,9 +31,7 @@ public class WebLoginActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deploy);
-        findViewById(R.id.loginBtn).setOnClickListener(this);
         findViewById(R.id.deployBtn).setOnClickListener(this);
-        findViewById(R.id.msgBtn).setOnClickListener(this);
         mWebView = findViewById(R.id.webview);
 
 
@@ -65,10 +70,11 @@ public class WebLoginActivity extends AppCompatActivity implements View.OnClickL
                 super.onPageStarted(view, url, favicon);
                 CookieManager cookieManager = CookieManager.getInstance();
                 cookie = cookieManager.getCookie(url);
-                Toast.makeText(WebLoginActivity.this, cookie, Toast.LENGTH_SHORT).show();
-
+                WidgetUtil.showSnackBar(WebLoginActivity.this, getString(R.string.get_cookie_success));
             }
         });
+
+        mWebView.loadUrl("https://passport.csdn.net/account/login");
 
 
     }
@@ -76,12 +82,31 @@ public class WebLoginActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.loginBtn:
-                mWebView.loadUrl("https://passport.csdn.net/account/login");
-                break;
             case R.id.deployBtn:
-                DeployBlogContentInfo deployBlogContentInfo = new DeployBlogContentInfo();
-                HttpManager.getInstance().saveArticle(deployBlogContentInfo);
+                Log.d(TAG, "deployInfo = " + GlobalDataManager.getInstance().getDeployBlogContentInfo().toString());
+                if (TextUtils.isEmpty(cookie)) {
+                    WidgetUtil.showSnackBar(WebLoginActivity.this, getString(R.string.not_login_yet));
+                    return;
+                }
+                Observable<DeployBlogResp> deployBlogRespObservable = HttpManager.getInstance().saveArticleNew(GlobalDataManager.getInstance().getDeployBlogContentInfo());
+                deployBlogRespObservable.subscribe(deployBlogResp -> {
+                    if (deployBlogResp.isStatus()) {
+                        WidgetUtil.showSnackBar(WebLoginActivity.this, getString(R.string.delpoy_success));
+                        Intent intent = new Intent(WebLoginActivity.this, BlogContentActivity.class);
+                        BlogContentInfo blogContentInfo = new BlogContentInfo();
+                        blogContentInfo.setTitle(GlobalDataManager.getInstance().getDeployBlogContentInfo().getTitle());
+                        blogContentInfo.setDate(DateUtil.timeStamp2DateString(System.currentTimeMillis()));
+                        blogContentInfo.setId(deployBlogResp.getData().getId() + "");
+                        blogContentInfo.setAvatar(GlobalDataManager.getInstance().getUserInfo().getAvatar());
+                        blogContentInfo.setCommentNum(0);
+                        blogContentInfo.setNickName(GlobalDataManager.getInstance().getUserInfo().getNickName());
+                        blogContentInfo.setUserName(GlobalDataManager.getInstance().getUserInfo().getUserName());
+                        intent.putExtra(BlogContentActivity.DATA, blogContentInfo);
+                        startActivity(intent);
+                    } else {
+                        WidgetUtil.showSnackBar(WebLoginActivity.this, deployBlogResp.getError());
+                    }
+                }, throwable -> WidgetUtil.showSnackBar(WebLoginActivity.this, throwable.getMessage()));
 //                saveArticleRespObservable.subscribe(new Consumer<String>() {
 //                    @Override
 //                    public void accept(String saveArticleResp) throws Exception {
@@ -94,9 +119,7 @@ public class WebLoginActivity extends AppCompatActivity implements View.OnClickL
 //                    }
 //                });
                 break;
-            case R.id.msgBtn:
-                mWebView.loadUrl("https://msg.csdn.net/");
-                break;
+
         }
     }
 }
