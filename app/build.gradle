@@ -12,7 +12,7 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -94,4 +94,10 @@ dependencies {
     implementation 'co.lujun:androidtagview:1.1.4'
     implementation project(':tencent')
     implementation project(':TagGroup')
+
+    implementation 'com.tencent.bugly:crashreport:latest.release'
+    implementation  'com.umeng.umsdk:analytics:7.5.4'
+    implementation  'com.umeng.umsdk:common:1.5.4'
+
+    implementation 'com.ifreedomer:com.ifreedomer.permissionhelper:1.0.7'
 }
