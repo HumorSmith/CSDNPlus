@@ -221,8 +221,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             if (v2ProfileRespPayLoad.getCode() == PayLoad.SUCCESS) {
                 SPUtil.put(getActivity(), LOGINED, true);
                 mViewModel.saveLoginInfo(getContext(), v2ProfileRespPayLoad,userName);
-                startActivity(new Intent(getActivity(),MainActivity.class
-                ));
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             } else {
                 WidgetUtil.showSnackBar(getActivity(), v2ProfileRespPayLoad.getMessage());
             }

@@ -122,6 +122,8 @@
     <string name="deploy_failed">发布失败</string>
     <string name="write_article">写文章</string>
     <string name="no_comment_yet">暂时还没有评论哦</string>
+    <string name="wait_for">消息功能还在等CSDN开放接口</string>
+    <string name="donate">捐赠</string>
 
 
     <string-array name="tab_name">

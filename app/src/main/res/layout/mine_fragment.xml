@@ -142,6 +142,12 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/settingItemHeight"/>
 
+        <include layout="@layout/layout_divider"/>
+
+        <com.ifreedomer.cplus.widget.SettingItem
+            android:id="@+id/donateItem"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/settingItemHeight"/>
     </LinearLayout>
 
 

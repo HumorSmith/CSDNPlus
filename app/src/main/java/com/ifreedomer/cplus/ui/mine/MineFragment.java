@@ -1,6 +1,7 @@
 package com.ifreedomer.cplus.ui.mine;
 
 import android.content.Intent;
+import android.didikee.donate.AlipayDonate;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,12 +14,12 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
+import com.ifreedomer.cplus.R;
 import com.ifreedomer.cplus.activity.BlogCategoryActivity;
 import com.ifreedomer.cplus.activity.CollectActivity;
 import com.ifreedomer.cplus.activity.FeedbackActivity;
 import com.ifreedomer.cplus.activity.FollowActivity;
 import com.ifreedomer.cplus.activity.HistoryActivity;
-import com.ifreedomer.cplus.R;
 import com.ifreedomer.cplus.activity.SettingActivity;
 import com.ifreedomer.cplus.entity.UserInfo;
 import com.ifreedomer.cplus.http.center.HttpManager;
@@ -68,6 +69,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
     @BindView(R.id.idolTv)
     TextView idolTv;
+    @BindView(R.id.donateItem)
+    SettingItem donateItem;
     private MineViewModel mViewModel;
 
     public static MineFragment newInstance() {
@@ -107,6 +110,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         settingItem.setOnClickListener(this);
         feedbackItem.setText(getString(R.string.feedback));
         feedbackItem.setOnClickListener(this);
+        donateItem.setText(getString(R.string.donate));
+        donateItem.setOnClickListener(this);
     }
 
     @Override
@@ -131,7 +136,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 WidgetUtil.showSnackBar(getActivity(), collectNumRespPayLoad.getMessage());
             }
         }, throwable -> WidgetUtil.showSnackBar(getActivity(), throwable.getMessage()));
-
 
 
         // TODO: Use the ViewModel
@@ -163,7 +167,25 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 intent = new Intent(getActivity(), SettingActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.donateItem:
+                donateAlipay("FKX04593OORFSACYVCL0BA");
+                break;
 
+        }
+    }
+
+
+    /**
+     * 支付宝支付
+     *
+     * @param payCode 收款码后面的字符串；例如：收款二维码里面的字符串为 https://qr.alipay.com/stx00187oxldjvyo3ofaw60 ，则
+     *                payCode = stx00187oxldjvyo3ofaw60
+     *                注：不区分大小写
+     */
+    private void donateAlipay(String payCode) {
+        boolean hasInstalledAlipayClient = AlipayDonate.hasInstalledAlipayClient(getActivity());
+        if (hasInstalledAlipayClient) {
+            AlipayDonate.startAlipayClient(getActivity(), payCode);
         }
     }
 }

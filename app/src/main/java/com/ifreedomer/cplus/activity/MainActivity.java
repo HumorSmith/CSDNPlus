@@ -8,6 +8,7 @@ import com.ifreedomer.cplus.adapter.ViewPagerFragmentAdapter;
 import com.ifreedomer.cplus.ui.main.MainFragment;
 import com.ifreedomer.cplus.ui.message.MessageFragment;
 import com.ifreedomer.cplus.ui.mine.MineFragment;
+import com.ifreedomer.cplus.util.WidgetUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                     break;
                 case R.id.messageTab:
                     viewpager.setCurrentItem(1);
+                    WidgetUtil.showSnackBar(MainActivity.this,getString(R.string.wait_for));
                     break;
                 case R.id.mineTab:
                     viewpager.setCurrentItem(2);
