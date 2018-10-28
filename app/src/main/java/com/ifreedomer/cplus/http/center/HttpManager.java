@@ -55,7 +55,6 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -63,14 +62,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import okhttp3.RequestBody;
-import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -310,6 +305,38 @@ public class HttpManager {
 
     public void saveArticle(DeployBlogContentInfo deployBlogContentInfo) {
         boolean aPrivate = deployBlogContentInfo.isPrivate();
+//
+//        Request request = new Request.Builder()
+//                .url("https://mp.csdn.net/mdeditor/saveArticle")
+//                .post(requestBody)
+//                .build();
+//
+//        mCookieClient.newCall(request).enqueue(new Callback() {
+//            @Override
+//            public void onFailure(Call call, IOException e) {
+//                e.printStackTrace();
+//                Log.d(TAG, "FAILED = " + e.getMessage());
+//            }
+//
+//            @Override
+//            public void onResponse(Call call, Response response) throws IOException {
+//
+//                String string = response.body().string();
+//                Log.d(TAG, string);
+//            }
+//        });
+
+
+//        mCookieClient.newCall()
+//        Observable<String> saveArticleRespObservable = mCookieRetrofit.create(H5ArticleApi.class).saveArticle(requestBody);
+//        return saveArticleRespObservable;
+
+
+    }
+
+
+    public Observable<DeployBlogResp> saveArticleNew(DeployBlogContentInfo deployBlogContentInfo) {
+        boolean aPrivate = deployBlogContentInfo.isPrivate();
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("title", deployBlogContentInfo.getTitle())
@@ -325,48 +352,7 @@ public class HttpManager {
                 .addFormDataPart("articleedittype", deployBlogContentInfo.getArticleedittype())
                 .addFormDataPart("Description", deployBlogContentInfo.getDescription())
                 .build();
-
-        Request request = new Request.Builder()
-                .url("https://mp.csdn.net/mdeditor/saveArticle")
-                .post(requestBody)
-                .build();
-
-        mCookieClient.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-                Log.d(TAG, "FAILED = " + e.getMessage());
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-
-                String string = response.body().string();
-                Log.d(TAG, string);
-            }
-        });
-
-
-//        mCookieClient.newCall()
-//        Observable<String> saveArticleRespObservable = mCookieRetrofit.create(H5ArticleApi.class).saveArticle(requestBody);
-//        return saveArticleRespObservable;
-
-
-    }
-
-
-    public Observable<DeployBlogResp> saveArticleNew(DeployBlogContentInfo deployBlogContentInfo) {
-        boolean aPrivate = deployBlogContentInfo.isPrivate();
-        String privateStr = aPrivate ? (aPrivate + "") : "";
-        String statusStr = aPrivate ? "65" : "";
-        Observable<DeployBlogResp> deployBlogRespObservable = mCookieRetrofit.create(H5ArticleApi.class).saveArticle(deployBlogContentInfo.getId(), privateStr, deployBlogContentInfo.getTags(), statusStr, deployBlogContentInfo.getCategories(),
-                deployBlogContentInfo.getChannel(),
-                deployBlogContentInfo.getType(),
-                deployBlogContentInfo.getArticleedittype(),
-                deployBlogContentInfo.getDescription(),
-                deployBlogContentInfo.getTitle(),
-                deployBlogContentInfo.getMarkdownContent(),
-                deployBlogContentInfo.getContent());
+        Observable<DeployBlogResp> deployBlogRespObservable = mCookieRetrofit.create(H5ArticleApi.class).saveArticle(requestBody);
         return deployBlogRespObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 

@@ -28,6 +28,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 
+import com.ifreedomer.cplus.util.LogUtil;
+
 import androidx.core.widget.NestedScrollView;
 
 /**
@@ -35,6 +37,7 @@ import androidx.core.widget.NestedScrollView;
  * The type Markdown preview view.
  */
 public class MarkdownPreviewView extends NestedScrollView {
+    public static final String TAG = MarkdownPreviewView.class.getSimpleName();
     public WebView mWebView;
     private Context mContext;
     private OnLoadingFinishListener mLoadingFinishListener;
@@ -75,7 +78,9 @@ public class MarkdownPreviewView extends NestedScrollView {
     }
 
     public final void parseMarkdown(String str, boolean z) {
-        this.mWebView.loadUrl("javascript:parseMarkdown(\"" + str.replace("\n", "\\n").replace("\"", "\\\"").replace("'", "\\'") + "\", " + z + ")");
+        String priviewString = "javascript:parseMarkdown(\"" + str.replace("\n", "\\n").replace("\"", "\\\"").replace("'", "\\'") + "\", " + z + ")";
+        LogUtil.d(TAG, "parseMarkdown = " + priviewString);
+        this.mWebView.loadUrl(priviewString);
     }
 
     public void setContentListener(ContentListener contentListener) {
