@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ifreedomer.cplus.R;
 import com.ifreedomer.cplus.adapter.ViewPagerFragmentAdapter;
+import com.ifreedomer.cplus.fragment.ForumFragment;
 import com.ifreedomer.cplus.ui.main.MainFragment;
 import com.ifreedomer.cplus.ui.message.MessageFragment;
 import com.ifreedomer.cplus.ui.mine.MineFragment;
@@ -49,9 +50,14 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                     viewpager.setCurrentItem(1);
                     WidgetUtil.showSnackBar(MainActivity.this,getString(R.string.wait_for));
                     break;
-                case R.id.mineTab:
+                case R.id.forumItem:
                     viewpager.setCurrentItem(2);
                     break;
+                case R.id.mineTab:
+                    viewpager.setCurrentItem(3);
+                    break;
+
+
             }
             return false;
         });
@@ -60,10 +66,11 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     private void setupViewPager() {
         mFragmentList.add(MainFragment.newInstance());
         mFragmentList.add(MessageFragment.newInstance());
+        mFragmentList.add(ForumFragment.newInstance());
         mFragmentList.add(MineFragment.newInstance());
         ViewPagerFragmentAdapter pagerAdapter = new ViewPagerFragmentAdapter(getSupportFragmentManager(), mFragmentList);
         viewpager.setAdapter(pagerAdapter);
-        viewpager.setOffscreenPageLimit(3);
+        viewpager.setOffscreenPageLimit(4);
         viewpager.addOnPageChangeListener(this);
     }
 
@@ -80,7 +87,11 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         if (position == 1){
             bottomNavigationView.getMenu().findItem(R.id.messageTab).setChecked(true);
         }
+
         if (position == 2){
+            bottomNavigationView.getMenu().findItem(R.id.forumItem).setChecked(true);
+        }
+        if (position == 3) {
             bottomNavigationView.getMenu().findItem(R.id.mineTab).setChecked(true);
         }
     }

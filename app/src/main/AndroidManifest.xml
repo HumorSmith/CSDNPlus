@@ -43,8 +43,7 @@
         <activity android:name=".activity.SearchDetailActivity"/>
         <activity
             android:name=".activity.markdown.MarkdownEditorActivity"
-            android:windowSoftInputMode="adjustResize"
-            >
+            android:windowSoftInputMode="adjustResize">
         </activity>
         <activity android:name=".activity.forgetpassword.ForgetPasswordVerifyCodeActivity">
         </activity>
@@ -65,13 +64,13 @@
         <activity android:name=".activity.BlogCategorySelectActivity"/>
         <activity android:name=".activity.WebLoginActivity"/>
 
-
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="5bd54414f1f556586100096c"/>
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="InnterTest"/>
+
     </application>
 
 </manifest>

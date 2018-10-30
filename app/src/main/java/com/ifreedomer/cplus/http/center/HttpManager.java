@@ -12,6 +12,7 @@ import com.ifreedomer.cplus.http.protocol.CollectApi;
 import com.ifreedomer.cplus.http.protocol.CommentApi;
 import com.ifreedomer.cplus.http.protocol.FollowApi;
 import com.ifreedomer.cplus.http.protocol.ForgetPwdApi;
+import com.ifreedomer.cplus.http.protocol.ForumApi;
 import com.ifreedomer.cplus.http.protocol.H5ArticleApi;
 import com.ifreedomer.cplus.http.protocol.LoginAppV1Api;
 import com.ifreedomer.cplus.http.protocol.LoginV3Api;
@@ -38,6 +39,7 @@ import com.ifreedomer.cplus.http.protocol.resp.DiggResp;
 import com.ifreedomer.cplus.http.protocol.resp.FollowOperationResp;
 import com.ifreedomer.cplus.http.protocol.resp.FollowResp;
 import com.ifreedomer.cplus.http.protocol.resp.ForgetPwdUserNameResp;
+import com.ifreedomer.cplus.http.protocol.resp.ForumHotResp;
 import com.ifreedomer.cplus.http.protocol.resp.GetRelationResp;
 import com.ifreedomer.cplus.http.protocol.resp.GetUserTokenResp;
 import com.ifreedomer.cplus.http.protocol.resp.GetVerifyCodeResp;
@@ -419,6 +421,14 @@ public class HttpManager {
         Observable<PayLoad<GetRelationResp>> getRelationObserver = retrofit.create(FollowApi.class).getRelation(userName);
         return getRelationObserver.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
+
+
+    public  Observable<PayLoad<List<ForumHotResp>>> getForum(String type,int page) {
+        Observable<PayLoad<List<ForumHotResp>>> hotForumObserver = retrofit.create(ForumApi.class).getHotForum(type, page);
+        return hotForumObserver.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+    }
+
+
 
     public void verifyCode(String verifyCode) {
 

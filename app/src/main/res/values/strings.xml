@@ -162,4 +162,23 @@
 
 
     </string-array>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="forum">论坛</string>
+    <string name="comment">评论</string>
+
+
+    <string-array name="forum_key">
+        <item>技术</item>
+        <item>生活</item>
+    </string-array>
+
+
+    <string-array name="forum_value">
+        <item>tech</item>
+        <item>nontech</item>
+    </string-array>
+
 </resources>

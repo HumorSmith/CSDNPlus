@@ -96,8 +96,8 @@ dependencies {
     implementation project(':TagGroup')
 
     implementation 'com.tencent.bugly:crashreport:latest.release'
-    implementation  'com.umeng.umsdk:analytics:7.5.4'
-    implementation  'com.umeng.umsdk:common:1.5.4'
+    implementation 'com.umeng.umsdk:analytics:7.5.4'
+    implementation 'com.umeng.umsdk:common:1.5.4'
 
     implementation 'com.ifreedomer:com.ifreedomer.permissionhelper:1.0.7'
     implementation 'com.github.didikee:AndroidDonate:0.1.0'

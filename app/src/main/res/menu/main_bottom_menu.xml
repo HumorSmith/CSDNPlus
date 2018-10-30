@@ -8,6 +8,11 @@
         android:icon="@drawable/selector_message_tab"
         android:id="@+id/messageTab"
         android:title="@string/message"/>
+
+    <item
+        android:icon="@drawable/selector_comment"
+        android:id="@+id/forumItem"
+        android:title="@string/forum"/>
     <item
         android:icon="@drawable/selector_mine_tab"
         android:id="@+id/mineTab"

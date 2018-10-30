@@ -23,6 +23,7 @@ import com.ifreedomer.cplus.http.center.HttpManager;
 import com.ifreedomer.cplus.http.protocol.PayLoad;
 import com.ifreedomer.cplus.http.protocol.resp.LoginAppV1TokenResp;
 import com.ifreedomer.cplus.http.protocol.resp.V2ProfileResp;
+import com.ifreedomer.cplus.util.LogUtil;
 import com.ifreedomer.cplus.util.SPUtil;
 import com.ifreedomer.cplus.util.WidgetUtil;
 import com.ifreedomer.tencent.TencentLoginResult;
@@ -37,7 +38,9 @@ import butterknife.ButterKnife;
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 
+import static com.ifreedomer.cplus.ui.login.LoginViewModel.ACCOUNT_KEY;
 import static com.ifreedomer.cplus.ui.login.LoginViewModel.LOGINED;
+import static com.ifreedomer.cplus.ui.login.LoginViewModel.PASSWORD_KEY;
 
 
 public class LoginFragment extends Fragment implements View.OnClickListener {
@@ -115,6 +118,11 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
         if (mViewModel.canFastLogin(getContext())) {
+            String userName = (String) SPUtil.get(getActivity(), ACCOUNT_KEY, "");
+            String password = (String) SPUtil.get(getActivity(), PASSWORD_KEY, "");
+            LogUtil.d(TAG, "userName = " + userName + "   passowrd = " + password);
+            accountEt.setText(userName);
+            passwordEt.setText(password);
             login();
         }
     }
@@ -189,6 +197,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     }
 
     private void login() {
+
+
         WidgetUtil.showSnackBar(getActivity(), getString(R.string.loging));
         Observable<PayLoad<LoginAppV1TokenResp>> loginAppV1Observer = mViewModel.loginAppV1(accountEt.getText().toString(), passwordEt.getText().toString());
         loginAppV1Observer.subscribe(loginAppV1TokenRespPayLoad -> {
@@ -220,11 +230,16 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         Disposable subscribe = v2ProfileObservable.subscribe(v2ProfileRespPayLoad -> {
             if (v2ProfileRespPayLoad.getCode() == PayLoad.SUCCESS) {
                 SPUtil.put(getActivity(), LOGINED, true);
+                SPUtil.put(getActivity(), ACCOUNT_KEY, accountEt.getText().toString());
+                SPUtil.put(getActivity(), PASSWORD_KEY, passwordEt.getText().toString());
                 mViewModel.saveLoginInfo(getContext(), v2ProfileRespPayLoad,userName);
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             } else {
+                SPUtil.put(getActivity(), LOGINED, true);
+                SPUtil.put(getActivity(), ACCOUNT_KEY, "");
+                SPUtil.put(getActivity(), PASSWORD_KEY, "");
                 WidgetUtil.showSnackBar(getActivity(), v2ProfileRespPayLoad.getMessage());
             }
         }, throwable -> WidgetUtil.showSnackBar(getActivity(), throwable.getMessage()));

@@ -24,6 +24,8 @@ public class LoginViewModel extends ViewModel {
     public static final String SESSION_EXPIRE_KEY = "session_expire_key";
     public static final String TOKEN = "token";
     public static final String LOGINED = "logined";
+    public static final String ACCOUNT_KEY = "account";
+    public static final String PASSWORD_KEY = "password";
 
     public boolean canFastLogin(Context context) {
         return (boolean) SPUtil.get(context, LOGINED, false);
