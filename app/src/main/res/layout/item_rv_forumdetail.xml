@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:layout_marginLeft="5dp"
+                                   android:layout_marginTop="7dp"
+                                   android:layout_marginRight="5dp"
+                                   android:minHeight="104dp"
+                                   android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_marginTop="17dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="23dp">
+
+
+            <ImageView
+                android:id="@+id/avatarIv"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_marginLeft="11dp"
+                android:src="@mipmap/ic_launcher"
+                />
+
+
+            <TextView
+                android:id="@+id/nameTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="3dp"
+                android:layout_toRightOf="@+id/avatarIv"
+                android:text="奋飞"
+                android:textColor="#ff66adff"
+                android:textSize="12sp"
+                />
+
+
+            <TextView
+                android:id="@+id/labelTv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="9dp"
+                android:layout_toRightOf="@id/nameTv"
+                android:gravity="center_vertical"
+                android:text="楼主"
+                android:textColor="#ff999999"
+                android:textSize="12sp"
+                />
+
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/contentTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nameTv"
+            android:layout_marginLeft="43dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="44dp"
+            android:text="正好项目用到了，谢谢！"
+            android:textColor="#ff333333"
+            android:textSize="13sp"
+            />
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="43dp"
+        android:layout_marginRight="11dp"
+        android:layout_marginBottom="17dp">
+
+
+        <TextView
+            android:id="@+id/timeTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1小时前"
+            android:textColor="#ff999999"
+            android:textSize="12sp"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/timeTv"
+            android:text="@string/reply"
+            android:textColor="#ff333333"
+            android:layout_marginLeft="10dp"
+            android:textSize="12sp"
+            />
+
+
+        <com.ifreedomer.cplus.widget.PicTextItem
+            android:id="@+id/diggPicItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/diggPicItem"
+            android:text="@string/report"
+            android:textColor="#ff999999"
+            android:textSize="12sp"
+            />
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

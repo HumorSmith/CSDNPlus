@@ -168,6 +168,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="forum">论坛</string>
     <string name="comment">评论</string>
+    <!--<string name="reply">回复</string>-->
+    <string name="report">举报</string>
+    <string name="digg">赞</string>
+    <string name="floor">楼</string>
+    <string name="floor_owner">楼主</string>
 
 
     <string-array name="forum_key">

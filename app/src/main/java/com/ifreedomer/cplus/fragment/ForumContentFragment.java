@@ -1,6 +1,9 @@
 package com.ifreedomer.cplus.fragment;
 
+import android.content.Intent;
+
 import com.ifreedomer.cplus.R;
+import com.ifreedomer.cplus.activity.ForumDetailActivity;
 import com.ifreedomer.cplus.adapter.HotForumAdapter;
 import com.ifreedomer.cplus.fragment.common.BasePullRefreshPageFragment;
 import com.ifreedomer.cplus.http.center.HttpManager;
@@ -29,7 +32,13 @@ public class ForumContentFragment extends BasePullRefreshPageFragment<ForumHotRe
 
     @Override
     protected void initAdapter() {
-        mRecycleview.setAdapter(new HotForumAdapter(R.layout.item_rv_forum, mDataList));
+        HotForumAdapter hotForumAdapter = new HotForumAdapter(R.layout.item_rv_forum, mDataList);
+        hotForumAdapter.setOnItemClickListener((adapter, view, position) -> {
+            Intent intent = new Intent(getActivity(), ForumDetailActivity.class);
+            intent.putExtra(ForumDetailActivity.TOPIC_ID_KEY, mDataList.get(position).getId());
+            startActivity(intent);
+        });
+        mRecycleview.setAdapter(hotForumAdapter);
         mRecycleview.setLayoutManager(new LinearLayoutManager(getActivity()));
         setBackground(getResources().getColor(R.color.searhbarColor));
     }

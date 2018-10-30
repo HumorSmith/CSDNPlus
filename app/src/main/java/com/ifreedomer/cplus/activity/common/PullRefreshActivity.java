@@ -83,7 +83,7 @@ public abstract class PullRefreshActivity<T> extends AppCompatActivity {
 //            LogUtil.d(TAG, "listpayload = " + listPayLoad.toString());
         if (code == PayLoad.SUCCESS) {
 
-            if (getCurPage() == 0) {
+            if (getCurPage() == mFirstPage) {
                 mDataList.clear();
             }
             if (list.size() == 0) {

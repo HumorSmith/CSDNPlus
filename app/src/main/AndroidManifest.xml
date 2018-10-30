@@ -71,6 +71,8 @@
             android:name="UMENG_CHANNEL"
             android:value="InnterTest"/>
 
+        <activity android:name=".activity.ForumDetailActivity">
+        </activity>
     </application>
 
 </manifest>

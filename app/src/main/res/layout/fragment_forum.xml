@@ -15,16 +15,24 @@
         android:textSize="15sp"
         />
 
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        app:tabIndicatorColor="@color/colorPrimary"
-        app:tabMode="fixed"
-        app:tabSelectedTextColor="#1E73ED"
-        />
+        android:layout_marginTop="10dp">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            app:tabIndicatorColor="@color/colorPrimary"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="#1E73ED"
+            />
+
+
+
+
+    </RelativeLayout>
 
 
     <androidx.viewpager.widget.ViewPager

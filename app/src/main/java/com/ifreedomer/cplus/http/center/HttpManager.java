@@ -39,6 +39,7 @@ import com.ifreedomer.cplus.http.protocol.resp.DiggResp;
 import com.ifreedomer.cplus.http.protocol.resp.FollowOperationResp;
 import com.ifreedomer.cplus.http.protocol.resp.FollowResp;
 import com.ifreedomer.cplus.http.protocol.resp.ForgetPwdUserNameResp;
+import com.ifreedomer.cplus.http.protocol.resp.ForumDetailResp;
 import com.ifreedomer.cplus.http.protocol.resp.ForumHotResp;
 import com.ifreedomer.cplus.http.protocol.resp.GetRelationResp;
 import com.ifreedomer.cplus.http.protocol.resp.GetUserTokenResp;
@@ -428,6 +429,11 @@ public class HttpManager {
         return hotForumObserver.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 
+
+    public Observable<PayLoad<List<ForumDetailResp>>> getForumDetail(String topicId, int page, int pageSize) {
+        Observable<PayLoad<List<ForumDetailResp>>> forumDetailObserver = retrofit.create(ForumApi.class).getForumDetail(topicId, page, pageSize, "");
+        return forumDetailObserver.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+    }
 
 
     public void verifyCode(String verifyCode) {
