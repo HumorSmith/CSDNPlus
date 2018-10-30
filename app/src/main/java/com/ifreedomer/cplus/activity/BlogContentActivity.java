@@ -250,7 +250,6 @@ public class BlogContentActivity extends AppCompatActivity implements View.OnCli
         MenuItem item = toolbar.getMenu().findItem(R.id.collectItem);
         item.setChecked(isChecked);
         item.setIcon(isChecked ? R.mipmap.ic_collect_press : R.mipmap.ic_collect);
-
     }
 
     @Override
@@ -304,6 +303,7 @@ public class BlogContentActivity extends AppCompatActivity implements View.OnCli
         Disposable subscribe = collectObserver.subscribe(addCollectRespPayLoad -> {
             if (addCollectRespPayLoad.getCode() == PayLoad.SUCCESS && addCollectRespPayLoad.getData().getSuccess() == 1) {
                 WidgetUtil.showSnackBar(BlogContentActivity.this, getString(R.string.collect_success));
+                mFavoriteId = addCollectRespPayLoad.getData().getData().getId() + "";
                 setCollectIcon(true);
             } else {
                 if (!TextUtils.isEmpty(addCollectRespPayLoad.getMessage())) {
