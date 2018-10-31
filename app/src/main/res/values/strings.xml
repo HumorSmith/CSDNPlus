@@ -120,7 +120,7 @@
     <string name="not_login_yet">你还没有登录</string>
     <string name="delpoy_success">发布成功</string>
     <string name="deploy_failed">发布失败</string>
-    <string name="write_article">写文章</string>
+    <string name="write_article">创作</string>
     <string name="no_comment_yet">暂时还没有评论哦</string>
     <string name="wait_for">消息功能还在等CSDN开放接口</string>
     <string name="donate">捐赠</string>
