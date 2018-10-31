@@ -436,6 +436,12 @@ public class HttpManager {
     }
 
 
+    public Observable<PayLoad<Boolean>> forumDigg(String userName, String topicId, String postId) {
+        Observable<PayLoad<Boolean>> diggObserver = retrofit.create(ForumApi.class).digg(userName, topicId, postId);
+        return diggObserver.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+    }
+
+
     public void verifyCode(String verifyCode) {
 
         Observable<PayLoad<AddCollectResp>> collectObserver = retrofit.create(CollectApi.class).addCollect("", "", "");

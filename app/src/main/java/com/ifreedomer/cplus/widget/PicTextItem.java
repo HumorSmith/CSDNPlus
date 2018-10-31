@@ -44,5 +44,9 @@ public class PicTextItem extends LinearLayout {
         itemIv.setImageResource(icon);
     }
 
+    public void setSelect(boolean selected) {
+        itemIv.setSelected(selected);
+    }
+
 
 }

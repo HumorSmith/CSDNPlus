@@ -21,5 +21,9 @@ public interface ForumApi {
     );
 
 
+    @GET("api/v2/bbs/digg")
+    Observable<PayLoad<Boolean>> digg(@Query("username") String username, @Query("topic_id") String topicId, @Query("post_id") String postId);
+
+
 
 }

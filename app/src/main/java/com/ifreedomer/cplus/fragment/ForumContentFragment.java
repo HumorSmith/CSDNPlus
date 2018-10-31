@@ -36,6 +36,7 @@ public class ForumContentFragment extends BasePullRefreshPageFragment<ForumHotRe
         hotForumAdapter.setOnItemClickListener((adapter, view, position) -> {
             Intent intent = new Intent(getActivity(), ForumDetailActivity.class);
             intent.putExtra(ForumDetailActivity.TOPIC_ID_KEY, mDataList.get(position).getId());
+            intent.putExtra(ForumDetailActivity.TITLE_KEY,mDataList.get(position).getTitle());
             startActivity(intent);
         });
         mRecycleview.setAdapter(hotForumAdapter);
