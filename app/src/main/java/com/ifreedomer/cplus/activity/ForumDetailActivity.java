@@ -103,6 +103,7 @@ public class ForumDetailActivity extends PullRefreshActivity<ForumDetailResp> {
         Disposable subscribe = postForumObserver.subscribe(forumPostRespPayLoad -> {
             if (forumPostRespPayLoad.getCode() == PayLoad.SUCCESS) {
                 WidgetUtil.showSnackBar(ForumDetailActivity.this, getString(R.string.comment_success));
+                contentEt.setText("");
             } else {
                 WidgetUtil.showSnackBar(ForumDetailActivity.this, forumPostRespPayLoad.getMessage());
             }
