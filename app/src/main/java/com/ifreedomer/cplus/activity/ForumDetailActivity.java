@@ -15,6 +15,7 @@ import com.ifreedomer.cplus.http.protocol.resp.AddCollectResp;
 import com.ifreedomer.cplus.http.protocol.resp.CheckCollectResp;
 import com.ifreedomer.cplus.http.protocol.resp.DeleteCollectResp;
 import com.ifreedomer.cplus.http.protocol.resp.ForumDetailResp;
+import com.ifreedomer.cplus.http.protocol.resp.ForumPostResp;
 import com.ifreedomer.cplus.manager.GlobalDataManager;
 import com.ifreedomer.cplus.util.ShareUtil;
 import com.ifreedomer.cplus.util.ToolbarUtil;
@@ -84,7 +85,28 @@ public class ForumDetailActivity extends PullRefreshActivity<ForumDetailResp> {
         ForumDetailAdapter forumDetailAdapter = new ForumDetailAdapter(mTopicId, R.layout.item_rv_forumdetail, mDataList);
         forumDetailAdapter.setReplyOnclickListener(forumDetailResp -> contentEt.setHint(getString(R.string.reply) + forumDetailResp.getNickname() + ":"));
         recycleview.setAdapter(forumDetailAdapter);
+        sendTv.setOnClickListener(v -> postForum());
         fetchData(mFirstPage);
+    }
+
+    private void postForum() {
+        if (TextUtils.isEmpty(contentEt.getText())) {
+            WidgetUtil.showSnackBar(ForumDetailActivity.this, getString(R.string.comment_cannot_null));
+            return;
+        }
+        if (contentEt.getText().toString().length() < 10) {
+            WidgetUtil.showSnackBar(ForumDetailActivity.this, getString(R.string.comment_too_short));
+            return;
+        }
+
+        Observable<PayLoad<ForumPostResp>> postForumObserver = HttpManager.getInstance().forumPost(mTopicId, contentEt.getText().toString(), GlobalDataManager.getInstance().getUserInfo().getUserName());
+        Disposable subscribe = postForumObserver.subscribe(forumPostRespPayLoad -> {
+            if (forumPostRespPayLoad.getCode() == PayLoad.SUCCESS) {
+                WidgetUtil.showSnackBar(ForumDetailActivity.this, getString(R.string.comment_success));
+            } else {
+                WidgetUtil.showSnackBar(ForumDetailActivity.this, forumPostRespPayLoad.getMessage());
+            }
+        }, throwable -> WidgetUtil.showSnackBar(ForumDetailActivity.this, throwable.getMessage()));
     }
 
 

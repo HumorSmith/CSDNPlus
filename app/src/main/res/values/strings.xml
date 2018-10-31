@@ -173,6 +173,8 @@
     <string name="digg">赞</string>
     <string name="floor">楼</string>
     <string name="floor_owner">楼主</string>
+    <string name="comment_cannot_null">评论内容不能为空</string>
+    <string name="comment_too_short">评论不能少于十个字</string>
 
 
     <string-array name="forum_key">

@@ -41,6 +41,7 @@ import com.ifreedomer.cplus.http.protocol.resp.FollowResp;
 import com.ifreedomer.cplus.http.protocol.resp.ForgetPwdUserNameResp;
 import com.ifreedomer.cplus.http.protocol.resp.ForumDetailResp;
 import com.ifreedomer.cplus.http.protocol.resp.ForumHotResp;
+import com.ifreedomer.cplus.http.protocol.resp.ForumPostResp;
 import com.ifreedomer.cplus.http.protocol.resp.GetRelationResp;
 import com.ifreedomer.cplus.http.protocol.resp.GetUserTokenResp;
 import com.ifreedomer.cplus.http.protocol.resp.GetVerifyCodeResp;
@@ -441,6 +442,18 @@ public class HttpManager {
         return diggObserver.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 
+
+    public Observable<PayLoad<ForumPostResp>> forumPost(String topicId, String body, String userName) {
+        RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("topic_id", topicId)
+                .addFormDataPart("body", body)
+                .addFormDataPart("username", userName)
+                .build();
+        Observable<PayLoad<ForumPostResp>> payLoadObservable = retrofit.create(ForumApi.class).forumPost(requestBody);
+        return payLoadObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+
+    }
 
     public void verifyCode(String verifyCode) {
 
