@@ -188,4 +188,19 @@
         <item>nontech</item>
     </string-array>
 
+
+    <string-array name="forum_reports">
+        <item>其他</item>
+        <item>色情</item>
+        <item>政治</item>
+        <item>广告</item>
+        <item>招聘</item>
+        <item>刷屏</item>
+        <item>刷分</item>
+        <item>灌水</item>
+        <item>骂人</item>
+        <item>跑题</item>
+        <item>更正</item>
+    </string-array>
+
 </resources>

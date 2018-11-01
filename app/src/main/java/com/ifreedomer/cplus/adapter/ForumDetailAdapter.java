@@ -22,10 +22,12 @@ import com.ifreedomer.cplus.widget.PicTextItem;
 import java.util.List;
 
 import androidx.annotation.Nullable;
+import io.reactivex.disposables.Disposable;
 
 public class ForumDetailAdapter extends BaseQuickAdapter<ForumDetailResp, BaseViewHolder> {
     private String mTopicId;
     private ForumDetailActivity.ReplyClickListener mReplyOnclickListener;
+    private ForumDetailActivity.ReportClickListener reportClickListener;
 
     public ForumDetailAdapter(String topicId, int layoutResId, @Nullable List<ForumDetailResp> data) {
         super(layoutResId, data);
@@ -51,6 +53,7 @@ public class ForumDetailAdapter extends BaseQuickAdapter<ForumDetailResp, BaseVi
                 mReplyOnclickListener.onClick(item);
             }
         });
+        helper.getView(R.id.reportTv).setOnClickListener(v -> report(item, userName));
         TextView contentTv = helper.getView(R.id.contentTv);
         contentTv.setText(Html.fromHtml(item.getBody()));
 //        helper.setText(R.id.contentTv, item.getBody());
@@ -65,8 +68,16 @@ public class ForumDetailAdapter extends BaseQuickAdapter<ForumDetailResp, BaseVi
         Glide.with((View) helper.getView(R.id.avatarIv)).load(item.getAvatar()).apply(RequestOptions.bitmapTransform(new CircleCrop())).into((ImageView) helper.getView(R.id.avatarIv));
     }
 
+    private void report(ForumDetailResp item, String userName) {
+        if (reportClickListener!=null){
+            reportClickListener.onClick(item);
+        }
+//        Observable<PayLoad<Boolean>> payLoadObservable = HttpManager.getInstance().forumReport(0, mTopicId, item.getPost_id() + "", userName);
+//        Disposable subscribe = payLoadObservable.subscribe(booleanPayLoad -> WidgetUtil.showSnackBar((Activity) mContext, booleanPayLoad.getMessage()), throwable -> WidgetUtil.showSnackBar((Activity) mContext, throwable.getMessage()));
+    }
+
     private void digg(ForumDetailResp item, String userName) {
-        HttpManager.getInstance().forumDigg(userName, mTopicId, item.getPost_id() + "").subscribe(booleanPayLoad -> {
+        Disposable subscribe = HttpManager.getInstance().forumDigg(userName, mTopicId, item.getPost_id() + "").subscribe(booleanPayLoad -> {
             if (booleanPayLoad.getData()) {
                 item.setIs_digged(!item.isIs_digged());
                 notifyDataSetChanged();
@@ -77,4 +88,11 @@ public class ForumDetailAdapter extends BaseQuickAdapter<ForumDetailResp, BaseVi
     }
 
 
+    public void setReportClickListener(ForumDetailActivity.ReportClickListener reportClickListener) {
+        this.reportClickListener = reportClickListener;
+    }
+
+    public ForumDetailActivity.ReportClickListener getReportClickListener() {
+        return reportClickListener;
+    }
 }

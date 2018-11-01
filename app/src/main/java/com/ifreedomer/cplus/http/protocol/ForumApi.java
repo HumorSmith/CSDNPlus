@@ -33,6 +33,8 @@ public interface ForumApi {
     Observable<PayLoad<ForumPostResp>> forumPost(@Body RequestBody body);
 
 
+    @GET("api/v2/bbs/report")
+    Observable<PayLoad<Boolean>> forumReport(@Query("reason_type") int reasonType, @Query("username") String username, @Query("topic_id") String topicId, @Query("post_id") String postId);
 
 
 }

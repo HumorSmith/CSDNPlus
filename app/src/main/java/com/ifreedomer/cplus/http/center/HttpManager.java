@@ -455,6 +455,14 @@ public class HttpManager {
 
     }
 
+
+    public Observable<PayLoad<Boolean>> forumReport(int reasonType,String topicId, String postId, String userName) {
+        Observable<PayLoad<Boolean>> payLoadObservable = retrofit.create(ForumApi.class).forumReport(reasonType,userName,topicId,postId);
+        return payLoadObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+
+    }
+
+
     public void verifyCode(String verifyCode) {
 
         Observable<PayLoad<AddCollectResp>> collectObserver = retrofit.create(CollectApi.class).addCollect("", "", "");

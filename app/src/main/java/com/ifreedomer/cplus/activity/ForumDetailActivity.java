@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.ifreedomer.cplus.R;
 import com.ifreedomer.cplus.activity.common.PullRefreshActivity;
 import com.ifreedomer.cplus.adapter.ForumDetailAdapter;
+import com.ifreedomer.cplus.fragment.BottomSheetListFragment;
 import com.ifreedomer.cplus.http.center.HttpManager;
 import com.ifreedomer.cplus.http.protocol.PayLoad;
 import com.ifreedomer.cplus.http.protocol.resp.AddCollectResp;
@@ -21,6 +22,7 @@ import com.ifreedomer.cplus.util.ShareUtil;
 import com.ifreedomer.cplus.util.ToolbarUtil;
 import com.ifreedomer.cplus.util.WidgetUtil;
 
+import java.util.Arrays;
 import java.util.List;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -41,6 +43,7 @@ public class ForumDetailActivity extends PullRefreshActivity<ForumDetailResp> {
     private String mFavoriteId;
     private String mUrl;
     private String mTitle;
+    private BottomSheetListFragment mBottomSheetDialogFragment;
 
 
     @Override
@@ -76,6 +79,7 @@ public class ForumDetailActivity extends PullRefreshActivity<ForumDetailResp> {
 
     @Override
     public void initTitleAndAdapter() {
+        String userName = GlobalDataManager.getInstance().getUserInfo().getUserName();
         ToolbarUtil.setTitleBarWithBack(this, toolbar, "");
         mTopicId = getIntent().getIntExtra(TOPIC_ID_KEY, -1) + "";
         mTitle = getIntent().getStringExtra(TITLE_KEY);
@@ -84,9 +88,29 @@ public class ForumDetailActivity extends PullRefreshActivity<ForumDetailResp> {
         recycleview.setLayoutManager(new LinearLayoutManager(this));
         ForumDetailAdapter forumDetailAdapter = new ForumDetailAdapter(mTopicId, R.layout.item_rv_forumdetail, mDataList);
         forumDetailAdapter.setReplyOnclickListener(forumDetailResp -> contentEt.setHint(getString(R.string.reply) + forumDetailResp.getNickname() + ":"));
+        forumDetailAdapter.setReportClickListener((forumDetailResp) -> {
+            mBottomSheetDialogFragment = new BottomSheetListFragment();
+            String[] stringArray = getResources().getStringArray(R.array.forum_reports);
+            List<String> reports = Arrays.asList(stringArray);
+            mBottomSheetDialogFragment.setDataList(reports);
+            mBottomSheetDialogFragment.show(getSupportFragmentManager(), "dialog");
+            mBottomSheetDialogFragment.setOnItemClickListener((adapter, view, position) -> report(position, forumDetailResp, userName));
+
+        });
         recycleview.setAdapter(forumDetailAdapter);
         sendTv.setOnClickListener(v -> postForum());
         fetchData(mFirstPage);
+    }
+
+    private void report(int position, ForumDetailResp forumDetailResp, String userName) {
+        Observable<PayLoad<Boolean>> reportObserver = HttpManager.getInstance().forumReport(position, mTopicId, forumDetailResp.getPost_id() + "", userName);
+        Disposable subscribe = reportObserver.subscribe(booleanPayLoad -> {
+                    if (mBottomSheetDialogFragment != null && mBottomSheetDialogFragment.isAdded()) {
+                        mBottomSheetDialogFragment.dismiss();
+                    }
+                    WidgetUtil.showSnackBar(ForumDetailActivity.this, booleanPayLoad.getMessage());
+                }, throwable -> WidgetUtil.showSnackBar(ForumDetailActivity.this, throwable.getMessage())
+        );
     }
 
     private void postForum() {
@@ -168,6 +192,10 @@ public class ForumDetailActivity extends PullRefreshActivity<ForumDetailResp> {
 
 
     public interface ReplyClickListener {
+        void onClick(ForumDetailResp forumDetailResp);
+    }
+
+    public interface ReportClickListener {
         void onClick(ForumDetailResp forumDetailResp);
     }
 
