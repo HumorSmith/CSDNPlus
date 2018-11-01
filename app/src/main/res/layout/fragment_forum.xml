@@ -30,7 +30,26 @@
             />
 
 
+        <ImageView
+            android:id="@+id/writeIv"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:src="@mipmap/ic_write"
+            android:visibility="gone"/>
 
+
+        <ImageView
+            android:id="@+id/searchIv"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@id/writeIv"
+            android:src="@mipmap/ic_search"
+            android:visibility="gone"/>
 
     </RelativeLayout>
 
