@@ -44,6 +44,7 @@ public class ForumDetailActivity extends PullRefreshActivity<ForumDetailResp> {
     private String mUrl;
     private String mTitle;
     private BottomSheetListFragment mBottomSheetDialogFragment;
+    private ForumDetailResp mReplyForumDetailResp;
 
 
     @Override
@@ -87,7 +88,11 @@ public class ForumDetailActivity extends PullRefreshActivity<ForumDetailResp> {
         mUrl = "http://bbs.csdn.net/topics/" + mTopicId;
         recycleview.setLayoutManager(new LinearLayoutManager(this));
         ForumDetailAdapter forumDetailAdapter = new ForumDetailAdapter(mTopicId, R.layout.item_rv_forumdetail, mDataList);
-        forumDetailAdapter.setReplyOnclickListener(forumDetailResp -> contentEt.setHint(getString(R.string.reply) + forumDetailResp.getNickname() + ":"));
+        forumDetailAdapter.setReplyOnclickListener(forumDetailResp ->
+        {
+            mReplyForumDetailResp = forumDetailResp;
+            contentEt.setHint(getString(R.string.reply) + forumDetailResp.getNickname() + ":");
+        });
         forumDetailAdapter.setReportClickListener((forumDetailResp) -> {
             mBottomSheetDialogFragment = new BottomSheetListFragment();
             String[] stringArray = getResources().getStringArray(R.array.forum_reports);
@@ -98,7 +103,15 @@ public class ForumDetailActivity extends PullRefreshActivity<ForumDetailResp> {
 
         });
         recycleview.setAdapter(forumDetailAdapter);
-        sendTv.setOnClickListener(v -> postForum());
+        sendTv.setOnClickListener(v -> {
+            if (mReplyForumDetailResp != null) {
+                String replayCreate = replayCreate(mReplyForumDetailResp);
+                postForum(replayCreate);
+            } else {
+                postForum("");
+            }
+
+        });
         fetchData(mFirstPage);
     }
 
@@ -113,7 +126,7 @@ public class ForumDetailActivity extends PullRefreshActivity<ForumDetailResp> {
         );
     }
 
-    private void postForum() {
+    private void postForum(String prefix) {
         if (TextUtils.isEmpty(contentEt.getText())) {
             WidgetUtil.showSnackBar(ForumDetailActivity.this, getString(R.string.comment_cannot_null));
             return;
@@ -122,8 +135,8 @@ public class ForumDetailActivity extends PullRefreshActivity<ForumDetailResp> {
             WidgetUtil.showSnackBar(ForumDetailActivity.this, getString(R.string.comment_too_short));
             return;
         }
-
-        Observable<PayLoad<ForumPostResp>> postForumObserver = HttpManager.getInstance().forumPost(mTopicId, contentEt.getText().toString(), GlobalDataManager.getInstance().getUserInfo().getUserName());
+        String content = prefix + contentEt.getText().toString();
+        Observable<PayLoad<ForumPostResp>> postForumObserver = HttpManager.getInstance().forumPost(mTopicId, content, GlobalDataManager.getInstance().getUserInfo().getUserName());
         Disposable subscribe = postForumObserver.subscribe(forumPostRespPayLoad -> {
             if (forumPostRespPayLoad.getCode() == PayLoad.SUCCESS) {
                 WidgetUtil.showSnackBar(ForumDetailActivity.this, getString(R.string.comment_success));
@@ -197,6 +210,10 @@ public class ForumDetailActivity extends PullRefreshActivity<ForumDetailResp> {
 
     public interface ReportClickListener {
         void onClick(ForumDetailResp forumDetailResp);
+    }
+
+    public String replayCreate(ForumDetailResp forumDetailResp) {
+        return String.format("[quote=引用 %d楼 %s的回复:]%s[/quote]", forumDetailResp.getFloor(), forumDetailResp.getNickname(), forumDetailResp.getBody());
     }
 
 }
