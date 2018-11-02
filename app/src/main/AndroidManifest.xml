@@ -73,6 +73,10 @@
 
         <activity android:name=".activity.ForumDetailActivity">
         </activity>
+        <activity android:name=".activity.ForumDeployActivity">
+        </activity>
+        <activity android:name=".activity.SelectScoreActivity">
+        </activity>
     </application>
 
 </manifest>

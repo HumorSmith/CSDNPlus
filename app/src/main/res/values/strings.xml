@@ -159,8 +159,18 @@
         <item>研发管理</item>
         <item>运维</item>
         <item>云计算/大数据</item>
+    </string-array>
 
-
+    <string-array name="scores">
+        <item>0</item>
+        <item>50</item>
+        <item>100</item>
+        <item>150</item>
+        <item>200</item>
+        <item>250</item>
+        <item>300</item>
+        <item>350</item>
+        <item>400</item>
     </string-array>
 
 
@@ -175,6 +185,9 @@
     <string name="floor_owner">楼主</string>
     <string name="comment_cannot_null">评论内容不能为空</string>
     <string name="comment_too_short">评论不能少于十个字</string>
+    <string name="select_module">选择版块</string>
+    <string name="select_score">选择分数</string>
+    <string name="deploy_forum">发帖</string>
 
 
     <string-array name="forum_key">

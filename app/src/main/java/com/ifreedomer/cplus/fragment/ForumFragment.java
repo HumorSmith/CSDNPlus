@@ -1,12 +1,15 @@
 package com.ifreedomer.cplus.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.ifreedomer.cplus.R;
+import com.ifreedomer.cplus.activity.ForumDeployActivity;
 import com.ifreedomer.cplus.adapter.ViewPagerFragmentAdapter;
 import com.ifreedomer.cplus.entity.NewsTabInfo;
 
@@ -26,6 +29,10 @@ public class ForumFragment extends Fragment {
     TabLayout tab;
     @BindView(R.id.viewpager)
     ViewPager viewpager;
+    @BindView(R.id.writeIv)
+    ImageView writeIv;
+    @BindView(R.id.searchIv)
+    ImageView searchIv;
 
     private List<NewsTabInfo> mTabInfoList = new ArrayList<>();
     private List<Fragment> mFragmentList = new ArrayList<>();
@@ -37,7 +44,12 @@ public class ForumFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_forum, null);
         ButterKnife.bind(this, view);
         setupViewPagerAndTab();
+        initView();
         return view;
+    }
+
+    private void initView() {
+        writeIv.setOnClickListener(v -> startActivity(new Intent(getActivity(), ForumDeployActivity.class)));
     }
 
 

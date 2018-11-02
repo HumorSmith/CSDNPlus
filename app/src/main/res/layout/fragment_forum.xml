@@ -38,7 +38,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="15dp"
             android:src="@mipmap/ic_write"
-            android:visibility="gone"/>
+            />
 
 
         <ImageView

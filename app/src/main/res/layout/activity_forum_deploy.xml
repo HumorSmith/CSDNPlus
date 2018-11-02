@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.ForumDeployActivity">
+
+    <include layout="@layout/layout_toolbar"/>
+
+
+    <RelativeLayout
+        android:id="@+id/editRelayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginTop="7dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/titleRelayout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@color/whiteColor"
+            android:elevation="4px">
+
+
+            <ImageView
+                android:id="@+id/titleIv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="9dp"
+                android:src="@mipmap/ic_title_prefix"/>
+
+            <EditText
+                android:id="@+id/titleEt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/titleIv"
+                android:background="@null"
+                android:hint="@string/input_title"
+                android:paddingLeft="10dp"
+                android:textSize="12sp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/contentRelayout"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@+id/titleRelayout"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginRight="5dp"
+            android:background="@color/whiteColor">
+
+            <ImageView
+                android:id="@+id/contentIv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="9dp"
+                android:paddingTop="15dp"
+                android:src="@mipmap/ic_content_prefix"/>
+
+            <EditText
+                android:id="@+id/markdownEt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/contentIv"
+                android:background="@null"
+                android:gravity="top"
+                android:hint="@string/share_your_origin"
+                android:paddingTop="15dp"
+                android:textSize="12sp"/>
+        </RelativeLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/selectScoreLayout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/contentRelayout"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
+
+            <com.ifreedomer.cplus.widget.SettingItem
+                android:id="@+id/scoreItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/selectScoreLayout"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/select_module"
+                    android:textColor="#e6333333"
+                    android:textSize="13sp"
+                    />
+
+
+                <TextView
+                    android:id="@+id/editTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="16dp"
+                    android:text="编辑"
+                    android:textColor="#ff999999"
+                    android:textSize="12sp"
+                    />
+
+
+                <co.lujun.androidtagview.TagContainerLayout
+                    android:id="@+id/forumTagGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/editTv"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:padding="10dp"
+                    app:container_background_color="#00FFFFFF"
+                    app:container_border_color="#00FFFFFF"
+                    app:container_border_radius="0dp"
+                    app:container_enable_drag="false"
+                    app:horizontal_interval="10dp"
+                    app:tag_background_color="#00FFFFFF"
+                    app:tag_border_color="#ff666666"
+                    app:tag_clickable="true"
+                    app:tag_text_color="@color/tagUnselectColor"
+                    app:tag_theme="none"
+                    app:vertical_interval="10dp"/>
+
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+</LinearLayout>
