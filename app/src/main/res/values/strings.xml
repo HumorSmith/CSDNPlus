@@ -188,6 +188,7 @@
     <string name="select_module">选择版块</string>
     <string name="select_score">选择分数</string>
     <string name="deploy_forum">发帖</string>
+    <string name="search_no_result">没有搜索到内容</string>
 
 
     <string-array name="forum_key">

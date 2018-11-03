@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -66,15 +67,28 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         recommandTagGroup.setOnTagClickListener(new TagGroup.OnTagClickListener() {
             @Override
             public void onTagClick(String tag) {
-                addHistoryTag(tag);
-                Intent intent = new Intent(SearchActivity.this, SearchDetailActivity.class);
-                intent.putExtra(SearchDetailActivity.TAG_KEY, tag);
-                startActivityForResult(intent, REQUEST_DETAIL_CODE);
+                showSearchDetailActivity(tag);
             }
+        });
+        searchEt.setOnEditorActionListener((v, actionId, event) -> {
+            switch (actionId) {
+                case EditorInfo.IME_ACTION_NEXT:
+                    showSearchDetailActivity(searchEt.getText().toString());
+                    return true;
+
+            }
+            return false;
         });
 
         historyTagGroup.setTags(loadHistoryTag());
 
+    }
+
+    private void showSearchDetailActivity(String tag) {
+        addHistoryTag(tag);
+        Intent intent = new Intent(SearchActivity.this, SearchDetailActivity.class);
+        intent.putExtra(SearchDetailActivity.TAG_KEY, tag);
+        startActivityForResult(intent, REQUEST_DETAIL_CODE);
     }
 
     private TextWatcher mTextWatcher = new TextWatcher() {
@@ -107,6 +121,10 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         HttpManager.getInstance().search(tag).subscribe(new Consumer<PayLoad<SearchResp>>() {
             @Override
             public void accept(PayLoad<SearchResp> searchRespPayLoad) throws Exception {
+                if (searchRespPayLoad.getData().getData().size() == 0) {
+                    WidgetUtil.showSnackBar(SearchActivity.this, getString(R.string.search_no_result));
+                    return;
+                }
                 mDataList.clear();
                 mDataList.addAll(searchRespPayLoad.getData().getData());
                 recyclerview.getAdapter().notifyDataSetChanged();

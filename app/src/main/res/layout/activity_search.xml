@@ -40,6 +40,10 @@
             android:background="@drawable/ic_searchbar_shape"
             android:hint="工蜂Git系统构架"
             android:paddingLeft="20dp"
+
+            android:imeOptions="actionNext"
+            android:inputType="text|textNoSuggestions"
+
             android:textSize="13sp"/>
 
         <include
