@@ -5,6 +5,7 @@ import android.util.Base64;
 
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import javax.crypto.BadPaddingException;
@@ -76,5 +77,32 @@ public class SecurityUtil {
             e6.printStackTrace();
             return "";
         }
+    }
+
+
+    public static String getSignatureByMD5(String paramString) {
+        try {
+            char[] arrayOfChar1 = {48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 65, 66, 67, 68, 69, 70};
+            MessageDigest localMessageDigest = MessageDigest.getInstance("MD5");
+            localMessageDigest.update(paramString.getBytes("UTF-8"));
+            byte[] arrayOfByte = localMessageDigest.digest();
+            int i = arrayOfByte.length;
+            char[] arrayOfChar2 = new char[i * 2];
+            int j = 0;
+            int k = 0;
+            while (true) {
+                if (j >= i)
+                    return new String(arrayOfChar2);
+                int m = arrayOfByte[j];
+                int n = k + 1;
+                arrayOfChar2[k] = arrayOfChar1[(0xF & m >>> 4)];
+                k = n + 1;
+                arrayOfChar2[n] = arrayOfChar1[(m & 0xF)];
+                j++;
+            }
+        } catch (Exception localException) {
+            localException.printStackTrace();
+        }
+        return null;
     }
 }

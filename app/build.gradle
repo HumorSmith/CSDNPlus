@@ -6,8 +6,8 @@ android {
         applicationId "com.ifreedomer.cplus"
         minSdkVersion 19
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 7
-        versionName "1.0.7"
+        versionCode 8
+        versionName "1.0.8"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -101,5 +101,8 @@ dependencies {
 
     implementation 'com.ifreedomer:com.ifreedomer.permissionhelper:1.0.7'
     implementation 'com.github.didikee:AndroidDonate:0.1.0'
+
+    implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
+
 
 }

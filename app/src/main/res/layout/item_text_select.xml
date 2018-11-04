@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/titleTv"
-        android:layout_width="27dp"
+        android:layout_width="wrap_content"
         android:layout_height="19dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="16dp"

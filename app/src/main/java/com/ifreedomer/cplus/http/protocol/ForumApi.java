@@ -36,5 +36,7 @@ public interface ForumApi {
     @GET("api/v2/bbs/report")
     Observable<PayLoad<Boolean>> forumReport(@Query("reason_type") int reasonType, @Query("username") String username, @Query("topic_id") String topicId, @Query("post_id") String postId);
 
+    @POST("api/v3/bbs/create_topic")
+    Observable<String> forumCreateTopic(@Body RequestBody formBody);
 
 }

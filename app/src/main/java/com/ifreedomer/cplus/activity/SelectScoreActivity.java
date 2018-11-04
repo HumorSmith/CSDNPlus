@@ -34,7 +34,7 @@ public class SelectScoreActivity extends AppCompatActivity {
     TextView myScoreTv;
     private List<String> mDataList = new ArrayList<>();
     public static final String SELECT_KEY = "select";
-    private String mSelectText;
+    private String mSelectText = "0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +72,7 @@ public class SelectScoreActivity extends AppCompatActivity {
 
     private void getBackIntent() {
         Intent intent = new Intent();
-        intent.putExtra(SELECT_KEY, mSelectText);
+        intent.putExtra(SELECT_KEY, Integer.parseInt(mSelectText));
         setResult(Activity.RESULT_OK, intent);
     }
 }

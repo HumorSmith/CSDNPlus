@@ -70,65 +70,98 @@
             </androidx.cardview.widget.CardView>
 
 
+            <!--<androidx.cardview.widget.CardView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="200dp"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:layout_marginTop="7dp"-->
+            <!--android:layout_marginRight="5dp">-->
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+
+            <!--android:paddingLeft="15dp"-->
+            <!--android:paddingRight="15dp">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/categoryTv"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="16dp"-->
+            <!--android:text="@string/person_category"-->
+            <!--android:textColor="#e6333333"-->
+            <!--android:textSize="13sp"-->
+            <!--/>-->
+
+
+            <!--<TextView-->
+            <!--android:layout_width="59dp"-->
+            <!--android:layout_height="17dp"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_marginTop="16dp"-->
+            <!--android:text="@string/edit"-->
+            <!--android:textColor="#ff666666"-->
+            <!--android:textSize="12sp"-->
+            <!--/>-->
+
+
+            <!--<co.lujun.androidtagview.TagContainerLayout-->
+            <!--android:id="@+id/personalCategoryTagGroup"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_below="@id/categoryTv"-->
+            <!--android:layout_margin="0dp"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:layout_marginBottom="20dp"-->
+            <!--android:padding="10dp"-->
+            <!--app:container_background_color="#00FFFFFF"-->
+            <!--app:container_border_color="#00FFFFFF"-->
+            <!--app:container_border_radius="0dp"-->
+            <!--app:container_enable_drag="false"-->
+            <!--app:horizontal_interval="10dp"-->
+            <!--app:tag_background_color="#00FFFFFF"-->
+            <!--app:tag_border_color="#ff666666"-->
+            <!--app:tag_clickable="true"-->
+            <!--app:tag_text_color="@color/tagUnselectColor"-->
+            <!--app:tag_theme="none"-->
+            <!--app:vertical_interval="10dp"/>-->
+
+
+            <!--</RelativeLayout>-->
+            <!--</androidx.cardview.widget.CardView>-->
+
+
             <androidx.cardview.widget.CardView
+                android:id="@+id/personalCardView"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="7dp"
-                android:layout_marginRight="5dp">
+                android:layout_marginRight="5dp"
+                >
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp">
-
-                    <TextView
-                        android:id="@+id/categoryTv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/person_category"
-                        android:textColor="#e6333333"
-                        android:textSize="13sp"
-                        />
+                <TextView
+                    android:layout_width="53dp"
+                    android:layout_height="19dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:text="@string/person_category"
+                    android:textColor="#e6333333"
+                    android:textSize="13sp"
+                    />
 
 
-                    <TextView
-                        android:layout_width="59dp"
-                        android:layout_height="17dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/edit"
-                        android:textColor="#ff666666"
-                        android:textSize="12sp"
-                        />
-
-
-                    <co.lujun.androidtagview.TagContainerLayout
-                        android:id="@+id/personalCategoryTagGroup"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_below="@id/categoryTv"
-                        android:layout_margin="0dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:padding="10dp"
-                        app:container_background_color="#00FFFFFF"
-                        app:container_border_color="#00FFFFFF"
-                        app:container_border_radius="0dp"
-                        app:container_enable_drag="false"
-                        app:horizontal_interval="10dp"
-                        app:tag_background_color="#00FFFFFF"
-                        app:tag_border_color="#ff666666"
-                        app:tag_clickable="true"
-                        app:tag_text_color="@color/tagUnselectColor"
-                        app:tag_theme="none"
-                        app:vertical_interval="10dp"/>
-
-
-                </RelativeLayout>
+                <TextView
+                    android:id="@+id/personalTv"
+                    android:layout_width="44dp"
+                    android:layout_height="17dp"
+                    android:layout_gravity="center_vertical|right"
+                    android:layout_marginRight="16dp"
+                    android:hint="@string/please_select"
+                    android:textColor="#ff999999"
+                    android:textSize="12sp"
+                    />
             </androidx.cardview.widget.CardView>
 
 
@@ -139,7 +172,6 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="7dp"
                 android:layout_marginRight="5dp"
-
                 >
 
                 <TextView

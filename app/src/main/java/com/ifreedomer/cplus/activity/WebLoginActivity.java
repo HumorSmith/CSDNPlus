@@ -104,7 +104,8 @@ public class WebLoginActivity extends AppCompatActivity implements View.OnClickL
                         intent.putExtra(BlogContentActivity.DATA, blogContentInfo);
                         startActivity(intent);
                     } else {
-                        WidgetUtil.showSnackBar(WebLoginActivity.this, deployBlogResp.getError());
+
+                        WidgetUtil.showSnackBar(WebLoginActivity.this,getString(R.string.please_login_first)+ deployBlogResp.getError());
                     }
                 }, throwable -> WidgetUtil.showSnackBar(WebLoginActivity.this, throwable.getMessage()));
 //                saveArticleRespObservable.subscribe(new Consumer<String>() {

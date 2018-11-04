@@ -17,6 +17,7 @@ import com.ifreedomer.cplus.http.protocol.H5ArticleApi;
 import com.ifreedomer.cplus.http.protocol.LoginAppV1Api;
 import com.ifreedomer.cplus.http.protocol.LoginV3Api;
 import com.ifreedomer.cplus.http.protocol.PayLoad;
+import com.ifreedomer.cplus.http.protocol.body.FormBodyCustom;
 import com.ifreedomer.cplus.http.protocol.req.GetVerifyCodeReq;
 import com.ifreedomer.cplus.http.protocol.req.LoginReq;
 import com.ifreedomer.cplus.http.protocol.resp.AddCollectResp;
@@ -54,11 +55,13 @@ import com.ifreedomer.cplus.http.protocol.resp.UserBlogInfoResp;
 import com.ifreedomer.cplus.http.protocol.resp.UserInfoResp;
 import com.ifreedomer.cplus.http.protocol.resp.V2ProfileResp;
 import com.ifreedomer.cplus.manager.GlobalDataManager;
+import com.ifreedomer.cplus.util.MD5Util;
 import com.ifreedomer.cplus.util.SecurityUtil;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -66,10 +69,14 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.RequestBody;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -456,10 +463,43 @@ public class HttpManager {
     }
 
 
-    public Observable<PayLoad<Boolean>> forumReport(int reasonType,String topicId, String postId, String userName) {
+    public Observable<PayLoad<Boolean>> forumReport(int reasonType, String topicId, String postId, String userName) {
         Observable<PayLoad<Boolean>> payLoadObservable = retrofit.create(ForumApi.class).forumReport(reasonType,userName,topicId,postId);
         return payLoadObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
 
+    }
+
+
+    public void forumCreateTopic(String title, String body, String forumId, int point) {
+        String sign = MD5Util.md5(new StringBuffer("title=").append(title).append("&forum_id=").append("MSSQL_NewTech").append("&key=").append(SecurityUtil.getSignatureByMD5("csdn-android-" + "3.1.2")).toString()).toUpperCase();
+
+//        FormBody requestBody = null;
+        FormBodyCustom formBodyCustom = new FormBodyCustom();
+        formBodyCustom.add("sign", sign);
+        formBodyCustom.add("title", title);
+        formBodyCustom.add("body", body);
+        formBodyCustom.add("point", point + "");
+        formBodyCustom.add("forum_id", "MSSQL_NewTech", true);
+        Request request = new Request.Builder().url("https://ms.csdn.net/api/v3/bbs/create_topic")
+                .post(formBodyCustom).build();
+
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Log.d(TAG, "RESPONSE = " + response.body().string());
+            }
+        });
+
+//        Observable<PayLoad<CreateTopicResp>> payLoadObservable = null;
+//        Observable<String> payLoadObservable = mStringRetrofit.create(ForumApi.class).forumCreateTopic(formBodyCustom);
+
+
+//        return payLoadObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 
 

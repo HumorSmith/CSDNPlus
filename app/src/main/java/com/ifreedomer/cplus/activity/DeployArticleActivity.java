@@ -9,9 +9,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.ifreedomer.cplus.R;
-import com.ifreedomer.cplus.http.center.HttpManager;
-import com.ifreedomer.cplus.http.protocol.PayLoad;
-import com.ifreedomer.cplus.http.protocol.resp.BlogCategoryResp;
 import com.ifreedomer.cplus.manager.GlobalDataManager;
 import com.ifreedomer.cplus.util.ToolbarUtil;
 import com.ifreedomer.cplus.util.WidgetUtil;
@@ -28,9 +25,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import co.lujun.androidtagview.TagContainerLayout;
-import co.lujun.androidtagview.TagView;
-import io.reactivex.Observable;
 import me.gujun.android.taggroup.TagGroup;
 
 import static com.ifreedomer.cplus.activity.BlogCategorySelectActivity.SELECT_KEY;
@@ -38,6 +32,7 @@ import static com.ifreedomer.cplus.activity.BlogCategorySelectActivity.SELECT_KE
 public class DeployArticleActivity extends AppCompatActivity implements View.OnClickListener {
     public static final int ARTICLE_CATEGORY_REQUEST_CODE = 1;
     public static final int BLOG_CATEGORY_REQUEST_CODE = 2;
+    public static final int PERSONAL_CATEGORY_REQUEST_CODE = 3;
 
     @BindView(R.id.titleTv)
     TextView titleTv;
@@ -47,13 +42,8 @@ public class DeployArticleActivity extends AppCompatActivity implements View.OnC
     TextView articleLabelTv;
     @BindView(R.id.articleLabelTagGroup)
     TagGroup articleLabelTagGroup;
-    @BindView(R.id.categoryTv)
-    TextView categoryTv;
-
     @BindView(R.id.appendTv)
     TextView appendTv;
-    @BindView(R.id.personalCategoryTagGroup)
-    TagContainerLayout personalTagGroup;
     @BindView(R.id.blogCategoryCardView)
     CardView blogCategoryCardView;
     @BindView(R.id.articleCategoryCardView)
@@ -64,6 +54,10 @@ public class DeployArticleActivity extends AppCompatActivity implements View.OnC
     TextView blogCategoryTv;
     @BindView(R.id.articleCategoryTv)
     TextView articleCategoryTv;
+    @BindView(R.id.personalTv)
+    TextView personalTv;
+    @BindView(R.id.personalCardView)
+    CardView personalCardView;
     private List<String> mSelectTagList = new ArrayList<>();
     private Map<String, String> articleMap = new HashMap<>();
 
@@ -79,48 +73,41 @@ public class DeployArticleActivity extends AppCompatActivity implements View.OnC
 
     private void initListener() {
         appendTv.setOnClickListener(this);
-        personalTagGroup.setOnTagClickListener(new TagView.OnTagClickListener() {
-            @Override
-            public void onTagClick(int position, String text) {
-                TagView tagView = personalTagGroup.getTagView(position);
-                if (mSelectTagList.contains(text)) {
-                    tagView.setTagTextColor(getResources().getColor(R.color.tagUnselectColor));
-                    tagView.setTagBackgroundColor(getResources().getColor(R.color.colorTranlate));
-                    mSelectTagList.remove(text);
-                } else {
-                    tagView.setTagBackgroundColor(getResources().getColor(R.color.tagSelectColor));
-                    tagView.setTagTextColor(getResources().getColor(R.color.whiteColor));
-                    mSelectTagList.add(text);
-                }
-
-            }
-
-            @Override
-            public void onTagLongClick(int position, String text) {
-
-            }
-
-            @Override
-            public void onTagCrossClick(int position) {
-
-            }
-        });
+//        personalTagGroup.setOnTagClickListener(new TagView.OnTagClickListener() {
+//            @Override
+//            public void onTagClick(int position, String text) {
+//                TagView tagView = personalTagGroup.getTagView(position);
+//                if (mSelectTagList.contains(text)) {
+//                    tagView.setTagTextColor(getResources().getColor(R.color.tagUnselectColor));
+//                    tagView.setTagBackgroundColor(getResources().getColor(R.color.colorTranlate));
+//                    mSelectTagList.remove(text);
+//                } else {
+//                    tagView.setTagBackgroundColor(getResources().getColor(R.color.tagSelectColor));
+//                    tagView.setTagTextColor(getResources().getColor(R.color.whiteColor));
+//                    mSelectTagList.add(text);
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onTagLongClick(int position, String text) {
+//
+//            }
+//
+//            @Override
+//            public void onTagCrossClick(int position) {
+//
+//            }
+//        });
 
         blogCategoryCardView.setOnClickListener(this);
         articleCategoryCardView.setOnClickListener(this);
+        personalCardView.setOnClickListener(this);
+
 
     }
 
     private void initData() {
-        Observable<PayLoad<List<BlogCategoryResp>>> blogCatergoryObserver = HttpManager.getInstance().getBlogCatergory(GlobalDataManager.getInstance().getUserInfo().getUserName());
-        blogCatergoryObserver.subscribe(listPayLoad -> {
-            if (listPayLoad.getCode() == PayLoad.SUCCESS) {
-                List<BlogCategoryResp> data = listPayLoad.getData();
-                addPersonalTag(data);
-            } else {
-                WidgetUtil.showSnackBar(DeployArticleActivity.this, listPayLoad.getMessage());
-            }
-        }, throwable -> WidgetUtil.showSnackBar(DeployArticleActivity.this, throwable.getMessage()));
 
 
         articleMap.put(getString(R.string.origin), "original");
@@ -128,13 +115,13 @@ public class DeployArticleActivity extends AppCompatActivity implements View.OnC
         articleMap.put(getString(R.string.translate), "translated");
     }
 
-    private void addPersonalTag(List<BlogCategoryResp> categoryList) {
-        List<String> tagList = new ArrayList<>();
-        for (int i = 0; i < categoryList.size(); i++) {
-            tagList.add(categoryList.get(i).getName());
-        }
-        personalTagGroup.setTags(tagList);
-    }
+//    private void addPersonalTag(List<BlogCategoryResp> categoryList) {
+//        List<String> tagList = new ArrayList<>();
+//        for (int i = 0; i < categoryList.size(); i++) {
+//            tagList.add(categoryList.get(i).getName());
+//        }
+//        personalTagGroup.setTags(tagList);
+//    }
 
 
     @Override
@@ -157,7 +144,7 @@ public class DeployArticleActivity extends AppCompatActivity implements View.OnC
             WidgetUtil.showSnackBar(DeployArticleActivity.this, getString(R.string.not_select_article_tag));
             return;
         }
-        if (mSelectTagList.isEmpty()) {
+        if (TextUtils.isEmpty(personalTv.getText().toString())) {
             WidgetUtil.showSnackBar(DeployArticleActivity.this, getString(R.string.not_select_personal_tag));
             return;
         }
@@ -172,14 +159,11 @@ public class DeployArticleActivity extends AppCompatActivity implements View.OnC
         }
 
         GlobalDataManager.getInstance().getDeployBlogContentInfo().setTags(getStringByTags(articleLabelTagGroupTags));
-        GlobalDataManager.getInstance().getDeployBlogContentInfo().setCategories(getStringByTags(mSelectTagList.toArray(new String[mSelectTagList.size()])));
+        GlobalDataManager.getInstance().getDeployBlogContentInfo().setCategories(getStringByTags(new String[]{personalTv.getText().toString()}));
         GlobalDataManager.getInstance().getDeployBlogContentInfo().setPrivate(privateSwith.isChecked());
-        GlobalDataManager.getInstance().getDeployBlogContentInfo().setDescription(privateSwith.isChecked()?getString(R.string.privateStr):getString(R.string.publicStr));
+        GlobalDataManager.getInstance().getDeployBlogContentInfo().setDescription(privateSwith.isChecked() ? getString(R.string.privateStr) : getString(R.string.publicStr));
         GlobalDataManager.getInstance().getDeployBlogContentInfo().setType(articleMap.get(articleCategoryTv.getText().toString()));
-//        HttpManager.getInstance().saveArticle(GlobalDataManager.getInstance().getDeployBlogContentInfo());
         startActivity(new Intent(this, WebLoginActivity.class));
-
-//        DeployBlogContentInfo blogContentInfo = new DeployBlogContentInfo();
     }
 
 
@@ -208,6 +192,10 @@ public class DeployArticleActivity extends AppCompatActivity implements View.OnC
                 intent = new Intent(this, BlogCategorySelectActivity.class);
                 startActivityForResult(intent, BLOG_CATEGORY_REQUEST_CODE);
                 break;
+            case R.id.personalCardView:
+                intent = new Intent(this, SelectPersonalCategoryActivity.class);
+                startActivityForResult(intent, PERSONAL_CATEGORY_REQUEST_CODE);
+                break;
 
         }
     }
@@ -219,6 +207,8 @@ public class DeployArticleActivity extends AppCompatActivity implements View.OnC
             articleCategoryTv.setText(data.getStringExtra(SELECT_KEY));
         } else if (requestCode == BLOG_CATEGORY_REQUEST_CODE) {
             blogCategoryTv.setText(data.getStringExtra(SELECT_KEY));
+        } else if (requestCode == PERSONAL_CATEGORY_REQUEST_CODE) {
+            personalTv.setText(data.getStringExtra(SELECT_KEY));
         }
     }
 }

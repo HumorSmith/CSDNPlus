@@ -1,6 +1,9 @@
 package com.ifreedomer.cplus.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Process;
+import android.view.KeyEvent;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ifreedomer.cplus.R;
@@ -9,6 +12,7 @@ import com.ifreedomer.cplus.fragment.ForumFragment;
 import com.ifreedomer.cplus.ui.main.MainFragment;
 import com.ifreedomer.cplus.ui.message.MessageFragment;
 import com.ifreedomer.cplus.ui.mine.MineFragment;
+import com.ifreedomer.cplus.util.WidgetUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -99,4 +103,28 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     public void onPageScrollStateChanged(int state) {
 
     }
+
+
+    boolean isExit = false;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (!isExit) {
+                isExit = true;
+                WidgetUtil.showSnackBar(this, getString(R.string.exit_str));
+                new Handler().postDelayed(() -> isExit = false, 2000);
+                return false;
+
+            } else {
+                Process.killProcess(Process.myPid());
+                System.exit(0);
+                //
+            }
+        }
+
+        return false;
+    }
+
+
 }

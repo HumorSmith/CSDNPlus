@@ -189,6 +189,20 @@
     <string name="select_score">选择分数</string>
     <string name="deploy_forum">发帖</string>
     <string name="search_no_result">没有搜索到内容</string>
+    <string name="create_forum_success">发帖成功</string>
+    <string name="forum_title_cannot_null">帖子标题不能为空</string>
+    <string name="forum_content_cannot_null">帖子内容不能为空</string>
+    <string name="forum_score_must_select">你还没有选择分数</string>
+    <string name="exit_str">再按一次退出应用</string>
+    <string name="login_success">登录成功</string>
+    <string name="get_profile">正在获取个人信息...</string>
+    <string name="load_category">正在加载分类...</string>
+    <string name="confirm">确认</string>
+    <string name="input_hint">在这里输入...</string>
+    <string name="input_prefill"></string>
+    <string name="create_category_success">新建成功</string>
+    <string name="create_personal_category">新建个人分类</string>
+    <string name="please_login_first">请先登录 </string>
 
 
     <string-array name="forum_key">

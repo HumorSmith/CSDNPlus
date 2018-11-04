@@ -44,6 +44,7 @@
                 android:layout_toRightOf="@+id/titleIv"
                 android:background="@null"
                 android:hint="@string/input_title"
+                android:text="hehehehehe"
                 android:paddingLeft="10dp"
                 android:textSize="12sp"/>
         </RelativeLayout>
@@ -67,10 +68,11 @@
                 android:src="@mipmap/ic_content_prefix"/>
 
             <EditText
-                android:id="@+id/markdownEt"
+                android:id="@+id/contentEt"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
+                android:text="hehehehehe1"
                 android:layout_toRightOf="@id/contentIv"
                 android:background="@null"
                 android:gravity="top"
@@ -91,6 +93,13 @@
                 android:id="@+id/scoreItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/scoreTv"
+                android:layout_marginRight="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"/>
 
         </androidx.cardview.widget.CardView>
 

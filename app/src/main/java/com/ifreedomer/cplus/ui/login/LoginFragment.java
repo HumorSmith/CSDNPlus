@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -67,6 +68,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     ImageView wechatIv;
     @BindView(R.id.loginBtn)
     Button loginBtn;
+    @BindView(R.id.loadingview)
+    ProgressBar loadingview;
 
     private LoginViewModel mViewModel;
 
@@ -198,7 +201,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
     private void login() {
 
-
+        loadingview.setVisibility(View.VISIBLE);
         WidgetUtil.showSnackBar(getActivity(), getString(R.string.loging));
         Observable<PayLoad<LoginAppV1TokenResp>> loginAppV1Observer = mViewModel.loginAppV1(accountEt.getText().toString(), passwordEt.getText().toString());
         loginAppV1Observer.subscribe(loginAppV1TokenRespPayLoad -> {
@@ -208,6 +211,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 getUserToken();
 
             } else {
+                loadingview.setVisibility(View.GONE);
                 WidgetUtil.showSnackBar(getActivity(), loginAppV1TokenRespPayLoad.getMessage());
             }
         }, throwable -> WidgetUtil.showSnackBar(getActivity(), throwable.getMessage()));
@@ -216,31 +220,39 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     private void getUserToken() {
         Disposable subscribe = mViewModel.getUserToken().subscribe(getUserTokenRespPayLoad -> {
             if (getUserTokenRespPayLoad.getCode() == PayLoad.APP_SUCCESS) {
+                WidgetUtil.showSnackBar(getActivity(), getString(R.string.get_profile));
                 getUserProfile(getUserTokenRespPayLoad.getData().getUserName());
             } else {
+                loadingview.setVisibility(View.GONE);
                 WidgetUtil.showSnackBar(getActivity(), getUserTokenRespPayLoad.getMessage());
             }
-        }, throwable -> WidgetUtil.showSnackBar(getActivity(), throwable.getMessage()));
+        }, throwable -> {
+            loadingview.setVisibility(View.GONE);
+            WidgetUtil.showSnackBar(getActivity(), throwable.getMessage());
+        });
     }
-
 
 
     public void getUserProfile(String userName) {
         Observable<PayLoad<V2ProfileResp>> v2ProfileObservable = HttpManager.getInstance().getV2Profile(userName);
         Disposable subscribe = v2ProfileObservable.subscribe(v2ProfileRespPayLoad -> {
             if (v2ProfileRespPayLoad.getCode() == PayLoad.SUCCESS) {
+
                 SPUtil.put(getActivity(), LOGINED, true);
                 SPUtil.put(getActivity(), ACCOUNT_KEY, accountEt.getText().toString());
                 SPUtil.put(getActivity(), PASSWORD_KEY, passwordEt.getText().toString());
-                mViewModel.saveLoginInfo(getContext(), v2ProfileRespPayLoad,userName);
+                mViewModel.saveLoginInfo(getContext(), v2ProfileRespPayLoad, userName);
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                getActivity().finish();
+                loadingview.setVisibility(View.GONE);
             } else {
                 SPUtil.put(getActivity(), LOGINED, true);
                 SPUtil.put(getActivity(), ACCOUNT_KEY, "");
                 SPUtil.put(getActivity(), PASSWORD_KEY, "");
                 WidgetUtil.showSnackBar(getActivity(), v2ProfileRespPayLoad.getMessage());
+                loadingview.setVisibility(View.GONE);
             }
         }, throwable -> WidgetUtil.showSnackBar(getActivity(), throwable.getMessage()));
     }
