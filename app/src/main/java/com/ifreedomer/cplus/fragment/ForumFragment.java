@@ -12,6 +12,7 @@ import com.ifreedomer.cplus.R;
 import com.ifreedomer.cplus.activity.ForumDeployActivity;
 import com.ifreedomer.cplus.adapter.ViewPagerFragmentAdapter;
 import com.ifreedomer.cplus.entity.NewsTabInfo;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,6 +84,12 @@ public class ForumFragment extends Fragment {
 
             @Override
             public void onPageSelected(int position) {
+                if (position == 0){
+                    MobclickAgent.onEvent(getContext().getApplicationContext(), "forum_tab_tech", "forum_tab_tech");
+                }
+                if (position == 1){
+                    MobclickAgent.onEvent(getContext().getApplicationContext(), "forum_tab_life", "forum_tab_life");
+                }
             }
 
             @Override

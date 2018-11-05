@@ -123,7 +123,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         if (mViewModel.canFastLogin(getContext())) {
             String userName = (String) SPUtil.get(getActivity(), ACCOUNT_KEY, "");
             String password = (String) SPUtil.get(getActivity(), PASSWORD_KEY, "");
-            LogUtil.d(TAG, "userName = " + userName + "   passowrd = " + password);
             accountEt.setText(userName);
             passwordEt.setText(password);
             login();

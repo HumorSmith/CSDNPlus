@@ -6,8 +6,8 @@ android {
         applicationId "com.ifreedomer.cplus"
         minSdkVersion 19
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 8
-        versionName "1.0.8"
+        versionCode 9
+        versionName "1.0.9 "
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -49,6 +49,43 @@ android {
 
     }
 
+
+
+    flavorDimensions "mode"
+
+// 友盟多渠道打包
+    productFlavors {
+        wandoujia {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wandoujia"]
+            dimension "mode"
+        }
+        coolapk {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "coolapk"]
+            dimension "mode"
+        }
+        xiaomi {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
+            dimension "mode"
+        }
+
+        huawei {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "huawei"]
+            dimension "mode"
+        }
+        meizu {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "meizu"]
+            dimension "mode"
+        }
+        googleplay {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "googleplay"]
+            dimension "mode"
+        }
+    }
+
+    productFlavors.all { flavor ->
+        manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+        printf "flavor name=" + name
+    }
 
 }
 

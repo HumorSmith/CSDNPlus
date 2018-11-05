@@ -29,6 +29,7 @@ import com.ifreedomer.cplus.manager.GlobalDataManager;
 import com.ifreedomer.cplus.util.LogUtil;
 import com.ifreedomer.cplus.util.WidgetUtil;
 import com.ifreedomer.cplus.widget.SettingItem;
+import com.umeng.analytics.MobclickAgent;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -145,29 +146,36 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.historyItem:
+                MobclickAgent.onEvent(getContext(), "my_history", "my_history");
                 startActivity(new Intent(getActivity(), HistoryActivity.class));
                 break;
             case R.id.feedbackItem:
+                MobclickAgent.onEvent(getContext(), "my_feedback", "my_feedback");
                 startActivity(new Intent(getActivity(), FeedbackActivity.class));
                 break;
             case R.id.collectNumTv:
+                MobclickAgent.onEvent(getContext(), "my_collect", "my_collect");
                 startActivity(new Intent(getActivity(), CollectActivity.class));
                 break;
             case R.id.blogNumTv:
+                MobclickAgent.onEvent(getContext(), "my_blog", "my_blog");
                 Intent intent = new Intent(getActivity(), BlogCategoryActivity.class);
                 intent.putExtra(USERNAME_KEY, GlobalDataManager.getInstance().getUserInfo().getUserName());
                 startActivity(intent);
                 break;
             case R.id.idolTv:
+                MobclickAgent.onEvent(getContext(), "my_follow", "my_follow");
                 intent = new Intent(getActivity(), FollowActivity.class);
                 intent.putExtra(USERNAME_KEY, GlobalDataManager.getInstance().getUserInfo().getUserName());
                 startActivity(intent);
                 break;
             case R.id.settingItem:
+                MobclickAgent.onEvent(getContext(), "my_setting", "my_setting");
                 intent = new Intent(getActivity(), SettingActivity.class);
                 startActivity(intent);
                 break;
             case R.id.donateItem:
+                MobclickAgent.onEvent(getContext(), "my_donate", "my_donate");
                 donateAlipay("FKX04593OORFSACYVCL0BA");
                 break;
 

@@ -15,6 +15,7 @@ import com.ifreedomer.cplus.activity.markdown.MarkdownEditorActivity;
 import com.ifreedomer.cplus.adapter.ViewPagerFragmentAdapter;
 import com.ifreedomer.cplus.entity.NewsTabInfo;
 import com.ifreedomer.cplus.fragment.ArticleListFragment;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,11 +65,11 @@ public class MainFragment extends Fragment {
             }
         });
 
-        deployTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), MarkdownEditorActivity.class));
+        deployTv.setOnClickListener(v -> {
+            if (getContext() != null && getContext().getApplicationContext() != null) {
+                MobclickAgent.onEvent(getContext().getApplicationContext(), "create_article_create", "create_article_create");
             }
+            startActivity(new Intent(getActivity(), MarkdownEditorActivity.class));
         });
 
     }

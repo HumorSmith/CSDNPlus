@@ -18,6 +18,7 @@ import com.ifreedomer.cplus.http.protocol.resp.DeployBlogResp;
 import com.ifreedomer.cplus.manager.GlobalDataManager;
 import com.ifreedomer.cplus.util.DateUtil;
 import com.ifreedomer.cplus.util.WidgetUtil;
+import com.umeng.analytics.MobclickAgent;
 
 import androidx.appcompat.app.AppCompatActivity;
 import io.reactivex.Observable;
@@ -90,7 +91,9 @@ public class WebLoginActivity extends AppCompatActivity implements View.OnClickL
                 }
                 Observable<DeployBlogResp> deployBlogRespObservable = HttpManager.getInstance().saveArticleNew(GlobalDataManager.getInstance().getDeployBlogContentInfo());
                 deployBlogRespObservable.subscribe(deployBlogResp -> {
+
                     if (deployBlogResp.isStatus()) {
+                        MobclickAgent.onEvent(WebLoginActivity.this.getApplicationContext(), "create_article_deploy_success", "create_article_deploy_success");
                         WidgetUtil.showSnackBar(WebLoginActivity.this, getString(R.string.delpoy_success));
                         Intent intent = new Intent(WebLoginActivity.this, BlogContentActivity.class);
                         BlogContentInfo blogContentInfo = new BlogContentInfo();
@@ -104,10 +107,13 @@ public class WebLoginActivity extends AppCompatActivity implements View.OnClickL
                         intent.putExtra(BlogContentActivity.DATA, blogContentInfo);
                         startActivity(intent);
                     } else {
-
+                        MobclickAgent.onEvent(WebLoginActivity.this.getApplicationContext(), "create_article_deploy_failed", "create_article_deploy_failed");
                         WidgetUtil.showSnackBar(WebLoginActivity.this,getString(R.string.please_login_first)+ deployBlogResp.getError());
                     }
-                }, throwable -> WidgetUtil.showSnackBar(WebLoginActivity.this, throwable.getMessage()));
+                }, throwable -> {
+                    MobclickAgent.onEvent(WebLoginActivity.this.getApplicationContext(), "create_article_deploy_failed", "create_article_deploy_failed");
+                    WidgetUtil.showSnackBar(WebLoginActivity.this, throwable.getMessage());
+                });
 //                saveArticleRespObservable.subscribe(new Consumer<String>() {
 //                    @Override
 //                    public void accept(String saveArticleResp) throws Exception {

@@ -12,6 +12,7 @@ import com.ifreedomer.cplus.R;
 import com.ifreedomer.cplus.manager.GlobalDataManager;
 import com.ifreedomer.cplus.util.ToolbarUtil;
 import com.ifreedomer.cplus.util.WidgetUtil;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -139,6 +140,7 @@ public class DeployArticleActivity extends AppCompatActivity implements View.OnC
 
 
     private void deploy() {
+        MobclickAgent.onEvent(DeployArticleActivity.this.getApplicationContext(), "create_article_send", "create_article_send");
         String[] articleLabelTagGroupTags = articleLabelTagGroup.getTags();
         if (articleLabelTagGroupTags == null || articleLabelTagGroupTags.length == 0) {
             WidgetUtil.showSnackBar(DeployArticleActivity.this, getString(R.string.not_select_article_tag));

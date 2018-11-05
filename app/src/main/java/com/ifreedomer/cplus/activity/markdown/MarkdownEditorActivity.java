@@ -19,6 +19,7 @@ import com.ifreedomer.cplus.util.ToolbarUtil;
 import com.ifreedomer.cplus.util.WidgetUtil;
 import com.ifreedomer.cplus.widget.MarkdownPreviewView;
 import com.ifreedomer.cplus.widget.TabIconView;
+import com.umeng.analytics.MobclickAgent;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -87,6 +88,7 @@ public class MarkdownEditorActivity extends AppCompatActivity implements View.On
                     markdownPreview.setVisibility(View.VISIBLE);
                     markdownPreview.parseMarkdown(markdownEt.getText().toString(), true);
                     item.setTitle(getString(R.string.edit));
+                    MobclickAgent.onEvent(MarkdownEditorActivity.this.getApplicationContext(), "create_article_preview", "create_article_preview");
                 } else {
                     editRelayout.setVisibility(View.VISIBLE);
                     markdownPreview.setVisibility(View.GONE);
@@ -99,12 +101,14 @@ public class MarkdownEditorActivity extends AppCompatActivity implements View.On
     }
 
     private void ShowDeployDialog() {
+        MobclickAgent.onEvent(MarkdownEditorActivity.this.getApplicationContext(), "create_article_edit_next", "create_article_edit_next");
         DeployBlogContentInfo deployBlogContentInfo = new DeployBlogContentInfo();
         deployBlogContentInfo.setMarkdownContent(markdownEt.getText().toString());
         deployBlogContentInfo.setContent(markdownEt.getText().toString());
         deployBlogContentInfo.setTitle(titleEt.getText().toString());
         GlobalDataManager.getInstance().setDeployBlogContentInfo(deployBlogContentInfo);
         startActivity(new Intent(this, DeployArticleActivity.class));
+
     }
 
     private void initTab() {
