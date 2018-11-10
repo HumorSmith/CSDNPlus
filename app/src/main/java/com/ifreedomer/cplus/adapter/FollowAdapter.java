@@ -46,7 +46,6 @@ public class FollowAdapter extends BaseQuickAdapter<FollowResp, BaseViewHolder> 
         } else {
             helper.setText(R.id.operationBtn, mContext.getString(R.string.follow));
         }
-        helper.setVisible(R.id.operationBtn, item.getUsername().equals(GlobalDataManager.getInstance().getUserInfo().getUserName()));
         helper.setOnClickListener(R.id.operationBtn, new View.OnClickListener() {
             @Override
             public void onClick(View v) {

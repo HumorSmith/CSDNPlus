@@ -6,10 +6,14 @@ android {
         applicationId "com.ifreedomer.cplus"
         minSdkVersion 19
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 10
-        versionName "1.1.0 "
+        versionCode 11
+        versionName "1.1.1"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    lintOptions {
+        // Caution!! This will disable lint vital lint check...
+        checkReleaseBuilds false
     }
     buildTypes {
         release {
