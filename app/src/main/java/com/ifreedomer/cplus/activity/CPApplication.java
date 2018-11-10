@@ -1,10 +1,13 @@
 package com.ifreedomer.cplus.activity;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.ifreedomer.basead.BaseADSplashActivity;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.umeng.commonsdk.UMConfigure;
+
+import androidx.multidex.MultiDex;
 
 public class CPApplication extends Application {
     public static CPApplication INSTANCE = null;
