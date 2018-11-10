@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.ifreedomer.cplus">
+    package="com.ifreedomer.cplus">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".activity.CPApplication"
@@ -14,70 +14,54 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.LoginActivity">
+        <activity android:name="com.ifreedomer.adbase.GoogleSplashActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MainActivity">
-        </activity>
-        <activity android:name=".activity.RegisterActivity">
-        </activity>
-        <activity android:name=".activity.forgetpassword.ForgetPasswordGetCodeActivity">
-        </activity>
-        <activity android:name=".activity.BlogContentActivity"/>
-        <activity android:name=".activity.HistoryActivity"/>
-        <activity android:name=".activity.FeedbackActivity">
-        </activity>
-        <activity android:name=".activity.CollectActivity">
-        </activity>
-        <activity android:name=".activity.BlogCategoryActivity">
-        </activity>
-        <activity android:name=".activity.FollowActivity"/>
-        <activity android:name=".activity.CategoryDetailActivity">
-        </activity>
-        <activity android:name=".activity.SearchActivity">
-        </activity>
-        <activity android:name=".activity.SearchDetailActivity"/>
+        <activity
+            android:name=".activity.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.RegisterActivity"></activity>
+        <activity android:name=".activity.forgetpassword.ForgetPasswordGetCodeActivity"></activity>
+        <activity android:name=".activity.BlogContentActivity" />
+        <activity android:name=".activity.HistoryActivity" />
+        <activity android:name=".activity.FeedbackActivity"></activity>
+        <activity android:name=".activity.CollectActivity"></activity>
+        <activity android:name=".activity.BlogCategoryActivity"></activity>
+        <activity android:name=".activity.FollowActivity" />
+        <activity android:name=".activity.CategoryDetailActivity"></activity>
+        <activity android:name=".activity.SearchActivity"></activity>
+        <activity android:name=".activity.SearchDetailActivity" />
         <activity
             android:name=".activity.markdown.MarkdownEditorActivity"
-            android:windowSoftInputMode="adjustResize">
-        </activity>
-        <activity android:name=".activity.forgetpassword.ForgetPasswordVerifyCodeActivity">
-        </activity>
-        <activity android:name=".activity.forgetpassword.ForgetPasswordResetPwdActivity"/>
-        <activity android:name=".activity.common.WebViewActivity">
-        </activity>
-        <activity android:name=".activity.WechatLoginActivity">
-        </activity>
-        <activity android:name=".activity.CommentActivity">
-        </activity>
-        <activity android:name=".fragment.OtherUserActivity"/>
-        <activity android:name=".activity.SettingActivity">
-        </activity>
-        <activity android:name=".activity.DeployArticleActivity">
-        </activity>
-        <activity android:name=".activity.ArticleCategorySelectActivity">
-        </activity>
-        <activity android:name=".activity.BlogCategorySelectActivity"/>
-        <activity android:name=".activity.WebLoginActivity"/>
+            android:windowSoftInputMode="adjustResize"></activity>
+        <activity android:name=".activity.forgetpassword.ForgetPasswordVerifyCodeActivity"></activity>
+        <activity android:name=".activity.forgetpassword.ForgetPasswordResetPwdActivity" />
+        <activity android:name=".activity.common.WebViewActivity"></activity>
+        <activity android:name=".activity.WechatLoginActivity"></activity>
+        <activity android:name=".activity.CommentActivity"></activity>
+        <activity android:name=".fragment.OtherUserActivity" />
+        <activity android:name=".activity.SettingActivity"></activity>
+        <activity android:name=".activity.DeployArticleActivity"></activity>
+        <activity android:name=".activity.ArticleCategorySelectActivity"></activity>
+        <activity android:name=".activity.BlogCategorySelectActivity" />
+        <activity android:name=".activity.WebLoginActivity" />
 
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="5bd54414f1f556586100096c"/>
+            android:value="5bd54414f1f556586100096c" />
         <meta-data
             android:name="UMENG_CHANNEL_VALUE"
-            android:value="InnterTest"/>
+            android:value="InnterTest" />
 
-        <activity android:name=".activity.ForumDetailActivity">
-        </activity>
-        <activity android:name=".activity.ForumDeployActivity">
-        </activity>
-        <activity android:name=".activity.SelectScoreActivity">
-        </activity>
-        <activity android:name=".activity.SelectPersonalCategoryActivity"/>
+        <activity android:name=".activity.ForumDetailActivity"></activity>
+        <activity android:name=".activity.ForumDeployActivity"></activity>
+        <activity android:name=".activity.SelectScoreActivity"></activity>
+        <activity android:name=".activity.SelectPersonalCategoryActivity" />
+        <activity android:name=".activity.LoginActivity" />
     </application>
 
 </manifest>

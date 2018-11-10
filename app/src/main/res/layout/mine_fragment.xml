@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -23,8 +22,7 @@
             android:layout_marginTop="13dp"
             android:text="我的"
             android:textColor="#ff666666"
-            android:textSize="15sp"
-            />
+            android:textSize="15sp" />
 
 
         <ImageView
@@ -35,8 +33,7 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="13dp"
-            android:src="@mipmap/ic_logo"
-            />
+            android:src="@mipmap/ic_logo" />
 
 
         <TextView
@@ -47,8 +44,7 @@
             android:layout_marginTop="3dp"
             android:text="AuRRent"
             android:textColor="#ff333333"
-            android:textSize="15sp"
-            />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/signTv"
@@ -59,8 +55,7 @@
             android:maxLines="2"
             android:text="这个人很懒，什么都没有留下！"
             android:textColor="#ff666666"
-            android:textSize="12sp"
-            />
+            android:textSize="12sp" />
     </LinearLayout>
 
     <RelativeLayout
@@ -80,8 +75,7 @@
             android:lineSpacingMultiplier="1.2"
             android:text="55\n收藏"
             android:textColor="#ff333333"
-            android:textSize="15sp"
-            />
+            android:textSize="15sp" />
 
 
         <TextView
@@ -94,8 +88,7 @@
             android:lineSpacingMultiplier="1.2"
             android:text="55\n博客"
             android:textColor="#ff333333"
-            android:textSize="15sp"
-            />
+            android:textSize="15sp" />
 
 
         <TextView
@@ -107,8 +100,7 @@
             android:lineSpacingMultiplier="1.2"
             android:text="55\n关注"
             android:textColor="#ff333333"
-            android:textSize="15sp"
-            />
+            android:textSize="15sp" />
 
     </RelativeLayout>
 
@@ -124,30 +116,36 @@
             android:id="@+id/historyItem"
             android:layout_width="match_parent"
             android:layout_height="@dimen/settingItemHeight"
-            android:layout_marginTop="7dp"/>
-
-
+            android:layout_marginTop="7dp" />
 
 
         <com.ifreedomer.cplus.widget.SettingItem
             android:id="@+id/feedbackItem"
             android:layout_width="match_parent"
             android:layout_height="@dimen/settingItemHeight"
-            android:layout_marginTop="7dp"/>
+            android:layout_marginTop="7dp" />
 
-        <include layout="@layout/layout_divider"/>
+        <include layout="@layout/layout_divider" />
 
         <com.ifreedomer.cplus.widget.SettingItem
             android:id="@+id/settingItem"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/settingItemHeight"/>
+            android:layout_height="@dimen/settingItemHeight" />
 
-        <include layout="@layout/layout_divider"/>
+        <include layout="@layout/layout_divider" />
 
         <com.ifreedomer.cplus.widget.SettingItem
             android:id="@+id/donateItem"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/settingItemHeight"/>
+            android:layout_height="@dimen/settingItemHeight" />
+
+        <include layout="@layout/layout_divider" />
+
+        <com.ifreedomer.cplus.widget.SettingItem
+            android:id="@+id/joinGroupItem"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/settingItemHeight" />
     </LinearLayout>
 
 

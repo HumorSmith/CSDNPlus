@@ -6,8 +6,9 @@ android {
         applicationId "com.ifreedomer.cplus"
         minSdkVersion 19
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 9
-        versionName "1.0.9 "
+        versionCode 10
+        versionName "1.1.0 "
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -48,7 +49,6 @@ android {
 
 
     }
-
 
 
     flavorDimensions "mode"
@@ -99,6 +99,9 @@ repositories {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation(name: "basead-debug", ext: "aar")
+    implementation(name: "googlead-debug", ext: "aar")
+
     // https://mvnrepository.com/artifact/androidx.appcompat/appcompat
     implementation 'androidx.appcompat:appcompat:1.0.0'
     // ViewModel and LiveData
@@ -140,6 +143,7 @@ dependencies {
     implementation 'com.github.didikee:AndroidDonate:0.1.0'
 
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
+    implementation 'com.google.android.gms:play-services-ads:11.8.0'
 
-
+    implementation 'com.android.support:multidex:1.0.3'
 }
