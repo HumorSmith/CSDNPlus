@@ -47,8 +47,10 @@ public class ForumContentFragment extends BasePullRefreshPageFragment<ForumHotRe
 
     @Override
     public void fetchData(int page) {
+        refreshLayout.setRefreshing(true);
         Observable<PayLoad<List<ForumHotResp>>> forumObserver = HttpManager.getInstance().getForum(tabKey, page);
         forumObserver.subscribe(listPayLoad -> {
+            refreshLayout.setRefreshing(false);
             refreshList(listPayLoad.getCode(), listPayLoad.getMessage(), listPayLoad.getData());
         }, throwable -> {
             refreshLayout.setRefreshing(false);

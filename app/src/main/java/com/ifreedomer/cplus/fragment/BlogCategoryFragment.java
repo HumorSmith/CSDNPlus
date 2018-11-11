@@ -29,10 +29,17 @@ public class BlogCategoryFragment extends BasePullRefreshPageFragment<BlogCatego
 
     @Override
     public void fetchData(int page) {
+
+        refreshLayout.setRefreshing(true);
+
         Observable<PayLoad<List<BlogCategoryResp>>> blogCatergoryObserver = HttpManager.getInstance().getBlogCatergory(mUserName);
         blogCatergoryObserver.subscribe(listPayLoad -> {
+            refreshLayout.setRefreshing(false);
             mDataList.clear();
             refreshList(listPayLoad.getCode(), listPayLoad.getMessage(), listPayLoad.getData());
-        }, throwable -> WidgetUtil.showSnackBar(getActivity(), throwable.getMessage()));
+        }, throwable ->{
+            refreshLayout.setRefreshing(false);
+            WidgetUtil.showSnackBar(getActivity(), throwable.getMessage());
+        });
     }
 }

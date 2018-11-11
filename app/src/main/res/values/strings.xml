@@ -204,6 +204,7 @@
     <string name="create_personal_category">新建个人分类</string>
     <string name="please_login_first">请先登录 </string>
     <string name="joingroup">进入组织</string>
+    <string name="tech_change_world">技术改变世界</string>
 
 
     <string-array name="forum_key">

@@ -74,8 +74,13 @@ public class ForumDetailActivity extends PullRefreshActivity<ForumDetailResp> {
 
     @Override
     public void fetchData(int page) {
+        setLoading(true);
         Observable<PayLoad<List<ForumDetailResp>>> forumDetailObserver = HttpManager.getInstance().getForumDetail(mTopicId, page, 20);
-        Disposable subscribe = forumDetailObserver.subscribe(listPayLoad -> refreshList(listPayLoad.getCode(), listPayLoad.getMessage(), listPayLoad.getData()), throwable -> WidgetUtil.showSnackBar(ForumDetailActivity.this, throwable.getMessage()));
+        Disposable subscribe = forumDetailObserver.subscribe(listPayLoad -> {
+            setLoading(false);
+            refreshList(listPayLoad.getCode(), listPayLoad.getMessage(), listPayLoad.getData());
+
+        }, throwable -> WidgetUtil.showSnackBar(ForumDetailActivity.this, throwable.getMessage()));
     }
 
     @Override

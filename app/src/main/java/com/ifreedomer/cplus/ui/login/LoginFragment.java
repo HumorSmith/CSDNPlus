@@ -213,7 +213,11 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 loadingview.setVisibility(View.GONE);
                 WidgetUtil.showSnackBar(getActivity(), loginAppV1TokenRespPayLoad.getMessage());
             }
-        }, throwable -> WidgetUtil.showSnackBar(getActivity(), throwable.getMessage()));
+        }, throwable -> {
+            loadingview.setVisibility(View.GONE);
+            WidgetUtil.showSnackBar(getActivity(), throwable.getMessage());
+
+        });
     }
 
     private void getUserToken() {

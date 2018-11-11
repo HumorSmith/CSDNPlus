@@ -39,6 +39,7 @@ public class ArticleListFragment extends ArticlePullrefreshFragment {
         Log.d(TAG, "type = " + type + "   offset = " + offset + "   page = " + getCurPage());
 //        type = "new";
 //        offset = 0;
+        refreshLayout.setRefreshing(true);
         Observable<PayLoad<ArticleListResp<ArticleResp>>> newsObservable = HttpManager.getInstance().getArticleListByCategory(tabKey, type, offset, PAGE_SIZE);
         newsObservable.subscribe(listPayLoad -> {
             refreshLayout.setRefreshing(false);

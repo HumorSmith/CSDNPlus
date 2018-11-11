@@ -16,6 +16,7 @@ import static com.ifreedomer.cplus.fragment.OtherUserActivity.USERNAME_KEY;
 
 public class IdolFragment extends BasePullRefreshPageFragment<FollowResp> {
     public static final String NAME_KEY = "name";
+
     @Override
     protected void initAdapter() {
         mFirstPage = 1;
@@ -26,12 +27,14 @@ public class IdolFragment extends BasePullRefreshPageFragment<FollowResp> {
 
     @Override
     public void fetchData(int page) {
+        refreshLayout.setRefreshing(true);
         String userName = getArguments().getString(USERNAME_KEY);
         Disposable subscribe = HttpManager.getInstance().getIdol(userName, page, 20).subscribe(listPayLoad -> {
             refreshLayout.setRefreshing(false);
 //            LogUtil.d(TAG, "listpayload = " + listPayLoad.toString());
             refreshList(listPayLoad.getCode(), listPayLoad.getMessage(), listPayLoad.getData());
         }, (Consumer<Throwable>) throwable -> {
+            refreshLayout.setRefreshing(false);
             throwable.printStackTrace();
             WidgetUtil.showSnackBar(getActivity(), throwable.getMessage());
         });

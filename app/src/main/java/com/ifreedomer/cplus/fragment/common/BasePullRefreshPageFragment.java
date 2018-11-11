@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.ifreedomer.cplus.R;
 import com.ifreedomer.cplus.http.protocol.PayLoad;
@@ -32,6 +33,7 @@ public abstract class BasePullRefreshPageFragment<T> extends BasePageFragment {
     Unbinder unbinder;
     protected int mFirstPage = 1;
     private static final String TAG = BasePullRefreshPageFragment.class.getSimpleName();
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -58,7 +60,7 @@ public abstract class BasePullRefreshPageFragment<T> extends BasePageFragment {
                 if (!ViewCompat.canScrollVertically(recyclerView, 1)) {
                     // 和上面同理
                     mCurPage++;
-                    Log.d(TAG,"page = "+mCurPage);
+                    Log.d(TAG, "page = " + mCurPage);
                     fetchData(mCurPage);
                 }
             }
@@ -88,7 +90,6 @@ public abstract class BasePullRefreshPageFragment<T> extends BasePageFragment {
 
 
     public void refreshList(int code, String message, List<T> list) {
-        refreshLayout.setRefreshing(false);
 //            LogUtil.d(TAG, "listpayload = " + listPayLoad.toString());
         if (code == PayLoad.SUCCESS) {
 
@@ -105,6 +106,7 @@ public abstract class BasePullRefreshPageFragment<T> extends BasePageFragment {
             WidgetUtil.showSnackBar(getActivity(), message);
         }
     }
+
 
 
 }

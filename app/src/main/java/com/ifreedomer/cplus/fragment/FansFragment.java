@@ -24,11 +24,13 @@ public class FansFragment extends BasePullRefreshPageFragment<FollowResp> {
 
     @Override
     public void fetchData(int page) {
+        refreshLayout.setRefreshing(true);
         Disposable subscribe = HttpManager.getInstance().getFans(getArguments().getString(USERNAME_KEY), getCurPage(), 20).subscribe(listPayLoad -> {
             refreshLayout.setRefreshing(false);
 //            LogUtil.d(TAG, "listpayload = " + listPayLoad.toString());
             refreshList(listPayLoad.getCode(), listPayLoad.getMessage(), listPayLoad.getData());
         }, throwable -> {
+            refreshLayout.setRefreshing(false);
             throwable.printStackTrace();
             WidgetUtil.showSnackBar(getActivity(), throwable.getMessage());
         });
