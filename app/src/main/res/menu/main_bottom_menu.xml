@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:icon="@drawable/selector_home_tab"
+        android:icon="@drawable/ic_home"
         android:id="@+id/homeTab"
         android:title="@string/home_page"/>
     <item
-        android:icon="@drawable/selector_message_tab"
-        android:id="@+id/messageTab"
-        android:title="@string/message"/>
+        android:icon="@drawable/ic_write"
+        android:id="@+id/writeTab"
+        android:title="@string/create"/>
 
     <item
-        android:icon="@drawable/selector_comment"
+        android:icon="@drawable/ic_comment"
         android:id="@+id/forumItem"
         android:title="@string/forum"/>
     <item
-        android:icon="@drawable/selector_mine_tab"
+        android:icon="@drawable/ic_mine"
         android:id="@+id/mineTab"
         android:title="@string/mine"/>
 </menu>

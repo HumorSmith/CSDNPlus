@@ -9,6 +9,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ifreedomer.cplus.R;
 import com.ifreedomer.cplus.adapter.ViewPagerFragmentAdapter;
 import com.ifreedomer.cplus.fragment.ForumFragment;
+import com.ifreedomer.cplus.fragment.MarkdownEditorFragment;
 import com.ifreedomer.cplus.ui.main.MainFragment;
 import com.ifreedomer.cplus.ui.message.MessageFragment;
 import com.ifreedomer.cplus.ui.mine.MineFragment;
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                     viewpager.setCurrentItem(0);
                     MobclickAgent.onEvent(MainActivity.this.getApplicationContext(), "tab_main", "tab_main");
                     break;
-                case R.id.messageTab:
+                case R.id.writeTab:
                     viewpager.setCurrentItem(1);
                     MobclickAgent.onEvent(MainActivity.this.getApplicationContext(), "tab_message", "tab_message");
                     break;
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     private void setupViewPager() {
         mFragmentList.add(MainFragment.newInstance());
-        mFragmentList.add(MessageFragment.newInstance());
+        mFragmentList.add(MarkdownEditorFragment.newInstance());
         mFragmentList.add(ForumFragment.newInstance());
         mFragmentList.add(MineFragment.newInstance());
         ViewPagerFragmentAdapter pagerAdapter = new ViewPagerFragmentAdapter(getSupportFragmentManager(), mFragmentList);
@@ -93,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
             bottomNavigationView.getMenu().findItem(R.id.homeTab).setChecked(true);
         }
         if (position == 1) {
-            bottomNavigationView.getMenu().findItem(R.id.messageTab).setChecked(true);
+            bottomNavigationView.getMenu().findItem(R.id.writeTab).setChecked(true);
         }
 
         if (position == 2) {
