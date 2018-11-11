@@ -24,27 +24,15 @@ public class CategoryDetailActivity extends PullRefreshActivity<BlogResp> {
     @Override
     public void fetchData(int page) {
         setLoading(true);
-
         Observable<PayLoad<List<BlogResp>>> blogListByCategoryObservable = HttpManager.getInstance().getBlogListByCategory(getIntent().getIntExtra(CATEGORY_ID_KEY, 0),
                 getIntent().getStringExtra(USERNAME_KEY), page, 20);
         blogListByCategoryObservable.subscribe(listPayLoad -> {
             setLoading(false);
-            if (listPayLoad.getCode() == PayLoad.SUCCESS) {
-                if (mCurPage == 0) {
-                    mDataList.clear();
-                    mDataList.addAll(listPayLoad.getData());
-                }
-            } else {
-                mDataList.addAll(listPayLoad.getData());
-                WidgetUtil.showSnackBar(CategoryDetailActivity.this, listPayLoad.getMessage());
-            }
-            recycleview.getAdapter().notifyDataSetChanged();
-        }, new Consumer<Throwable>() {
-            @Override
-            public void accept(Throwable throwable) throws Exception {
-                WidgetUtil.showSnackBar(CategoryDetailActivity.this, throwable.getMessage());
+            refreshList(listPayLoad.getCode(), listPayLoad.getMessage(), listPayLoad.getData());
+        }, throwable -> {
+            setLoading(false);
+            WidgetUtil.showSnackBar(CategoryDetailActivity.this, throwable.getMessage());
 
-            }
         });
     }
 

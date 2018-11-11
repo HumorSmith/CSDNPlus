@@ -31,7 +31,7 @@ public class MyBlogListFragment extends BasePullRefreshPageFragment<MyBlogItemRe
         refreshLayout.setRefreshing(true);
         Observable<PayLoad<List<MyBlogItemResp>>> payLoadObservable = HttpManager.getInstance().getMyBlogList(getArguments().getString(USERNAME_KEY), getCurPage(), 20);
         payLoadObservable.subscribe(listPayLoad -> {
-            refreshLayout.setRefreshing(true);
+            refreshLayout.setRefreshing(false);
             refreshList(listPayLoad.getCode(), listPayLoad.getMessage(), listPayLoad.getData());
         }, new Consumer<Throwable>() {
             @Override
