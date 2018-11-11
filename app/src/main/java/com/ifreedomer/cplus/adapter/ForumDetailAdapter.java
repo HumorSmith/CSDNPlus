@@ -43,6 +43,7 @@ public class ForumDetailAdapter extends BaseQuickAdapter<ForumDetailResp, BaseVi
     protected void convert(BaseViewHolder helper, ForumDetailResp item) {
         String userName = GlobalDataManager.getInstance().getUserInfo().getUserName();
         helper.setText(R.id.nameTv, item.getNickname());
+        helper.setText(R.id.contentTv,item.getBody());
         String floorStr = item.getFloor() + mContext.getString(R.string.floor);
         if (item.getFloor() == 1) {
             floorStr = mContext.getString(R.string.floor_owner);
