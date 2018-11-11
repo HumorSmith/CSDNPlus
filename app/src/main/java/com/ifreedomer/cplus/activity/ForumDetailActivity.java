@@ -1,5 +1,6 @@
 package com.ifreedomer.cplus.activity;
 
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,6 +28,7 @@ import java.util.List;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 
@@ -39,6 +41,8 @@ public class ForumDetailActivity extends PullRefreshActivity<ForumDetailResp> {
     TextView sendTv;
     @BindView(R.id.contentEt)
     EditText contentEt;
+    @BindView(R.id.contentTv)
+    TextView contentTv;
     private String mTopicId;
     private String mFavoriteId;
     private String mUrl;
@@ -89,7 +93,7 @@ public class ForumDetailActivity extends PullRefreshActivity<ForumDetailResp> {
         ToolbarUtil.setTitleBarWithBack(this, toolbar, "");
         mTopicId = getIntent().getIntExtra(TOPIC_ID_KEY, -1) + "";
         mTitle = getIntent().getStringExtra(TITLE_KEY);
-
+        contentTv.setText(mTitle);
         mUrl = "http://bbs.csdn.net/topics/" + mTopicId;
         recycleview.setLayoutManager(new LinearLayoutManager(this));
         ForumDetailAdapter forumDetailAdapter = new ForumDetailAdapter(mTopicId, R.layout.item_rv_forumdetail, mDataList);
@@ -206,6 +210,13 @@ public class ForumDetailActivity extends PullRefreshActivity<ForumDetailResp> {
                 }
             }
         }, throwable -> WidgetUtil.showSnackBar(ForumDetailActivity.this, throwable.getMessage()));
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 
 
