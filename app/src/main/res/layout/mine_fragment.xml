@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:lineSpacingMultiplier="1.2"
-            android:text="55\n收藏"
+            android:text="0\n收藏"
             android:textColor="#ff333333"
             android:textSize="15sp" />
 
@@ -86,7 +86,7 @@
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:lineSpacingMultiplier="1.2"
-            android:text="55\n博客"
+            android:text="0\n博客"
             android:textColor="#ff333333"
             android:textSize="15sp" />
 
@@ -98,7 +98,7 @@
             android:layout_alignParentRight="true"
             android:gravity="center"
             android:lineSpacingMultiplier="1.2"
-            android:text="55\n关注"
+            android:text="0\n关注"
             android:textColor="#ff333333"
             android:textSize="15sp" />
 
