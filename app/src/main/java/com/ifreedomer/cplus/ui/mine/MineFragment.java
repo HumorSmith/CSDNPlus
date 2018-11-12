@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.material.snackbar.Snackbar;
 import com.ifreedomer.cplus.R;
 import com.ifreedomer.cplus.activity.BlogCategoryActivity;
 import com.ifreedomer.cplus.activity.CollectActivity;
@@ -96,6 +97,12 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
     private void initHeadView() {
         UserInfo userInfo = GlobalDataManager.getInstance().getUserInfo();
+        if (userInfo == null) {
+            if (getActivity() != null) {
+                WidgetUtil.showSnackBar(getActivity(), getString(R.string.get_userinfo_error));
+            }
+            return;
+        }
         nameTv.setText(userInfo.getNickName());
         Glide.with((View) avatarIv).load(userInfo.getAvatar()).apply(RequestOptions.bitmapTransform(new CircleCrop())).into((ImageView) avatarIv);
         signTv.setText(userInfo.getSign());

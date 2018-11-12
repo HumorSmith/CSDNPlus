@@ -242,20 +242,23 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             if (v2ProfileRespPayLoad.getCode() == PayLoad.SUCCESS) {
 
                 SPUtil.put(getActivity(), LOGINED, true);
+                loadingview.setVisibility(View.GONE);
+
                 SPUtil.put(getActivity(), ACCOUNT_KEY, accountEt.getText().toString());
                 SPUtil.put(getActivity(), PASSWORD_KEY, passwordEt.getText().toString());
                 mViewModel.saveLoginInfo(getContext(), v2ProfileRespPayLoad, userName);
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
-                getActivity().finish();
-                loadingview.setVisibility(View.GONE);
+                if (getActivity()!=null){
+                    getActivity().finish();
+                }
             } else {
                 SPUtil.put(getActivity(), LOGINED, true);
                 SPUtil.put(getActivity(), ACCOUNT_KEY, "");
                 SPUtil.put(getActivity(), PASSWORD_KEY, "");
-                WidgetUtil.showSnackBar(getActivity(), v2ProfileRespPayLoad.getMessage());
                 loadingview.setVisibility(View.GONE);
+                WidgetUtil.showSnackBar(getActivity(), v2ProfileRespPayLoad.getMessage());
             }
         }, throwable -> WidgetUtil.showSnackBar(getActivity(), throwable.getMessage()));
     }

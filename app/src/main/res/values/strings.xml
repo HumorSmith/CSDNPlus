@@ -207,6 +207,7 @@
     <string name="tech_change_world">技术改变世界</string>
     <string name="create_article">创作文章</string>
     <string name="create">创作</string>
+    <string name="get_userinfo_error">获取用户信息错误，请重新登录试试吧</string>
 
 
     <string-array name="forum_key">
