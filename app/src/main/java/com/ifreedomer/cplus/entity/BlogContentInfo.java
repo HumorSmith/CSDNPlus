@@ -11,6 +11,7 @@ import com.ifreedomer.cplus.http.protocol.resp.MyBlogItemResp;
 import com.ifreedomer.cplus.http.protocol.resp.SearchDetailResp;
 import com.ifreedomer.cplus.manager.GlobalDataManager;
 import com.ifreedomer.cplus.util.DateUtil;
+import com.ifreedomer.cplus.util.StringUtil;
 
 import java.io.Serializable;
 import java.util.regex.Matcher;
@@ -26,7 +27,6 @@ public class BlogContentInfo implements Serializable {
     private int commentNum;
     private String id;
     private static Pattern pattern;
-
 
 
     public String getNickName() {
@@ -90,13 +90,13 @@ public class BlogContentInfo implements Serializable {
     }
 
     public static BlogContentInfo convert(HistoryResp historyResp) {
-        Log.d(TAG,"HISTORY Resp = "+historyResp.toString());
+        Log.d(TAG, "HISTORY Resp = " + historyResp.toString());
         BlogContentInfo blogContentInfo = new BlogContentInfo();
         blogContentInfo.setCommentNum(Integer.parseInt(historyResp.getCommentCount()));
         blogContentInfo.setUserName(historyResp.getUsername());
         blogContentInfo.setNickName(historyResp.getNickName());
-        blogContentInfo.setDate( DateUtil.convertToMonth(CPApplication.INSTANCE, historyResp.getPostTime()));
-       ;
+        blogContentInfo.setDate(DateUtil.convertToMonth(CPApplication.INSTANCE, historyResp.getPostTime()));
+        ;
         String id = historyResp.getBizId();
         if (id.contains("&")) {
             id = id.split("&")[0];
@@ -115,7 +115,7 @@ public class BlogContentInfo implements Serializable {
         blogContentInfo.setNickName(collectItem.getNickname());
         blogContentInfo.setDate(DateUtil.convertToMonth(CPApplication.INSTANCE, collectItem.getPostTime()));
 
-        blogContentInfo.setId(collectItem.getId());
+        blogContentInfo.setId(StringUtil.getUrlCode(collectItem.getUrl()));
         blogContentInfo.setTitle(collectItem.getTitle());
         blogContentInfo.setAvatar(collectItem.getAvatar());
         return blogContentInfo;
