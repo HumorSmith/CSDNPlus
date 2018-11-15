@@ -17,6 +17,7 @@ public class CPApplication extends Application {
     public void onCreate() {
         super.onCreate();
         INSTANCE = this;
+        BaseADSplashActivity.setJumpToTarget(true);
         BaseADSplashActivity.setTargetClass(LoginActivity.class);
         BaseADSplashActivity.setSplashLayoutId(R.layout.activity_splash);
         CrashReport.initCrashReport(getApplicationContext(), "2bab5d07a6", false);

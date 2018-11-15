@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.ifreedomer.cplus.R;
 import com.ifreedomer.cplus.activity.MainActivity;
 import com.ifreedomer.cplus.activity.common.WebViewActivity;
+import com.ifreedomer.cplus.activity.forgetpassword.ForgetPasswordGetCodeActivity;
 import com.ifreedomer.cplus.http.center.HttpManager;
 import com.ifreedomer.cplus.http.protocol.PayLoad;
 import com.ifreedomer.cplus.http.protocol.resp.LoginAppV1TokenResp;
@@ -181,19 +182,22 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 login();
                 break;
             case R.id.registerTv:
+                intent = new Intent(getActivity(), WebViewActivity.class);
                 Uri uri = Uri.parse("https://passport.csdn.net/account/register");
-                startActivity(new Intent(Intent.ACTION_VIEW, uri));
-//                intent.putExtra(WebViewActivity.SHOW_TITLE, false);
-//                intent.putExtra(WebViewActivity.TITLE_KEY, getString(R.string.thirdlogin));
-//                intent.putExtra(WebViewActivity.OPEN_BROWER, false);
+                intent.putExtra(WebViewActivity.SHOW_TITLE, false);
+                intent.putExtra(WebViewActivity.TITLE_KEY, getString(R.string.thirdlogin));
 //                startActivity(intent);
                 break;
             case R.id.forgetPasswordTv:
-                intent = new Intent(getActivity(), WebViewActivity.class);
-                intent.putExtra(WebViewActivity.TITLE_KEY, getString(R.string.forget_password));
-                intent.putExtra(WebViewActivity.SHOW_TITLE, false);
-                intent.putExtra(WebViewActivity.URL, "https://passport.csdn.net/passport_fe/forget.html");
+
+                intent = new Intent(getActivity(), ForgetPasswordGetCodeActivity.class);
                 startActivity(intent);
+
+
+//                intent = new Intent(getActivity(), WebViewActivity.class);
+//                intent.putExtra(WebViewActivity.TITLE_KEY, getString(R.string.forget_password));
+//                intent.putExtra(WebViewActivity.SHOW_TITLE, false);
+//                intent.putExtra(WebViewActivity.URL, "https://passport.csdn.net/passport_fe/forget.html");
                 break;
         }
     }
@@ -250,7 +254,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
-                if (getActivity()!=null){
+                if (getActivity() != null) {
                     getActivity().finish();
                 }
             } else {

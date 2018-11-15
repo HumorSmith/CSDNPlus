@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var cookie = "";
+
+        function getUserNameByPhone(phone, code, comFrom) {
+            var url = 'https://passport.csdn.net/v1/service/mobiles/' + phone;
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url, true);
+            xhr.withCredentials = true;
+            xhr.onload = function () {
+                if (this.status === 200) {
+                    let allResponseHeaders = this.getAllResponseHeaders();
+                    console.log("checkTime response head = " + allResponseHeaders);
+                    cookie = this.getResponseHeader("Set-Cookie");
+                    console.log("cookie = " + cookie);
+                    console.log(this.responseText);
+                    let respJson = JSON.parse(this.responseText);
+                    let userName = respJson["data"]["username"];
+                    console.log(userName);
+                } else {
+                    alert("failed")
+                }
+            };
+            xhr.send();
+        }
+
+
+        function checkTime() {
+            //
+            var url = 'https://passport.csdn.net/v1/fpwd/checkFpwdSendVerifyCodeTime';
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url, true);
+            xhr.withCredentials = true;
+            console.log("checkTime requestHead = " + this.headers);
+            xhr.onload = function () {
+                let allResponseHeaders = this.getAllResponseHeaders();
+                console.log("checkTime response head = " + allResponseHeaders);
+                if (this.status === 200) {
+                    console.log(this.responseText);
+                } else {
+                    console.log(this.responseText);
+                }
+            };
+            xhr.send();
+        }
+
+
+        function getVerifyCode(username) {
+            var url = 'https://passport.csdn.net/v1/fpwd/sendVerifyCode';
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', url, true);
+            xhr.withCredentials = true;
+            console.log("getVerifyCode requestHead = " + this.headers);
+
+            // xhr.setRequestHeader("Referer"," https://passport.csdn.net/passport_fe/forget.html");
+            // xhr.setRequestHeader("Connection","keep-alive");
+            // xhr.setRequestHeader("X-Requested-With","XMLHttpRequest");
+
+            xhr.onload = function () {
+                if (this.status === 200) {
+                    console.log("getVerifyCode response head = " + this.responseText);
+                    alert(this.responseText)
+                } else {
+                    console.log(this.responseText);
+                    alert("failed")
+                }
+            };
+            xhr.send(JSON.stringify({
+                "code": "0086",
+                "mobileOrEmail": "18311362506",
+                "sendType": "1",
+                "userName": "aa375809600"
+            }));
+
+        }
+
+    </script>
+</head>
+
+
+<body>
+<input type="button" id="getUserNameByPhone" value="根据手机号获取username"
+       onclick="getUserNameByPhone('18311362506','0086','0')"/>
+<input type="button" id="checkTime" value="检查时间" onclick="checkTime()"/>
+<input type="button" id="getVerifyCode" value="获取验证码" onclick="getVerifyCode('aa375809600')"/>
+
+</body>
+</html>

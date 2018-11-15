@@ -2,6 +2,7 @@ package com.ifreedomer.cplus.activity.common;
 
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -43,7 +44,7 @@ public class WebViewActivity extends AppCompatActivity {
         // 设置 webView 是否支持 JavaScript 的调用（应用中涉及原生与 JS 交互的必须设置为 true）
         webSettings.setJavaScriptEnabled(true);
         // 设置是否允许 JS 开启新窗口(function window.open())
-        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+        //webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
 
         // 设置是否自适应屏幕，（一般图片和网页缩放同时使用）
         webSettings.setUseWideViewPort(true); //将图片调整到适合 webView 的大小
@@ -55,17 +56,20 @@ public class WebViewActivity extends AppCompatActivity {
         webSettings.setBuiltInZoomControls(true);
         // 隐藏原生的缩放控件
         webSettings.setDisplayZoomControls(true);
-        webview.loadUrl(url);
+        webSettings.setAllowFileAccess(true);
+        webview.loadUrl("file://assets/forget_pwd/get_pwd.html");
         boolean overrideUrl = getIntent().getBooleanExtra(OPEN_BROWER, true);
-        if (overrideUrl) {
-            webview.setWebViewClient(new WebViewClient() {
-                @Override
-                public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                    return false;
-                }
+//        if (overrideUrl) {
+            webview.setWebChromeClient(new WebChromeClient() {
+//                @Override
+//                public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//                    return false;
+//                }
+
+
 
             });
-        }
+//        }
 
     }
 }

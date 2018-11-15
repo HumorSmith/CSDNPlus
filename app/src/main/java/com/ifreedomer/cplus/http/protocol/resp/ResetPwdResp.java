@@ -1,6 +1,6 @@
 package com.ifreedomer.cplus.http.protocol.resp;
 
-public class GetVerifyCodeResp {
+public class ResetPwdResp {
 
     /**
      * msg : 成功发送验证码

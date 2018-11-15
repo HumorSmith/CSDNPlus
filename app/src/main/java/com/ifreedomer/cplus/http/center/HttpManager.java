@@ -4,8 +4,10 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.ifreedomer.cplus.entity.DeployBlogContentInfo;
+import com.ifreedomer.cplus.http.intercepter.AddCookiesInterceptor;
 import com.ifreedomer.cplus.http.intercepter.CookieInterceptor;
 import com.ifreedomer.cplus.http.intercepter.HeaderInterceptor;
+import com.ifreedomer.cplus.http.intercepter.ReceivedCookiesInterceptor;
 import com.ifreedomer.cplus.http.protocol.ArticleApi;
 import com.ifreedomer.cplus.http.protocol.BlogApi;
 import com.ifreedomer.cplus.http.protocol.CollectApi;
@@ -45,7 +47,7 @@ import com.ifreedomer.cplus.http.protocol.resp.ForumHotResp;
 import com.ifreedomer.cplus.http.protocol.resp.ForumPostResp;
 import com.ifreedomer.cplus.http.protocol.resp.GetRelationResp;
 import com.ifreedomer.cplus.http.protocol.resp.GetUserTokenResp;
-import com.ifreedomer.cplus.http.protocol.resp.GetVerifyCodeResp;
+import com.ifreedomer.cplus.http.protocol.resp.ResetPwdResp;
 import com.ifreedomer.cplus.http.protocol.resp.HistoryResp;
 import com.ifreedomer.cplus.http.protocol.resp.LoginAppV1TokenResp;
 import com.ifreedomer.cplus.http.protocol.resp.MyBlogItemResp;
@@ -62,6 +64,9 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -71,6 +76,9 @@ import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.Cookie;
+import okhttp3.CookieJar;
+import okhttp3.HttpUrl;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -113,9 +121,12 @@ public class HttpManager {
             .build();
 
 
+    public HashMap<HttpUrl, List<Cookie>> cookieStore = new HashMap<>();
     private OkHttpClient mCookieClient = new OkHttpClient.Builder()
             .addInterceptor(mLogging)
-            .addInterceptor(new CookieInterceptor())
+            .addInterceptor(new ReceivedCookiesInterceptor())
+            .addInterceptor(new AddCookiesInterceptor())
+//            .addInterceptor(new CookieInterceptor())
             .build();
 
 
@@ -369,16 +380,22 @@ public class HttpManager {
 
 
     public Observable<ForgetPwdUserNameResp> getUserNameByPhone(String countryCode, String phone) {
-        Observable<ForgetPwdUserNameResp> forgetPwdRespObservable = retrofit.create(ForgetPwdApi.class).requestUserName(phone, 0, countryCode);
+        Observable<ForgetPwdUserNameResp> forgetPwdRespObservable = mCookieRetrofit.create(ForgetPwdApi.class).requestUserName(phone, 0, countryCode).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
         return forgetPwdRespObservable;
 
     }
 
-    public Observable<GetVerifyCodeResp> getVerifyCode(GetVerifyCodeReq getVerifyCodeReq) {
+    public Observable<ResetPwdResp> getVerifyCode(GetVerifyCodeReq getVerifyCodeReq) {
         RequestBody body = RequestBody.create(MediaType.parse("application/json"), mGson.toJson(getVerifyCodeReq));
-        Observable<GetVerifyCodeResp> forgetPwdRespObservable = retrofit.create(ForgetPwdApi.class).getVerifyCode(body);
+        Observable<ResetPwdResp> forgetPwdRespObservable = mCookieRetrofit.create(ForgetPwdApi.class).getVerifyCode(body).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
         return forgetPwdRespObservable;
     }
+
+    public Observable<ResetPwdResp> checkPWDResetTime() {
+        Observable<ResetPwdResp> resetPwdRespObservable = mCookieRetrofit.create(ForgetPwdApi.class).checkResetPwdTime();
+        return resetPwdRespObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+    }
+
 
     public Observable<PayLoad<ArticleDetailInfoResp>> getArticleInfo(String articleId) {
         Observable<PayLoad<ArticleDetailInfoResp>> articleInfoObserver = retrofit.create(ArticleApi.class).getArticleInfo(GlobalDataManager.getInstance().getUserInfo().getUserName(), articleId);
@@ -407,7 +424,6 @@ public class HttpManager {
     }
 
 
-
     public Observable<PayLoad<DiggResp>> digg(String username, String articleId) {
         Observable<PayLoad<DiggResp>> diggObserver = retrofit.create(BlogApi.class).digg(username, articleId);
         return diggObserver.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
@@ -432,7 +448,7 @@ public class HttpManager {
     }
 
 
-    public  Observable<PayLoad<List<ForumHotResp>>> getForum(String type,int page) {
+    public Observable<PayLoad<List<ForumHotResp>>> getForum(String type, int page) {
         Observable<PayLoad<List<ForumHotResp>>> hotForumObserver = retrofit.create(ForumApi.class).getHotForum(type, page);
         return hotForumObserver.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
@@ -464,7 +480,7 @@ public class HttpManager {
 
 
     public Observable<PayLoad<Boolean>> forumReport(int reasonType, String topicId, String postId, String userName) {
-        Observable<PayLoad<Boolean>> payLoadObservable = retrofit.create(ForumApi.class).forumReport(reasonType,userName,topicId,postId);
+        Observable<PayLoad<Boolean>> payLoadObservable = retrofit.create(ForumApi.class).forumReport(reasonType, userName, topicId, postId);
         return payLoadObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
 
     }
@@ -505,7 +521,7 @@ public class HttpManager {
 
     public void verifyCode(String verifyCode) {
 
-        Observable<PayLoad<AddCollectResp>> collectObserver = retrofit.create(CollectApi.class).addCollect("", "", "");
+        Observable<PayLoad<AddCollectResp>> collectObserver = mCookieRetrofit.create(CollectApi.class).addCollect("", "", "");
         collectObserver.subscribe(new Consumer<PayLoad<AddCollectResp>>() {
             @Override
             public void accept(PayLoad<AddCollectResp> addCollectRespPayLoad) throws Exception {
