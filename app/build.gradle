@@ -80,10 +80,28 @@ android {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "meizu"]
             dimension "mode"
         }
+
+        baidu {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu"]
+            dimension "mode"
+        }
+
+
+        vivo {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "vivo"]
+            dimension "mode"
+        }
+
         googleplay {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "googleplay"]
             dimension "mode"
         }
+
+        anzhi {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "googleplay"]
+            dimension "mode"
+        }
+
     }
 
     productFlavors.all { flavor ->
