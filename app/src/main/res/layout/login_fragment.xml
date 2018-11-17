@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -20,29 +19,25 @@
             android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="70dp"
-            android:src="@mipmap/ic_logo"
-            />
+            android:src="@mipmap/ic_logo" />
 
         <RelativeLayout
             android:id="@+id/relayout_account"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="105dp"
-            >
+            android:layout_marginTop="105dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
                 <TextView
                     style="@style/InputKeyStyle"
                     android:layout_width="27dp"
                     android:layout_height="19dp"
-                    android:text="@string/account"
-                    />
+                    android:text="@string/account" />
 
                 <EditText
                     android:id="@+id/accountEt"
@@ -51,7 +46,7 @@
                     android:layout_marginLeft="20dp"
                     android:background="@null"
                     android:hint="@string/account_hint"
-                    android:textSize="13sp"/>
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
@@ -59,7 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_alignParentBottom="true"
-                android:background="@color/colorDivider"/>
+                android:background="@color/colorDivider" />
         </RelativeLayout>
 
 
@@ -67,15 +62,13 @@
             android:id="@+id/passwordRelayout"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="15dp"
-            >
+            android:layout_marginTop="15dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/passwordTv"
@@ -83,8 +76,7 @@
                     android:layout_width="27dp"
                     android:layout_height="19dp"
                     android:layout_centerVertical="true"
-                    android:text="@string/password"
-                    />
+                    android:text="@string/password" />
 
                 <EditText
                     android:id="@+id/passwordEt"
@@ -95,7 +87,7 @@
                     android:background="@null"
                     android:hint="@string/password_hint"
                     android:inputType="textPassword"
-                    android:textSize="13sp"/>
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
@@ -103,7 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_alignParentBottom="true"
-                android:background="@color/colorDivider"/>
+                android:background="@color/colorDivider" />
         </RelativeLayout>
 
 
@@ -118,8 +110,7 @@
                 android:layout_height="16dp"
                 android:text="@string/register_account"
                 android:textColor="#ff468eff"
-                android:textSize="11sp"
-                />
+                android:textSize="11sp" />
 
 
             <TextView
@@ -129,8 +120,7 @@
                 android:layout_alignParentRight="true"
                 android:text="@string/forget_password"
                 android:textColor="#ff666666"
-                android:textSize="11sp"
-                />
+                android:textSize="11sp" />
 
         </RelativeLayout>
 
@@ -141,8 +131,7 @@
             android:layout_height="40dp"
             android:layout_marginTop="36dp"
             android:enabled="false"
-            android:text="@string/login"
-            />
+            android:text="@string/login" />
 
 
         <RelativeLayout
@@ -160,7 +149,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="40dp"
                 android:src="@mipmap/ic_qq"
-                android:visibility="invisible"/>
+                android:visibility="invisible" />
 
             <ImageView
                 android:id="@+id/sinaIv"
@@ -170,7 +159,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="40dp"
                 android:src="@mipmap/ic_sina"
-                android:visibility="invisible"/>
+                android:visibility="invisible" />
 
             <ImageView
                 android:id="@+id/wechatIv"
@@ -179,7 +168,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="40dp"
-                android:src="@mipmap/ic_wechat"/>
+                android:src="@mipmap/ic_wechat" />
 
 
             <TextView
@@ -188,15 +177,15 @@
                 android:layout_above="@id/sinaIv"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="33dp"
-                android:text="@string/thirdparty"/>
+                android:text="@string/thirdparty" />
 
         </RelativeLayout>
     </LinearLayout>
 
     <ProgressBar
-        android:visibility="gone"
         android:id="@+id/loadingview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
 </RelativeLayout>

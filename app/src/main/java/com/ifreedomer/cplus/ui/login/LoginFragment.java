@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.ifreedomer.cplus.R;
 import com.ifreedomer.cplus.activity.MainActivity;
+import com.ifreedomer.cplus.activity.WechatLoginActivity;
 import com.ifreedomer.cplus.activity.common.WebViewActivity;
 import com.ifreedomer.cplus.activity.forgetpassword.ForgetPasswordGetCodeActivity;
 import com.ifreedomer.cplus.http.center.HttpManager;
@@ -155,17 +156,18 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             case R.id.wechatIv:
 //
 ////                String url = "https://graph.qq.com/oauth2.0/show?which=Login&display=pc&response_type=code&client_id=100270989&redirect_uri=https%3A%2F%2Fpassport.csdn.net%2Faccount%2Flogin%3Foauth_provider%3DQQProvider&state=test"
-                Intent intent = new Intent(getActivity(), WebViewActivity.class);
-                intent.putExtra(WebViewActivity.URL, "https://passport.csdn.net/account/login");
-                intent.putExtra(WebViewActivity.SHOW_TITLE, false);
-                intent.putExtra(WebViewActivity.TITLE_KEY, getString(R.string.thirdlogin));
-                startActivity(intent);
+//                Intent intent = new Intent(getActivity(), WebViewActivity.class);
+//                intent.putExtra(WebViewActivity.URL, "https://passport.csdn.net/account/login");
+//                intent.putExtra(WebViewActivity.SHOW_TITLE, false);
+//                intent.putExtra(WebViewActivity.TITLE_KEY, getString(R.string.thirdlogin));
+//                startActivity(intent);
 //
 ////                https://passport.csdn.net/account/login
 //
 ////                intent.put
 ////                TencentManager.getInstance().login(getActivity(), "1106956819", mQQLoginCallback);
-//                Intent intent = new Intent(getActivity(), WechatLoginActivity.class);
+                Intent intent = new Intent(getActivity(), WechatLoginActivity.class);
+                startActivity(intent);
                 break;
             case R.id.loginBtn:
                 if (getActivity() == null) {
@@ -183,21 +185,22 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.registerTv:
                 intent = new Intent(getActivity(), WebViewActivity.class);
-                Uri uri = Uri.parse("https://passport.csdn.net/account/register");
+//                Uri uri = Uri.parse("https://passport.csdn.net/account/register");
                 intent.putExtra(WebViewActivity.SHOW_TITLE, false);
                 intent.putExtra(WebViewActivity.TITLE_KEY, getString(R.string.thirdlogin));
-//                startActivity(intent);
+                intent.putExtra(WebViewActivity.URL, "https://passport.csdn.net/account/register");
+                startActivity(intent);
                 break;
             case R.id.forgetPasswordTv:
 
-                intent = new Intent(getActivity(), ForgetPasswordGetCodeActivity.class);
-                startActivity(intent);
+//                intent = new Intent(getActivity(), ForgetPasswordGetCodeActivity.class);
+//                startActivity(intent);
 
 
-//                intent = new Intent(getActivity(), WebViewActivity.class);
-//                intent.putExtra(WebViewActivity.TITLE_KEY, getString(R.string.forget_password));
-//                intent.putExtra(WebViewActivity.SHOW_TITLE, false);
-//                intent.putExtra(WebViewActivity.URL, "https://passport.csdn.net/passport_fe/forget.html");
+                intent = new Intent(getActivity(), WebViewActivity.class);
+                intent.putExtra(WebViewActivity.TITLE_KEY, getString(R.string.forget_password));
+                intent.putExtra(WebViewActivity.SHOW_TITLE, false);
+                intent.putExtra(WebViewActivity.URL, "https://passport.csdn.net/passport_fe/forget.html");
                 break;
         }
     }

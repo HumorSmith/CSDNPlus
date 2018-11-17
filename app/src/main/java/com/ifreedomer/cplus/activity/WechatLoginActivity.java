@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.ifreedomer.cplus.R;
 import com.ifreedomer.cplus.util.ToolbarUtil;
 
@@ -27,5 +28,6 @@ public class WechatLoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_wechat_login);
         ButterKnife.bind(this);
         ToolbarUtil.setTitleBarWithBack(this, toolbar, getString(R.string.scan_code_register));
+        Glide.with(wechatIv).load("https://open.weixin.qq.com/connect/qrcode/081s5tHrCTDIUa-r").into(wechatIv);
     }
 }

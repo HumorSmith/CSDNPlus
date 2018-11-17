@@ -3,9 +3,11 @@ package com.ifreedomer.cplus.activity.forgetpassword;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
-import android.webkit.CookieManager;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -15,12 +17,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ifreedomer.cplus.R;
-import com.ifreedomer.cplus.activity.WebLoginActivity;
 import com.ifreedomer.cplus.http.center.HttpManager;
 import com.ifreedomer.cplus.http.protocol.req.GetVerifyCodeReq;
-import com.ifreedomer.cplus.http.protocol.resp.ForgetPwdUserNameResp;
 import com.ifreedomer.cplus.http.protocol.resp.ResetPwdResp;
-import com.ifreedomer.cplus.util.SPUtil;
+import com.ifreedomer.cplus.util.LogUtil;
 import com.ifreedomer.cplus.util.StringUtil;
 import com.ifreedomer.cplus.util.ToolbarUtil;
 import com.ifreedomer.cplus.util.WidgetUtil;
@@ -34,7 +34,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
 public class ForgetPasswordGetCodeActivity extends AppCompatActivity implements View.OnClickListener {
-
+    public static final String TAG = ForgetPasswordGetCodeActivity.class.getSimpleName();
     @BindView(R.id.titleTv)
     TextView titleTv;
     @BindView(R.id.toolbar)
@@ -49,14 +49,37 @@ public class ForgetPasswordGetCodeActivity extends AppCompatActivity implements 
     Button nextStepBtn;
     @BindView(R.id.webview)
     WebView webview;
+    @BindView(R.id.verifyCodeEt)
+    EditText verifyCodeEt;
+    @BindView(R.id.countDownTv)
+    TextView countDownTv;
+    @BindView(R.id.pwdEt)
+    EditText pwdEt;
     private String mUserName;
+
+
+    private int countDownTime = 60;
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (countDownTime <= 0) {
+                countDownTv.setText(R.string.resend);
+                return;
+            }
+            countDownTime = countDownTime - 1;
+            countDownTv.setText(countDownTime + "s");
+            mHandler.sendEmptyMessageDelayed(0, 1000);
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.forget_password_activity);
         ButterKnife.bind(this);
-//        initWebView();
+        initWebView();
         initView();
 
     }
@@ -89,24 +112,48 @@ public class ForgetPasswordGetCodeActivity extends AppCompatActivity implements 
         webview.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                LogUtil.d(TAG, "url = " + url);
                 return false;
             }
 
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
-                CookieManager cookieManager = CookieManager.getInstance();
-//                cookieManager.removeAllCookie();
-//                SPUtil.put(ForgetPasswordGetCodeActivity.this, "cookie", cookieManager.getCookie(url));
-                WidgetUtil.showSnackBar(ForgetPasswordGetCodeActivity.this, getString(R.string.get_cookie_success));
+            }
+
+
+        });
+
+        webview.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                super.onProgressChanged(view, newProgress);
+
+
             }
         });
+
 
         webview.loadUrl("https://passport.csdn.net/passport_fe/forget.html");
     }
 
+
+    public void clickHtmlSendVerifyCode(String phone) {
+        StringBuilder builder = new StringBuilder();
+        // add javascript prefix
+        builder.append("javascript:(function() { ");
+        builder.append("alert(\"exe before\");");
+        builder.append("document.getElementById(\"phone\").value = \"" + phone + "\";");
+        builder.append("document.getElementsByClassName(\"btn btn-confirm btn-control\")[0].click();");
+        builder.append("alert(\"exe after\");");
+        // add javascript suffix
+        builder.append("})()");
+        LogUtil.d(TAG, builder.toString());
+        webview.loadUrl(builder.toString());
+    }
+
     private void initView() {
-        ToolbarUtil.setTitleBarWithBack(this, toolbar, getString(R.string.reset_pwd_first));
+        ToolbarUtil.setTitleBarWithBack(this, toolbar, getString(R.string.reset_pwd));
         nextStepBtn.setOnClickListener(this);
     }
 
@@ -122,18 +169,20 @@ public class ForgetPasswordGetCodeActivity extends AppCompatActivity implements 
                     WidgetUtil.showSnackBar(this, getString(R.string.invalid_phonenum));
                     return;
                 }
-                Observable<ForgetPwdUserNameResp> forgetPwdRespObservable = HttpManager.getInstance().getUserNameByPhone("0086",
-                        phoneEt.getText().toString());
+                clickHtmlSendVerifyCode(phoneEt.getText().toString());
 
-
-                forgetPwdRespObservable.subscribe(forgetPwdResp -> {
-                    if (forgetPwdResp.isStatus()) {
-                        mUserName = forgetPwdResp.getData().getUsername();
-                        getVerifyCode(mUserName);
-                    } else {
-                        WidgetUtil.showSnackBar(ForgetPasswordGetCodeActivity.this, forgetPwdResp.getMsg());
-                    }
-                }, throwable -> WidgetUtil.showSnackBar(ForgetPasswordGetCodeActivity.this, throwable.getMessage()));
+//                Observable<ForgetPwdUserNameResp> forgetPwdRespObservable = HttpManager.getInstance().getUserNameByPhone("0086",
+//                        phoneEt.getText().toString());
+//
+//
+//                forgetPwdRespObservable.subscribe(forgetPwdResp -> {
+//                    if (forgetPwdResp.isStatus()) {
+//                        mUserName = forgetPwdResp.getData().getUsername();
+//                        getVerifyCode(mUserName);
+//                    } else {
+//                        WidgetUtil.showSnackBar(ForgetPasswordGetCodeActivity.this, forgetPwdResp.getMsg());
+//                    }
+//                }, throwable -> WidgetUtil.showSnackBar(ForgetPasswordGetCodeActivity.this, throwable.getMessage()));
                 break;
 
         }

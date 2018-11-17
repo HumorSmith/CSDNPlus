@@ -48,7 +48,12 @@
         <activity android:name=".activity.DeployArticleActivity"></activity>
         <activity android:name=".activity.ArticleCategorySelectActivity"></activity>
         <activity android:name=".activity.BlogCategorySelectActivity" />
-        <activity android:name=".activity.WebLoginActivity" />
+        <activity android:name=".activity.WebLoginActivity">
+            <intent-filter>
+                <data android:scheme="wtloginmqq://" />
+            </intent-filter>
+
+        </activity>
 
         <meta-data
             android:name="UMENG_APPKEY"

@@ -208,6 +208,11 @@
     <string name="create_article">创作文章</string>
     <string name="create">创作</string>
     <string name="get_userinfo_error">获取用户信息错误，请重新登录试试吧</string>
+    <string name="pwd_hint">11-20位数字字母组合密码</string>
+    <string name="input_verify_code">请输入收到的验证码</string>
+    <string name="find_pwd">找回</string>
+    <string name="send_verify_code">发送验证码</string>
+    <string name="reset_pwd">重置密码</string>
 
 
     <string-array name="forum_key">

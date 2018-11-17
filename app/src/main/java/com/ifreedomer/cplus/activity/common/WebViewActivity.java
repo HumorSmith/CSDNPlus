@@ -1,8 +1,11 @@
 package com.ifreedomer.cplus.activity.common;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -57,19 +60,33 @@ public class WebViewActivity extends AppCompatActivity {
         // 隐藏原生的缩放控件
         webSettings.setDisplayZoomControls(true);
         webSettings.setAllowFileAccess(true);
-        webview.loadUrl("file://assets/forget_pwd/get_pwd.html");
+        webview.loadUrl(url);
+
+//        webview.loadUrl("file://assets/forget_pwd/get_pwd.html");
         boolean overrideUrl = getIntent().getBooleanExtra(OPEN_BROWER, true);
 //        if (overrideUrl) {
-            webview.setWebChromeClient(new WebChromeClient() {
-//                @Override
-//                public boolean shouldOverrideUrlLoading(WebView view, String url) {
-//                    return false;
-//                }
-
-
-
-            });
+//        webview.setWebChromeClient(new WebChromeClient() {
+////                @Override
+////                public boolean shouldOverrideUrlLoading(WebView view, String url) {
+////                    return false;
+////                }
+//
+//
+//        });
 //        }
+        webview.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                if (url.startsWith("wtloginmqq://")) {
+                    Uri uri = Uri.parse(url); //url为你要链接的地址
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+                    return true;
+                }
+                view.loadUrl(url);
+                return false;
+            }
+        });
 
     }
 }
