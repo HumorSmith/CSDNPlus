@@ -6,8 +6,8 @@ android {
         applicationId "com.ifreedomer.cplus"
         minSdkVersion 19
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 18
-        versionName "1.1.8"
+        versionCode 19
+        versionName "1.1.9"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -62,34 +62,41 @@ android {
         wandoujia {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wandoujia"]
             dimension "mode"
+            resValue "string", "app_name", "CSDN+"
         }
         coolapk {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "coolapk"]
             dimension "mode"
+            resValue "string", "app_name", "CSDN+"
         }
         xiaomi {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
             dimension "mode"
+            resValue "string", "app_name", "C+"
         }
 
         huawei {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "huawei"]
             dimension "mode"
+            resValue "string", "app_name", "CSDN+"
         }
         meizu {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "meizu"]
             dimension "mode"
+            resValue "string", "app_name", "CSDN+"
         }
 
         baidu {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu"]
             dimension "mode"
+            resValue "string", "app_name", "CSDN+"
         }
 
 
         vivo {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "vivo"]
             dimension "mode"
+            resValue "string", "app_name", "CSDN+"
         }
 
         googleplay {
@@ -100,6 +107,7 @@ android {
         anzhi {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "googleplay"]
             dimension "mode"
+            resValue "string", "app_name", "CSDN+"
         }
 
     }

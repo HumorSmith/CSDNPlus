@@ -194,13 +194,14 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             case R.id.forgetPasswordTv:
 
 //                intent = new Intent(getActivity(), ForgetPasswordGetCodeActivity.class);
-//                startActivity(intent);
 
 
                 intent = new Intent(getActivity(), WebViewActivity.class);
                 intent.putExtra(WebViewActivity.TITLE_KEY, getString(R.string.forget_password));
                 intent.putExtra(WebViewActivity.SHOW_TITLE, false);
                 intent.putExtra(WebViewActivity.URL, "https://passport.csdn.net/passport_fe/forget.html");
+                startActivity(intent);
+
                 break;
         }
     }

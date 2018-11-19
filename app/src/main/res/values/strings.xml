@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">CSDN+</string>
     <string name="account">账号</string>
     <string name="account_hint">手机号/邮箱/用户名</string>
     <string name="password_hint">请输入密码</string>
