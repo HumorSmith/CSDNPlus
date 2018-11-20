@@ -23,7 +23,7 @@
         </activity>
         <activity
             android:name=".activity.MainActivity"
-            android:screenOrientation="portrait" />
+            />
         <activity android:name=".activity.RegisterActivity"></activity>
         <activity android:name=".activity.forgetpassword.ForgetPasswordGetCodeActivity"></activity>
         <activity android:name=".activity.BlogContentActivity" />
