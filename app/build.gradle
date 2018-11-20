@@ -96,7 +96,7 @@ android {
         vivo {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "vivo"]
             dimension "mode"
-            resValue "string", "app_name", "CSDN+"
+            resValue "string", "app_name", "CSDNPlus"
         }
 
         googleplay {
