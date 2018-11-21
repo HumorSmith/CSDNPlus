@@ -6,7 +6,10 @@ import android.view.View;
 import com.google.android.material.snackbar.Snackbar;
 
 public class WidgetUtil {
-    public static void showSnackBar(Activity activity, String message){
+    public static void showSnackBar(Activity activity, String message) {
+        if (activity == null || activity.getWindow() == null) {
+            return;
+        }
         View rootView = activity.getWindow().getDecorView().findViewById(android.R.id.content);
         Snackbar.make(rootView, message, Snackbar.LENGTH_SHORT).show();
     }

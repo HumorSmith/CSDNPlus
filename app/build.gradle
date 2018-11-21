@@ -10,6 +10,7 @@ android {
         versionName "1.2.0"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {abiFilters "armeabi", "armeabi-v7a", "x86","mips"}
     }
     lintOptions {
         // Caution!! This will disable lint vital lint check...
