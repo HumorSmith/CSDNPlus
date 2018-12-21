@@ -104,7 +104,7 @@
             android:layout_alignParentRight="true"
             android:gravity="center"
             android:lineSpacingMultiplier="1.2"
-            android:text="55\n关注"
+            android:text="0\n关注"
             android:textColor="#ff333333"
             android:textSize="15sp"
             />
