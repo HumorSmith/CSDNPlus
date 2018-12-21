@@ -27,4 +27,12 @@ public class FollowOperationResp {
     public void setMsg(String msg) {
         this.msg = msg;
     }
+
+    @Override
+    public String toString() {
+        return "FollowOperationResp{" +
+                "succ=" + succ +
+                ", msg='" + msg + '\'' +
+                '}';
+    }
 }

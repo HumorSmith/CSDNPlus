@@ -2,6 +2,7 @@ package com.ifreedomer.cplus.ui.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,9 @@ import com.ifreedomer.cplus.activity.markdown.MarkdownEditorActivity;
 import com.ifreedomer.cplus.adapter.ViewPagerFragmentAdapter;
 import com.ifreedomer.cplus.entity.NewsTabInfo;
 import com.ifreedomer.cplus.fragment.ArticleListFragment;
+import com.ifreedomer.cplus.http.center.HttpManager;
+import com.ifreedomer.cplus.http.protocol.PayLoad;
+import com.ifreedomer.cplus.http.protocol.resp.FollowOperationResp;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
@@ -27,9 +31,10 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.functions.Consumer;
 
 public class MainFragment extends Fragment {
-
+    public static final String TAG = MainFragment.class.getSimpleName();
     @BindView(R.id.deployTv)
     TextView deployTv;
     @BindView(R.id.searchEt)
@@ -54,7 +59,22 @@ public class MainFragment extends Fragment {
         ButterKnife.bind(this, view);
         initView();
         setupViewPagerAndTab();
+        doFollow();
         return view;
+    }
+
+    private void doFollow() {
+        HttpManager.getInstance().follow("aa375809600").subscribe(new Consumer<PayLoad<FollowOperationResp>>() {
+            @Override
+            public void accept(PayLoad<FollowOperationResp> followOperationRespPayLoad) throws Exception {
+                Log.d(TAG,"success = "+followOperationRespPayLoad.toString());
+            }
+        }, new Consumer<Throwable>() {
+            @Override
+            public void accept(Throwable throwable) throws Exception {
+                Log.d(TAG,"error = "+throwable.toString());
+            }
+        });
     }
 
     private void initView() {

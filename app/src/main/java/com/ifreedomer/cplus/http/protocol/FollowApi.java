@@ -8,6 +8,8 @@ import com.ifreedomer.cplus.http.protocol.resp.GetRelationResp;
 import java.util.List;
 
 import io.reactivex.Observable;
+import okhttp3.RequestBody;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -22,8 +24,8 @@ public interface FollowApi {
     @POST("api/user/unFollow")
     Observable<PayLoad<FollowOperationResp>> unFollow(@Query("SessionId") String sessionId, @Query("username") String username, @Query("fans") String fans);
 
-    @POST("api/user/doFollow")
-    Observable<PayLoad<FollowOperationResp>> doFollow(@Query("SessionId") String sessionId, @Query("username") String username, @Query("fans") String fans);
+    @POST("https://gw.csdn.net/cms-app/v1/me/login/do_follow")
+    Observable<PayLoad<FollowOperationResp>> doFollow(@Body RequestBody requestBody);
 
 
     @GET("api/user/relation")

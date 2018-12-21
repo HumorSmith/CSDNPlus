@@ -20,6 +20,7 @@ import com.ifreedomer.cplus.http.protocol.LoginAppV1Api;
 import com.ifreedomer.cplus.http.protocol.LoginV3Api;
 import com.ifreedomer.cplus.http.protocol.PayLoad;
 import com.ifreedomer.cplus.http.protocol.body.FormBodyCustom;
+import com.ifreedomer.cplus.http.protocol.req.FollowReq;
 import com.ifreedomer.cplus.http.protocol.req.GetVerifyCodeReq;
 import com.ifreedomer.cplus.http.protocol.req.LoginReq;
 import com.ifreedomer.cplus.http.protocol.resp.AddCollectResp;
@@ -262,7 +263,10 @@ public class HttpManager {
 
 
     public Observable<PayLoad<FollowOperationResp>> follow(String username) {
-        Observable<PayLoad<FollowOperationResp>> unFollowObservable = retrofit.create(FollowApi.class).doFollow(GlobalDataManager.getInstance().getSessionId(), username, GlobalDataManager.getInstance().getUserInfo().getUserName());
+        FollowReq followReq = new FollowReq();
+        followReq.setFans(username);
+        RequestBody body = RequestBody.create(MediaType.parse("application/json"), mGson.toJson(followReq));
+        Observable<PayLoad<FollowOperationResp>> unFollowObservable = retrofit.create(FollowApi.class).doFollow(body);
         unFollowObservable = unFollowObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
         return unFollowObservable;
     }
