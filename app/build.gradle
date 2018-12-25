@@ -6,11 +6,11 @@ android {
         applicationId "com.ifreedomer.cplus"
         minSdkVersion 19
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 23
-        versionName "1.2.3"
+        versionCode 24
+        versionName "1.2.4"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        ndk {abiFilters "armeabi", "armeabi-v7a", "x86","mips"}
+        ndk {abiFilters "armeabi", "armeabi-v7a", "x86","mips",'arm64-v8a'}
     }
     lintOptions {
         // Caution!! This will disable lint vital lint check...
