@@ -6,8 +6,8 @@ android {
         applicationId "com.ifreedomer.cplus"
         minSdkVersion 19
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 24
-        versionName "1.2.4"
+        versionCode 28
+        versionName "1.2.8"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         ndk {abiFilters "armeabi", "armeabi-v7a", "x86","mips",'arm64-v8a'}
@@ -111,6 +111,13 @@ android {
             resValue "string", "app_name", "CSDN+"
         }
 
+
+        tencent {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "tencent"]
+            dimension "mode"
+            resValue "string", "app_name", "CSDNPlus"
+        }
+
     }
 
     productFlavors.all { flavor ->
@@ -131,7 +138,7 @@ repositories {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation(name: "basead-debug", ext: "aar")
-    implementation(name: "googlead-debug", ext: "aar")
+    implementation(name: "tencentad-debug", ext: "aar")
 
     // https://mvnrepository.com/artifact/androidx.appcompat/appcompat
     implementation 'androidx.appcompat:appcompat:1.0.0'

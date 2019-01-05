@@ -256,6 +256,10 @@ public class BlogContentActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.diggIv:
+                if (GlobalDataManager.getInstance().getUserInfo()==null){
+                    WidgetUtil.showSnackBar(this,getString(R.string.login_timeout));
+                    return;
+                }
                 Observable<PayLoad<DiggResp>> digg = HttpManager.getInstance().digg(GlobalDataManager.getInstance().getUserInfo().getUserName(), mBlogContentInfo.getId());
                 digg.subscribe(diggRespPayLoad -> {
                     if (diggRespPayLoad.getCode() == PayLoad.SUCCESS) {

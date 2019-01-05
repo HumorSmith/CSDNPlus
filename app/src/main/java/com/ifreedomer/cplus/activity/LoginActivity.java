@@ -16,20 +16,15 @@ public class LoginActivity extends AppCompatActivity {
             Manifest.permission.ACCESS_NETWORK_STATE,
             Manifest.permission.READ_PHONE_STATE,
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
-        new PermissionHelper(this).requestPermission(new PermissionHelper.Callback() {
-            @Override
-            public void onPermissionResult(boolean allGranted) {
-                if (savedInstanceState == null) {
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.container, LoginFragment.newInstance())
-                            .commitAllowingStateLoss();
-                }
-            }
-        }, PERMISSIONS);
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, LoginFragment.newInstance())
+                .commitAllowingStateLoss();
 
     }
 

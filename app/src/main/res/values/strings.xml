@@ -212,6 +212,7 @@
     <string name="find_pwd">找回</string>
     <string name="send_verify_code">发送验证码</string>
     <string name="reset_pwd">重置密码</string>
+    <string name="login_timeout">登陆状态已失效,重新登录吧</string>
 
 
     <string-array name="forum_key">
