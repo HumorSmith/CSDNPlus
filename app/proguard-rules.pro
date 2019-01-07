@@ -44,8 +44,10 @@
 -keep class com.jakewharton.**{*;}
 -keep class com.sun.mail.**{*;}
 
+-keep class com.qq.**{*;}
 -keep class com.sun.mail.**{*;}
 -keep class com.alipay.**{*;}
+-keep class org.apache.**{*;}
 -keep class com.ut.**{*;}
 -keep class com.ta.**{*;}
 -keep class org.apache.harmony.**{*;}

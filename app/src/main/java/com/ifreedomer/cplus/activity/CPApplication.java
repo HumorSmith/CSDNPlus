@@ -22,8 +22,7 @@ public class CPApplication extends Application {
         BaseADSplashActivity.setAppId("1108012335");
         BaseADSplashActivity.setSplashId("1000941955057643");
         BaseADSplashActivity.setTargetClass(LoginActivity.class);
-        startActivity(new Intent(this, TencentVerticalSplashActivity.class));
-
+        BaseADSplashActivity.setJumpToTarget(false);
         UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, "");
     }
 
