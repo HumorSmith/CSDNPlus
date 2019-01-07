@@ -94,6 +94,14 @@ android {
         }
 
 
+        wandoujia {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wandoujia"]
+            applicationId "cn.ifreedomer.csdn.cplus"
+            dimension "mode"
+            resValue "string", "app_name", "CSDN+"
+        }
+
+
         vivo {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "vivo"]
             dimension "mode"
