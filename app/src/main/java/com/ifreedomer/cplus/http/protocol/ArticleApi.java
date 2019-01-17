@@ -12,9 +12,9 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface ArticleApi {
-    @GET("api/v5/index/articles")
-    Observable<PayLoad<ArticleListResp<ArticleResp>>> getNews(@Query("SessionId") String sessionId
-            , @Query("category") String category
+    @GET("/cms-app/v1/home_page/may_login/list_recomment_articles")
+    Observable<PayLoad<ArticleListResp<ArticleResp>>> getNews(
+             @Query("category") String category
             , @Query("cookieid") String cookieId
             , @Query("type") String type
             , @Query("shown_offset") long offset
@@ -23,11 +23,11 @@ public interface ArticleApi {
 
     @GET("api/history/list")
     Observable<PayLoad<List<HistoryResp>>> getHistory(@Query("SessionId") String sessionId
-            , @Query("username") String username);
+            , @Query("userName") String username);
 
 
     @GET("api/v5/ArticleInfo/getArticleInfo")
-    Observable<PayLoad<ArticleDetailInfoResp>> getArticleInfo(@Query("username") String username
+    Observable<PayLoad<ArticleDetailInfoResp>> getArticleInfo(@Query("userName") String username
             , @Query("article_id") String articleId);
 
 

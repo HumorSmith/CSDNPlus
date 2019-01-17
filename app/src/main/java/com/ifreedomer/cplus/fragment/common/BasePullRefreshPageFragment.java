@@ -91,7 +91,7 @@ public abstract class BasePullRefreshPageFragment<T> extends BasePageFragment {
 
     public void refreshList(int code, String message, List<T> list) {
 //            LogUtil.d(TAG, "listpayload = " + listPayLoad.toString());
-        if (code == PayLoad.SUCCESS) {
+        if (code == PayLoad.SUCCESS||code == 200) {
 
             if (mCurPage == mFirstPage) {
                 mDataList.clear();

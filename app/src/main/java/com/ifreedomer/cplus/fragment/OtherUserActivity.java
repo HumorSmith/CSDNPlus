@@ -111,7 +111,7 @@ public class OtherUserActivity extends AppCompatActivity implements View.OnClick
 
 
         HttpManager.getInstance().getV2Profile(mUserName).subscribe(v2ProfileRespPayLoad -> {
-            if (v2ProfileRespPayLoad.getCode() == PayLoad.SUCCESS) {
+            if (v2ProfileRespPayLoad.getCode() == 200) {
                 signTv.setText(v2ProfileRespPayLoad.getData().getSelfdesc());
             } else {
                 WidgetUtil.showSnackBar(OtherUserActivity.this, v2ProfileRespPayLoad.getMessage());

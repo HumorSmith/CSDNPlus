@@ -15,20 +15,20 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface FollowApi {
-    @GET("api/user/myFocus")
-    Observable<PayLoad<List<FollowResp>>>  getIdol( @Query("username") String username, @Query("page") int page, @Query("pagesize") int size);
+    @GET("cms-app/v1/me/login/my_follow")
+    Observable<PayLoad<List<FollowResp>>>  getIdol( @Query("userName") String username, @Query("page") int page, @Query("pagesize") int size);
 
-    @GET("api/user/myRelation")
-    Observable<PayLoad<List<FollowResp>>> getFans( @Query("username") String username, @Query("page") int page, @Query("pagesize") int size);
+    @GET("/cms-app/v1/me/login/my_fans")
+    Observable<PayLoad<List<FollowResp>>> getFans( @Query("userName") String username, @Query("page") int page, @Query("pagesize") int size);
 
-    @POST("api/user/unFollow")
-    Observable<PayLoad<FollowOperationResp>> unFollow(@Query("SessionId") String sessionId, @Query("username") String username, @Query("fans") String fans);
+    @POST("cms-app/v1/me/login/un_follow")
+    Observable<PayLoad<FollowOperationResp>> unFollow(@Query("userName") String username, @Query("fans") String fans);
 
     @POST("https://gw.csdn.net/cms-app/v1/me/login/do_follow")
     Observable<PayLoad<FollowOperationResp>> doFollow(@Body RequestBody requestBody);
 
 
     @GET("api/user/relation")
-    Observable<PayLoad<GetRelationResp>> getRelation(@Query("username") String username);
+    Observable<PayLoad<GetRelationResp>> getRelation(@Query("userName") String username);
 
 }

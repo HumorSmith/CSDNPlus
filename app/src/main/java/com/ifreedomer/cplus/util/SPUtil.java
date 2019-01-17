@@ -24,6 +24,9 @@ public class SPUtil {
     }
 
     public static void put(Context context, String spName, String key, Object object) {
+        if (object==null){
+            return;
+        }
         SharedPreferences sp = context.getSharedPreferences(spName,
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();

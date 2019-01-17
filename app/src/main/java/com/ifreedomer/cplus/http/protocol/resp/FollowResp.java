@@ -7,41 +7,25 @@ public class FollowResp {
     public static final int FOLLOW_EACH_OTHER = 3;
 
     /**
-     * username : jiaozhenxinaichenme
-     * avatar : https://avatar.csdn.net/A/E/4/1_jiaozhenxinaichenme.jpg
-     * description : 主要做Android系统开发
-     * nickname : Jason-Jiao
      * isFocus : 1
+     * nickname : 飞-翔-鸟
+     * description : 游戏程序员一枚，做过三维引擎开发，后发觉移动互联网大势所趋，转行移动端开发，热爱ios应用，android应用开发，现从事游戏开发，常用语言c，lua
+     * avatar : https://avatar.csdn.net/3/2/3/1_ahstuxq.jpg
+     * username : ahstuxq
      */
 
-    private String username;
-    private String avatar;
-    private String description;
-    private String nickname;
     private int isFocus;
+    private String nickname;
+    private String description;
+    private String avatar;
+    private String username;
 
-    public String getUsername() {
-        return username;
+    public int getIsFocus() {
+        return isFocus;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setIsFocus(int isFocus) {
+        this.isFocus = isFocus;
     }
 
     public String getNickname() {
@@ -52,11 +36,27 @@ public class FollowResp {
         this.nickname = nickname;
     }
 
-    public int getIsFocus() {
-        return isFocus;
+    public String getDescription() {
+        return description;
     }
 
-    public void setIsFocus(int isFocus) {
-        this.isFocus = isFocus;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

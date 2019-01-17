@@ -247,7 +247,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public void getUserProfile(String userName) {
         Observable<PayLoad<V2ProfileResp>> v2ProfileObservable = HttpManager.getInstance().getV2Profile(userName);
         Disposable subscribe = v2ProfileObservable.subscribe(v2ProfileRespPayLoad -> {
-            if (v2ProfileRespPayLoad.getCode() == PayLoad.SUCCESS) {
+            if (v2ProfileRespPayLoad.getCode() == 200) {
 
                 SPUtil.put(getActivity(), LOGINED, true);
                 loadingview.setVisibility(View.GONE);

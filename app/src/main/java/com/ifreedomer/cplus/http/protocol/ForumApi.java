@@ -14,8 +14,8 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface ForumApi {
-    @GET("api/v2/bbs/new_get_hot_topics")
-    Observable<PayLoad<List<ForumHotResp>>> getHotForum(@Query("topic_type") String topicType, @Query("page") int page);
+    @GET("cms-app/v1/bbs/new_hot_topics")
+    Observable<PayLoad<List<ForumHotResp>>> getHotForum(@Query("topicType") String topicType, @Query("page") int page);
 
     @GET("api/v2/bbs/get_posts")
     Observable<PayLoad<List<ForumDetailResp>>> getForumDetail(@Query("topic_id") String topicId

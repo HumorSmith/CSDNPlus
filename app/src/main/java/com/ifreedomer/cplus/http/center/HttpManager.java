@@ -103,7 +103,9 @@ public class HttpManager {
     }
 
     public static final String TAG = HttpManager.class.getSimpleName();
-    private static final String BASE_URL = "https://ms.csdn.net";
+    private static final String BASE_URL = "https://gw.csdn.net";
+
+    private static final String LOGIN_URL = "https://passport.csdn.net";
 
 
     private HttpLoggingInterceptor mLogging = new HttpLoggingInterceptor();
@@ -114,6 +116,8 @@ public class HttpManager {
 
 
     private Retrofit mCookieRetrofit;
+
+    private Retrofit mLoginRetrofit;
 
 
     private OkHttpClient mClient = new OkHttpClient.Builder()
@@ -156,6 +160,14 @@ public class HttpManager {
                 .client(mCookieClient)
                 .build();
 
+
+        mLoginRetrofit = new Retrofit.Builder()
+                .baseUrl(LOGIN_URL)
+                .addConverterFactory(GsonConverterFactory.create()) //设置使用Gson解析(记得加入依赖)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) // 支持RxJava
+                .client(mClient)
+                .build();
+
     }
 
     ;
@@ -192,7 +204,7 @@ public class HttpManager {
     //专为app设计的V1接口
     public Observable<PayLoad<LoginAppV1TokenResp>> loginAppV1(String account, String password) {
         String decryptPwd = SecurityUtil.DESEncrypt(password);
-        LoginAppV1Api loginApi = retrofit.create(LoginAppV1Api.class);
+        LoginAppV1Api loginApi = mLoginRetrofit.create(LoginAppV1Api.class);
         Log.d(TAG, "account = " + account + "  password = " + password + "   decryptPwd =" + decryptPwd);
 
         LoginReq loginReq = new LoginReq();
@@ -209,7 +221,7 @@ public class HttpManager {
     public Observable<PayLoad<V2ProfileResp>> getV2Profile(String account) {
         String sessionId = GlobalDataManager.getInstance().getSessionId();
         LoginV3Api loginApi = retrofit.create(LoginV3Api.class);
-        Observable<PayLoad<V2ProfileResp>> userProfileObservable = loginApi.getUserProfile(account, sessionId);
+        Observable<PayLoad<V2ProfileResp>> userProfileObservable = loginApi.getUserProfile(account);
         return userProfileObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
 
     }
@@ -229,7 +241,7 @@ public class HttpManager {
 
     public Observable<PayLoad<ArticleListResp<ArticleResp>>> getArticleListByCategory(String category, String type, long offset, int size) {
         Observable<PayLoad<ArticleListResp<ArticleResp>>> articleListByCategoryObservable = retrofit.create(ArticleApi.class).getNews(
-                GlobalDataManager.getInstance().getSessionId(), category, "867686022248916", type, offset, size);
+                category, "867686022248916", type, offset, size);
         articleListByCategoryObservable = articleListByCategoryObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
         return articleListByCategoryObservable;
     }
@@ -256,7 +268,7 @@ public class HttpManager {
     }
 
     public Observable<PayLoad<FollowOperationResp>> unfollow(String username) {
-        Observable<PayLoad<FollowOperationResp>> unFollowObservable = retrofit.create(FollowApi.class).unFollow(GlobalDataManager.getInstance().getSessionId(), username, GlobalDataManager.getInstance().getUserInfo().getUserName());
+        Observable<PayLoad<FollowOperationResp>> unFollowObservable = retrofit.create(FollowApi.class).unFollow( username, GlobalDataManager.getInstance().getUserInfo().getUserName());
         unFollowObservable = unFollowObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
         return unFollowObservable;
     }

@@ -17,8 +17,8 @@ public interface LoginV3Api {
 
     @POST("v3/loginV3")
     Observable<PayLoad<UserInfoResp>> loginV3(@Query("username") String username, @Query("password") String password, @Query("SessionId") String sessionId);
-    @GET("api/v2/user/profile")
-    Observable<PayLoad<V2ProfileResp>> getUserProfile(@Query("username") String username, @Query("SessionId") String sessionId);
+    @GET("/cms-app/v1/me/my")
+    Observable<PayLoad<V2ProfileResp>> getUserProfile(@Query("userName") String username);
     @GET("uc/userinfo/count")
     Observable<PayLoad<CountResp>> getCountProfile(@Query("username")String username);
 

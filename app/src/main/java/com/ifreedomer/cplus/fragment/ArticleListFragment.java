@@ -44,7 +44,7 @@ public class ArticleListFragment extends ArticlePullrefreshFragment {
         newsObservable.subscribe(listPayLoad -> {
             refreshLayout.setRefreshing(false);
 //            LogUtil.d(TAG, "listpayload = " + listPayLoad.toString());
-            if (listPayLoad.getCode() == PayLoad.SUCCESS) {
+            if (listPayLoad.getCode() == 200) {
 
                 if (getCurPage() == 0) {
                     mDataList.clear();
