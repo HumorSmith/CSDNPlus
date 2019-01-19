@@ -95,16 +95,17 @@ public class OtherUserActivity extends AppCompatActivity implements View.OnClick
     }
 
     public void initData() {
-        Observable<UserBlogInfoResp> userBlogInfoObserver = HttpManager.getInstance().getUserBlogInfo(mUserName);
-        Disposable subscribe = userBlogInfoObserver.subscribe(userBlogInfoRespPayLoad -> {
+        Observable<PayLoad<UserBlogInfoResp>> userBlogInfoObserver = HttpManager.getInstance().getUserBlogInfo(mUserName);
+        Disposable subscribe = userBlogInfoObserver.subscribe(resp -> {
+            UserBlogInfoResp userBlogInfoRespPayLoad = resp.getData();
             LogUtil.d(TAG, "user blog info = " + userBlogInfoRespPayLoad.toString());
-            String blogNumWrapStr = String.format(getString(R.string.blogNumWrap), userBlogInfoRespPayLoad.getArticle_count().getAll());
+            String blogNumWrapStr = String.format(getString(R.string.blogNumWrap), userBlogInfoRespPayLoad.getAll()+"");
             blogNumTv.setText(blogNumWrapStr);
-            String idolWrapStr = String.format(getString(R.string.idolWrap), userBlogInfoRespPayLoad.getStatistic().getDiggCount());
+            String idolWrapStr = String.format(getString(R.string.idolWrap), userBlogInfoRespPayLoad.getPrivateX());
             followTv.setText(idolWrapStr);
 
 
-            String rank = userBlogInfoRespPayLoad.getStatistic().getRank();
+            String rank = userBlogInfoRespPayLoad.getRank();
             String rankWrapStr = String.format(getString(R.string.rankWrap), rank);
             rankNumTv.setText(rankWrapStr);
         }, throwable -> WidgetUtil.showSnackBar(this, throwable.getMessage()));

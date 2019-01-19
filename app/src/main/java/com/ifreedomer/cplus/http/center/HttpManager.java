@@ -178,19 +178,7 @@ public class HttpManager {
     }
 
 
-    public Observable<BlogUserProfileResp> getUserInfo(final String userName) {
-        Observable<String> userInfoObserva = mStringRetrofit.create(LoginV3Api.class).getBlogUserinfo(userName);
-        Observable<BlogUserProfileResp> userInfoRespObservable = userInfoObserva.map(new Function<String, BlogUserProfileResp>() {
-            @Override
-            public BlogUserProfileResp apply(String s) throws Exception {
-                JSONObject jsonObject = new JSONObject(s);
-                String string = jsonObject.getJSONObject("data").getJSONObject("data").getString(userName);
-                BlogUserProfileResp userInfoResp = mGson.fromJson(string, BlogUserProfileResp.class);
-                return userInfoResp;
-            }
-        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
-        return userInfoRespObservable;
-    }
+
 
     //老的V3接口
     public Observable<PayLoad<UserInfoResp>> loginV3(String account, String password) {
@@ -297,15 +285,9 @@ public class HttpManager {
         return getCountProfile;
     }
 
-    public Observable<UserBlogInfoResp> getUserBlogInfo(String userName) {
-        Observable<String> userInfoObserver = mStringRetrofit.create(LoginV3Api.class).getBlogUserinfo(userName);
-        Observable<UserBlogInfoResp> userBlogInfoRespObservable = userInfoObserver.map(s -> {
-            JSONObject jsonObject = new JSONObject(s);
-            String string = jsonObject.getJSONObject("data").getJSONObject("data").getString(userName);
-            UserBlogInfoResp userBlogInfoResp = mGson.fromJson(string, UserBlogInfoResp.class);
-            return userBlogInfoResp;
-        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
-        return userBlogInfoRespObservable;
+    public Observable<PayLoad<UserBlogInfoResp>> getUserBlogInfo(String userName) {
+        Observable<PayLoad<UserBlogInfoResp>> userInfoObserver = retrofit.create(LoginV3Api.class).getBlogUserinfo(userName);
+        return userInfoObserver.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 
     public Observable<PayLoad<GetUserTokenResp>> getUserToken() {

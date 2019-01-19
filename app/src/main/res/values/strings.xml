@@ -40,9 +40,9 @@
     <string name="feedback_failed">反馈失败</string>
     <string name="feedback">意见反馈</string>
     <string name="feedback_success">反馈成功</string>
-    <string name="blogNumWrap">%d\n博客</string>
+    <string name="blogNumWrap">%s\n博客</string>
     <string name="collect">收藏</string>
-    <string name="collectWrap">%s\n收藏</string>
+    <string name="collectWrap">%d\n收藏</string>
     <string name="idolWrap">%s\n关注</string>
     <string name="my_idol">关心</string>
     <string name="blog">博客</string>

@@ -4,336 +4,199 @@ import com.google.gson.annotations.SerializedName;
 
 public class UserBlogInfoResp {
 
+
     /**
-     * statistic : {"Flag":"0","Rank":"32248","DiggCount":"10","OriginalCount":"79","BlogId":"2056551","TranslatedCount":"0","ViewCount":"87667","RepostCount":"36","Point":"1764","CommentCount":"8"}
-     * article_count : {"draft":10,"enable":115,"deleted":22,"all":125,"private":0}
-     * level : {"chizhiyiheng":false,"point":1764,"level":4,"ico_expert":0,"bokezhixing":false,"zhuanlandaren":false,"weiruanmvp":false}
-     * fans : 20
+     * bbsLevel : 1
+     * all : 140
+     * private : 10
+     * fansNum : 628
+     * blogLevel : 4
+     * topicsCount : 2
+     * selfdesc : 学一门新技术，要放下姿态，从零开始
+     * collectNum : 17
+     * avatar : https://avatar.csdn.net/A/C/7/1_aa375809600.jpg
+     * commnetCount : 13
+     * translatedCount : 0
+     * replyCount : 9
+     * followNum : 10
+     * enable : 120
+     * nickname : 怪叔叔萝莉控
+     * rank : 31529
+     * originalCount : 84
+     * viewCount : 95008
+     * repostCount : 36
      */
 
-    private StatisticBean statistic;
-    private ArticleCountBean article_count;
-    private LevelBean level;
-    private String fans;
+    private String bbsLevel;
+    private String all;
+    @SerializedName("private")
+    private String privateX;
+    private String fansNum;
+    private String blogLevel;
+    private String topicsCount;
+    private String selfdesc;
+    private int collectNum;
+    private String avatar;
+    private String commnetCount;
+    private String translatedCount;
+    private String replyCount;
+    private String followNum;
+    private String enable;
+    private String nickname;
+    private String rank;
+    private String originalCount;
+    private String viewCount;
+    private String repostCount;
 
-    public StatisticBean getStatistic() {
-        return statistic;
+    public String getBbsLevel() {
+        return bbsLevel;
     }
 
-    public void setStatistic(StatisticBean statistic) {
-        this.statistic = statistic;
+    public void setBbsLevel(String bbsLevel) {
+        this.bbsLevel = bbsLevel;
     }
 
-    public ArticleCountBean getArticle_count() {
-        return article_count;
+    public String getAll() {
+        return all;
     }
 
-    public void setArticle_count(ArticleCountBean article_count) {
-        this.article_count = article_count;
+    public void setAll(String all) {
+        this.all = all;
     }
 
-    public LevelBean getLevel() {
-        return level;
+    public String getPrivateX() {
+        return privateX;
     }
 
-    public void setLevel(LevelBean level) {
-        this.level = level;
+    public void setPrivateX(String privateX) {
+        this.privateX = privateX;
     }
 
-    public String getFans() {
-        return fans;
+    public String getFansNum() {
+        return fansNum;
     }
 
-    public void setFans(String fans) {
-        this.fans = fans;
+    public void setFansNum(String fansNum) {
+        this.fansNum = fansNum;
     }
 
-    public static class StatisticBean {
-        /**
-         * Flag : 0
-         * Rank : 32248
-         * DiggCount : 10
-         * OriginalCount : 79
-         * BlogId : 2056551
-         * TranslatedCount : 0
-         * ViewCount : 87667
-         * RepostCount : 36
-         * Point : 1764
-         * CommentCount : 8
-         */
-
-        private String Flag;
-        private String Rank;
-        private String DiggCount;
-        private String OriginalCount;
-        private String BlogId;
-        private String TranslatedCount;
-        private String ViewCount;
-        private String RepostCount;
-        private String Point;
-        private String CommentCount;
-
-        public String getFlag() {
-            return Flag;
-        }
-
-        public void setFlag(String Flag) {
-            this.Flag = Flag;
-        }
-
-        public String getRank() {
-            return Rank;
-        }
-
-        public void setRank(String Rank) {
-            this.Rank = Rank;
-        }
-
-        public String getDiggCount() {
-            return DiggCount;
-        }
-
-        public void setDiggCount(String DiggCount) {
-            this.DiggCount = DiggCount;
-        }
-
-        public String getOriginalCount() {
-            return OriginalCount;
-        }
-
-        public void setOriginalCount(String OriginalCount) {
-            this.OriginalCount = OriginalCount;
-        }
-
-        public String getBlogId() {
-            return BlogId;
-        }
-
-        public void setBlogId(String BlogId) {
-            this.BlogId = BlogId;
-        }
-
-        public String getTranslatedCount() {
-            return TranslatedCount;
-        }
-
-        public void setTranslatedCount(String TranslatedCount) {
-            this.TranslatedCount = TranslatedCount;
-        }
-
-        public String getViewCount() {
-            return ViewCount;
-        }
-
-        public void setViewCount(String ViewCount) {
-            this.ViewCount = ViewCount;
-        }
-
-        public String getRepostCount() {
-            return RepostCount;
-        }
-
-        public void setRepostCount(String RepostCount) {
-            this.RepostCount = RepostCount;
-        }
-
-        public String getPoint() {
-            return Point;
-        }
-
-        public void setPoint(String Point) {
-            this.Point = Point;
-        }
-
-        public String getCommentCount() {
-            return CommentCount;
-        }
-
-        @Override
-        public String toString() {
-            return "StatisticBean{" +
-                    "Flag='" + Flag + '\'' +
-                    ", Rank='" + Rank + '\'' +
-                    ", DiggCount='" + DiggCount + '\'' +
-                    ", OriginalCount='" + OriginalCount + '\'' +
-                    ", BlogId='" + BlogId + '\'' +
-                    ", TranslatedCount='" + TranslatedCount + '\'' +
-                    ", ViewCount='" + ViewCount + '\'' +
-                    ", RepostCount='" + RepostCount + '\'' +
-                    ", Point='" + Point + '\'' +
-                    ", CommentCount='" + CommentCount + '\'' +
-                    '}';
-        }
-
-        public void setCommentCount(String CommentCount) {
-            this.CommentCount = CommentCount;
-        }
+    public String getBlogLevel() {
+        return blogLevel;
     }
 
-    public static class ArticleCountBean {
-        /**
-         * draft : 10
-         * enable : 115
-         * deleted : 22
-         * all : 125
-         * private : 0
-         */
-
-        private int draft;
-        private int enable;
-        private int deleted;
-        private int all;
-        @SerializedName("private")
-        private int privateX;
-
-        public int getDraft() {
-            return draft;
-        }
-
-        public void setDraft(int draft) {
-            this.draft = draft;
-        }
-
-        public int getEnable() {
-            return enable;
-        }
-
-        public void setEnable(int enable) {
-            this.enable = enable;
-        }
-
-        public int getDeleted() {
-            return deleted;
-        }
-
-        public void setDeleted(int deleted) {
-            this.deleted = deleted;
-        }
-
-        public int getAll() {
-            return all;
-        }
-
-        public void setAll(int all) {
-            this.all = all;
-        }
-
-        public int getPrivateX() {
-            return privateX;
-        }
-
-        @Override
-        public String toString() {
-            return "ArticleCountBean{" +
-                    "draft=" + draft +
-                    ", enable=" + enable +
-                    ", deleted=" + deleted +
-                    ", all=" + all +
-                    ", privateX=" + privateX +
-                    '}';
-        }
-
-        public void setPrivateX(int privateX) {
-            this.privateX = privateX;
-        }
+    public void setBlogLevel(String blogLevel) {
+        this.blogLevel = blogLevel;
     }
 
-    public static class LevelBean {
-        /**
-         * chizhiyiheng : false
-         * point : 1764
-         * level : 4
-         * ico_expert : 0
-         * bokezhixing : false
-         * zhuanlandaren : false
-         * weiruanmvp : false
-         */
-
-        private boolean chizhiyiheng;
-        private int point;
-        private int level;
-        private int ico_expert;
-        private boolean bokezhixing;
-        private boolean zhuanlandaren;
-        private boolean weiruanmvp;
-
-        public boolean isChizhiyiheng() {
-            return chizhiyiheng;
-        }
-
-        public void setChizhiyiheng(boolean chizhiyiheng) {
-            this.chizhiyiheng = chizhiyiheng;
-        }
-
-        public int getPoint() {
-            return point;
-        }
-
-        public void setPoint(int point) {
-            this.point = point;
-        }
-
-        public int getLevel() {
-            return level;
-        }
-
-        public void setLevel(int level) {
-            this.level = level;
-        }
-
-        public int getIco_expert() {
-            return ico_expert;
-        }
-
-        public void setIco_expert(int ico_expert) {
-            this.ico_expert = ico_expert;
-        }
-
-        public boolean isBokezhixing() {
-            return bokezhixing;
-        }
-
-        public void setBokezhixing(boolean bokezhixing) {
-            this.bokezhixing = bokezhixing;
-        }
-
-        public boolean isZhuanlandaren() {
-            return zhuanlandaren;
-        }
-
-        public void setZhuanlandaren(boolean zhuanlandaren) {
-            this.zhuanlandaren = zhuanlandaren;
-        }
-
-        public boolean isWeiruanmvp() {
-            return weiruanmvp;
-        }
-
-        @Override
-        public String toString() {
-            return "LevelBean{" +
-                    "chizhiyiheng=" + chizhiyiheng +
-                    ", point=" + point +
-                    ", level=" + level +
-                    ", ico_expert=" + ico_expert +
-                    ", bokezhixing=" + bokezhixing +
-                    ", zhuanlandaren=" + zhuanlandaren +
-                    ", weiruanmvp=" + weiruanmvp +
-                    '}';
-        }
-
-        public void setWeiruanmvp(boolean weiruanmvp) {
-            this.weiruanmvp = weiruanmvp;
-        }
+    public String getTopicsCount() {
+        return topicsCount;
     }
 
-    @Override
-    public String toString() {
-        return "UserBlogInfoResp{" +
-                "statistic=" + statistic +
-                ", article_count=" + article_count +
-                ", level=" + level +
-                ", fans='" + fans + '\'' +
-                '}';
+    public void setTopicsCount(String topicsCount) {
+        this.topicsCount = topicsCount;
+    }
+
+    public String getSelfdesc() {
+        return selfdesc;
+    }
+
+    public void setSelfdesc(String selfdesc) {
+        this.selfdesc = selfdesc;
+    }
+
+    public int getCollectNum() {
+        return collectNum;
+    }
+
+    public void setCollectNum(int collectNum) {
+        this.collectNum = collectNum;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getCommnetCount() {
+        return commnetCount;
+    }
+
+    public void setCommnetCount(String commnetCount) {
+        this.commnetCount = commnetCount;
+    }
+
+    public String getTranslatedCount() {
+        return translatedCount;
+    }
+
+    public void setTranslatedCount(String translatedCount) {
+        this.translatedCount = translatedCount;
+    }
+
+    public String getReplyCount() {
+        return replyCount;
+    }
+
+    public void setReplyCount(String replyCount) {
+        this.replyCount = replyCount;
+    }
+
+    public String getFollowNum() {
+        return followNum;
+    }
+
+    public void setFollowNum(String followNum) {
+        this.followNum = followNum;
+    }
+
+    public String getEnable() {
+        return enable;
+    }
+
+    public void setEnable(String enable) {
+        this.enable = enable;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
+
+    public String getOriginalCount() {
+        return originalCount;
+    }
+
+    public void setOriginalCount(String originalCount) {
+        this.originalCount = originalCount;
+    }
+
+    public String getViewCount() {
+        return viewCount;
+    }
+
+    public void setViewCount(String viewCount) {
+        this.viewCount = viewCount;
+    }
+
+    public String getRepostCount() {
+        return repostCount;
+    }
+
+    public void setRepostCount(String repostCount) {
+        this.repostCount = repostCount;
     }
 }

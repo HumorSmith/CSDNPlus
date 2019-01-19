@@ -50,14 +50,14 @@ public interface BlogApi {
 
 
     @GET("api/blog/user_blog_list")
-    Observable<PayLoad<ArticleDetailInfoResp>> getArticleInfo(@Query("username") String username, @Query("page") int page, @Query("pagesize") int pagesize);
+    Observable<PayLoad<ArticleDetailInfoResp>> getArticleInfo(@Query("userName") String username, @Query("page") int page, @Query("pagesize") int pagesize);
 
 
     @GET("api/blog/user_blog_list")
-    Observable<PayLoad<List<MyBlogItemResp>>> getMyBlogList(@Query("username") String username, @Query("page") int page, @Query("pagesize") int pagesize);
+    Observable<PayLoad<List<MyBlogItemResp>>> getMyBlogList(@Query("userName") String username, @Query("page") int page, @Query("pagesize") int pagesize);
 
     @POST("api/v5/ArticleDiggApp/digg")
-    Observable<PayLoad<DiggResp>> digg(@Query("username") String username, @Query("article_id") String articleId);
+    Observable<PayLoad<DiggResp>> digg(@Query("userName") String username, @Query("article_id") String articleId);
 
 
 

@@ -1,7 +1,9 @@
 package com.ifreedomer.cplus.http.protocol;
 
+import com.ifreedomer.cplus.http.protocol.resp.BlogUserProfileResp;
 import com.ifreedomer.cplus.http.protocol.resp.CountResp;
 import com.ifreedomer.cplus.http.protocol.resp.LoginAppV1TokenResp;
+import com.ifreedomer.cplus.http.protocol.resp.UserBlogInfoResp;
 import com.ifreedomer.cplus.http.protocol.resp.UserInfoResp;
 import com.ifreedomer.cplus.http.protocol.resp.V2ProfileResp;
 
@@ -12,8 +14,8 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface LoginV3Api {
-    @GET("api/v2/blog/blog_user_info")
-    Observable<String> getBlogUserinfo(@Query("username") String username);
+    @GET("cms-app/v1/me/my")
+    Observable<PayLoad<UserBlogInfoResp>> getBlogUserinfo(@Query("userName") String username);
 
     @POST("v3/loginV3")
     Observable<PayLoad<UserInfoResp>> loginV3(@Query("username") String username, @Query("password") String password, @Query("SessionId") String sessionId);

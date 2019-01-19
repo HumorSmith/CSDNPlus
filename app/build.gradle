@@ -181,7 +181,7 @@ dependencies {
     implementation project(':tencent')
     implementation project(':TagGroup')
 
-    implementation 'com.tencent.bugly:crashreport:latest.release'
+    implementation 'com.tencent.bugly:crashreport:2.8.6.0'
     implementation 'com.umeng.umsdk:analytics:7.5.4'
     implementation 'com.umeng.umsdk:common:1.5.4'
 

@@ -131,20 +131,25 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(MineViewModel.class);
-        Observable<UserBlogInfoResp> userBlogInfoObserver = HttpManager.getInstance().getUserBlogInfo(GlobalDataManager.getInstance().getUserInfo().getUserName());
-        Disposable subscribe = userBlogInfoObserver.subscribe(userBlogInfoRespPayLoad -> {
+        Observable<PayLoad<UserBlogInfoResp>> userBlogInfoObserver = HttpManager.getInstance().getUserBlogInfo(GlobalDataManager.getInstance().getUserInfo().getUserName());
+        Disposable subscribe = userBlogInfoObserver.subscribe(payLoad -> {
+            UserBlogInfoResp userBlogInfoRespPayLoad = payLoad.getData();
             LogUtil.d(TAG, "user blog info = " + userBlogInfoRespPayLoad.toString());
-            String blogNumWrapStr = String.format(getString(R.string.blogNumWrap), userBlogInfoRespPayLoad.getArticle_count().getAll());
+            String blogNumWrapStr = String.format(getString(R.string.blogNumWrap), userBlogInfoRespPayLoad.getAll().toString());
             blogNumTv.setText(blogNumWrapStr);
-            String idolWrapStr = String.format(getString(R.string.idolWrap), userBlogInfoRespPayLoad.getStatistic().getDiggCount());
+            String idolWrapStr = String.format(getString(R.string.idolWrap), userBlogInfoRespPayLoad.getPrivateX());
             idolTv.setText(idolWrapStr);
+
+
+            String collectBlogNumStr = String.format(getString(R.string.collectWrap), userBlogInfoRespPayLoad.getCollectNum());
+            collectNumTv.setText(collectBlogNumStr);
+
         }, throwable -> WidgetUtil.showSnackBar(getActivity(), throwable.getMessage()));
 
 
         Disposable collectNumDisposable = HttpManager.getInstance().getCollectNum().subscribe(collectNumRespPayLoad -> {
             if (collectNumRespPayLoad.getCode() == PayLoad.SUCCESS) {
-                String collectBlogNumStr = String.format(getString(R.string.collectWrap), collectNumRespPayLoad.getData().getData().get(0).getNum());
-                collectNumTv.setText(collectBlogNumStr);
+
             } else {
                 WidgetUtil.showSnackBar(getActivity(), collectNumRespPayLoad.getMessage());
             }
