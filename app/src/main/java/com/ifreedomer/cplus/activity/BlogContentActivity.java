@@ -44,6 +44,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 import static com.ifreedomer.cplus.fragment.OtherUserActivity.AVATAR_KEY;
 import static com.ifreedomer.cplus.fragment.OtherUserActivity.NICKNAME_KEY;
@@ -51,9 +52,9 @@ import static com.ifreedomer.cplus.fragment.OtherUserActivity.USERNAME_KEY;
 
 public class BlogContentActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String DATA = "data";
+    public static final String USER_NAME = "user_name";
+    public static final String ARTICLE_ID = "article_id";
     private static final String TAG = BlogContentActivity.class.getSimpleName();
-
-
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -83,19 +84,36 @@ public class BlogContentActivity extends AppCompatActivity implements View.OnCli
     private BlogContentInfo mBlogContentInfo;
     private String mUrl;
     private String mFavoriteId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blog_content);
         ButterKnife.bind(this);
+
+
+        String userName = getIntent().getStringExtra(USER_NAME);
+        String articleId = getIntent().getStringExtra(ARTICLE_ID);
+
+
+        HttpManager.getInstance().getBlogContent(articleId, userName).subscribe(new Consumer<PayLoad<BlogContentInfo>>() {
+            @Override
+            public void accept(PayLoad<BlogContentInfo> blogContentInfoPayLoad) throws Exception {
+                mBlogContentInfo = blogContentInfoPayLoad.getData();
+                initData();
+            }
+        }, throwable -> WidgetUtil.showSnackBar(BlogContentActivity.this, "获取文章内容接口出错:" + throwable.getMessage()));
+
+    }
+
+    private void initData() {
         StringBuffer sb = new StringBuffer();
-        mBlogContentInfo = (BlogContentInfo) getIntent().getSerializableExtra(DATA);
         String userName = mBlogContentInfo.getUserName();
         String title = mBlogContentInfo.getTitle();
-        String avatar = mBlogContentInfo.getAvatar();
-        String date = mBlogContentInfo.getDate();
+        String avatar = mBlogContentInfo.getAvatarUrl();
+        String date = mBlogContentInfo.getPostTime();
         String nickName = mBlogContentInfo.getNickName();
-        String id = mBlogContentInfo.getId();
+        String id = mBlogContentInfo.getArticleId();
         try {
             dateTv.setText(date);
         } catch (Exception e) {
@@ -118,44 +136,43 @@ public class BlogContentActivity extends AppCompatActivity implements View.OnCli
         this.webview.loadUrl(sb.toString());
 
         go2WebActivity(this, webview);
-        getArticleDetail(id);
+//        getArticleDetail(id);
 
         diggIv.setOnClickListener(this);
 
         commentIv.setOnClickListener(v -> {
             Intent intent = new Intent(BlogContentActivity.this, CommentActivity.class);
             intent.putExtra(CommentActivity.ARTICLE_ID, id);
-            intent.putExtra(CommentActivity.COUNT, mBlogContentInfo.getCommentNum());
+            intent.putExtra(CommentActivity.COUNT, mBlogContentInfo.getCommentCount());
             startActivity(intent);
         });
 
         commentEt.setOnClickListener(v -> {
             Intent intent = new Intent(BlogContentActivity.this, CommentActivity.class);
             intent.putExtra(CommentActivity.ARTICLE_ID, id);
-            intent.putExtra(CommentActivity.COUNT, mBlogContentInfo.getCommentNum());
+            intent.putExtra(CommentActivity.COUNT, mBlogContentInfo.getCommentCount());
             startActivity(intent);
         });
-
     }
 
-    private void getArticleDetail(String id) {
-        Disposable subscribe = HttpManager.getInstance().getArticleInfo(id).subscribe(articleRespPayLoad -> {
-            if (articleRespPayLoad.getCode() == PayLoad.SUCCESS) {
-                commentTv.setText(articleRespPayLoad.getData().getCommentCount());
-                diggNumTv.setText(articleRespPayLoad.getData().getDigg());
-                diggIv.setSelected(articleRespPayLoad.getData().isIs_digg());
-            } else {
-                WidgetUtil.showSnackBar(BlogContentActivity.this, articleRespPayLoad.getMessage());
-            }
-        }, throwable -> WidgetUtil.showSnackBar(BlogContentActivity.this, throwable.getMessage()));
-    }
+//    private void getArticleDetail(String id) {
+//        Disposable subscribe = HttpManager.getInstance().getArticleInfo(id).subscribe(articleRespPayLoad -> {
+//            if (articleRespPayLoad.getCode() == PayLoad.SUCCESS) {
+//                commentTv.setText(articleRespPayLoad.getData().getCommentCount());
+//                diggNumTv.setText(articleRespPayLoad.getData().getDigg());
+//                diggIv.setSelected(articleRespPayLoad.getData().isIs_digg());
+//            } else {
+//                WidgetUtil.showSnackBar(BlogContentActivity.this, articleRespPayLoad.getMessage());
+//            }
+//        }, throwable -> WidgetUtil.showSnackBar(BlogContentActivity.this, throwable.getMessage()));
+//    }
 
     private void checkFavorite() {
         Observable<PayLoad<CheckCollectResp>> checkFavoriteObserver = HttpManager.getInstance().checkFavorite(GlobalDataManager.getInstance().getUserInfo().getUserName(), mUrl);
         Disposable subscribeCheckFavorite = checkFavoriteObserver.subscribe(checkCollectRespPayLoad -> {
             if (checkCollectRespPayLoad.getCode() == PayLoad.SUCCESS) {
                 mFavoriteId = checkCollectRespPayLoad.getData().getFavorite_id();
-                setCollectIcon(checkCollectRespPayLoad.getData().getIs_exist() == 1);
+                setCollectIcon(checkCollectRespPayLoad.getData().isIs_exist() );
             } else {
                 WidgetUtil.showSnackBar(BlogContentActivity.this, checkCollectRespPayLoad.getMessage());
             }
@@ -256,11 +273,11 @@ public class BlogContentActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.diggIv:
-                if (GlobalDataManager.getInstance().getUserInfo()==null){
-                    WidgetUtil.showSnackBar(this,getString(R.string.login_timeout));
+                if (GlobalDataManager.getInstance().getUserInfo() == null) {
+                    WidgetUtil.showSnackBar(this, getString(R.string.login_timeout));
                     return;
                 }
-                Observable<PayLoad<DiggResp>> digg = HttpManager.getInstance().digg(GlobalDataManager.getInstance().getUserInfo().getUserName(), mBlogContentInfo.getId());
+                Observable<PayLoad<DiggResp>> digg = HttpManager.getInstance().digg(GlobalDataManager.getInstance().getUserInfo().getUserName(), mBlogContentInfo.getArticleId());
                 digg.subscribe(diggRespPayLoad -> {
                     if (diggRespPayLoad.getCode() == PayLoad.SUCCESS) {
 //                        WidgetUtil.showSnackBar(BlogContentActivity.this, diggRespPayLoad.getMessage());
@@ -278,7 +295,7 @@ public class BlogContentActivity extends AppCompatActivity implements View.OnCli
                 Intent intent = new Intent(this, OtherUserActivity.class);
                 intent.putExtra(USERNAME_KEY, mBlogContentInfo.getUserName());
                 intent.putExtra(NICKNAME_KEY, mBlogContentInfo.getNickName());
-                intent.putExtra(AVATAR_KEY, mBlogContentInfo.getAvatar());
+                intent.putExtra(AVATAR_KEY, mBlogContentInfo.getArticleUrl());
                 startActivity(intent);
                 break;
         }

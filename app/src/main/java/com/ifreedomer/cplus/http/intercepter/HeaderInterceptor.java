@@ -39,9 +39,10 @@ public class HeaderInterceptor implements Interceptor {
     public static Map<String, String> getHeaderParams(String requestName) {
 //        LoginPrefs.setJwtToken("eyJhbGciOiJSUzI1NiIsImtpZCI6ImQzNThlMDY3LWZmODMtNDI4ZS1hZTJjLWViMzM5NDEzYWY1ZSJ9.eyJzdWIiOiJhYTM3NTgwOTYwMCIsIlgtQXBwSUQiOiJDU0ROLUFQUCIsIlgtRGV2aWNlLUlEIjoiYWltZWk4Njc2ODYwMjIyNDg5MTYiLCJhdWQiOiJwYXNzcG9ydCIsImV4cCI6MTU0MzI4OTE4NiwiaWF0IjoxNTQwNjk3MTg2fQ.N6aZR0YN7Zant9Z05gjHFE3TG0Wj5lgCDlWncYSpWzUi8U8jPhew9bWWIZKi5rDMaKbQUDQ_ylnBiTUr55IZMuWmPK3wlEhygt4M4KIx69Y_A3lxiyB50twHxc-cpLkyoiNt6eZ8wvAaCsc43qvJ3ECkOAK1mgmY672xg5SPdJYWqqcjVncyPTcPGZtSyO-oZH7omT76TZRY-h2bPJP-PWN4I4_mFFHMpr-oZtzXRConFsHO5NMbfn7QQlzWfebMMXY3g26gubdJn_U46E68awvh5fY4P0gLMhCMesUtt_HIUNMjyU60tfgd2-dUJhRD-bYNO2jnhnEBCg446SlMPg");
         Map<String, String> header = new HashMap();
-        header.put("X-App-ID", "android");
-        header.put("version", "3.1.2");
-        header.put("Referer", "http://ms.csdn.net");
+        header.put("X-App-ID", "CSDN-APP");
+        header.put("version", "3.5.0");
+        header.put("X-OS", "android");
+        header.put("Referer", "http://gw.csdn.net");
         header.put("JWT-TOKEN", TextUtils.isEmpty(LoginPrefs.getJwtToken()) ? "" : LoginPrefs.getJwtToken());
         header.put("Authorization", TextUtils.isEmpty(LoginPrefs.getJwtToken()) ? "" : "Bearer " + LoginPrefs.getJwtToken());
         String deviceId = DevicesIdUtil.getDeviceId(CPApplication.INSTANCE);

@@ -8,15 +8,15 @@ public class CheckCollectResp {
      * favorite_id : 18658151
      */
 
-    private int is_exist;
+    private boolean is_exist;
     private String msg;
     private String favorite_id;
 
-    public int getIs_exist() {
+    public boolean isIs_exist() {
         return is_exist;
     }
 
-    public void setIs_exist(int is_exist) {
+    public void setIs_exist(boolean is_exist) {
         this.is_exist = is_exist;
     }
 

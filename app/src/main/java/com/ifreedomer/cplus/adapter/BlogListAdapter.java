@@ -28,10 +28,10 @@ public class BlogListAdapter extends BaseQuickAdapter<BlogResp, BaseViewHolder> 
         helper.setOnClickListener(R.id.rootRelayout, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BlogContentInfo convert = BlogContentInfo.convert(item);
 
                 Intent intent = new Intent(mContext, BlogContentActivity.class);
-                intent.putExtra(BlogContentActivity.DATA, convert);
+                intent.putExtra(BlogContentActivity.USER_NAME, item.getUserName());
+                intent.putExtra(BlogContentActivity.ARTICLE_ID, item.getArticleId() + "");
                 mContext.startActivity(intent);
 //                intent.putExtra(BlogContentActivity.USER_NAME_KEY, item.getUserName());
 //                intent.putExtra(BlogContentActivity.ARTICLE_ID_KEY, item.getArticleId()+"");

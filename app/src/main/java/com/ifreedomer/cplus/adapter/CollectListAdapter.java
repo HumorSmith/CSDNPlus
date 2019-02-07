@@ -31,7 +31,8 @@ public class CollectListAdapter extends BaseQuickAdapter<CollectListResp, BaseVi
         }
         helper.setOnClickListener(R.id.rootRelayout, v -> {
             Intent intent = new Intent(mContext, BlogContentActivity.class);
-            intent.putExtra(BlogContentActivity.DATA, BlogContentInfo.convert(item));
+            intent.putExtra(BlogContentActivity.USER_NAME, item.getUserName());
+            intent.putExtra(BlogContentActivity.ARTICLE_ID, item.getArticleId() + "");
             mContext.startActivity(intent);
         });
     }

@@ -98,10 +98,10 @@ public class WebLoginActivity extends AppCompatActivity implements View.OnClickL
                         Intent intent = new Intent(WebLoginActivity.this, BlogContentActivity.class);
                         BlogContentInfo blogContentInfo = new BlogContentInfo();
                         blogContentInfo.setTitle(GlobalDataManager.getInstance().getDeployBlogContentInfo().getTitle());
-                        blogContentInfo.setDate(DateUtil.timeStamp2DateString(System.currentTimeMillis()));
-                        blogContentInfo.setId(deployBlogResp.getData().getId() + "");
-                        blogContentInfo.setAvatar(GlobalDataManager.getInstance().getUserInfo().getAvatar());
-                        blogContentInfo.setCommentNum(0);
+                        blogContentInfo.setPostTime(DateUtil.timeStamp2DateString(System.currentTimeMillis()));
+                        blogContentInfo.setArticleId(deployBlogResp.getData().getId() + "");
+                        blogContentInfo.setAvatarUrl(GlobalDataManager.getInstance().getUserInfo().getAvatar());
+                        blogContentInfo.setCommentCount(""+0);
                         blogContentInfo.setNickName(GlobalDataManager.getInstance().getUserInfo().getNickName());
                         blogContentInfo.setUserName(GlobalDataManager.getInstance().getUserInfo().getUserName());
                         intent.putExtra(BlogContentActivity.DATA, blogContentInfo);

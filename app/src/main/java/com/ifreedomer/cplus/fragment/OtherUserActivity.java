@@ -73,7 +73,7 @@ public class OtherUserActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void initHeadView() {
-        mUserName = (String) getIntent().getStringExtra(USERNAME_KEY);
+        mUserName =  getIntent().getStringExtra(USERNAME_KEY);
         mNickName = getIntent().getStringExtra(NICKNAME_KEY);
         mAvatar = getIntent().getStringExtra(AVATAR_KEY);
         nameTv.setText(mNickName);

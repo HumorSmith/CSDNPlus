@@ -1,6 +1,7 @@
 package com.ifreedomer.cplus.http.protocol;
 
 
+import com.ifreedomer.cplus.entity.BlogContentInfo;
 import com.ifreedomer.cplus.http.protocol.resp.ApproveResp;
 import com.ifreedomer.cplus.http.protocol.resp.ArticleDetailInfoResp;
 import com.ifreedomer.cplus.http.protocol.resp.BlogCategoryResp;
@@ -56,8 +57,13 @@ public interface BlogApi {
     @GET("/cms-app/v1/me_blog/login/my_blog")
     Observable<PayLoad<List<MyBlogItemResp>>> getMyBlogList(@Query("userName") String username, @Query("page") int page, @Query("size") int pagesize);
 
-    @POST("api/v5/ArticleDiggApp/digg")
+    @POST("/cms-app/v1/blog_details/login/digg")
     Observable<PayLoad<DiggResp>> digg(@Query("userName") String username, @Query("article_id") String articleId);
+
+
+    @GET("/cms-app/v1/blog_details/may_login/get_article_details_info_html")
+    Observable<PayLoad<BlogContentInfo>> getBlogInfo(@Query("articleId")String articleId,@Query("bloggerUserName")String userName);
+
 
 
 

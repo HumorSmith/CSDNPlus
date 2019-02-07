@@ -49,7 +49,8 @@ public class ArticleListAdapter extends BaseQuickAdapter<ArticleResp, BaseViewHo
         userItem.setImageUrl(item.getAvatar());
         helper.setOnClickListener(R.id.rootRelayout, v -> {
             Intent intent = new Intent(mContext, BlogContentActivity.class);
-            intent.putExtra(BlogContentActivity.DATA,BlogContentInfo.covert(item));
+            intent.putExtra(BlogContentActivity.USER_NAME, item.getUser_name());
+            intent.putExtra(BlogContentActivity.ARTICLE_ID, item.getId() + "");
             mContext.startActivity(intent);
         });
     }

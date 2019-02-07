@@ -21,9 +21,8 @@ public interface ArticleApi {
             , @Query("size") int size);
 
 
-    @GET("api/history/list")
-    Observable<PayLoad<List<HistoryResp>>> getHistory(@Query("SessionId") String sessionId
-            , @Query("userName") String username);
+    @GET("/cms-app/v1/me/login/get_viewhistory")
+    Observable<PayLoad<List<HistoryResp>>> getHistory();
 
 
     @GET("api/v5/ArticleInfo/getArticleInfo")

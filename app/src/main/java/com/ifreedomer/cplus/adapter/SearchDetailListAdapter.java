@@ -39,7 +39,8 @@ public class SearchDetailListAdapter extends BaseQuickAdapter<SearchDetailResp.H
         userItem.setImageUrl(item.get_source().getAvatar());
         helper.setOnClickListener(R.id.rootRelayout, v -> {
             Intent intent = new Intent(mContext, BlogContentActivity.class);
-            intent.putExtra(BlogContentActivity.DATA, BlogContentInfo.covert(item));
+            intent.putExtra(BlogContentActivity.USER_NAME, item.get_source().getUser_name());
+            intent.putExtra(BlogContentActivity.ARTICLE_ID, item.get_source().getId() + "");
             mContext.startActivity(intent);
         });
     }

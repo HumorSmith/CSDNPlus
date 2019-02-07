@@ -4,96 +4,51 @@ public class HistoryResp {
 
 
     /**
-     * username : aa375809600
-     * type : blog
-     * bizId : 50273787&aa375809600
-     * title : 11_排序二叉树删除-3
-     * viewTime : 0
-     * createAt : 1970-01-01
-     * publishTime : null
-     * description : 3 普通节点的删除      3.1 删除的节点没有左子树，也没有右子树       测试用例1： 删除节点6      [cpp] view  plaincopy       /*  *                 *         10          ======>     10  *        /  \
-     * postTime : 2015-12-12 11:44:53
-     * viewCount : 181
-     * commentCount : 0
-     * nickName : 怪叔叔萝莉控
+     * avatarUrl : https://avatar.csdn.net/8/B/B/3_sinyu890807.jpg
+     * articleId : 84886691
+     * description : 今天跟大家谈谈情怀。话说我从13年开始写博客写到现在，也写出了一些成绩。成为了博客专家，出版了自己的书，推出了自己的开源框架，还有着自己的微信公众号。我相信有很多朋友可能都是通过我的书或者是我的博客入门和学习Android开发的，但是我自己却始终有一个遗憾，我虽然帮助了许多人学会了开发AndroidApp，但是我自己却几乎从来没有开发过一个完整的App，更没有参与过任何一个知名App的研发。我从11年开始参加工作，一开始进入的是一家华为的外包公司，主要做华为的外包项目。而华为的项目也是别人外包过来
+     * userName : sinyu890807
+     * type : Original
+     * url : https://blog.csdn.net/sinyu890807/app/article/details/84886691
+     * commentCount : 84
+     * postTime : 2018-12-14 08:11:04
+     * titile : 两年沉淀，我的开源项目已上线！
+     * isTop : false
+     * nickname : guolin
+     * viewCount : 8627
+     * channelId : 1
+     * status : 1
      */
-    private String avatar;
 
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    private String username;
-    private String type;
-    private String bizId;
-    private String title;
-    private int viewTime;
-    private String createAt;
-    private Object publishTime;
+    private String avatarUrl;
+    private String articleId;
     private String description;
+    private String userName;
+    private String type;
+    private String url;
+    private int commentCount;
     private String postTime;
-    private String viewCount;
-    private String commentCount;
-    private String nickName;
+    private String titile;
+    private boolean isTop;
+    private String nickname;
+    private int viewCount;
+    private String channelId;
+    private String status;
 
-    public String getUsername() {
-        return username;
+    public String getAvatarUrl() {
+        return avatarUrl;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 
-    public String getType() {
-        return type;
+    public String getArticleId() {
+        return articleId;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getBizId() {
-        return bizId;
-    }
-
-    public void setBizId(String bizId) {
-        this.bizId = bizId;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public int getViewTime() {
-        return viewTime;
-    }
-
-    public void setViewTime(int viewTime) {
-        this.viewTime = viewTime;
-    }
-
-    public String getCreateAt() {
-        return createAt;
-    }
-
-    public void setCreateAt(String createAt) {
-        this.createAt = createAt;
-    }
-
-    public Object getPublishTime() {
-        return publishTime;
-    }
-
-    public void setPublishTime(Object publishTime) {
-        this.publishTime = publishTime;
+    public void setArticleId(String articleId) {
+        this.articleId = articleId;
     }
 
     public String getDescription() {
@@ -104,6 +59,38 @@ public class HistoryResp {
         this.description = description;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public int getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
+    }
+
     public String getPostTime() {
         return postTime;
     }
@@ -112,27 +99,51 @@ public class HistoryResp {
         this.postTime = postTime;
     }
 
-    public String getViewCount() {
+    public String getTitile() {
+        return titile;
+    }
+
+    public void setTitile(String titile) {
+        this.titile = titile;
+    }
+
+    public boolean isIsTop() {
+        return isTop;
+    }
+
+    public void setIsTop(boolean isTop) {
+        this.isTop = isTop;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public int getViewCount() {
         return viewCount;
     }
 
-    public void setViewCount(String viewCount) {
+    public void setViewCount(int viewCount) {
         this.viewCount = viewCount;
     }
 
-    public String getCommentCount() {
-        return commentCount;
+    public String getChannelId() {
+        return channelId;
     }
 
-    public void setCommentCount(String commentCount) {
-        this.commentCount = commentCount;
+    public void setChannelId(String channelId) {
+        this.channelId = channelId;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getStatus() {
+        return status;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

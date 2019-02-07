@@ -33,7 +33,7 @@ public interface CollectApi {
     Observable<PayLoad<DeleteCollectResp>> deleteCollect(@Query("id") String id);
 
 
-    @GET("api/v5/check/app_check_favorite")
+    @GET("/cms-app/v1/blog_details/login/get_favorites")
     Observable<PayLoad<CheckCollectResp>> checkCollect(@Query("username") String username, @Query("url")String url);
 
 

@@ -3,6 +3,7 @@ package com.ifreedomer.cplus.http.center;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.ifreedomer.cplus.entity.BlogContentInfo;
 import com.ifreedomer.cplus.entity.DeployBlogContentInfo;
 import com.ifreedomer.cplus.http.intercepter.AddCookiesInterceptor;
 import com.ifreedomer.cplus.http.intercepter.CookieInterceptor;
@@ -236,8 +237,7 @@ public class HttpManager {
 
 
     public Observable<PayLoad<List<HistoryResp>>> getHistory() {
-        Observable<PayLoad<List<HistoryResp>>> historyListByCategoryObservable = retrofit.create(ArticleApi.class).getHistory(
-                GlobalDataManager.getInstance().getSessionId(), GlobalDataManager.getInstance().getUserInfo().getUserName());
+        Observable<PayLoad<List<HistoryResp>>> historyListByCategoryObservable = retrofit.create(ArticleApi.class).getHistory();
         historyListByCategoryObservable = historyListByCategoryObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
         return historyListByCategoryObservable;
     }
@@ -400,6 +400,14 @@ public class HttpManager {
         articleInfoObserver = articleInfoObserver.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
         return articleInfoObserver;
     }
+
+
+    public Observable<PayLoad<BlogContentInfo>> getBlogContent(String articleId, String userName) {
+        Observable<PayLoad<BlogContentInfo>> articleInfoObserver = retrofit.create(BlogApi.class).getBlogInfo(articleId,userName);
+        articleInfoObserver = articleInfoObserver.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+        return articleInfoObserver;
+    }
+
 
 
     public Observable<PayLoad<AddCollectResp>> addCollect(String title, String url, String userName) {

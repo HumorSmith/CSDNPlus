@@ -41,7 +41,7 @@ public class HistoryActivity extends AppCompatActivity {
     public void fetchData() {
         Observable<PayLoad<List<HistoryResp>>> historyObservable = HttpManager.getInstance().getHistory();
         Disposable subscribe = historyObservable.subscribe(listPayLoad -> {
-            if (listPayLoad.getCode() == PayLoad.SUCCESS) {
+            if (listPayLoad.getCode() == 200) {
                 recycleview.setLayoutManager(new LinearLayoutManager(HistoryActivity.this));
                 recycleview.setAdapter(new HistoryAdapter(R.layout.item_blog_list, listPayLoad.getData()));
             } else {

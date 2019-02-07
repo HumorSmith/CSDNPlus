@@ -162,7 +162,7 @@ public class ForumDetailActivity extends PullRefreshActivity<ForumDetailResp> {
         Disposable subscribeCheckFavorite = checkFavoriteObserver.subscribe(checkCollectRespPayLoad -> {
             if (checkCollectRespPayLoad.getCode() == PayLoad.SUCCESS) {
                 mFavoriteId = checkCollectRespPayLoad.getData().getFavorite_id();
-                setCollectIcon(checkCollectRespPayLoad.getData().getIs_exist() == 1);
+                setCollectIcon(checkCollectRespPayLoad.getData().isIs_exist() );
             } else {
                 WidgetUtil.showSnackBar(ForumDetailActivity.this, checkCollectRespPayLoad.getMessage());
             }

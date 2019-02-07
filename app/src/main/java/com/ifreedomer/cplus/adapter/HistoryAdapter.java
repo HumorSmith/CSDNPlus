@@ -21,7 +21,7 @@ public class HistoryAdapter extends BaseQuickAdapter<HistoryResp, BaseViewHolder
 
     @Override
     protected void convert(BaseViewHolder helper, HistoryResp item) {
-        helper.setText(R.id.titleTv, item.getTitle());
+        helper.setText(R.id.titleTv, item.getTitile());
         helper.setText(R.id.summaryTv, item.getDescription());
         try {
             helper.setText(R.id.dateTv, DateUtil.convertToMonth(mContext, item.getPostTime()));
@@ -33,7 +33,8 @@ public class HistoryAdapter extends BaseQuickAdapter<HistoryResp, BaseViewHolder
         helper.setOnClickListener(R.id.rootRelayout, v -> {
 
             Intent intent = new Intent(mContext, BlogContentActivity.class);
-            intent.putExtra(BlogContentActivity.DATA, BlogContentInfo.convert(item));
+            intent.putExtra(BlogContentActivity.USER_NAME, item.getUserName());
+            intent.putExtra(BlogContentActivity.ARTICLE_ID, item.getArticleId() + "");
             mContext.startActivity(intent);
         });
     }
