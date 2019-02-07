@@ -8,6 +8,7 @@ import com.ifreedomer.cplus.http.protocol.resp.BlogCategoryResp;
 import com.ifreedomer.cplus.http.protocol.resp.BlogResp;
 import com.ifreedomer.cplus.http.protocol.resp.DiggResp;
 import com.ifreedomer.cplus.http.protocol.resp.MyBlogItemResp;
+import com.ifreedomer.cplus.http.protocol.resp.OtherBlogItemResp;
 import com.ifreedomer.cplus.http.protocol.resp.SearchDetailResp;
 import com.ifreedomer.cplus.http.protocol.resp.SearchResp;
 
@@ -52,6 +53,13 @@ public interface BlogApi {
 
     @GET("api/blog/user_blog_list")
     Observable<PayLoad<ArticleDetailInfoResp>> getArticleInfo(@Query("userName") String username, @Query("page") int page, @Query("pagesize") int pagesize);
+
+
+
+    @GET("/cms-app/v1/me/user_new_state")
+    Observable<PayLoad<List<OtherBlogItemResp>>> getOtherBlogList(@Query("userName") String username);
+
+
 
 
     @GET("/cms-app/v1/me_blog/login/my_blog")

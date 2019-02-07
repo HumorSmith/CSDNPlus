@@ -49,6 +49,7 @@ import com.ifreedomer.cplus.http.protocol.resp.ForumHotResp;
 import com.ifreedomer.cplus.http.protocol.resp.ForumPostResp;
 import com.ifreedomer.cplus.http.protocol.resp.GetRelationResp;
 import com.ifreedomer.cplus.http.protocol.resp.GetUserTokenResp;
+import com.ifreedomer.cplus.http.protocol.resp.OtherBlogItemResp;
 import com.ifreedomer.cplus.http.protocol.resp.ResetPwdResp;
 import com.ifreedomer.cplus.http.protocol.resp.HistoryResp;
 import com.ifreedomer.cplus.http.protocol.resp.LoginAppV1TokenResp;
@@ -308,10 +309,17 @@ public class HttpManager {
         return collectListObserver;
     }
 
+    public Observable<PayLoad<List<OtherBlogItemResp>>> getOtherBlogInfo(String userName) {
+        Observable<PayLoad<List<OtherBlogItemResp>>> myBlogListObserver = retrofit.create(BlogApi.class).getOtherBlogList(userName).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+        return myBlogListObserver;
+    }
+
+
     public Observable<PayLoad<List<MyBlogItemResp>>> getMyBlogList(String userName, int curPage, int pageSize) {
         Observable<PayLoad<List<MyBlogItemResp>>> myBlogListObserver = retrofit.create(BlogApi.class).getMyBlogList(userName, curPage, pageSize).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
         return myBlogListObserver;
     }
+
 
     public Observable<PayLoad<SearchResp>> search(String tag) {
         Observable<PayLoad<SearchResp>> payLoadObservable = retrofit.create(BlogApi.class).search(20, 1, tag).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());

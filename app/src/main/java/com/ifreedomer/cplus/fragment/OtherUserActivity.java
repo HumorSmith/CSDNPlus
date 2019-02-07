@@ -120,7 +120,7 @@ public class OtherUserActivity extends AppCompatActivity implements View.OnClick
         }, throwable -> WidgetUtil.showSnackBar(OtherUserActivity.this, throwable.getMessage()));
 
 
-        MyBlogListFragment categoryFragment = new MyBlogListFragment();
+        OtherBlogListFragment categoryFragment = new OtherBlogListFragment();
         Bundle bundle = new Bundle();
         bundle.putString(USERNAME_KEY, mUserName);
         categoryFragment.setArguments(bundle);
