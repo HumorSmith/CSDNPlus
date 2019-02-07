@@ -124,11 +124,11 @@ public class BlogContentInfo implements Serializable {
 
     public static BlogContentInfo convert(MyBlogItemResp blogItemResp) {
         BlogContentInfo contentInfo = new BlogContentInfo();
-        contentInfo.setAvatar(blogItemResp.getAvatar());
+        contentInfo.setAvatar(blogItemResp.getUserName());
         contentInfo.setTitle(blogItemResp.getTitle());
         contentInfo.setId(blogItemResp.getArticleId() + "");
         contentInfo.setUserName(blogItemResp.getUserName());
-        contentInfo.setNickName(blogItemResp.getNickname());
+        contentInfo.setNickName(blogItemResp.getUserName());
         pattern = Pattern.compile("\\d+");
         Matcher matcher = pattern.matcher(blogItemResp.getPostTime());
         while (matcher.find()) {
@@ -137,7 +137,7 @@ public class BlogContentInfo implements Serializable {
             contentInfo.setDate(DateUtil.timeStamp2DateString(Long.parseLong(group) / 1000));
         }
 
-        contentInfo.setCommentNum(blogItemResp.getCommentCount());
+        contentInfo.setCommentNum(Integer.parseInt(blogItemResp.getCommentCount()));
         return contentInfo;
     }
 

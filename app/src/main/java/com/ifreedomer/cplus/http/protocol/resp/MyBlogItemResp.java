@@ -4,156 +4,146 @@ public class MyBlogItemResp {
 
 
     /**
-     * blogId : 2056551
-     * articleId : 82938663
-     * title : 六.opencv ndk环境搭建(cmake方式)
-     * userName : aa375809600
-     * nickname : 怪叔叔萝莉控
-     * avatar : http://avatar.csdn.net/A/C/7/1_aa375809600.jpg
-     * description : opencv全称opensourcecomputevision,开源的视觉库一.准备工作导入opencv的步骤还是相对简单,准备步骤分为以下三步:下载opencvandroidsdkhttps://opencv.org/releases.html将OpenCV-android-sdk/sdk/native/libs拷贝到工程的jniLibs将OpenCV-android...
-     * viewCount : 39
-     * digg : 0
-     * bury : 0
-     * commentCount : 0
-     * tags :
-     * postTime : /Date(1538643431000)/
-     * url : null
-     * channelId : 0
+     * Status : 1
+     * UserName : aa375809600
+     * Description : 写在前面的话传递参数的行为对于现在编程语言来说，再寻常不过的概念参数（英语：parameter）是使用通用变量来建立函数和变量之间关系（当这种关系很难用方程来阐述时）的一个数量。-来自wikipedia先来看一个例子：#来源于https://docs.python.org/2/library/itertools.htmldefchain(*iterables):	for...
+     * Digg : 3
+     * Title : 九、Python的可变参数
+     * ViewCount : 150
+     * ChannelId : 16
+     * IsTop : 0
+     * Type : 0
+     * PostTime : 1543325337000
+     * BlogId : 2056551
+     * ArticleId : 84573948
+     * CommentCount : 4
+     * Level : 0
      */
 
-    private int blogId;
-    private int articleId;
-    private String title;
-    private String userName;
-    private String nickname;
-    private String avatar;
-    private String description;
-    private int viewCount;
-    private int digg;
-    private int bury;
-    private int commentCount;
-    private String tags;
-    private String postTime;
-    private Object url;
-    private int channelId;
+    private String Status;
+    private String UserName;
+    private String Description;
+    private String Digg;
+    private String Title;
+    private String ViewCount;
+    private String ChannelId;
+    private String IsTop;
+    private String Type;
+    private String PostTime;
+    private String BlogId;
+    private String ArticleId;
+    private String CommentCount;
+    private String Level;
 
-    public int getBlogId() {
-        return blogId;
+    public String getStatus() {
+        return Status;
     }
 
-    public void setBlogId(int blogId) {
-        this.blogId = blogId;
-    }
-
-    public int getArticleId() {
-        return articleId;
-    }
-
-    public void setArticleId(int articleId) {
-        this.articleId = articleId;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
+    public void setStatus(String Status) {
+        this.Status = Status;
     }
 
     public String getUserName() {
-        return userName;
+        return UserName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    public void setUserName(String UserName) {
+        this.UserName = UserName;
     }
 
     public String getDescription() {
-        return description;
+        return Description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescription(String Description) {
+        this.Description = Description;
     }
 
-    public int getViewCount() {
-        return viewCount;
+    public String getDigg() {
+        return Digg;
     }
 
-    public void setViewCount(int viewCount) {
-        this.viewCount = viewCount;
+    public void setDigg(String Digg) {
+        this.Digg = Digg;
     }
 
-    public int getDigg() {
-        return digg;
+    public String getTitle() {
+        return Title;
     }
 
-    public void setDigg(int digg) {
-        this.digg = digg;
+    public void setTitle(String Title) {
+        this.Title = Title;
     }
 
-    public int getBury() {
-        return bury;
+    public String getViewCount() {
+        return ViewCount;
     }
 
-    public void setBury(int bury) {
-        this.bury = bury;
+    public void setViewCount(String ViewCount) {
+        this.ViewCount = ViewCount;
     }
 
-    public int getCommentCount() {
-        return commentCount;
+    public String getChannelId() {
+        return ChannelId;
     }
 
-    public void setCommentCount(int commentCount) {
-        this.commentCount = commentCount;
+    public void setChannelId(String ChannelId) {
+        this.ChannelId = ChannelId;
     }
 
-    public String getTags() {
-        return tags;
+    public String getIsTop() {
+        return IsTop;
     }
 
-    public void setTags(String tags) {
-        this.tags = tags;
+    public void setIsTop(String IsTop) {
+        this.IsTop = IsTop;
+    }
+
+    public String getType() {
+        return Type;
+    }
+
+    public void setType(String Type) {
+        this.Type = Type;
     }
 
     public String getPostTime() {
-        return postTime;
+        return PostTime;
     }
 
-    public void setPostTime(String postTime) {
-        this.postTime = postTime;
+    public void setPostTime(String PostTime) {
+        this.PostTime = PostTime;
     }
 
-    public Object getUrl() {
-        return url;
+    public String getBlogId() {
+        return BlogId;
     }
 
-    public void setUrl(Object url) {
-        this.url = url;
+    public void setBlogId(String BlogId) {
+        this.BlogId = BlogId;
     }
 
-    public int getChannelId() {
-        return channelId;
+    public String getArticleId() {
+        return ArticleId;
     }
 
-    public void setChannelId(int channelId) {
-        this.channelId = channelId;
+    public void setArticleId(String ArticleId) {
+        this.ArticleId = ArticleId;
+    }
+
+    public String getCommentCount() {
+        return CommentCount;
+    }
+
+    public void setCommentCount(String CommentCount) {
+        this.CommentCount = CommentCount;
+    }
+
+    public String getLevel() {
+        return Level;
+    }
+
+    public void setLevel(String Level) {
+        this.Level = Level;
     }
 }

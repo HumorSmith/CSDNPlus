@@ -216,7 +216,7 @@ public class HttpManager {
 
     public Observable<PayLoad<List<BlogCategoryResp>>> getBlogCatergory(String username) {
         BlogApi blogApi = retrofit.create(BlogApi.class);
-        Observable<PayLoad<List<BlogCategoryResp>>> blogCategoryObservable = blogApi.getBlogCategory(GlobalDataManager.getInstance().getSessionId(), 1, username)
+        Observable<PayLoad<List<BlogCategoryResp>>> blogCategoryObservable = blogApi.getBlogCategory( 1, username)
                 .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
         return blogCategoryObservable;
     }

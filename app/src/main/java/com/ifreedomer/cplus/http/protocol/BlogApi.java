@@ -18,8 +18,8 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface BlogApi {
-    @GET("api/blog/categorylist")
-    Observable<PayLoad<List<BlogCategoryResp>>> getBlogCategory(@Query("SessionId") String sessionId, @Query("page") int page, @Query("username") String username);
+    @GET("cms-app/v1/me_blog/my_blog_type")
+    Observable<PayLoad<List<BlogCategoryResp>>> getBlogCategory( @Query("page") int page, @Query("userName") String username);
 
     @GET("api/blog/articlelist")
     Observable<PayLoad<List<BlogResp>>> getBlogListByCategory(
@@ -53,8 +53,8 @@ public interface BlogApi {
     Observable<PayLoad<ArticleDetailInfoResp>> getArticleInfo(@Query("userName") String username, @Query("page") int page, @Query("pagesize") int pagesize);
 
 
-    @GET("api/blog/user_blog_list")
-    Observable<PayLoad<List<MyBlogItemResp>>> getMyBlogList(@Query("userName") String username, @Query("page") int page, @Query("pagesize") int pagesize);
+    @GET("/cms-app/v1/me_blog/login/my_blog")
+    Observable<PayLoad<List<MyBlogItemResp>>> getMyBlogList(@Query("userName") String username, @Query("page") int page, @Query("size") int pagesize);
 
     @POST("api/v5/ArticleDiggApp/digg")
     Observable<PayLoad<DiggResp>> digg(@Query("userName") String username, @Query("article_id") String articleId);
