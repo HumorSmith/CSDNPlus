@@ -6,6 +6,8 @@ import com.ifreedomer.cplus.http.protocol.resp.CollectListResp;
 import com.ifreedomer.cplus.http.protocol.resp.CollectNumResp;
 import com.ifreedomer.cplus.http.protocol.resp.DeleteCollectResp;
 
+import java.util.List;
+
 import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -18,8 +20,8 @@ public interface CollectApi {
     Observable<PayLoad<CollectNumResp>> getFavoriteNum();
 
 
-    @GET("api/favorite/get_list_favorite")
-    Observable<PayLoad<CollectListResp>> getCollectList(@Query("tag_name") String tagName, @Query("pageno") int pageNum, @Query("pagesize") int pageSize);
+    @GET("/cms-app/v1/me/login/my_favorites")
+    Observable<PayLoad<List<CollectListResp>>> getCollectList(@Query("tagName") String tagName, @Query("page") int pageNum, @Query("size") int pageSize);
 
 
     @FormUrlEncoded

@@ -14,14 +14,14 @@ import java.util.List;
 
 import androidx.annotation.Nullable;
 
-public class CollectListAdapter extends BaseQuickAdapter<CollectListResp.CollectItem, BaseViewHolder> {
-    public CollectListAdapter(int layoutResId, @Nullable List<CollectListResp.CollectItem> data) {
+public class CollectListAdapter extends BaseQuickAdapter<CollectListResp, BaseViewHolder> {
+    public CollectListAdapter(int layoutResId, @Nullable List<CollectListResp> data) {
         super(layoutResId, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, CollectListResp.CollectItem item) {
-        helper.setText(R.id.titleTv, item.getTitle());
+    protected void convert(BaseViewHolder helper, CollectListResp item) {
+        helper.setText(R.id.titleTv, item.getTitile());
         helper.setText(R.id.summaryTv, item.getDescription());
         try {
             helper.setText(R.id.dateTv, DateUtil.convertToMonth(mContext, item.getPostTime()));

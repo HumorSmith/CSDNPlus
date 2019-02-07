@@ -303,8 +303,8 @@ public class HttpManager {
     }
 
 
-    public Observable<PayLoad<CollectListResp>> getCollectList(int pageNum, int pageSize) {
-        Observable<PayLoad<CollectListResp>> collectListObserver = retrofit.create(CollectApi.class).getCollectList("blog", pageNum, pageSize).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+    public Observable<PayLoad<List<CollectListResp>>> getCollectList(int pageNum, int pageSize) {
+        Observable<PayLoad<List<CollectListResp>>> collectListObserver = retrofit.create(CollectApi.class).getCollectList("blog", pageNum, pageSize).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
         return collectListObserver;
     }
 

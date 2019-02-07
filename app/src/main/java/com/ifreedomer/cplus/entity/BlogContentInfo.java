@@ -107,17 +107,17 @@ public class BlogContentInfo implements Serializable {
         return blogContentInfo;
     }
 
-    public static BlogContentInfo convert(CollectListResp.CollectItem collectItem) {
+    public static BlogContentInfo convert(CollectListResp collectItem) {
         Log.d(TAG, "HISTORY Resp = " + collectItem.toString());
         BlogContentInfo blogContentInfo = new BlogContentInfo();
-        blogContentInfo.setCommentNum(Integer.parseInt(collectItem.getCommentCount()));
-        blogContentInfo.setUserName(collectItem.getUsername());
+        blogContentInfo.setCommentNum((collectItem.getCommentCount()));
+        blogContentInfo.setUserName(collectItem.getUserName());
         blogContentInfo.setNickName(collectItem.getNickname());
         blogContentInfo.setDate(DateUtil.convertToMonth(CPApplication.INSTANCE, collectItem.getPostTime()));
 
         blogContentInfo.setId(StringUtil.getUrlCode(collectItem.getUrl()));
-        blogContentInfo.setTitle(collectItem.getTitle());
-        blogContentInfo.setAvatar(collectItem.getAvatar());
+        blogContentInfo.setTitle(collectItem.getTitile());
+        blogContentInfo.setAvatar(collectItem.getAvatarUrl());
         return blogContentInfo;
     }
 

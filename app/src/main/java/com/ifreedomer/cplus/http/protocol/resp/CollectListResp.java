@@ -1,176 +1,149 @@
 package com.ifreedomer.cplus.http.protocol.resp;
 
-import java.util.List;
-
 public class CollectListResp {
 
+
     /**
-     * data : [{"nickname":"qq_16563637","dateline":"1539792585","avatar":"https://avatar.csdn.net/0/3/1/3_qq_16563637.jpg","commentCount":"0","url":"https://blog.csdn.net/qq_16563637/article/details/82906868","id":"18539152","username":"qq_16563637","title":"logstash-2.3.1安装和kafka结合使用","share":"0","description":"logstash-2.3.1安装和kafka结合使用 说明: 1.logstash必须运行于jdk7.55以上版本(可参考的我另一篇博客安装https://blog.csdn.net/qq_16563637/article/details/81738113) 2.logstash开发语言JRuby,运行于jvm 3.logstash可以防止数据丢失并可以采集更多数据源(https://www.el...","domain":"blog.csdn.net","map_name":"","viewCount":"398","postTime":"2018-09-30 11:00:35"}]
-     * success : 1
+     * avatarUrl : https://avatar.csdn.net/8/B/B/3_sinyu890807.jpg
+     * articleId : 84886691
+     * description : 今天跟大家谈谈情怀。话说我从13年开始写博客写到现在，也写出了一些成绩。成为了博客专家，出版了自己的书，推出了自己的开源框架，还有着自己的微信公众号。我相信有很多朋友可能都是通过我的书或者是我的博客入门和学习Android开发的，但是我自己却始终有一个遗憾，我虽然帮助了许多人学会了开发AndroidApp，但是我自己却几乎从来没有开发过一个完整的App，更没有参与过任何一个知名App的研发。我从11年开始参加工作，一开始进入的是一家华为的外包公司，主要做华为的外包项目。而华为的项目也是别人外包过来
+     * userName : sinyu890807
+     * type : Original
+     * url : https://blog.csdn.net/sinyu890807/app/article/details/84886691
+     * commentCount : 84
+     * postTime : 2018-12-14 08:11:04
+     * titile : 两年沉淀，我的开源项目已上线！
+     * isTop : false
+     * nickname : guolin
+     * viewCount : 8622
+     * channelId : 1
+     * status : 1
      */
 
-    private int success;
-    private List<CollectItem> data;
+    private String avatarUrl;
+    private String articleId;
+    private String description;
+    private String userName;
+    private String type;
+    private String url;
+    private int commentCount;
+    private String postTime;
+    private String titile;
+    private boolean isTop;
+    private String nickname;
+    private int viewCount;
+    private String channelId;
+    private String status;
 
-    public int getSuccess() {
-        return success;
+    public String getAvatarUrl() {
+        return avatarUrl;
     }
 
-    public void setSuccess(int success) {
-        this.success = success;
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 
-    public List<CollectItem> getData() {
-        return data;
+    public String getArticleId() {
+        return articleId;
     }
 
-    public void setData(List<CollectItem> data) {
-        this.data = data;
+    public void setArticleId(String articleId) {
+        this.articleId = articleId;
     }
 
-    public static class CollectItem {
-        /**
-         * nickname : qq_16563637
-         * dateline : 1539792585
-         * avatar : https://avatar.csdn.net/0/3/1/3_qq_16563637.jpg
-         * commentCount : 0
-         * url : https://blog.csdn.net/qq_16563637/article/details/82906868
-         * id : 18539152
-         * username : qq_16563637
-         * title : logstash-2.3.1安装和kafka结合使用
-         * share : 0
-         * description : logstash-2.3.1安装和kafka结合使用 说明: 1.logstash必须运行于jdk7.55以上版本(可参考的我另一篇博客安装https://blog.csdn.net/qq_16563637/article/details/81738113) 2.logstash开发语言JRuby,运行于jvm 3.logstash可以防止数据丢失并可以采集更多数据源(https://www.el...
-         * domain : blog.csdn.net
-         * map_name :
-         * viewCount : 398
-         * postTime : 2018-09-30 11:00:35
-         */
+    public String getDescription() {
+        return description;
+    }
 
-        private String nickname;
-        private String dateline;
-        private String avatar;
-        private String commentCount;
-        private String url;
-        private String id;
-        private String username;
-        private String title;
-        private String share;
-        private String description;
-        private String domain;
-        private String map_name;
-        private String viewCount;
-        private String postTime;
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-        public String getNickname() {
-            return nickname;
-        }
+    public String getUserName() {
+        return userName;
+    }
 
-        public void setNickname(String nickname) {
-            this.nickname = nickname;
-        }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-        public String getDateline() {
-            return dateline;
-        }
+    public String getType() {
+        return type;
+    }
 
-        public void setDateline(String dateline) {
-            this.dateline = dateline;
-        }
+    public void setType(String type) {
+        this.type = type;
+    }
 
-        public String getAvatar() {
-            return avatar;
-        }
+    public String getUrl() {
+        return url;
+    }
 
-        public void setAvatar(String avatar) {
-            this.avatar = avatar;
-        }
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-        public String getCommentCount() {
-            return commentCount;
-        }
+    public int getCommentCount() {
+        return commentCount;
+    }
 
-        public void setCommentCount(String commentCount) {
-            this.commentCount = commentCount;
-        }
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
+    }
 
-        public String getUrl() {
-            return url;
-        }
+    public String getPostTime() {
+        return postTime;
+    }
 
-        public void setUrl(String url) {
-            this.url = url;
-        }
+    public void setPostTime(String postTime) {
+        this.postTime = postTime;
+    }
 
-        public String getId() {
-            return id;
-        }
+    public String getTitile() {
+        return titile;
+    }
 
-        public void setId(String id) {
-            this.id = id;
-        }
+    public void setTitile(String titile) {
+        this.titile = titile;
+    }
 
-        public String getUsername() {
-            return username;
-        }
+    public boolean isIsTop() {
+        return isTop;
+    }
 
-        public void setUsername(String username) {
-            this.username = username;
-        }
+    public void setIsTop(boolean isTop) {
+        this.isTop = isTop;
+    }
 
-        public String getTitle() {
-            return title;
-        }
+    public String getNickname() {
+        return nickname;
+    }
 
-        public void setTitle(String title) {
-            this.title = title;
-        }
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
 
-        public String getShare() {
-            return share;
-        }
+    public int getViewCount() {
+        return viewCount;
+    }
 
-        public void setShare(String share) {
-            this.share = share;
-        }
+    public void setViewCount(int viewCount) {
+        this.viewCount = viewCount;
+    }
 
-        public String getDescription() {
-            return description;
-        }
+    public String getChannelId() {
+        return channelId;
+    }
 
-        public void setDescription(String description) {
-            this.description = description;
-        }
+    public void setChannelId(String channelId) {
+        this.channelId = channelId;
+    }
 
-        public String getDomain() {
-            return domain;
-        }
+    public String getStatus() {
+        return status;
+    }
 
-        public void setDomain(String domain) {
-            this.domain = domain;
-        }
-
-        public String getMap_name() {
-            return map_name;
-        }
-
-        public void setMap_name(String map_name) {
-            this.map_name = map_name;
-        }
-
-        public String getViewCount() {
-            return viewCount;
-        }
-
-        public void setViewCount(String viewCount) {
-            this.viewCount = viewCount;
-        }
-
-        public String getPostTime() {
-            return postTime;
-        }
-
-        public void setPostTime(String postTime) {
-            this.postTime = postTime;
-        }
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

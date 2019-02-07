@@ -15,7 +15,7 @@ import java.util.List;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 public class CollectActivity extends PullRefreshActivity {
-    private List<CollectListResp.CollectItem> mCollectItemList = new ArrayList<>();
+    private List<CollectListResp> mCollectItemList = new ArrayList<>();
 
     @Override
     public void fetchData(int page) {
@@ -25,10 +25,10 @@ public class CollectActivity extends PullRefreshActivity {
             if (collectListRespPayLoad.getCode() == PayLoad.SUCCESS) {
                 if (mCurPage == 0) {
                     mCollectItemList.clear();
-                    mCollectItemList.addAll(collectListRespPayLoad.getData().getData());
+                    mCollectItemList.addAll(collectListRespPayLoad.getData());
                 }
             } else {
-                mCollectItemList.addAll(collectListRespPayLoad.getData().getData());
+                mCollectItemList.addAll(collectListRespPayLoad.getData());
                 WidgetUtil.showSnackBar(CollectActivity.this, collectListRespPayLoad.getMessage());
             }
             recycleview.getAdapter().notifyDataSetChanged();
