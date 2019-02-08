@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.ifreedomer.cplus.R;
 import com.ifreedomer.cplus.activity.MainActivity;
+import com.ifreedomer.cplus.activity.QQLoginActivity;
 import com.ifreedomer.cplus.activity.WechatLoginActivity;
 import com.ifreedomer.cplus.activity.common.WebViewActivity;
 import com.ifreedomer.cplus.activity.forgetpassword.ForgetPasswordGetCodeActivity;
@@ -203,6 +204,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
 
                 break;
+            case R.id.qqIv:
+                intent = new Intent(getActivity(), QQLoginActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 
@@ -216,7 +221,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 String token = loginAppV1TokenRespPayLoad.getData().getToken();
                 mViewModel.saveAappV1Token(token);
                 getUserToken();
-
             } else {
                 loadingview.setVisibility(View.GONE);
                 WidgetUtil.showSnackBar(getActivity(), loginAppV1TokenRespPayLoad.getMessage());
@@ -269,5 +273,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 WidgetUtil.showSnackBar(getActivity(), v2ProfileRespPayLoad.getMessage());
             }
         }, throwable -> WidgetUtil.showSnackBar(getActivity(), throwable.getMessage()));
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
     }
 }

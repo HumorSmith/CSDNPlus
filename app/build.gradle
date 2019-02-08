@@ -6,8 +6,8 @@ android {
         applicationId "com.ifreedomer.cplus"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 31
-        versionName "1.3.1"
+        versionCode 33
+        versionName "1.3.3"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }

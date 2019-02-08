@@ -67,6 +67,21 @@
         <activity android:name=".activity.SelectScoreActivity"></activity>
         <activity android:name=".activity.SelectPersonalCategoryActivity" />
         <activity android:name=".activity.LoginActivity" />
+
+
+
+        <activity android:name=".activity.QQLoginActivity"
+            android:launchMode="singleTop">
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https" android:host="ssl.ptlogin2.qq.com"/>
+            </intent-filter>
+
+        </activity>
+
     </application>
 
 </manifest>
