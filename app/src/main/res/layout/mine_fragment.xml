@@ -58,14 +58,15 @@
             android:textSize="12sp" />
     </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/contentRelayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@id/userLinLayout"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="16dp"
-        android:layout_marginRight="50dp">
+        android:orientation="horizontal"
+        android:layout_marginRight="20dp">
 
         <TextView
             android:id="@+id/collectNumTv"
@@ -73,6 +74,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:lineSpacingMultiplier="1.2"
+            android:layout_weight="1"
             android:text="0\n收藏"
             android:textColor="#ff333333"
             android:textSize="15sp" />
@@ -84,14 +86,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:layout_weight="1"
             android:gravity="center"
             android:lineSpacingMultiplier="1.2"
             android:text="0\n博客"
             android:textColor="#ff333333"
             android:textSize="15sp" />
 
+        <TextView
+            android:id="@+id/fansNumTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:lineSpacingMultiplier="1.2"
+            android:text="0\n关注"
+            android:textColor="#ff333333"
+            android:textSize="15sp" />
 
         <TextView
+            android:layout_weight="1"
             android:id="@+id/idolTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -102,7 +117,7 @@
             android:textColor="#ff333333"
             android:textSize="15sp" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
 
     <LinearLayout

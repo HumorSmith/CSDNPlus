@@ -81,7 +81,7 @@ public abstract class PullRefreshActivity<T> extends AppCompatActivity {
     public void refreshList(int code, String message, List<T> list) {
         refreshLayout.setRefreshing(false);
 //            LogUtil.d(TAG, "listpayload = " + listPayLoad.toString());
-        if (code == PayLoad.SUCCESS) {
+        if (code == PayLoad.SUCCESS||code == 200) {
 
             if (getCurPage() == mFirstPage) {
                 mDataList.clear();

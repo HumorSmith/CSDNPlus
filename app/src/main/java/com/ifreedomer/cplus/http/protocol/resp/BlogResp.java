@@ -1,8 +1,149 @@
 package com.ifreedomer.cplus.http.protocol.resp;
 
-import java.util.List;
-
 public class BlogResp {
+    /**
+     * UserName : aa375809600
+     * Description : 1.抽取音频  ffmpeg -i dummy1.mp4 -vn -y -acodec copy dummy1.aac  ffmpeg -i dummy1.mp4 -vn -y -acodec copy dummy1.m4a    2.抽取视频  ffmpeg -i  dummy1.mkv -vcodec copy –an  dummy1.mp4    3.音视频合成  ffmpeg  -i  video1.av...
+     * CommentAuth : 2
+     * Digg : 0
+     * Bury : 0
+     * Title : 四、常用的ffmpeg指令
+     * ViewCount : 118
+     * ChannelId : 35
+     * Url : https://blog.csdn.net/aa375809600/article/details/84558640
+     * Type : 1
+     * PostTime : 2018-11-26 23:46:52
+     * UpdateTime : 2018-11-26 23:46:52
+     * ArticleId : 84558640
+     * CommentCount : 0
+     */
+
+    private String UserName;
+    private String Description;
+    private int CommentAuth;
+    private int Digg;
+    private int Bury;
+    private String Title;
+    private int ViewCount;
+    private int ChannelId;
+    private String Url;
+    private int Type;
+    private String PostTime;
+    private String UpdateTime;
+    private int ArticleId;
+    private int CommentCount;
+
+    public String getUserName() {
+        return UserName;
+    }
+
+    public void setUserName(String UserName) {
+        this.UserName = UserName;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String Description) {
+        this.Description = Description;
+    }
+
+    public int getCommentAuth() {
+        return CommentAuth;
+    }
+
+    public void setCommentAuth(int CommentAuth) {
+        this.CommentAuth = CommentAuth;
+    }
+
+    public int getDigg() {
+        return Digg;
+    }
+
+    public void setDigg(int Digg) {
+        this.Digg = Digg;
+    }
+
+    public int getBury() {
+        return Bury;
+    }
+
+    public void setBury(int Bury) {
+        this.Bury = Bury;
+    }
+
+    public String getTitle() {
+        return Title;
+    }
+
+    public void setTitle(String Title) {
+        this.Title = Title;
+    }
+
+    public int getViewCount() {
+        return ViewCount;
+    }
+
+    public void setViewCount(int ViewCount) {
+        this.ViewCount = ViewCount;
+    }
+
+    public int getChannelId() {
+        return ChannelId;
+    }
+
+    public void setChannelId(int ChannelId) {
+        this.ChannelId = ChannelId;
+    }
+
+    public String getUrl() {
+        return Url;
+    }
+
+    public void setUrl(String Url) {
+        this.Url = Url;
+    }
+
+    public int getType() {
+        return Type;
+    }
+
+    public void setType(int Type) {
+        this.Type = Type;
+    }
+
+    public String getPostTime() {
+        return PostTime;
+    }
+
+    public void setPostTime(String PostTime) {
+        this.PostTime = PostTime;
+    }
+
+    public String getUpdateTime() {
+        return UpdateTime;
+    }
+
+    public void setUpdateTime(String UpdateTime) {
+        this.UpdateTime = UpdateTime;
+    }
+
+    public int getArticleId() {
+        return ArticleId;
+    }
+
+    public void setArticleId(int ArticleId) {
+        this.ArticleId = ArticleId;
+    }
+
+    public int getCommentCount() {
+        return CommentCount;
+    }
+
+    public void setCommentCount(int CommentCount) {
+        this.CommentCount = CommentCount;
+    }
 
     /**
      * OutlinkCount : 0
@@ -42,274 +183,5 @@ public class BlogResp {
      * ArticleMore : null
      */
 
-    private int OutlinkCount;
-    private int Type;
-    private boolean IsTop;
-    private String UserName;
-    private Object ColumnAlias;
-    private int CommentAuth;
-    private Object Categories;
-    private int Bury;
-    private int ArticleId;
-    private Object ColumnTitle;
-    private int ViewCount;
-    private int ArticleEditType;
-    private int CommentCount;
-    private String Description;
-    private Object MarkDownContent;
-    private int BlogId;
-    private String IP;
-    private String UpdateTime;
-    private Object Note;
-    private Object MarkDownDirectory;
-    private int SpecialColumnArticleTableId;
-    private String Title;
-    private int Digg;
-    private int ChannelId;
-    private int Status;
-    private int OrderNum;
-    private String PostTime;
-    private int Level;
-    private Object ArticleMore;
-    private List<?> Tags;
 
-    public int getOutlinkCount() {
-        return OutlinkCount;
-    }
-
-    public void setOutlinkCount(int OutlinkCount) {
-        this.OutlinkCount = OutlinkCount;
-    }
-
-    public int getType() {
-        return Type;
-    }
-
-    public void setType(int Type) {
-        this.Type = Type;
-    }
-
-    public boolean isIsTop() {
-        return IsTop;
-    }
-
-    public void setIsTop(boolean IsTop) {
-        this.IsTop = IsTop;
-    }
-
-    public String getUserName() {
-        return UserName;
-    }
-
-    public void setUserName(String UserName) {
-        this.UserName = UserName;
-    }
-
-    public Object getColumnAlias() {
-        return ColumnAlias;
-    }
-
-    public void setColumnAlias(Object ColumnAlias) {
-        this.ColumnAlias = ColumnAlias;
-    }
-
-    public int getCommentAuth() {
-        return CommentAuth;
-    }
-
-    public void setCommentAuth(int CommentAuth) {
-        this.CommentAuth = CommentAuth;
-    }
-
-    public Object getCategories() {
-        return Categories;
-    }
-
-    public void setCategories(Object Categories) {
-        this.Categories = Categories;
-    }
-
-    public int getBury() {
-        return Bury;
-    }
-
-    public void setBury(int Bury) {
-        this.Bury = Bury;
-    }
-
-    public int getArticleId() {
-        return ArticleId;
-    }
-
-    public void setArticleId(int ArticleId) {
-        this.ArticleId = ArticleId;
-    }
-
-    public Object getColumnTitle() {
-        return ColumnTitle;
-    }
-
-    public void setColumnTitle(Object ColumnTitle) {
-        this.ColumnTitle = ColumnTitle;
-    }
-
-    public int getViewCount() {
-        return ViewCount;
-    }
-
-    public void setViewCount(int ViewCount) {
-        this.ViewCount = ViewCount;
-    }
-
-    public int getArticleEditType() {
-        return ArticleEditType;
-    }
-
-    public void setArticleEditType(int ArticleEditType) {
-        this.ArticleEditType = ArticleEditType;
-    }
-
-    public int getCommentCount() {
-        return CommentCount;
-    }
-
-    public void setCommentCount(int CommentCount) {
-        this.CommentCount = CommentCount;
-    }
-
-    public String getDescription() {
-        return Description;
-    }
-
-    public void setDescription(String Description) {
-        this.Description = Description;
-    }
-
-    public Object getMarkDownContent() {
-        return MarkDownContent;
-    }
-
-    public void setMarkDownContent(Object MarkDownContent) {
-        this.MarkDownContent = MarkDownContent;
-    }
-
-    public int getBlogId() {
-        return BlogId;
-    }
-
-    public void setBlogId(int BlogId) {
-        this.BlogId = BlogId;
-    }
-
-    public String getIP() {
-        return IP;
-    }
-
-    public void setIP(String IP) {
-        this.IP = IP;
-    }
-
-    public String getUpdateTime() {
-        return UpdateTime;
-    }
-
-    public void setUpdateTime(String UpdateTime) {
-        this.UpdateTime = UpdateTime;
-    }
-
-    public Object getNote() {
-        return Note;
-    }
-
-    public void setNote(Object Note) {
-        this.Note = Note;
-    }
-
-    public Object getMarkDownDirectory() {
-        return MarkDownDirectory;
-    }
-
-    public void setMarkDownDirectory(Object MarkDownDirectory) {
-        this.MarkDownDirectory = MarkDownDirectory;
-    }
-
-    public int getSpecialColumnArticleTableId() {
-        return SpecialColumnArticleTableId;
-    }
-
-    public void setSpecialColumnArticleTableId(int SpecialColumnArticleTableId) {
-        this.SpecialColumnArticleTableId = SpecialColumnArticleTableId;
-    }
-
-    public String getTitle() {
-        return Title;
-    }
-
-    public void setTitle(String Title) {
-        this.Title = Title;
-    }
-
-    public int getDigg() {
-        return Digg;
-    }
-
-    public void setDigg(int Digg) {
-        this.Digg = Digg;
-    }
-
-    public int getChannelId() {
-        return ChannelId;
-    }
-
-    public void setChannelId(int ChannelId) {
-        this.ChannelId = ChannelId;
-    }
-
-    public int getStatus() {
-        return Status;
-    }
-
-    public void setStatus(int Status) {
-        this.Status = Status;
-    }
-
-    public int getOrderNum() {
-        return OrderNum;
-    }
-
-    public void setOrderNum(int OrderNum) {
-        this.OrderNum = OrderNum;
-    }
-
-    public String getPostTime() {
-        return PostTime;
-    }
-
-    public void setPostTime(String PostTime) {
-        this.PostTime = PostTime;
-    }
-
-    public int getLevel() {
-        return Level;
-    }
-
-    public void setLevel(int Level) {
-        this.Level = Level;
-    }
-
-    public Object getArticleMore() {
-        return ArticleMore;
-    }
-
-    public void setArticleMore(Object ArticleMore) {
-        this.ArticleMore = ArticleMore;
-    }
-
-    public List<?> getTags() {
-        return Tags;
-    }
-
-    public void setTags(List<?> Tags) {
-        this.Tags = Tags;
-    }
 }

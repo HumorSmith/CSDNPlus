@@ -23,10 +23,10 @@ public interface BlogApi {
     @GET("cms-app/v1/me_blog/my_blog_type")
     Observable<PayLoad<List<BlogCategoryResp>>> getBlogCategory( @Query("page") int page, @Query("userName") String username);
 
-    @GET("api/blog/articlelist")
+    @GET("cms-app/v1/me_blog/my_blog_type_aritcles")
     Observable<PayLoad<List<BlogResp>>> getBlogListByCategory(
-            @Query("username") String username,
-            @Query("id") int id,
+            @Query("userName") String username,
+            @Query("typeId") int id,
             @Query("page") int page,
             @Query("size") int size);
 

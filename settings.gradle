@@ -1,1 +1,1 @@
-include ':app', ':tencent', ':TagGroup'
+include ':app', ':tencent', ':TagGroup', ':tencentad', ':basead'

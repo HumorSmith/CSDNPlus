@@ -55,8 +55,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     @BindView(R.id.blogNumTv)
     TextView blogNumTv;
 
-    @BindView(R.id.contentRelayout)
-    RelativeLayout contentRelayout;
+
     @BindView(R.id.historyItem)
     SettingItem historyItem;
     @BindView(R.id.feedbackItem)
@@ -77,6 +76,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     @BindView(R.id.joinGroupItem)
     SettingItem joinGroupItem;
     private MineViewModel mViewModel;
+    private TextView fansNumTv;
 
     public static MineFragment newInstance() {
         return new MineFragment();
@@ -89,9 +89,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
         View view = inflater.inflate(R.layout.mine_fragment, container, false);
         ButterKnife.bind(this, view);
+        fansNumTv = view.findViewById(R.id.fansNumTv);
         initItems();
         initHeadView();
-
         return view;
     }
 
@@ -103,6 +103,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             }
             return;
         }
+
         nameTv.setText(userInfo.getNickName());
         Glide.with((View) avatarIv).load(userInfo.getAvatar()).apply(RequestOptions.bitmapTransform(new CircleCrop())).into((ImageView) avatarIv);
         signTv.setText(userInfo.getSign());
@@ -110,7 +111,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         collectNumTv.setOnClickListener(this);
         blogNumTv.setOnClickListener(this);
         idolTv.setOnClickListener(this);
-
+        fansNumTv.setOnClickListener(this);
 
     }
 
@@ -140,6 +141,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             String idolWrapStr = String.format(getString(R.string.idolWrap), userBlogInfoRespPayLoad.getPrivateX());
             idolTv.setText(idolWrapStr);
 
+            fansNumTv.setText(String.format(getString(R.string.fanswrap),userBlogInfoRespPayLoad.getFansNum()+""));
 
             String collectBlogNumStr = String.format(getString(R.string.collectWrap), userBlogInfoRespPayLoad.getCollectNum());
             collectNumTv.setText(collectBlogNumStr);
@@ -147,13 +149,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         }, throwable -> WidgetUtil.showSnackBar(getActivity(), throwable.getMessage()));
 
 
-        Disposable collectNumDisposable = HttpManager.getInstance().getCollectNum().subscribe(collectNumRespPayLoad -> {
-            if (collectNumRespPayLoad.getCode() == PayLoad.SUCCESS) {
-
-            } else {
-                WidgetUtil.showSnackBar(getActivity(), collectNumRespPayLoad.getMessage());
-            }
-        }, throwable -> WidgetUtil.showSnackBar(getActivity(), throwable.getMessage()));
 
 
         // TODO: Use the ViewModel
@@ -181,6 +176,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.idolTv:
+            case R.id.fansNumTv:
                 MobclickAgent.onEvent(getContext(), "my_follow", "my_follow");
                 intent = new Intent(getActivity(), FollowActivity.class);
                 intent.putExtra(USERNAME_KEY, GlobalDataManager.getInstance().getUserInfo().getUserName());
