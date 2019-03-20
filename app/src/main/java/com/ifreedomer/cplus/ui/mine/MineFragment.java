@@ -132,6 +132,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(MineViewModel.class);
+        if (GlobalDataManager.getInstance().getUserInfo()==null){
+            return;
+        }
         Observable<PayLoad<UserBlogInfoResp>> userBlogInfoObserver = HttpManager.getInstance().getUserBlogInfo(GlobalDataManager.getInstance().getUserInfo().getUserName());
         Disposable subscribe = userBlogInfoObserver.subscribe(payLoad -> {
             UserBlogInfoResp userBlogInfoRespPayLoad = payLoad.getData();

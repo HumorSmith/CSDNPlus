@@ -1,29 +1,21 @@
 package com.ifreedomer.cplus.http.protocol.resp;
 
-import java.io.Serializable;
 import java.util.List;
 
 public class SearchDetailResp {
 
+
     /**
-     * total : 561141
-     * hits : [{"_type":"blog","_id":"blog_39964501","_source":{"istop":0,"body":"","edit_time":"2014-10-10 16:18:56","type":1,"channelid":1,"typecopy":0,"id":39964501,"commentauth":2,"title":"【SoftKeyboard研究系列】SoftKeyboard研究","level":0,"commentcount":0,"description":"一、SoftKeyboard源码\r\n\r\n\r\n\r\n\r\n\r\n\r\n二、SoftKeyboard研究","created_at":"2014-10-10 16:15:26","note":"","baidu_words":"","nickname":"KunPlusPlus","status":1,"digg":0,"bury":0,"blogid":1451766,"viewcount":627,"outlinkcount":127,"avatar":"http://avatar.csdn.net/1/C/9/1_u010684551.jpg","ip":"219.142.122.100","user_name":"u010684551","filename":""},"_index":"so_blog_20180525","_score":"17.770367"},{"_type":"blog","_id":"blog_7291370","_source":{"istop":0,"body":"","edit_time":"2012-02-24 16:47:33","type":2,"channelid":0,"typecopy":0,"id":7291370,"commentauth":2,"title":"Android SDK sample 之 SoftKeyboard 详解","level":0,"commentcount":0,"description":"终于到了解读源文件的时间了。在src目录里面就是真个输入法的源文件了。最开始我看的源文件是openwnn的源文件，这个开源的输入法实在是太强大了，然后很多地方我都还没有搞明白，作为入门级的，还是看这个Sample比较的简单吧，虽然他的功能并没有达到一个输入法的真正的情况，但是它却是经历了一个开发输入法的完整流程。\r\n　　这里面有4个文件：\r\n　　LatinKeyboard.java：\r\n　　这个就","created_at":"2012-02-24 16:47:33","note":"","tags":"android,输入法,keyboard,action,search,scroll","baidu_words":"","nickname":"雨奇","status":1,"digg":0,"bury":0,"blogid":229278,"viewcount":1440,"outlinkcount":0,"avatar":"http://avatar.csdn.net/D/5/8/1_cstarbl.jpg","ip":"218.56.65.26","user_name":"cstarbl","filename":"7291370"},"_index":"so_blog_20180525","_score":"16.340864"},{"_type":"blog","_id":"blog_51648371","_source":{"istop":0,"body":"","edit_time":"2016-06-12 19:00:42","type":2,"channelid":1,"typecopy":0,"id":51648371,"commentauth":2,"title":"Android输入法开发之Android SDK Sample\u2014SoftKeyboard","level":0,"commentcount":5,"description":"转自：http://www.cnblogs.com/weixing/archive/2013/09/04/3300947.html从SDK 1.5版本以后，Android就开放它的IMF（Input Method Framework），让我们能够开发自己的输入法。而开发输入法最好的参考就是Android自带的Sample-SoftKeyboard，虽然这个例子仅包含英文和数字输入，但是它本身还算完整","created_at":"2016-06-12 19:00:42","note":"","tags":"android,输入法","baidu_words":"android 开源输入法;;android开源输入法;;android softkeyboard;;android 开发输入法 源码;;android 定制开发输入法;;拼音输入法 开源 android;;android 拼音输入法开发;;android系统开发输入法ui;;sdk谷歌输入法;;android输入法开发;;android 输入法开发 注册;;输入法sdk;;安卓开源输入法;;android 源码输入法;;android 输入法sdk;;sample soft keyboard;;softkeyboard;;安卓 输入键盘 软件开发;;candidateview;;android 输入法开发;;com.example.android.softkeyboard/.softkeyboard;;android 画图工具 键盘输入;;sample-softkeyboard;;android 中文输入法sdk;;android sdk examples csdn;;安卓輸入法sdk;;android 中文输入法开发;;android 谷歌输入法开源;;android 输入法开源;;如何开发一个android输入法;;softkeyboard sample 使用;;candidateview 候选词大小;;candidateview 字体大小;;android输入法 开源;;softkeyboard api;;android 开发一个输入法;;sample中的输入法;;pinyinime softkeyboardview 点击;;开源输入法 android;;android sdk键盘;;android softkeyboard 布局;;com.inputmethod.softkeyboard;;android 开发 手机输入法选择;;softkeybord;;海马玩模拟器sample soft keyboard;;softkeyboard.java;;android 输入法开发学习;;android 输入法 sdk;;android shurufasdk;;android softkeyboardutil;;输入法 sdk;;android自带的sample-softkeyboard;;安卓输入法开源;;android 输入法开发开源;;安卓jdk连接键盘;;软键盘sdk;;android 输入法开发键盘字体;;百度拼音输入法安装包android adk;;android softkeyboard源码;;softkeyboard支持中文输入;;sample keyboard;;android sample softkeyboard;;android 开源 输入法;;android 输入法 sample 源码;;android 书写输入法 sdk;;android 手写输入法 sdk 下载;;android 编程 输入法;;softkeyboardview;;安卓 开源输入法;;安卓输入法sdk下载;;android 键盘手写 sdk;;安卓 输入法 开发;;soft keyboad;;android 输入法例子soft;;android拼音键盘开发;;输入法 sdk 二次开发;;手机输入法sdk;;android sdk安全键盘输入;;input.xml candidateview;;android sdk手写;;android开发手写输入法;;android定制开发英文键盘;;android ondrawkeyboard;;输入法 开发 安卓 例子;;安卓输入法开发;;手写输入sdk;;android soft keyboard;;android 手写输入sdk;;android 输入法开发 词汇;;android的输入法如何实现keyboardview;;安卓开发代码调用系统输入法;;android 开发类似短信编辑的键盘;;android输入法实例;;softkeyboard 当前输入窗口 handler;;android自开发输入法 candidateview如何显示出来;;android keyboard 中文输入法;;android 百度输入法sdk;;安卓手写识别输入法开发实现例程详解、代码、函数、源码全码及其开发全视频;;android 手写键盘 开发 demo;;安卓输入法按键震动源码","nickname":"木大白易","status":1,"digg":3,"bury":0,"blogid":5102839,"viewcount":5671,"outlinkcount":0,"avatar":"http://avatar.csdn.net/6/B/A/1_aiynmimi.jpg","ip":"","user_name":"aiynmimi","filename":""},"_index":"so_blog_20180525","_score":"15.389952"},{"_type":"blog","_id":"blog_50718218","_source":{"istop":0,"body":"","edit_time":"2016-02-22 17:36:39","type":1,"channelid":0,"typecopy":0,"id":50718218,"commentauth":2,"title":"SoftKeyboard在AndroidStudio下的配置和运行","level":0,"commentcount":0,"description":"前文翻译的《Android下创建一个输入法》一文中提到了来自Google的输入法例程SoftKeyboard，备忘下该程序的配置和运行。\r\n首先将SoftKeyboard导入AndroidStudio，选择Import project(Eclipse ADT, Gradle, etc.)\r\n\r\n\r\n\r\n\r\n然后打开虚拟机配置，并勾选底部的\u201cUse virutal keyboard for text","created_at":"2016-02-22 17:38:11","note":null,"baidu_words":"android studio 设置language&keyboard","nickname":"晋文","status":1,"digg":1,"bury":0,"blogid":5603362,"viewcount":709,"outlinkcount":0,"avatar":"http://avatar.csdn.net/4/4/2/1_zchongr.jpg","ip":"172.16.10.1","user_name":"zchongr","filename":""},"_index":"so_blog_20180525","_score":"15.298193"},{"_type":"blog","_id":"blog_77472254","_source":{"istop":0,"body":"","edit_time":"2017-08-22 09:58:18","type":2,"channelid":1,"typecopy":0,"id":77472254,"commentauth":2,"title":"Android softkeyboard 和 其他界面关系 softInputMode","level":0,"commentcount":0,"description":"转 ： http://blog.csdn.net/xww810319/article/details/17397429 and       http://blog.csdn.net/harryweasley/article/details/49124385精要：\u201cadjustUnspecified\u201dIt is unspecified whether the activity's main windo","created_at":"2017-08-22 09:58:18","note":"","baidu_words":"","nickname":"FuckingCode","status":1,"digg":0,"bury":0,"blogid":4909853,"viewcount":103,"outlinkcount":5,"avatar":"http://avatar.csdn.net/2/B/3/1_xia2011214228.jpg","ip":"","user_name":"xia2011214228","filename":"","es_id":"blog_77472254"},"_index":"so_blog_20180525","_score":"15.006834"},{"_type":"blog","_id":"blog_82326386","_source":{"istop":0,"body":"","edit_time":"2012-06-09 19:16:42","type":0,"channelid":0,"typecopy":0,"id":82326386,"commentauth":0,"title":"android输入法01：SoftKeyboard源码解析02","level":0,"commentcount":0,"description":"    本篇为SoftKeyboard源代码注释。\r\n1、LatinKeyboard\r\npublic class LatinKeyboard extends Keyboard {\n\n    private Key mEnterKey;\n    \n    public LatinKeyboard(Context context, int xmlLayoutResId) {\n        super...","created_at":"2012-05-02 23:39:00","note":null,"baidu_words":"","nickname":"iteye_15968","status":1,"digg":0,"bury":0,"blogid":7906191,"viewcount":3,"outlinkcount":0,"avatar":"http://avatar.csdn.net/D/D/2/1_iteye_15968.jpg","ip":null,"user_name":"iteye_15968","filename":""},"_index":"so_blog_20180525","_score":"14.60655"},{"_type":"blog","_id":"blog_82326385","_source":{"istop":0,"body":"","edit_time":"2012-06-09 19:16:44","type":0,"channelid":0,"typecopy":0,"id":82326385,"commentauth":0,"title":"android输入法01：SoftKeyboard源码解析01","level":0,"commentcount":0,"description":"    本文主要介绍android自带输入法实例SoftKeyboard的源码，共分为两篇：第一篇为SoftKeyboard框架概述，第二篇为源码注释。\r\n1、IMF简介\r\n   一个IMF结构中包含三个主要的部分：\ninput method manager：管理各部分的交互。它是一个客户端API，存在于各个应用程序的context中，用来沟通管理所有进程间交互的全局系统服务。\ninput met...","created_at":"2012-05-02 23:32:00","note":null,"baidu_words":"","nickname":"iteye_15968","status":1,"digg":0,"bury":0,"blogid":7906191,"viewcount":3,"outlinkcount":0,"avatar":"http://avatar.csdn.net/D/D/2/1_iteye_15968.jpg","ip":null,"user_name":"iteye_15968","filename":""},"_index":"so_blog_20180525","_score":"14.60655"},{"_type":"blog","_id":"blog_7570586","_source":{"istop":0,"body":"","edit_time":"2012-05-15 22:11:53","type":2,"channelid":0,"typecopy":0,"id":7570586,"commentauth":2,"title":"android输入法01：SoftKeyboard源码解析02","level":0,"commentcount":0,"description":"本篇为SoftKeyboard源代码注释。\r\n\r\n1、LatinKeyboard\r\n\r\n\r\n\r\n\r\n\r\n[java] view\r\n plaincopy\r\n\r\n\r\n\r\n\r\n\r\n\r\npublic class LatinKeyboard extends Keyboard {  \r\n  \r\n    private Key mEnterKey;  \r\n      \r\n    public LatinKeyb","created_at":"2012-05-15 22:11:53","note":"","baidu_words":"","nickname":"liuysheng","status":1,"digg":0,"bury":0,"blogid":523683,"viewcount":1350,"outlinkcount":4,"avatar":"http://avatar.csdn.net/A/0/B/1_liuysheng.jpg","ip":"58.209.7.245","user_name":"liuysheng","filename":""},"_index":"so_blog_20180525","_score":"14.27959"},{"_type":"blog","_id":"blog_7765505","_source":{"istop":0,"body":"","edit_time":"2012-07-20 00:53:22","type":2,"channelid":1,"typecopy":0,"id":7765505,"commentauth":2,"title":"android输入法01：SoftKeyboard源码解析01","level":0,"commentcount":0,"description":"转载自：http://www.apkbus.com/android-52412-1-1.html\r\n\r\n本文主要介绍android自带输入法实例SoftKeyboard的源码，共分为两篇：第一篇为SoftKeyboard框架概述，第二篇为源码注释。\r\n\r\n1、IMF简介\r\n\r\n       一个IMF结构中包含三个主要的部分：\r\n\r\n\r\n\r\ninput method manager：管理各部分的交","created_at":"2012-07-20 00:53:22","note":"图片","tags":"输入法,android,keyboard,service,action,xml","baidu_words":"","nickname":"yy228","status":1,"digg":0,"bury":0,"blogid":1068418,"viewcount":1635,"outlinkcount":3,"avatar":"http://avatar.csdn.net/5/9/0/1_yy228.jpg","ip":"14.153.124.181","user_name":"yy228","filename":"7765505"},"_index":"so_blog_20180525","_score":"14.27959"},{"_type":"blog","_id":"blog_7615758","_source":{"istop":0,"body":"","edit_time":"2012-05-30 12:04:22","type":2,"channelid":0,"typecopy":0,"id":7615758,"commentauth":2,"title":"android输入法01：SoftKeyboard源码解析02","level":0,"commentcount":0,"description":"本篇为SoftKeyboard源代码注释。\r\n1、LatinKeyboard\r\n\r\n\r\n\r\n[java] \r\nview plaincopyprint?\r\n\r\n\r\npublic class LatinKeyboard extends Keyboard {        private Key mEnterKey;            public LatinKeyboard(Context con","created_at":"2012-05-30 12:04:22","note":"","tags":"输入法,android,keyboard,null,测试,action","baidu_words":"onkeyboardactionlistener 禁止长按;;togglesoftkeyboard;;android keyboard解析;;requesthideself","nickname":"luxingshun","status":1,"digg":0,"bury":0,"blogid":781574,"viewcount":1180,"outlinkcount":4,"avatar":"http://avatar.csdn.net/3/D/5/1_luxingshun.jpg","ip":"218.17.162.229","user_name":"luxingshun","filename":""},"_index":"so_blog_20180525","_score":"14.27959"},{"_type":"blog","_id":"blog_7572596","_source":{"istop":0,"body":"","edit_time":"2012-05-16 14:44:47","type":2,"channelid":0,"typecopy":0,"id":7572596,"commentauth":2,"title":"android输入法01：SoftKeyboard源码解析02","level":0,"commentcount":0,"description":"本篇为SoftKeyboard源代码注释。\r\n\r\n1、LatinKeyboard\r\n\r\n\r\n\r\n\r\n\r\n[java] view\r\n plaincopy\r\n\r\n\r\n\r\n\r\n\r\n\r\npublic class LatinKeyboard extends Keyboard {  \r\n  \r\n    private Key mEnterKey;  \r\n      \r\n    public LatinKeyb","created_at":"2012-05-16 14:44:47","note":"","tags":"输入法,android,action,null,keyboard,测试","baidu_words":"","nickname":"liuysheng","status":1,"digg":0,"bury":0,"blogid":523683,"viewcount":1682,"outlinkcount":0,"avatar":"http://avatar.csdn.net/A/0/B/1_liuysheng.jpg","ip":"58.211.24.154","user_name":"liuysheng","filename":""},"_index":"so_blog_20180525","_score":"14.27959"},{"_type":"blog","_id":"blog_7615751","_source":{"istop":0,"body":"","edit_time":"2012-05-30 12:01:59","type":2,"channelid":1,"typecopy":0,"id":7615751,"commentauth":2,"title":"android输入法01：SoftKeyboard源码解析01","level":0,"commentcount":0,"description":"本文主要介绍android自带输入法实例SoftKeyboard的源码，共分为两篇：第一篇为SoftKeyboard框架概述，第二篇为源码注释。\r\n1、IMF简介\r\n       一个IMF结构中包含三个主要的部分：\r\n\r\ninput method manager：管理各部分的交互。它是一个客户端API，存在于各个应用程序的context中，用来沟通管理所有进程间交互的全局系统服务。\r\ninput","created_at":"2012-05-30 12:01:59","note":"","tags":"输入法,android,keyboard,service,action,xml","baidu_words":"","nickname":"luxingshun","status":1,"digg":0,"bury":0,"blogid":781574,"viewcount":870,"outlinkcount":1,"avatar":"http://avatar.csdn.net/3/D/5/1_luxingshun.jpg","ip":"218.17.162.229","user_name":"luxingshun","filename":"7615751"},"_index":"so_blog_20180525","_score":"14.145359"},{"_type":"blog","_id":"blog_7572591","_source":{"istop":0,"body":"","edit_time":"2012-05-16 14:44:10","type":2,"channelid":0,"typecopy":0,"id":7572591,"commentauth":2,"title":"android输入法01：SoftKeyboard源码解析03","level":0,"commentcount":0,"description":"4、SoftKeyboard\r\n\r\n\r\n\r\n\r\n\r\n\r\n[java] view\r\n plaincopy\r\n\r\n\r\n\r\n\r\n\r\n\r\n/** \r\n * Example of writing an input method for a soft keyboard.  This code is \r\n * focused on simplicity over completeness, so it shou","created_at":"2012-05-16 14:44:10","note":"","tags":"输入法,android,null,测试,class,delete","baidu_words":"","nickname":"liuysheng","status":1,"digg":1,"bury":0,"blogid":523683,"viewcount":4023,"outlinkcount":4,"avatar":"http://avatar.csdn.net/A/0/B/1_liuysheng.jpg","ip":"58.211.24.154","user_name":"liuysheng","filename":""},"_index":"so_blog_20180525","_score":"14.145359"},{"_type":"blog","_id":"blog_7572581","_source":{"istop":0,"body":"","edit_time":"2012-05-16 14:42:43","type":2,"channelid":0,"typecopy":0,"id":7572581,"commentauth":2,"title":"android输入法01：SoftKeyboard源码解析02","level":0,"commentcount":0,"description":"本篇为SoftKeyboard源代码注释。\r\n\r\n1、LatinKeyboard\r\n\r\n\r\n\r\n\r\n\r\n[java] view\r\n plaincopy\r\n\r\n\r\n\r\n\r\n\r\n\r\npublic class LatinKeyboard extends Keyboard {  \r\n  \r\n    private Key mEnterKey;  \r\n      \r\n    public LatinKeyb","created_at":"2012-05-16 14:42:43","note":"","baidu_words":"","nickname":"liuysheng","status":1,"digg":0,"bury":0,"blogid":523683,"viewcount":1012,"outlinkcount":4,"avatar":"http://avatar.csdn.net/A/0/B/1_liuysheng.jpg","ip":"58.211.24.154","user_name":"liuysheng","filename":""},"_index":"so_blog_20180525","_score":"14.013273"},{"_type":"blog","_id":"blog_7765507","_source":{"istop":0,"body":"","edit_time":"2012-07-20 00:55:52","type":2,"channelid":1,"typecopy":0,"id":7765507,"commentauth":2,"title":"android输入法01：SoftKeyboard源码解析02","level":0,"commentcount":0,"description":"转载自：http://www.apkbus.com/forum.php?mod=viewthread&tid=52413\r\n\r\n本篇为SoftKeyboard源代码注释。\r\n\r\n1、LatinKeyboard\r\n\r\n[代码]java代码：\r\n\r\n\r\n\r\n\r\npublic class LatinKeyboard extends Keyboard {  \r\n\r\n  \r\n\r\n    private Ke","created_at":"2012-07-20 00:55:52","note":"","tags":"输入法,android,keyboard,null,测试,input","baidu_words":"","nickname":"yy228","status":1,"digg":0,"bury":0,"blogid":1068418,"viewcount":1050,"outlinkcount":3,"avatar":"http://avatar.csdn.net/5/9/0/1_yy228.jpg","ip":"14.153.124.181","user_name":"yy228","filename":"7765507"},"_index":"so_blog_20180525","_score":"14.013273"},{"_type":"blog","_id":"blog_7570578","_source":{"istop":0,"body":"","edit_time":"2012-05-15 22:09:48","type":2,"channelid":0,"typecopy":0,"id":7570578,"commentauth":2,"title":"android输入法01：SoftKeyboard源码解析01","level":0,"commentcount":1,"description":"本文主要介绍android自带输入法实例SoftKeyboard的源码，共分为两篇：第一篇为SoftKeyboard框架概述，第二篇为源码注释。\r\n\r\n1、IMF简介\r\n       一个IMF结构中包含三个主要的部分：\r\n\r\ninput method manager：管理各部分的交互。它是一个客户端API，存在于各个应用程序的context中，用来沟通管理所有进程间交互的全局系统服务。input","created_at":"2012-05-15 22:09:48","note":"","tags":"输入法,android,keyboard,xml,service,action","baidu_words":"onstartinputview的package不对;;用eclipse开发android输入法如何设置自己的词库;;android输入法源码","nickname":"liuysheng","status":1,"digg":1,"bury":0,"blogid":523683,"viewcount":8502,"outlinkcount":1,"avatar":"http://avatar.csdn.net/A/0/B/1_liuysheng.jpg","ip":"58.209.7.245","user_name":"liuysheng","filename":"7570578"},"_index":"so_blog_20180525","_score":"14.013273"},{"_type":"blog","_id":"blog_40412711","_source":{"istop":0,"body":"","edit_time":"2014-10-24 13:49:13","type":1,"channelid":1,"typecopy":0,"id":40412711,"commentauth":2,"title":"【SoftKeyboard研究系列】自己动手做最简单的SoftKeyboard","level":0,"commentcount":1,"description":"研究SoftKeyboard也有一段时间了，","created_at":"2014-10-24 00:50:33","note":"","baidu_words":"soft keyboard 输入文本框;;esoft keboard;;soft keyboard sample app;;softkeyboard 白色编辑框;;softkeyboardpiano怎么学;;raspberry softkeyboard;;delphi softkeyboard;;lao soft keyboard;;vc softkeyboard;;sample\u2014softkeyboard;;softkeyboard android 下载;;softkeyboardlayout;;softkeyboard开发教程;;simple-keyboard;;softkeyboard位置;;$softkeyboard.softkeyboard('showsoftkeyboard');;softkeyboard","nickname":"KunPlusPlus","status":1,"digg":0,"bury":0,"blogid":1451766,"viewcount":796,"outlinkcount":22,"avatar":"http://avatar.csdn.net/1/C/9/1_u010684551.jpg","ip":"219.142.122.245","user_name":"u010684551","filename":""},"_index":"so_blog_20180525","_score":"13.802478"},{"_type":"blog","_id":"blog_39896533","_source":{"istop":0,"body":"","edit_time":"2014-10-08 17:55:33","type":1,"channelid":1,"typecopy":0,"id":39896533,"commentauth":2,"title":"【SoftKeyboard研究系列】Keyboard.Row研究","level":0,"commentcount":0,"description":"一、Keyboard.Key doc位置\r\n\r\n本地：%ANDROID_HOME%/sdk/docs/reference/android/inputmethodservice/Keyboard.Key.html\r\n\r\nWeb：\r\n二、Keyboard.Key doc内容","created_at":"2014-10-08 17:45:43","note":"","baidu_words":"","nickname":"KunPlusPlus","status":1,"digg":0,"bury":0,"blogid":1451766,"viewcount":500,"outlinkcount":80,"avatar":"http://avatar.csdn.net/1/C/9/1_u010684551.jpg","ip":"219.142.122.245","user_name":"u010684551","filename":""},"_index":"so_blog_20180525","_score":"13.370637"},{"_type":"blog","_id":"blog_39896695","_source":{"istop":0,"body":"","edit_time":"2014-10-08 18:56:39","type":1,"channelid":1,"typecopy":0,"id":39896695,"commentauth":2,"title":"【SoftKeyboard研究系列】Keyboard研究","level":0,"commentcount":0,"description":"一、Keyboard.Key doc位置\r\n\r\n\r\n本地：%ANDROID_HOME%/sdk/docs/reference/android/inputmethodservice/Keyboard.Key.html\r\n\r\nWeb：\r\n二、Keyboard.Key doc内容","created_at":"2014-10-08 18:03:43","note":"","baidu_words":"android:keyheight android:keywidth","nickname":"KunPlusPlus","status":1,"digg":0,"bury":0,"blogid":1451766,"viewcount":472,"outlinkcount":127,"avatar":"http://avatar.csdn.net/1/C/9/1_u010684551.jpg","ip":"218.249.159.67","user_name":"u010684551","filename":""},"_index":"so_blog_20180525","_score":"12.852157"},{"_type":"blog","_id":"blog_8843747","_source":{"istop":0,"body":"","edit_time":"2013-04-24 11:15:47","type":2,"channelid":0,"typecopy":0,"id":8843747,"commentauth":2,"title":"Flex 4.6 hide/dismiss softkeyboard","level":0,"commentcount":0,"description":"For flex mobile android apps I have mimicked the intuitive ios way of tapping on the background to remove the softkeyboard as follows:\r\nimport spark.components.supportClasses.*\n        protected funct","created_at":"2013-04-24 11:15:47","note":"","baidu_words":"","nickname":"happyrabbit456","status":1,"digg":0,"bury":0,"blogid":1321621,"viewcount":792,"outlinkcount":1,"avatar":"http://avatar.csdn.net/6/D/4/1_happyrabbit456.jpg","ip":"113.106.11.36","user_name":"happyrabbit456","filename":""},"_index":"so_blog_20180525","_score":"12.852157"}]
-     * took : 8
+     * hits : [{"_index":"so_blog_20190320","_type":"blog","_source":{"user_name":"qq_17347575","nickname":"chengyu_wang","description":"安装vue-routernnpm install vue-router --saven在main.js(应用的入口文件)中写入以载入vue-routernimport Vue from 'vue'nimport routes from './vue-router/vue-router-config.js'nimport vue-router from 'vue-router'nVue.use(vue","created_at":"2017-09-11 13:26:27","viewcount":"704","id":"77932140","avatar":"https://profile.csdnimg.cn/0/B/1/0_qq_17347575","title":"vue-router 学习笔记","body":"","view_count":704,"url":"https://blog.csdn.net/qq_17347575/article/details/77932140"},"_id":"blog_77932140","_score":"12.299435"},{"_index":"so_blog_20190320","_type":"blog","_source":{"user_name":"weixin_33743661","nickname":"weixin_33743661","description":"vue全家桶的成员是：vue-cli,vuex,vue-router,vue-axios(vue2.0)。rn第三方插件：vue-scroller,vue-lazyload,vue-awesome-swiper等等的。","created_at":"2018-02-17 15:02:00","viewcount":"2","id":"85971100","avatar":"https://profile.csdnimg.cn/9/4/2/0_weixin_33743661","title":"Vue组成和第3方插件","body":"","view_count":2,"url":"https://blog.csdn.net/weixin_33743661/article/details/85971100"},"_id":"blog_85971100","_score":"12.190565"},{"_index":"so_blog_20190320","_type":"blog","_source":{"user_name":"ystandri","nickname":"yushuiting","description":"import Vue from vueimport Vue form 'vue'的意思nimport Vue form 'vue\u2019的意思nnimport Vue form \u2018vue\u2019 写全的话是import Vue from \u2018\u2026/nodemouls/vue/list/vue.js\u2019； 此时在webpack.base.conf.js中进行了定义，内置了一些选项，extenions:[\u2019.js\u2019,\u2019...","created_at":"2018-10-18 19:30:21","viewcount":"824","id":"83151658","avatar":"https://profile.csdnimg.cn/6/2/A/0_ystandri","title":"import Vue from 'vue'","body":"","view_count":824,"url":"https://blog.csdn.net/ystandri/article/details/83151658"},"_id":"blog_83151658","_score":"12.166341"},{"_index":"so_blog_20190320","_type":"blog","_source":{"user_name":"xuxinwen32","nickname":"xuxinwen32","description":"vue之vue-cookiesnnnpm链接：https://www.npmjs.com/package/vue-cookiesnn安装：nnnpm install vue-cookies --savenn使用：nnimport Vue from 'Vue' import VueCookies from 'vue-cookies' Vue.use(VueCookies)nnApi：nn　　设置c...","created_at":"2019-03-04 19:45:39","viewcount":"36","id":"88134423","avatar":"https://profile.csdnimg.cn/B/6/A/0_xuxinwen32","title":"vue填坑系列之vue-cookies的使用","body":"","view_count":36,"url":"https://blog.csdn.net/xuxinwen32/article/details/88134423"},"_id":"blog_88134423","_score":"12.143384"},{"_index":"so_blog_20190320","_type":"blog","_source":{"user_name":"weixin_40725601","nickname":"琢磨不透的東邪","description":"Vue-Cookiesrnnpm链接：https://www.npmjs.com/package/vue-cookiesrn一、安装vue-cookiesrnnpm install vue-cookies --savern二、使用rn1.main.js引入rnimport Vue from 'vue';rnimport VueCookies from 'vue-cookies';rnrnVue.use(VueCoo...","created_at":"2018-10-27 18:36:23","viewcount":"374","id":"83448562","avatar":"https://profile.csdnimg.cn/4/4/5/0_weixin_40725601","title":"Vue-Cookies","body":"","view_count":374,"url":"https://blog.csdn.net/weixin_40725601/article/details/83448562"},"_id":"blog_83448562","_score":"12.127394"},{"_index":"so_blog_20190320","_type":"blog","_source":{"user_name":"oqqYuan1234567890","nickname":"大漠永恒","description":"vue vue-router vue-resourcenvue ngithub：https://github.com/vuejs/vue","created_at":"2017-03-11 00:02:13","viewcount":"564","id":"61239377","avatar":"https://profile.csdnimg.cn/C/5/D/0_oqqyuan1234567890","title":"vue vue-router vue-resource学习记录","body":"","view_count":564,"url":"https://blog.csdn.net/oqqYuan1234567890/article/details/61239377"},"_id":"blog_61239377","_score":"12.093629"},{"_index":"so_blog_20190320","_type":"blog","_source":{"user_name":"qq_21473443","nickname":"jingqw","description":"Vue 前端 模仿斗鱼直播 nvue-cli + vue 2.x + vue-router + vue-resource + vue-swipe","created_at":"2017-06-15 15:21:45","viewcount":"2125","id":"73289768","avatar":"https://profile.csdnimg.cn/7/E/9/0_qq_21473443","title":"Vue 2.x模仿斗鱼直播的小web app----doyu","body":"","view_count":2125,"url":"https://blog.csdn.net/qq_21473443/article/details/73289768"},"_id":"blog_73289768","_score":"12.084048"},{"_index":"so_blog_20190320","_type":"blog","_source":{"user_name":"qq2523208472","nickname":"云海梦尘","description":"nnpm install vue-layernnpm install --save-dev webpack-chainnn nnvue.config.js配置nnnconfig.resolve.alias.set('vue$','vue/dist/vue.js')nnnnmain.js 配置nnnimport Vue from 'vue';nimport layer from 'vue-layer...","created_at":"2018-11-19 20:09:25","viewcount":"1019","id":"84259074","avatar":"https://profile.csdnimg.cn/5/E/7/0_qq2523208472","title":"VUE cli 3.0使用vue-layer","body":"","view_count":1019,"url":"https://blog.csdn.net/qq2523208472/article/details/84259074"},"_id":"blog_84259074","_score":"12.082007"},{"_index":"so_blog_20190320","_type":"blog","_source":{"user_name":"weixin_42554311","nickname":"weixin_42554311","description":"使用vue-resource请求数据nn1.安装vue-resourcennnpm install vue-resource --save或cnpm install vue-resource --savenn2.main.js里面引入vue和vue-resourcennimport VueResource from \"vue-resource\"nnVue.use(VueResource );nn3...","created_at":"2018-08-17 11:06:59","viewcount":"191","id":"81774111","avatar":"https://profile.csdnimg.cn/1/C/4/0_weixin_42554311","title":"vue 前后台通信","body":"","view_count":191,"url":"https://blog.csdn.net/weixin_42554311/article/details/81774111"},"_id":"blog_81774111","_score":"12.079678"},{"_index":"so_blog_20190320","_type":"blog","_source":{"user_name":"Johnzhc","nickname":"HarSenZhao","description":"一.vue基础知识nn1.vue-cli创建项nn二 vue资源使用总结nn1.vue使用three.js知识总结nn2.vue背景图为动图nn3.动态添加class类nn三.vue资源使用nn1.vue使用阿里巴巴矢量库nn2.vue使用Animate.css动效库nn3.vue使用ElementUInn4.vue使用three.jsnn5.vue使用echartsnn四.vue使用知识总结nn...","created_at":"2019-03-18 11:47:44","viewcount":"5","id":"88636041","avatar":"https://profile.csdnimg.cn/1/0/5/0_johnzhc","title":"Vue学习笔记","body":"","view_count":5,"url":"https://blog.csdn.net/Johnzhc/article/details/88636041"},"_id":"blog_88636041","_score":"12.07964"},{"_index":"so_blog_20190320","_type":"blog","_source":{"user_name":"romeo12334","nickname":"桐哥优秀","description":"安装vue-cookies包：nnnnpm install vue-cookies --savenn在main.js中引入：nnn使用require：nvar Vue = require('vue')nVue.use(require('vue-cookies'))nn若支持es6，则：nimport Vue from 'Vue'nimport VueCookies from 'vue-cookie...","created_at":"2018-08-29 09:58:36","viewcount":"367","id":"82178460","avatar":"https://profile.csdnimg.cn/A/7/2/0_romeo12334","title":"vue项目中使用cookie","body":"","view_count":367,"url":"https://blog.csdn.net/romeo12334/article/details/82178460"},"_id":"blog_82178460","_score":"12.062876"},{"_index":"so_blog_20190320","_type":"blog","_source":{"user_name":"qq_39469688","nickname":"KrisChung","description":"文章目录vue项目的构建工具vue-cli搭建脚手架vue-cli环境nvue项目的构建工具vue-clin搭建脚手架vue-cli环境nn会用到vue全家桶 vue vue-cli axios vue-router vue-vueX vue-clin脚手架n一个基于vue的构建工具n搭建vue项目的环境n好处n兼容n方便n快速nnn可以不用 脚手架（vue-cli）n就可以基于 webpac...","created_at":"2018-10-13 10:59:16","viewcount":"95","id":"83036520","avatar":"https://profile.csdnimg.cn/2/7/3/0_qq_39469688","title":"Vue.js 学习足迹(三)","body":"","view_count":95,"url":"https://blog.csdn.net/qq_39469688/article/details/83036520"},"_id":"blog_83036520","_score":"12.0459585"},{"_index":"so_blog_20190320","_type":"blog","_source":{"user_name":"qq_25354709","nickname":"Razas","description":"一、全局安装vue-clinnnnpm install vue-cli -gnn初始化一个vue的项目nnnvue init webpack vue-booknnn? Project name vue-bookn? Project description A Vue.js projectn? Author xxxn? Vue build standalonen? Install vue-route...","created_at":"2019-02-11 22:07:10","viewcount":"26","id":"87017487","avatar":"https://profile.csdnimg.cn/5/6/2/0_qq_25354709","title":"使用vue-cli（2.9.6）构建一个vue的项目","body":"","view_count":26,"url":"https://blog.csdn.net/qq_25354709/article/details/87017487"},"_id":"blog_87017487","_score":"12.031371"},{"_index":"so_blog_20190320","_type":"blog","_source":{"user_name":"weixin_42112635","nickname":"不知所起 一往而深","description":"【 SpringCloud 电商项目 】rnrn【 SpringCloud 电商项目 】\u2014\u2014 背景介绍rn【 SpringCloud 电商项目 】\u2014\u2014 系统架构rn【 ES6 新特性学习 】rn【 Vue 】\u2014\u2014 入门rn【 Vue 】\u2014\u2014 Vue 实例rn【 Vue 】\u2014\u2014 Vue 指令rn【 Vue 】\u2014\u2014 Vue 组件化rn【 Vue 】\u2014\u2014 路由 vue-routerrn【 webpack \u2014\u2014 资源打包工具...","created_at":"2019-03-05 16:24:14","viewcount":"262","id":"88187593","avatar":"https://profile.csdnimg.cn/6/5/8/0_weixin_42112635","title":"【 SpringCloud 电商项目 】","body":"","view_count":262,"url":"https://blog.csdn.net/weixin_42112635/article/details/88187593"},"_id":"blog_88187593","_score":"12.013959"},{"_index":"so_blog_20190320","_type":"blog","_source":{"user_name":"weixin_38098195","nickname":"godnan_kk","description":"首先初始化项目1.npm init 项目中添加vue webpack vue-loader css-loader vue-template-compilernpm i vue webpack vue-loader css-loader vue-template-compiler","created_at":"2018-06-09 10:22:07","viewcount":"32","id":"80630676","avatar":"https://profile.csdnimg.cn/D/B/7/0_weixin_38098195","title":"VUE项目搭建","body":"","view_count":32,"url":"https://blog.csdn.net/weixin_38098195/article/details/80630676"},"_id":"blog_80630676","_score":"12.009678"},{"_index":"so_blog_20190320","_type":"blog","_source":{"user_name":"qq_41994549","nickname":"zql_ll","description":"第一步nnnnpm i vue-cookies --savenn第二部引入cookiennn// requirenvar Vue = require('vue')nVue.use(require('vue-cookies'))nn// es2015 modulenimport Vue from 'Vue'nimport VueCookies from 'vue-cookies'nVue.use(V...","created_at":"2019-01-02 10:55:58","viewcount":"57","id":"85601892","avatar":"https://profile.csdnimg.cn/0/C/0/0_qq_41994549","title":"vue cookies 的安装和使用","body":"","view_count":57,"url":"https://blog.csdn.net/qq_41994549/article/details/85601892"},"_id":"blog_85601892","_score":"12.008518"},{"_index":"so_blog_20190320","_type":"blog","_source":{"user_name":"candy_27","nickname":"candy_27","description":"n安装vue的包n由于在webpack中，推介使用 .vue定义组件，所以需要安装对应的loadercnpm i vue-loader vue-template-compiler 配置test: /\\.vue$/,use:'vue-loader'n在main.js中导入vue模块 import Vue from 'vue'n定义一个 .vue组件，其中有三部分：template script ...","created_at":"2018-12-10 22:06:37","viewcount":"21","id":"84947407","avatar":"https://profile.csdnimg.cn/3/E/9/0_candy_27","title":"在webpack中使用vue","body":"","view_count":21,"url":"https://blog.csdn.net/candy_27/article/details/84947407"},"_id":"blog_84947407","_score":"11.983819"},{"_index":"so_blog_20190320","_type":"blog","_source":{"user_name":"weixin_33895695","nickname":"weixin_33895695","description":"n n n vue-cli中vue-scroller的详细用法，上拉加载下拉刷新,vue-axios获取数据的详细过程vue目前是众所周知的流行框架大家都知道的，vue全家桶的成员是：vue-cli,vuex,vue-router,vue-axios(vue2.0)。然后它的第三方插件也有很多，比如：vue-scroller,vue-lazyload,vue-awes...","created_at":"2017-10-09 14:54:00","viewcount":"15","id":"87548598","avatar":"https://profile.csdnimg.cn/0/4/8/0_weixin_33895695","title":"vue-cli中vue-scroller","body":"","view_count":15,"url":"https://blog.csdn.net/weixin_33895695/article/details/87548598"},"_id":"blog_87548598","_score":"11.982422"},{"_index":"so_blog_20190320","_type":"blog","_source":{"user_name":"u013022210","nickname":"DauntLess_FYQ","description":"1.官方提供的vue 插件【vue-resource】nn需要安装vue-resource模块，注意需要加上 --savennnpm install vue-resource --save // cnpm install vue-resource --save nn2.main.js 引入 vue-resourcennnimport VueResource from 'vue-resource...","created_at":"2019-03-18 10:29:49","viewcount":"20","id":"88633968","avatar":"https://profile.csdnimg.cn/0/7/D/0_u013022210","title":"vue 数据数据模板","body":"","view_count":20,"url":"https://blog.csdn.net/u013022210/article/details/88633968"},"_id":"blog_88633968","_score":"11.973994"},{"_index":"so_blog_20190320","_type":"blog","_source":{"user_name":"u011280778","nickname":"1学习者1","description":"安装webpack：nnnpm install webpack webpack-cli -gnn nn安装vue-cli：nnnpm install -g vue-clinn nn用 vue-cli 来构建项目：nnvue1.x\u2014\u2014vue init webpack vue-demonnvue2.x\u2014\u2014vue init webpack-simple vue-demonn nn安装路由：nnnpm ...","created_at":"2019-02-17 22:46:20","viewcount":"7","id":"87562227","avatar":"https://profile.csdnimg.cn/C/D/1/0_u011280778","title":"vue.js常用命令","body":"","view_count":7,"url":"https://blog.csdn.net/u011280778/article/details/87562227"},"_id":"blog_87562227","_score":"11.969786"}]
+     * took : 7
+     * total : 73859
      * size : 20
      */
 
-    private int total;
     private int took;
+    private int total;
     private int size;
     private List<HitsBean> hits;
-
-    public int getTotal() {
-        return total;
-    }
-
-    public void setTotal(int total) {
-        this.total = total;
-    }
 
     public int getTook() {
         return took;
@@ -31,6 +23,14 @@ public class SearchDetailResp {
 
     public void setTook(int took) {
         this.took = took;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
     }
 
     public int getSize() {
@@ -49,20 +49,28 @@ public class SearchDetailResp {
         this.hits = hits;
     }
 
-    public static class HitsBean implements Serializable {
+    public static class HitsBean {
         /**
+         * _index : so_blog_20190320
          * _type : blog
-         * _id : blog_39964501
-         * _source : {"istop":0,"body":"","edit_time":"2014-10-10 16:18:56","type":1,"channelid":1,"typecopy":0,"id":39964501,"commentauth":2,"title":"【SoftKeyboard研究系列】SoftKeyboard研究","level":0,"commentcount":0,"description":"一、SoftKeyboard源码\r\n\r\n\r\n\r\n\r\n\r\n\r\n二、SoftKeyboard研究","created_at":"2014-10-10 16:15:26","note":"","baidu_words":"","nickname":"KunPlusPlus","status":1,"digg":0,"bury":0,"blogid":1451766,"viewcount":627,"outlinkcount":127,"avatar":"http://avatar.csdn.net/1/C/9/1_u010684551.jpg","ip":"219.142.122.100","user_name":"u010684551","filename":""}
-         * _index : so_blog_20180525
-         * _score : 17.770367
+         * _source : {"user_name":"qq_17347575","nickname":"chengyu_wang","description":"安装vue-routernnpm install vue-router --saven在main.js(应用的入口文件)中写入以载入vue-routernimport Vue from 'vue'nimport routes from './vue-router/vue-router-config.js'nimport vue-router from 'vue-router'nVue.use(vue","created_at":"2017-09-11 13:26:27","viewcount":"704","id":"77932140","avatar":"https://profile.csdnimg.cn/0/B/1/0_qq_17347575","title":"vue-router 学习笔记","body":"","view_count":704,"url":"https://blog.csdn.net/qq_17347575/article/details/77932140"}
+         * _id : blog_77932140
+         * _score : 12.299435
          */
 
-        private String _type;
-        private String _id;
-        private SourceBean _source;
         private String _index;
+        private String _type;
+        private SourceBean _source;
+        private String _id;
         private String _score;
+
+        public String get_index() {
+            return _index;
+        }
+
+        public void set_index(String _index) {
+            this._index = _index;
+        }
 
         public String get_type() {
             return _type;
@@ -70,14 +78,6 @@ public class SearchDetailResp {
 
         public void set_type(String _type) {
             this._type = _type;
-        }
-
-        public String get_id() {
-            return _id;
-        }
-
-        public void set_id(String _id) {
-            this._id = _id;
         }
 
         public SourceBean get_source() {
@@ -88,12 +88,12 @@ public class SearchDetailResp {
             this._source = _source;
         }
 
-        public String get_index() {
-            return _index;
+        public String get_id() {
+            return _id;
         }
 
-        public void set_index(String _index) {
-            this._index = _index;
+        public void set_id(String _id) {
+            this._id = _id;
         }
 
         public String get_score() {
@@ -106,154 +106,45 @@ public class SearchDetailResp {
 
         public static class SourceBean {
             /**
-             * istop : 0
+             * user_name : qq_17347575
+             * nickname : chengyu_wang
+             * description : 安装vue-routernnpm install vue-router --saven在main.js(应用的入口文件)中写入以载入vue-routernimport Vue from 'vue'nimport routes from './vue-router/vue-router-config.js'nimport vue-router from 'vue-router'nVue.use(vue
+             * created_at : 2017-09-11 13:26:27
+             * viewcount : 704
+             * id : 77932140
+             * avatar : https://profile.csdnimg.cn/0/B/1/0_qq_17347575
+             * title : vue-router 学习笔记
              * body :
-             * edit_time : 2014-10-10 16:18:56
-             * type : 1
-             * channelid : 1
-             * typecopy : 0
-             * id : 39964501
-             * commentauth : 2
-             * title : 【SoftKeyboard研究系列】SoftKeyboard研究
-             * level : 0
-             * commentcount : 0
-             * description : 一、SoftKeyboard源码
-             * <p>
-             * <p>
-             * <p>
-             * <p>
-             * <p>
-             * <p>
-             * 二、SoftKeyboard研究
-             * created_at : 2014-10-10 16:15:26
-             * note :
-             * baidu_words :
-             * nickname : KunPlusPlus
-             * status : 1
-             * digg : 0
-             * bury : 0
-             * blogid : 1451766
-             * viewcount : 627
-             * outlinkcount : 127
-             * avatar : http://avatar.csdn.net/1/C/9/1_u010684551.jpg
-             * ip : 219.142.122.100
-             * user_name : u010684551
-             * filename :
+             * view_count : 704
+             * url : https://blog.csdn.net/qq_17347575/article/details/77932140
              */
 
-            private int istop;
-            private String body;
-            private String edit_time;
-            private int type;
-            private int channelid;
-            private int typecopy;
-            private int id;
-            private int commentauth;
-            private String title;
-            private int level;
-            private int commentcount;
+            private String user_name;
+            private String nickname;
             private String description;
             private String created_at;
-            private String note;
-            private String baidu_words;
-            private String nickname;
-            private int status;
-            private int digg;
-            private int bury;
-            private int blogid;
-            private int viewcount;
-            private int outlinkcount;
+            private String viewcount;
+            private String id;
             private String avatar;
-            private String ip;
-            private String user_name;
-            private String filename;
+            private String title;
+            private String body;
+            private int view_count;
+            private String url;
 
-            public int getIstop() {
-                return istop;
+            public String getUser_name() {
+                return user_name;
             }
 
-            public void setIstop(int istop) {
-                this.istop = istop;
+            public void setUser_name(String user_name) {
+                this.user_name = user_name;
             }
 
-            public String getBody() {
-                return body;
+            public String getNickname() {
+                return nickname;
             }
 
-            public void setBody(String body) {
-                this.body = body;
-            }
-
-            public String getEdit_time() {
-                return edit_time;
-            }
-
-            public void setEdit_time(String edit_time) {
-                this.edit_time = edit_time;
-            }
-
-            public int getType() {
-                return type;
-            }
-
-            public void setType(int type) {
-                this.type = type;
-            }
-
-            public int getChannelid() {
-                return channelid;
-            }
-
-            public void setChannelid(int channelid) {
-                this.channelid = channelid;
-            }
-
-            public int getTypecopy() {
-                return typecopy;
-            }
-
-            public void setTypecopy(int typecopy) {
-                this.typecopy = typecopy;
-            }
-
-            public int getId() {
-                return id;
-            }
-
-            public void setId(int id) {
-                this.id = id;
-            }
-
-            public int getCommentauth() {
-                return commentauth;
-            }
-
-            public void setCommentauth(int commentauth) {
-                this.commentauth = commentauth;
-            }
-
-            public String getTitle() {
-                return title;
-            }
-
-            public void setTitle(String title) {
-                this.title = title;
-            }
-
-            public int getLevel() {
-                return level;
-            }
-
-            public void setLevel(int level) {
-                this.level = level;
-            }
-
-            public int getCommentcount() {
-                return commentcount;
-            }
-
-            public void setCommentcount(int commentcount) {
-                this.commentcount = commentcount;
+            public void setNickname(String nickname) {
+                this.nickname = nickname;
             }
 
             public String getDescription() {
@@ -272,76 +163,20 @@ public class SearchDetailResp {
                 this.created_at = created_at;
             }
 
-            public String getNote() {
-                return note;
-            }
-
-            public void setNote(String note) {
-                this.note = note;
-            }
-
-            public String getBaidu_words() {
-                return baidu_words;
-            }
-
-            public void setBaidu_words(String baidu_words) {
-                this.baidu_words = baidu_words;
-            }
-
-            public String getNickname() {
-                return nickname;
-            }
-
-            public void setNickname(String nickname) {
-                this.nickname = nickname;
-            }
-
-            public int getStatus() {
-                return status;
-            }
-
-            public void setStatus(int status) {
-                this.status = status;
-            }
-
-            public int getDigg() {
-                return digg;
-            }
-
-            public void setDigg(int digg) {
-                this.digg = digg;
-            }
-
-            public int getBury() {
-                return bury;
-            }
-
-            public void setBury(int bury) {
-                this.bury = bury;
-            }
-
-            public int getBlogid() {
-                return blogid;
-            }
-
-            public void setBlogid(int blogid) {
-                this.blogid = blogid;
-            }
-
-            public int getViewcount() {
+            public String getViewcount() {
                 return viewcount;
             }
 
-            public void setViewcount(int viewcount) {
+            public void setViewcount(String viewcount) {
                 this.viewcount = viewcount;
             }
 
-            public int getOutlinkcount() {
-                return outlinkcount;
+            public String getId() {
+                return id;
             }
 
-            public void setOutlinkcount(int outlinkcount) {
-                this.outlinkcount = outlinkcount;
+            public void setId(String id) {
+                this.id = id;
             }
 
             public String getAvatar() {
@@ -352,28 +187,36 @@ public class SearchDetailResp {
                 this.avatar = avatar;
             }
 
-            public String getIp() {
-                return ip;
+            public String getTitle() {
+                return title;
             }
 
-            public void setIp(String ip) {
-                this.ip = ip;
+            public void setTitle(String title) {
+                this.title = title;
             }
 
-            public String getUser_name() {
-                return user_name;
+            public String getBody() {
+                return body;
             }
 
-            public void setUser_name(String user_name) {
-                this.user_name = user_name;
+            public void setBody(String body) {
+                this.body = body;
             }
 
-            public String getFilename() {
-                return filename;
+            public int getView_count() {
+                return view_count;
             }
 
-            public void setFilename(String filename) {
-                this.filename = filename;
+            public void setView_count(int view_count) {
+                this.view_count = view_count;
+            }
+
+            public String getUrl() {
+                return url;
+            }
+
+            public void setUrl(String url) {
+                this.url = url;
             }
         }
     }

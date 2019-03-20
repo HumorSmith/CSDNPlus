@@ -1,6 +1,7 @@
 package com.ifreedomer.cplus.adapter;
 
 import android.content.Intent;
+import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -25,13 +26,14 @@ public class SearchDetailListAdapter extends BaseQuickAdapter<SearchDetailResp.H
         helper.setText(R.id.titleTv, item.get_source().getTitle());
         helper.setText(R.id.summaryTv, item.get_source().getDescription());
         PicTextItem lookItem = helper.getView(R.id.lookPicItem);
-        lookItem.setText(item.get_source().getViewcount() + "");
+        lookItem.setText(item.get_source().getView_count() + "");
         lookItem.setIcon(R.mipmap.ic_view);
 
 
         PicTextItem commentItem = helper.getView(R.id.commentPicItem);
-        commentItem.setText(item.get_source().getCommentcount() + "");
+        commentItem.setText(item.get_source().getViewcount() + "");
         commentItem.setIcon(R.mipmap.ic_comment);
+        commentItem.setVisibility(View.GONE);
 
 
         PicTextItem userItem = helper.getView(R.id.userPicItem);

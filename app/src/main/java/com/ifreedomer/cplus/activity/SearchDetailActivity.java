@@ -21,7 +21,7 @@ public class SearchDetailActivity extends PullRefreshActivity<SearchDetailResp.H
     public void fetchData(int page) {
         setLoading(true);
 
-        Observable<PayLoad<SearchDetailResp>> searchTagObserver = HttpManager.getInstance().getSearchDetailListByTag(getIntent().getStringExtra(TAG_KEY));
+        Observable<PayLoad<SearchDetailResp>> searchTagObserver = HttpManager.getInstance().getSearchDetailListByTag("so_blog",page,getIntent().getStringExtra(TAG_KEY));
         searchTagObserver.subscribe(listPayLoad -> {
             setLoading(false);
             if (listPayLoad.getCode() == PayLoad.SUCCESS) {

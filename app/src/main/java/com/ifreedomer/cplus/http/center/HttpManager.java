@@ -24,6 +24,7 @@ import com.ifreedomer.cplus.http.protocol.body.FormBodyCustom;
 import com.ifreedomer.cplus.http.protocol.req.FollowReq;
 import com.ifreedomer.cplus.http.protocol.req.GetVerifyCodeReq;
 import com.ifreedomer.cplus.http.protocol.req.LoginReq;
+import com.ifreedomer.cplus.http.protocol.req.SearchReq;
 import com.ifreedomer.cplus.http.protocol.resp.AddCollectResp;
 import com.ifreedomer.cplus.http.protocol.resp.AddCommentResp;
 import com.ifreedomer.cplus.http.protocol.resp.ApproveResp;
@@ -180,8 +181,6 @@ public class HttpManager {
     }
 
 
-
-
     //老的V3接口
     public Observable<PayLoad<UserInfoResp>> loginV3(String account, String password) {
         String decryptPwd = SecurityUtil.DESEncrypt(password);
@@ -218,7 +217,7 @@ public class HttpManager {
 
     public Observable<PayLoad<List<BlogCategoryResp>>> getBlogCatergory(String username) {
         BlogApi blogApi = retrofit.create(BlogApi.class);
-        Observable<PayLoad<List<BlogCategoryResp>>> blogCategoryObservable = blogApi.getBlogCategory( 1, username)
+        Observable<PayLoad<List<BlogCategoryResp>>> blogCategoryObservable = blogApi.getBlogCategory(1, username)
                 .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
         return blogCategoryObservable;
     }
@@ -257,7 +256,7 @@ public class HttpManager {
     }
 
     public Observable<PayLoad<FollowOperationResp>> unfollow(String username) {
-        Observable<PayLoad<FollowOperationResp>> unFollowObservable = retrofit.create(FollowApi.class).unFollow( username, GlobalDataManager.getInstance().getUserInfo().getUserName());
+        Observable<PayLoad<FollowOperationResp>> unFollowObservable = retrofit.create(FollowApi.class).unFollow(username, GlobalDataManager.getInstance().getUserInfo().getUserName());
         unFollowObservable = unFollowObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
         return unFollowObservable;
     }
@@ -326,9 +325,31 @@ public class HttpManager {
         return payLoadObservable;
     }
 
-    public Observable<PayLoad<SearchDetailResp>> getSearchDetailListByTag(String tagResult) {
+    public Observable<PayLoad<SearchDetailResp>> getSearchDetailListByTag(String type, int page, String tagResult) {
         BlogApi blogApi = retrofit.create(BlogApi.class);
-        return blogApi.getDetailListByTag(20, 1, "so_blog", tagResult).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+
+
+        SearchReq searchReq = new SearchReq();
+        searchReq.setBlock(type);
+        searchReq.setPage(page);
+        searchReq.setKeywords(tagResult);
+        searchReq.setQueryRules(0);
+        searchReq.setSize(20);
+        searchReq.setTimeScope(0);
+        RequestBody body = RequestBody.create(MediaType.parse("application/json"), mGson.toJson(searchReq));
+
+
+//        RequestBody requestBody = new RequestBody.Builder()
+//                .setType(MultipartBody.FORM)
+//                .addFormDataPart("block", type)
+////                .addFormDataPart("block", "so_blog")
+//                .addFormDataPart("size", "20")
+//                .addFormDataPart("page", page+"")
+//                .addFormDataPart("timeScope", "0")
+//                .addFormDataPart("queryRules", "0")
+//                .addFormDataPart("keywords", tagResult)
+//                .build();
+        return blogApi.getDetailListByTag(body).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 
     public void saveArticle(DeployBlogContentInfo deployBlogContentInfo) {
@@ -411,11 +432,10 @@ public class HttpManager {
 
 
     public Observable<PayLoad<BlogContentInfo>> getBlogContent(String articleId, String userName) {
-        Observable<PayLoad<BlogContentInfo>> articleInfoObserver = retrofit.create(BlogApi.class).getBlogInfo(articleId,userName);
+        Observable<PayLoad<BlogContentInfo>> articleInfoObserver = retrofit.create(BlogApi.class).getBlogInfo(articleId, userName);
         articleInfoObserver = articleInfoObserver.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
         return articleInfoObserver;
     }
-
 
 
     public Observable<PayLoad<AddCollectResp>> addCollect(String title, String url, String userName) {

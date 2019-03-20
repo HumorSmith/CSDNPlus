@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">tencentad</string>
+    <string name="click_no_ad">点击一次，当天不再显示广告</string>
+</resources>

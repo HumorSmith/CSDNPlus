@@ -15,6 +15,8 @@ import com.ifreedomer.cplus.http.protocol.resp.SearchResp;
 import java.util.List;
 
 import io.reactivex.Observable;
+import okhttp3.RequestBody;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -43,12 +45,8 @@ public interface BlogApi {
             @Query("word") String word);
 
 
-    @GET("api/v3/search/elastic")
-    Observable<PayLoad<SearchDetailResp>> getDetailListByTag(
-            @Query("size") int size,
-            @Query("page") int page,
-            @Query("block") String block,
-            @Query("keywords") String words);
+    @POST("cms-app/v2/home_page/psearch")
+    Observable<PayLoad<SearchDetailResp>> getDetailListByTag(@Body RequestBody body);
 
 
     @GET("api/blog/user_blog_list")

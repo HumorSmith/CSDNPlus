@@ -99,15 +99,15 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if (TextUtils.isEmpty(s)) {
-                recyclerview.setVisibility(View.GONE);
-                historyLinlayout.setVisibility(View.VISIBLE);
-            } else {
-                recyclerview.setVisibility(View.VISIBLE);
-                historyLinlayout.setVisibility(View.GONE);
-                searchTag(s.toString());
-
-            }
+//            if (TextUtils.isEmpty(s)) {
+//                recyclerview.setVisibility(View.GONE);
+//                historyLinlayout.setVisibility(View.VISIBLE);
+//            } else {
+//                recyclerview.setVisibility(View.VISIBLE);
+//                historyLinlayout.setVisibility(View.GONE);
+//                searchTag(s.toString());
+//
+//            }
         }
 
         @Override
